@@ -9,7 +9,8 @@ import styles from './styles';
 
 
 const backgroundImage = require('../../../images/glow2.png');
-const logo = require('../../../images/logo.png');
+const logo = require('../../../images/logo-new.png');
+
 
 class Login extends Component {
 
@@ -19,7 +20,13 @@ class Login extends Component {
       email: '',
       password: '',
       scroll: false,
+      errorMessage : ''
     };
+  }
+
+
+  login(){
+
   }
 
 
@@ -49,12 +56,16 @@ class Login extends Component {
                         onChangeText={password => this.setState({ password })}
                       />
                     </Item>
+                <Text style={{ color: 'red', marginBottom: (Platform.OS === 'ios') ? 5 : 0, marginTop: (Platform.OS === 'ios') ? -10 : 0  }}>
+                    {this.state.errorMessage}
+                    Huhu
+                </Text>
                 <Button transparent style={{ alignSelf: 'flex-end', marginBottom: (Platform.OS === 'ios') ? 5 : 0, marginTop: (Platform.OS === 'ios') ? -10 : 0 }}>
                   <Text>
                     Forgot Password
                   </Text>
                 </Button>
-                <Button rounded block style={{ marginBottom: 10 }} onPress={() => Actions.home()}>
+                <Button rounded block style={{ marginBottom: 10 }} onPress={ this.login() }>
                   <Text style={{ color:'#00C497' }}>
                     Login
                   </Text>

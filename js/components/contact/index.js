@@ -42,7 +42,7 @@ class Contacts extends Component {
             </Right>
           </Header>
           <Tabs>
-            <Tab heading="All">
+            <Tab heading="All1">
               <AllContacts />
             </Tab>
             <Tab heading="Favourite">

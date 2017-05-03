@@ -2,6 +2,7 @@
   "expo": {
     "sdkVersion": "15.0.0",
     "icon": "./images/logo-new.png",
+    "icon-old": "./images/icon.png",
     "slug": "merchantpro",
     "loading": {
       "hideExponentText": true,
