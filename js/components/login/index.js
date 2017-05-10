@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, Platform} from 'react-native';
+import {Image, Platform, AsyncStorage} from 'react-native';
 import {connect} from 'react-redux';
 import {Actions} from 'react-native-router-flux';
 import {Container, Content, Text, Item, Input, Button, Icon, View, Form} from 'native-base';
@@ -11,7 +11,8 @@ import styles from './styles';
 
 
 const backgroundImage = require('../../../images/glow2.png');
-const logo = require('../../../images/logo-new.png');
+const logo = require('../../../images/logo.png');
+const facebookButton = require('../../../images/facebook-button.png');
 
 
 class Login extends Component {
@@ -26,29 +27,81 @@ class Login extends Component {
     };
   }
 
+  componentDidMount() {
+    this._loadInitialState().done();
+  }
+
+  _loadInitialState = async () => {
+    try {
+      var value = await AsyncStorage.getItem("authData");
+      if (value !== null){
+        var authData = JSON.parse(value);
+        if(new Date().getTime() < authData.exp){
+          Actions.home();
+        }
+        console.log("Recovered selection from disk: ",value);
+      } else {
+        console.log("Initialized with no selection on disk.");
+      }
+    } catch (error) {
+      _self.setError('AsyncStorage error: ' + error.message);
+    }
+  };
+
+  checkState() {
+    getLocalState()
+    async function getLocalState() {
+      try {
+        const value = await
+          AsyncStorage.getItem('@MySuperStore:key');
+        if (value !== null) {
+          // We have data!!
+          this.state = {
+            username: '',
+            password: '',
+            scroll: false,
+            errorMessage: ''
+          };
+          console.log(value);
+        }
+      } catch (error) {
+        _self.setError(thrown);
+      }
+    }
+
+
+  }
+
 
   login() {
     var _self = this;
-    console.log("this", this.setError, _self.setError);
-    httpService.post("",{
-      command : "login",
-      type : "normal",
-      username : this.state.username, //ndn199101
-      password : this.state.password //ndn123456
+    httpService.post("", {
+      command: "login",
+      type: "normal",
+      username: this.state.username, //ndn199101
+      password: this.state.password //ndn123456
 
-    }).then(function (response) {
-        var data = response.data;
-        if(data.status){
-          console.log("data",data);
-          _self.setError(data.message);
-        }else{
-          _self.setError("");
-          Actions.home();
+    }).then(async function (response) {
+      var data = response.data;
+      if (data.status) {
+        _self.setError(data.message);
+      } else {
+        _self.setError("");
+        var accessToken = data.data && data.data.accessToken;
+        if (accessToken) {
+          try {
+            const a = await AsyncStorage.setItem('authData', JSON.stringify(data.data));
+            console.log("response a", a);
+            Actions.home();
+          } catch (error) {
+            console.log("error", error);
+            _self.setError(error);
+          }
         }
-        console.log(response.data);
-      }).catch(function (thrown) {
-        console.log('thrown.message2',thrown);
-        _self.setError(thrown);
+      }
+    }).catch(function (thrown) {
+      console.log('thrown.message2', thrown);
+      _self.setError(thrown);
     });
 
   }
@@ -57,11 +110,11 @@ class Login extends Component {
     var _self = this;
     logIn();
     async function logIn() {
-      const { type, token } = await Facebook.logInWithReadPermissionsAsync('1472518432772370', {
+      const {type, token} = await Facebook.logInWithReadPermissionsAsync('1472518432772370', {
         permissions: ['public_profile'],
       });
       if (type === 'success') {
-        console.log("type, token",type, token);
+        console.log("type, token", type, token);
         _self.loginWidthToken(token);
         // const response = await fetch(
         //   `https://graph.facebook.com/me?access_token=${token}`);
@@ -69,7 +122,7 @@ class Login extends Component {
         //   'Logged in!',
         //   `Hi ${(await response.json()).name}!`,
         // );
-      }else{
+      } else {
         console.log("hihii");
       }
     }
@@ -78,28 +131,28 @@ class Login extends Component {
   loginWidthToken(token) {
     var _self = this;
     console.log("this", this.setError, _self.setError);
-    httpService.post("",{
-      command : "login",
-      type : "facebook",
-      accessToken : token
+    httpService.post("", {
+      command: "login",
+      type: "facebook",
+      accessToken: token
     }).then(function (response) {
       var data = response.data;
-      if(data.status){
-        console.log("data",data);
+      if (data.status) {
+        console.log("data", data);
         _self.setError(data.message);
-      }else{
+      } else {
         _self.setError("");
         Actions.home();
       }
       console.log(response.data);
     }).catch(function (thrown) {
-      console.log('thrown.message2',thrown);
+      console.log('thrown.message2', thrown);
       _self.setError(thrown);
     });
   }
 
 
-  setError(message){
+  setError(message) {
     this.setState(prevState => ({
       errorMessage: message
     }));
@@ -109,62 +162,73 @@ class Login extends Component {
     return (
       <Container>
 
-        <Content style={{backgroundColor: '#384850'}}>
+        <Content style={{backgroundColor: '#2a3146'}}>
           <Image source={backgroundImage} style={styles.container}>
-            <Image source={logo} style={styles.shadow}>
-              <View style={styles.bg}>
-                <Item underline style={{marginBottom: 20}}>
-                  <Icon active name="person"/>
-                  <Input
-                    autoCorrect={false}
-                    placeholder="Username"
-                    placeholderTextColor="#FFF"
-                    onChangeText={username => this.setState({username})}
+            {/*<View style={styles.shadow}>*/}
+            <View style={styles.bg}>
+              <Image source={logo} resizeMode='cover' style={styles.logo}/>
+              {/*<Item underline style={{marginBottom: 20}}>*/}
+              <View style={styles.innerView}>
+
+                <Item style={styles.inputWrapper}>
+                  {/*<Icon active name="person"/>*/}
+                  <Icon active name="person" style={styles.inputIcon}/>
+                  <Input style={{textAlign: 'center', paddingRight: 20, paddingLeft: 50}}
+                         autoCorrect={false}
+                         placeholder="Tài khoản"
+                         placeholderTextColor="#7481a7"
+                         onChangeText={username => this.setState({username})}
                   />
                 </Item>
-                <Item underline style={{marginBottom: 30}}>
-                  <Icon name="unlock"/>
-                  <Input
-                    placeholder="Password"
-                    placeholderTextColor="#FFF"
-                    secureTextEntry
-                    onChangeText={password => this.setState({password})}
+                <Item style={styles.inputWrapper}>
+                  <Icon name="unlock" style={styles.inputIcon}/>
+                  <Input style={{textAlign: 'center', paddingRight: 20, paddingLeft: 50}}
+                         placeholder="Mật khẩu"
+                         placeholderTextColor="#7481a7"
+                         secureTextEntry
+                         onChangeText={password => this.setState({password})}
                   />
                 </Item>
                 <Text style={{
+                  height: 30,
                   color: 'red',
-                  marginBottom: (Platform.OS === 'ios') ? 5 : 0,
-                  marginTop: (Platform.OS === 'ios') ? -10 : 0
+                  marginBottom: (Platform.OS === 'ios') ? 10 : 0,
+                  marginTop: (Platform.OS === 'ios') ? 10 : 0
                 }}>
                   {this.state.errorMessage}
                 </Text>
-                <Button transparent style={{
-                  alignSelf: 'flex-end',
-                  marginBottom: (Platform.OS === 'ios') ? 5 : 0,
-                  marginTop: (Platform.OS === 'ios') ? -10 : 0
-                }}>
-                  <Text>
-                    Forgot Password
-                  </Text>
-                </Button>
-                <Button rounded block style={{marginBottom: 10}} onPress={ () => this.login() }>
-                  <Text style={{color: '#00C497'}}>
+                {/*<Button transparent style={{*/}
+                {/*alignSelf: 'flex-end',*/}
+                {/*marginBottom: (Platform.OS === 'ios') ? 5 : 0,*/}
+                {/*marginTop: (Platform.OS === 'ios') ? -10 : 0*/}
+                {/*}}>*/}
+                {/*<Text>*/}
+                {/*Forgot Password*/}
+                {/*</Text>*/}
+                {/*</Button>*/}
+                <Button rounded block style={styles.loginButton} onPress={ () => this.login() }>
+                  <Text style={{color: '#ffffff'}}>
                     Login
                   </Text>
                 </Button>
 
-                <Button rounded block style={{marginBottom: 10}} onPress={ () => this.loginFacebook() }>
-                  <Text style={{color: '#00C497'}}>
-                    Login Facebook
+
+                <View style={styles.facebookWrapper} onPress={ () => this.loginFacebook() }>
+                  {/*<Button rounded block style={{marginBottom: 10}} >*/}
+                  {/*</Button>*/}
+                  <Image source={facebookButton} resizeMode='cover' style={styles.facebookButton}/>
+                  <Text style={{color: '#405688'}}>
+                    Đăng nhập qua Facebook
                   </Text>
-                </Button>
-                <Button transparent style={{alignSelf: 'center'}} onPress={() => Actions.signUp()}>
-                    <Text>
-                    Sign Up Here
-                  </Text>
-                </Button>
+                </View>
+                {/*<Button transparent style={{alignSelf: 'center'}} onPress={() => Actions.signUp()}>*/}
+                {/*<Text>*/}
+                {/*Sign Up Here*/}
+                {/*</Text>*/}
+                {/*</Button>*/}
               </View>
-            </Image>
+            </View>
+            {/*</View>*/}
           </Image>
         </Content>
       </Container>
