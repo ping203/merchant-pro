@@ -236,4 +236,16 @@ class Login extends Component {
   }
 }
 
-export default connect()(Login);
+
+function bindAction(dispatch) {
+  return {
+    closeDrawer: () => dispatch(closeDrawer()),
+  };
+}
+
+const mapStateToProps = state => ({
+  drawerState: state.drawer.drawerState,
+  navigation: state.cardNavigation,
+});
+
+export default connect(mapStateToProps, bindAction)(Login);
