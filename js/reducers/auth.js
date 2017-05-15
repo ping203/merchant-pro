@@ -1,6 +1,6 @@
 
 // import type { Action } from '../actions/types';
-import { LOGIN, LOGOUT } from '../actions/auth';
+import { LOGIN_SUCCESS, LOGOUT } from '../actions/auth';
 
 
 const initialState = {
@@ -9,17 +9,19 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-  if (action.type === LOGIN) {
+  if (action.type === LOGIN_SUCCESS) {
+    console.log("create action LOGIN_SUCCESS", action);
     return {
-      ...state,
-      drawerState: 'opened',
+      isLogin: true,
+      loginInfo : action.loginInfo
     };
   }
 
   if (action.type === LOGOUT) {
+    console.log("create action LOGOUT");
     return {
-      ...state,
-      drawerState: 'closed',
+      isLogin: true,
+      loginInfo : {}
     };
   }
 

@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {Image, Platform, AsyncStorage} from 'react-native';
+import {Image, Platform, AsyncStorage, TouchableHighlight} from 'react-native';
 import {connect} from 'react-redux';
 import {Actions} from 'react-native-router-flux';
 import {Container, Content, Text, Item, Input, Button, Icon, View, Form} from 'native-base';
-import axios from 'axios';
 import httpService from '../../common/http';
 import {Facebook} from 'expo';
+import { login_success } from '../../actions/auth';
 
 import styles from './styles';
 
@@ -22,9 +22,10 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
-      scroll: false,
-      errorMessage: ''
+      errorMessage: '',
+      onExp : false
     };
+    console.log('constructor');
   }
 
   componentDidMount() {
@@ -34,12 +35,11 @@ class Login extends Component {
   _loadInitialState = async () => {
     try {
       var value = await AsyncStorage.getItem("authData");
-      if (value !== null){
+      if (value !== null) {
         var authData = JSON.parse(value);
-        if(new Date().getTime() < authData.exp){
+        if (new Date().getTime() < authData.exp) {
           Actions.home();
         }
-        console.log("Recovered selection from disk: ",value);
       } else {
         console.log("Initialized with no selection on disk.");
       }
@@ -91,7 +91,7 @@ class Login extends Component {
         if (accessToken) {
           try {
             const a = await AsyncStorage.setItem('authData', JSON.stringify(data.data));
-            console.log("response a", a);
+            _self.props.dispatch(login_success(data.data));
             Actions.home();
           } catch (error) {
             console.log("error", error);
@@ -108,6 +108,7 @@ class Login extends Component {
 
   loginFacebook() {
     var _self = this;
+    console.log("loginfacebook");
     logIn();
     async function logIn() {
       const {type, token} = await Facebook.logInWithReadPermissionsAsync('1472518432772370', {
@@ -213,11 +214,13 @@ class Login extends Component {
                 </Button>
 
 
-                <View style={styles.facebookWrapper} onPress={ () => this.loginFacebook() }>
+                <View style={styles.facebookWrapper}>
                   {/*<Button rounded block style={{marginBottom: 10}} >*/}
                   {/*</Button>*/}
-                  <Image source={facebookButton} resizeMode='cover' style={styles.facebookButton}/>
-                  <Text style={{color: '#405688'}}>
+                  <TouchableHighlight onPress={ () => this.loginFacebook() }>
+                    <Image source={facebookButton} resizeMode='cover' style={styles.facebookButton}/>
+                  </TouchableHighlight>
+                  <Text onPress={ () => this.loginFacebook() } style={{color: '#405688'}}>
                     Đăng nhập qua Facebook
                   </Text>
                 </View>

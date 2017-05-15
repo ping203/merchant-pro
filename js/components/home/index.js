@@ -1,13 +1,27 @@
+import React, {Component} from 'react';
+import {Image,  AsyncStorage} from 'react-native';
+import {connect} from 'react-redux';
+import {Actions, ActionConst} from 'react-native-router-flux';
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  Button,
+  Icon,
+  List,
+  ListItem,
+  Text,
+  Footer,
+  Left,
+  Right,
+  Body
+} from 'native-base';
 
-import React, { Component } from 'react';
-import { Image } from 'react-native';
-import { connect } from 'react-redux';
-import { Actions, ActionConst } from 'react-native-router-flux';
-import { Container, Header, Title, Content, Button, Icon, List, ListItem, Text, Footer, Left, Right, Body } from 'native-base';
-
-import { openDrawer } from '../../actions/drawer';
+import {openDrawer} from '../../actions/drawer';
 import FooterComponent from './../footer';
 import styles from './styles';
+import { logout } from '../../actions/auth';
 
 
 const glow2 = require('../../../images/glow2.png');
@@ -18,79 +32,96 @@ class Home extends Component {  //eslint-disable-line
     openDrawer: React.PropTypes.func,
   }
 
+
+  logout() {
+    var _self = this;
+    _logout();
+    async function _logout() {
+      try {
+        await AsyncStorage.removeItem('authData');
+        _self.props.dispatch(logout());
+        Actions.login({ type: ActionConst.RESET });
+        // Actions.home();
+      } catch (error) {
+        console.log("logout error", error);
+      }
+    };
+
+  }
+
   render() {
     return (
-      <Container style={{ backgroundColor: '#384850' }}>
-        <Image source={glow2} style={styles.container} >
+      <Container style={{backgroundColor: '#384850'}}>
+        <Image source={glow2} style={styles.container}>
 
           <Header >
             <Left />
             <Body>
-              <Title>Home</Title>
+            <Title>Home</Title>
             </Body>
             <Right>
-              <Button transparent onPress={this.props.openDrawer} >
-                <Icon active name="menu" style={{ fontSize: 30, lineHeight: 32 }} />
+              <Button transparent onPress={this.props.openDrawer}>
+                <Icon active name="menu" style={{fontSize: 30, lineHeight: 32}}/>
               </Button>
             </Right>
           </Header>
 
-          <Content padder style={{ backgroundColor: 'transparent' }}>
+          <Content padder style={{backgroundColor: 'transparent'}}>
 
-            <ListItem icon style={styles.listitem} >
+            <ListItem icon style={styles.listitem}>
               <Left>
-                <Icon active name="megaphone" style={{ width: 30 }} />
+                <Icon active name="megaphone" style={{width: 30}}/>
               </Left>
               <Body>
-                <Text>Discussion With Client</Text>
+              <Text>Discussion With Client</Text>
               </Body>
               <Right>
-                <Text style={{ fontWeight: '400', paddingTop: 18 }} note>8:00 AM</Text>
+                <Text style={{fontWeight: '400', paddingTop: 18}} note>8:00 AM</Text>
               </Right>
             </ListItem>
             <ListItem icon style={styles.listitem}>
               <Left>
-                <Icon active name="people" style={{ width: 30 }} />
+                <Icon active name="people" style={{width: 30}}/>
               </Left>
               <Body>
-                <Text >Daily Stand Up</Text>
+              <Text >Daily Stand Up</Text>
               </Body>
               <Right>
-                <Text style={{ fontWeight: '400', paddingTop: 18 }} note>10:00 AM</Text>
+                <Text style={{fontWeight: '400', paddingTop: 18}} note>10:00 AM</Text>
               </Right>
             </ListItem>
             <ListItem icon style={styles.listitem}>
               <Left>
-                <Icon active name="flag" style={{ width: 30 }} />
+                <Icon active name="flag" style={{width: 30}}/>
               </Left>
               <Body>
-                <Text>Finish list Screen</Text>
+              <Text>Finish list Screen</Text>
               </Body>
               <Right>
-                <Text style={{ fontWeight: '400', paddingTop: 18 }} note>By 2:00 PM</Text>
+                <Text style={{fontWeight: '400', paddingTop: 18}} note>By 2:00 PM</Text>
               </Right>
             </ListItem>
             <ListItem icon style={styles.listitem}>
               <Left>
-                <Icon active name="restaurant" style={{ width: 30 }} />
+                <Icon active name="restaurant" style={{width: 30}}/>
               </Left>
               <Body>
-                <Text>Lunch Break</Text>
+              <Text>Lunch Break</Text>
               </Body>
               <Right>
-                <Text style={{ fontWeight: '400', paddingTop: 18 }} note>2:00 PM</Text>
+                <Text style={{fontWeight: '400', paddingTop: 18}} note>2:00 PM</Text>
               </Right>
             </ListItem>
             <Button
               style={styles.roundedButton}
-              onPress={() => Actions.login({ type: ActionConst.RESET })}
+              onPress={() => this.logout()}
             >
-              <Icon active name="close" style={styles.closeIcon} />
+              <Icon active name="close" style={styles.closeIcon}/>
             </Button>
           </Content>
 
-          <Footer style={{ borderTopWidth: 0, backgroundColor: 'transparent' }}>
-            <FooterComponent navigator={this.props.navigation} />
+          <Footer style={{borderTopWidth: 0, backgroundColor: 'transparent'}}>
+            <FooterComponent navigator={this.props.navigation}/>
           </Footer>
         </Image>
       </Container>
@@ -104,7 +135,6 @@ function bindAction(dispatch) {
   };
 }
 
-const mapStateToProps = state => ({
-});
+const mapStateToProps = state => ({});
 
 export default connect(mapStateToProps, bindAction)(Home);

@@ -53,6 +53,10 @@
     "redux-thunk": "^2.1.0",
     "remote-redux-devtools": "^0.3.3",
     "remote-redux-devtools-on-debugger": "^0.4.6",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "buffer": "5.0.0",
+    "fetchival": "0.3.2",
+    "qs": "6.3.0",
+    "redux-persist-transform-filter": "0.0.4"
   }
 }
