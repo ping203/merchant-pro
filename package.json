@@ -31,15 +31,19 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "buffer": "5.0.0",
     "color": "^0.11.3",
     "crypto": "0.0.3",
     "expo": "^15.1.0",
     "exponent": "^14.0.0",
+    "fetchival": "0.3.2",
     "frisbee": "^1.2.0",
     "lodash": "^4.13.1",
     "moment": "^2.13.0",
     "native-base": "2.1.0-rc.2",
+    "qs": "6.3.0",
     "react": "~15.4.0",
+    "react-intl": "^2.3.0",
     "react-native": "0.42.3",
     "react-native-button": "^1.6.0",
     "react-native-gifted-messenger": "^0.1.4",
@@ -50,13 +54,10 @@
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-persist": "^3.2.2",
+    "redux-persist-transform-filter": "0.0.4",
     "redux-thunk": "^2.1.0",
     "remote-redux-devtools": "^0.3.3",
     "remote-redux-devtools-on-debugger": "^0.4.6",
-    "request": "^2.81.0",
-    "buffer": "5.0.0",
-    "fetchival": "0.3.2",
-    "qs": "6.3.0",
-    "redux-persist-transform-filter": "0.0.4"
+    "request": "^2.81.0"
   }
 }

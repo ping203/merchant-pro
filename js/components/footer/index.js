@@ -1,35 +1,27 @@
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Icon, FooterTab, Button, Text} from 'native-base';
 
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Icon, FooterTab, Button } from 'native-base';
-
-import { Actions, ActionConst } from 'react-native-router-flux';
+import {Actions, ActionConst} from 'react-native-router-flux';
 
 import styles from './styles';
+import FooterButton from './footerButton';
 
 class Footer extends Component {
 
 
+  changeFooterState(target){
+
+  }
+
   render() {
     return (
 
-
       <FooterTab style={styles.footer}>
-        <Button onPress={() => Actions.calendar()}>
-          <Icon name="calendar" />
-        </Button>
-        <Button onPress={() => Actions.form()}>
-          <Icon name="pie" />
-        </Button>
-        <Button>
-          <Icon name="add-circle" />
-        </Button>
-        <Button onPress={() => Actions.contacts()}>
-          <Icon active name="person" />
-        </Button>
-        <Button onPress={() => Actions.spinners()}>
-          <Icon name="time" />
-        </Button>
+        <FooterButton target="cashIn"/>
+        <FooterButton target="tranfer"/>
+        <FooterButton target="gift"/>
+        <FooterButton target="reveice"/>
       </FooterTab>
 
 
@@ -37,5 +29,16 @@ class Footer extends Component {
   }
 }
 
+function bindAction(dispatch) {
+  return {
+    openDrawer: () => dispatch(openDrawer()),
+  };
+}
 
-export default connect()(Footer);
+const mapStateToProps = state => {
+  return {
+    footerState: state.footerState
+  }
+};
+
+export default connect(mapStateToProps, bindAction)(Footer);

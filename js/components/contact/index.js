@@ -51,6 +51,9 @@ class Contacts extends Component {
             <Tab heading="Recent">
               <Recent />
             </Tab>
+            <Tab heading="Recent2">
+              <Recent />
+            </Tab>
           </Tabs>
         </Image>
       </Container>

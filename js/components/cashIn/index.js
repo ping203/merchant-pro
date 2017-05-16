@@ -78,8 +78,9 @@ class Home extends Component {  //eslint-disable-line
 
               <Image source={defaultAvatar} resizeMode='cover' style={styles.headerAvatar}></Image>
               <View style={styles.headerRight}>
-                {!isActived && <Button style={{backgroundColor: "#ddd",  height: 30}}>
-                  <Text style={{color: '#999'}}>Xác thực tài khoản</Text>
+                {!isActived &&
+                <Button style={{backgroundColor: "#ddd",  height: 30}}>
+                  <Text style={{color: '#999'}}>Xác thực</Text>
                 </Button>}
                 {isActived && <Icon active name="ios-arrow-dropdown-circle" style={{width: 30, color: "#add329"}}/>}
                 {isActived &&

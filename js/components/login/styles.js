@@ -19,7 +19,8 @@ export default{
     marginTop: (deviceHeight < 600) ? -40 : -10,
     width: null,
     height: null,
-    backgroundColor: 'transparent',
+    // backgroundColor: 'transparent',
+    backgroundColor: 'red',
   },
   bg: {
     left: 0,

@@ -9,6 +9,7 @@ import { closeDrawer } from './actions/drawer';
 
 import Login from './components/login/';
 import Home from './components/home/';
+import CashIn from './components/cashIn/';
 import SignUp from './components/sign-up/';
 import Inbox from './components/inbox/';
 import Mail from './components/mail/';
@@ -95,6 +96,10 @@ class AppNavigator extends Component {
             <Scene key="login" component={Login} hideNavBar initial />
             <Scene key="signUp" component={SignUp} />
             <Scene key="home" component={Home} />
+            <Scene key="cashIn" component={CashIn} />
+            <Scene key="tranfer" component={Contacts} />
+            <Scene key="gift" component={Mail} />
+            <Scene key="reveice" component={Lists} />
             <Scene key="inbox" component={Inbox} />
             <Scene key="compose" component={Compose} />
             <Scene key="mail" component={Mail} />

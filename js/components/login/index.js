@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Image, Platform, AsyncStorage, TouchableHighlight} from 'react-native';
 import {connect} from 'react-redux';
-import {Actions} from 'react-native-router-flux';
+import {Actions, ActionConst} from 'react-native-router-flux';
 import {Container, Content, Text, Item, Input, Button, Icon, View, Form} from 'native-base';
 import httpService from '../../common/http';
 import {Facebook} from 'expo';
@@ -10,7 +10,7 @@ import { login_success } from '../../actions/auth';
 import styles from './styles';
 
 
-const backgroundImage = require('../../../images/glow2.png');
+const backgroundImage = require('../../../images/glow2-old.png');
 const logo = require('../../../images/logo.png');
 const facebookButton = require('../../../images/facebook-button.png');
 
@@ -33,12 +33,13 @@ class Login extends Component {
   }
 
   _loadInitialState = async () => {
+    var _self = this;
     try {
       var value = await AsyncStorage.getItem("authData");
       if (value !== null) {
         var authData = JSON.parse(value);
         if (new Date().getTime() < authData.exp) {
-          Actions.home();
+          _self.goHome(authData);
         }
       } else {
         console.log("Initialized with no selection on disk.");
@@ -91,8 +92,8 @@ class Login extends Component {
         if (accessToken) {
           try {
             const a = await AsyncStorage.setItem('authData', JSON.stringify(data.data));
-            _self.props.dispatch(login_success(data.data));
-            Actions.home();
+            console.log("set Item success");
+            _self.goHome(data.data);
           } catch (error) {
             console.log("error", error);
             _self.setError(error);
@@ -104,6 +105,12 @@ class Login extends Component {
       _self.setError(thrown);
     });
 
+  }
+
+  goHome(loginData){
+    this.props.dispatch(login_success(loginData));
+    // Actions.cashIn({type: ActionConst.RESET});
+    Actions.cashIn();
   }
 
   loginFacebook() {
