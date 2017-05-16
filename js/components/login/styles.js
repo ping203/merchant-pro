@@ -44,7 +44,7 @@ export default{
     position: "relative",
     backgroundColor: 'transparent',
     borderWidth: 2,
-    borderColor: '#222',
+    borderColor: '#464a60',
     borderRadius: 5,
     marginBottom: 15
   },
@@ -56,7 +56,7 @@ export default{
   },
   loginButton: {
     marginBottom: 10,
-    height: 60,
+    height: 50,
     borderRadius: 10,
     backgroundColor: "#cdac12"
   },

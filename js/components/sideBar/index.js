@@ -108,7 +108,43 @@ class SideBar extends Component {
             <Icon name="alert" />
           </Left>
           <Body>
-            <Text>Modal</Text>
+          <Text>Modal</Text>
+          </Body>
+          <Right />
+        </ListItem>
+        <ListItem button onPress={() => { Actions.calendar(); this.props.closeDrawer(); }} icon style={styles.links}>
+          <Left>
+            <Icon name="alert" />
+          </Left>
+          <Body>
+          <Text>calendar</Text>
+          </Body>
+          <Right />
+        </ListItem>
+        <ListItem button onPress={() => { Actions.form(); this.props.closeDrawer(); }} icon style={styles.links}>
+          <Left>
+            <Icon name="alert" />
+          </Left>
+          <Body>
+          <Text>form</Text>
+          </Body>
+          <Right />
+        </ListItem>
+        <ListItem button onPress={() => { Actions.contacts(); this.props.closeDrawer(); }} icon style={styles.links}>
+          <Left>
+            <Icon name="alert" />
+          </Left>
+          <Body>
+          <Text>contacts</Text>
+          </Body>
+          <Right />
+        </ListItem>
+        <ListItem button onPress={() => { Actions.spinners(); this.props.closeDrawer(); }} icon style={styles.links}>
+          <Left>
+            <Icon name="alert" />
+          </Left>
+          <Body>
+          <Text>spinners</Text>
           </Body>
           <Right />
         </ListItem>

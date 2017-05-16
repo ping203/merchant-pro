@@ -41,28 +41,19 @@ class FooterButton extends Component {
   }
 
   render() {
-    const {target, dispatch, footerState} = this.props;
-    if (target === footerState) {
+    const {active} = this.props;
+    if (active) {
       return (
-        <Button  style={styles.activeButton}>
-            < Text style={{color: "#a49ad3"}}> {MappingTarget[target]} </Text>
-        </Button>
-      );
+        <Image source={item.image} key={index} resizeMode='cover' style={styles.cardImageActive}/> ;
+
+    );
     } else {
       return (
-        <Button style={styles.button} onPress={this.changeFooterState.bind(this)}>
-          < Text style={{color: "#676da6"}}> {MappingTarget[target]} </Text>
-        </Button>
+        <TouchableHighlight onPress={ () => this.onSelectCard(item) }><Image source={item.image} key={index} resizeMode='cover' style={styles.cardImage}/></TouchableHighlight>
       );
     }
 
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    footerState: state.footerState
-  }
-};
-
-export default connect(mapStateToProps)(FooterButton);
+export default FooterButton;

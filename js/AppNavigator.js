@@ -26,6 +26,11 @@ import SideBar from './components/sideBar';
 import { statusBarColor } from '../native-base-theme/variables/commonColor';
 
 
+import Tranfer from './components/tranfer/';
+import Gift from './components/gift/';
+import Receive from './components/reveice/';
+
+
 const RouterWithRedux = connect()(Router);
 
 class AppNavigator extends Component {
@@ -97,9 +102,9 @@ class AppNavigator extends Component {
             <Scene key="signUp" component={SignUp} />
             <Scene key="home" component={Home} />
             <Scene key="cashIn" component={CashIn} />
-            <Scene key="tranfer" component={Contacts} />
-            <Scene key="gift" component={Mail} />
-            <Scene key="reveice" component={Lists} />
+            <Scene key="tranfer" component={Tranfer} />
+            <Scene key="gift" component={Gift} />
+            <Scene key="receive" component={Receive} />
             <Scene key="inbox" component={Inbox} />
             <Scene key="compose" component={Compose} />
             <Scene key="mail" component={Mail} />

@@ -185,7 +185,7 @@ class Login extends Component {
                          autoCorrect={false}
                          placeholder="Tài khoản"
                          placeholderTextColor="#7481a7"
-                         onChangeText={username => this.setState({username})}
+                         onChangeText={username => {this.setState({username});console.log("on change username")}}
                   />
                 </Item>
                 <Item style={styles.inputWrapper}>

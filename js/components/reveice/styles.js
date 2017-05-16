@@ -83,29 +83,5 @@ export default {
   listitem: {
     borderBottomWidth: 0.5,
     borderBottomColor: '#ddd',
-  },
-  bg: {
-    left: 0,
-    paddingTop: 0,
-    height: null,
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingBottom: (Platform.OS === 'ios') ? 50 : 50,
-    position: "relative"
-  },
-  cardImage: {
-    width : deviceWidth/3.5,
-    height : deviceWidth/3.5 * 112/284,
-    opacity : 0.2
-  },
-  cardImageActive: {
-    width : deviceWidth/3.5,
-    height : deviceWidth/3.5 * 112/284
-  },
-  cardWrappers : {
-    // flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginTop : 10
   }
 }
