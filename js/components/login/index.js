@@ -25,7 +25,6 @@ class Login extends Component {
       errorMessage: '',
       onExp : false
     };
-    console.log('constructor');
   }
 
   componentDidMount() {
@@ -101,7 +100,7 @@ class Login extends Component {
         }
       }
     }).catch(function (thrown) {
-      console.log('thrown.message2', thrown);
+      console.log('thrown.message login', thrown);
       _self.setError(thrown);
     });
 
@@ -154,7 +153,7 @@ class Login extends Component {
       }
       console.log(response.data);
     }).catch(function (thrown) {
-      console.log('thrown.message2', thrown);
+      console.log('thrown.message loginWidthToken', thrown);
       _self.setError(thrown);
     });
   }
