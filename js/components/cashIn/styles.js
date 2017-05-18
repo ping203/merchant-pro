@@ -85,6 +85,7 @@ export default {
     borderBottomColor: '#ddd',
   },
   bg: {
+    marginTop : 10,
     left: 0,
     paddingTop: 0,
     height: null,

@@ -48,7 +48,6 @@ class ConfirmComponent extends Component {
       command: "get-verify-message"
     }).then(async function (response) {
       var data = response.data;
-      console.log("response.data1",response.data);
       if(data.status){
         _self.setError(data.message);
       }else{

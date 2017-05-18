@@ -6,16 +6,18 @@ import { reducer as servicesReducer } from '../services/reducer';
 import drawer from './drawer';
 import auth from './auth';
 import footerState from './footerState';
-import cashInScenes from '../components/cashIn/reducers';
+import cashInScene from '../components/cashIn/reducers';
 import confirmPopup from './confirmPopup';
+import tranferScene from '../components/tranfer/reducers';
 
 
 export default combineReducers({
   drawer,
   auth,
   footerState,
-  cashInScenes,
+  cashInScene,
   confirmPopup,
+  tranferScene,
   services: servicesReducer,
   data: dataReducer,
 });

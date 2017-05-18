@@ -83,5 +83,64 @@ export default {
   listitem: {
     borderBottomWidth: 0.5,
     borderBottomColor: '#ddd',
-  }
+  },
+  bg: {
+    marginTop : 10,
+    left: 0,
+    paddingTop: 0,
+    height: null,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: (Platform.OS === 'ios') ? 50 : 50,
+    // position: "relative",
+    // zIndex : -1
+  },
+  cardImage: {
+    width : deviceWidth/3.5,
+    height : deviceWidth/3.5 * 112/284,
+    opacity : 0.2
+  },
+  cardImageActive: {
+    width : deviceWidth/3.5,
+    height : deviceWidth/3.5 * 112/284
+  },
+  cardWrappers : {
+    // flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginTop : 10
+  },
+  checkboxList: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 10
+  },
+  errorMessage :{
+    height: 30,
+    color: 'red',
+    marginBottom: (Platform.OS === 'ios') ? 10 : 0,
+    marginTop: (Platform.OS === 'ios') ? 10 : 0
+  },
+  innerView: {
+    paddingLeft: deviceWidth / 8,
+    paddingRight: deviceWidth / 8,
+  },
+  radioContainer: {
+    paddingLeft: deviceWidth / 30,
+    paddingRight: deviceWidth / 30,
+  },
+  centerBox : {
+    flexDirection : "row",
+    justifyContent : "center",
+    alignItems : "center"
+  },
+
+  buttonYellow: {
+    marginTop : 10,
+    marginBottom: 10,
+    height: 50,
+    borderRadius: 10,
+    backgroundColor: "#cdac12"
+  },
 }

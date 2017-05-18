@@ -27,7 +27,7 @@ import HeaderComponent from './../header';
 import ConfirmComponent from './../confirmPopup';
 import styles from './styles';
 import styles2 from '../login/styles';
-import {logout} from '../../actions/auth';
+import {logout, update_gold} from '../../actions/auth';
 import {select_card_type, change_code, change_serial, update_config_ratio} from './actions';
 
 
@@ -138,13 +138,16 @@ class CashIn extends Component {  //eslint-disable-line
     }).then(async function (response) {
       var data = response.data;
       console.log("response.data",response.data);
-      if(data.status){
+      if(typeof data.status === "undefined"){
+        _self.setError("Server error");
+      }else if(data.status){
         _self.setError(data.message);
       }else{
         _self.setError("");
+        _self.props.dispatch(update_gold(data.gold));
         Alert.alert(
           'Thông báo',
-          'Bạn đã nạp thẻ thành công',
+          data.message,
           [
             // {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
             // {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
@@ -181,7 +184,6 @@ class CashIn extends Component {  //eslint-disable-line
 
   render() {
     const {selectedCardType, configGoldRatio, serial, code} = this.props;
-    console.log("configGoldRatio",configGoldRatio);
     var placeholderCode =  "Mã thẻ " + selectedCardType.name;
     var placeholderSerial = "Seri thẻ " + selectedCardType.name;
 
@@ -281,7 +283,7 @@ function bindAction(dispatch) {
 }
 
 const mapStateToProps = state => {
-  const {selectedCardType, serial, code, configGoldRatio} = state.cashInScenes;
+  const {selectedCardType, serial, code, configGoldRatio} = state.cashInScene;
   return {
     selectedCardType: selectedCardType,
     configGoldRatio : configGoldRatio,

@@ -1,6 +1,6 @@
 
 // import type { Action } from '../actions/types';
-import { LOGIN_SUCCESS, LOGOUT } from '../actions/auth';
+import { LOGIN_SUCCESS, LOGOUT, UPDATE_GOLD } from '../actions/auth';
 
 
 const initialState = {
@@ -20,6 +20,16 @@ export default function (state = initialState, action) {
     return {
       isLogin: true,
       loginInfo : {}
+    };
+  }
+
+  if (action.type === UPDATE_GOLD) {
+    return {
+      ...state,
+      loginInfo : {
+        ...state.loginInfo,
+        money : action.gold
+      }
     };
   }
 

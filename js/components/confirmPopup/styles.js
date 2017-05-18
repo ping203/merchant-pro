@@ -92,6 +92,6 @@ export default {
   ,
   messageYellow: {
     color: "#cdac12",
-    fontSize: theme.fontSizeH3
+    fontSize: theme.fontSizeBase * 1.2
   }
 }

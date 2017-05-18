@@ -83,7 +83,7 @@ const mapStateToProps = state => {
   return {
     isActived: loginInfo.isTelephoneVerified,
     username: loginInfo.username,
-    gold: loginInfo.gold || 0,
+    gold: loginInfo.money || 0,
   }
 };
 

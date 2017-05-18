@@ -13,6 +13,7 @@ import styles from './styles';
 const backgroundImage = require('../../../images/glow2-old.png');
 const logo = require('../../../images/logo.png');
 const facebookButton = require('../../../images/facebook-button.png');
+import { change_footer } from '../../actions/footerState';
 
 
 class Login extends Component {
@@ -108,6 +109,7 @@ class Login extends Component {
 
   goHome(loginData){
     this.props.dispatch(login_success(loginData));
+    this.props.dispatch(change_footer("cashIn"));
     // Actions.cashIn({type: ActionConst.RESET});
     Actions.cashIn();
   }
