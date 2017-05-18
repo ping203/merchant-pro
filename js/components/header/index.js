@@ -21,7 +21,7 @@ import {
 } from 'native-base';
 
 import {openDrawer} from '../../actions/drawer';
-import FooterComponent from './../footer';
+import {open_confirm_popup} from '../../actions/confirmPopup';
 import styles from './styles';
 import {logout} from '../../actions/auth';
 
@@ -30,10 +30,6 @@ const headerBg = require('../../../images/layout/header-bg.png');
 const defaultAvatar = require('../../../images/avatars/default.png');
 
 class HeaderComponent extends Component {
-
-  changeFooterState(target) {
-
-  }
 
   render() {
 
@@ -55,8 +51,8 @@ class HeaderComponent extends Component {
           <Image source={defaultAvatar} resizeMode='cover' style={styles.headerAvatar}></Image>
           <View style={styles.headerRight}>
             {!isActived &&
-            <Button style={{backgroundColor: "#ddd", height: 30}}>
-              <Text style={{color: '#999'}}>Xác thực</Text>
+            <Button onPress={this.props.openConfirmPopup} style={styles.buttonConfirm}>
+              <Text style={{color: '#aac2f7'}}>Xác thực</Text>
             </Button>}
             {isActived && <Icon active name="ios-arrow-dropdown-circle" style={{width: 30, color: "#add329"}}/>}
             {isActived &&
@@ -67,6 +63,7 @@ class HeaderComponent extends Component {
             </Text>}
           </View>
         </View>
+
       </View>
 
 
@@ -77,6 +74,7 @@ class HeaderComponent extends Component {
 function bindAction(dispatch) {
   return {
     openDrawer: () => dispatch(openDrawer()),
+    openConfirmPopup : () => dispatch(open_confirm_popup()),
   };
 }
 

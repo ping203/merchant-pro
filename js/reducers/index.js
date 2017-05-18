@@ -7,6 +7,7 @@ import drawer from './drawer';
 import auth from './auth';
 import footerState from './footerState';
 import cashInScenes from '../components/cashIn/reducers';
+import confirmPopup from './confirmPopup';
 
 
 export default combineReducers({
@@ -14,7 +15,7 @@ export default combineReducers({
   auth,
   footerState,
   cashInScenes,
+  confirmPopup,
   services: servicesReducer,
   data: dataReducer,
-
 });

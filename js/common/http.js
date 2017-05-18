@@ -37,7 +37,6 @@ export default {
       bundleId : config.bundleId,
       Authorization : accessToken
     });
-    console.log("params",params);
     var request = axios.post(config.host + url, params, postConfig);
     return request;
   }

@@ -91,7 +91,8 @@ export default {
     paddingLeft: 20,
     paddingRight: 20,
     paddingBottom: (Platform.OS === 'ios') ? 50 : 50,
-    position: "relative"
+    // position: "relative",
+    // zIndex : -1
   },
   cardImage: {
     width : deviceWidth/3.5,

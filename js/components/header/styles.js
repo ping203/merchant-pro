@@ -107,5 +107,13 @@ export default {
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop : 10
+  },
+  buttonConfirm : {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems : "center",
+    width : deviceWidth * 200/640,
+    height : deviceWidth * 60/640,
+    backgroundColor: "#3d5a98",
   }
 }

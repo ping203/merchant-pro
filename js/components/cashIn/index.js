@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, Platform, AsyncStorage, TouchableHighlight, View} from 'react-native';
+import {Image, Platform, AsyncStorage, TouchableHighlight, View, Alert} from 'react-native';
 import {connect} from 'react-redux';
 import {Actions, ActionConst} from 'react-native-router-flux';
 import httpService from '../../common/http';
@@ -24,6 +24,7 @@ import {
 import {openDrawer} from '../../actions/drawer';
 import FooterComponent from './../footer';
 import HeaderComponent from './../header';
+import ConfirmComponent from './../confirmPopup';
 import styles from './styles';
 import styles2 from '../login/styles';
 import {logout} from '../../actions/auth';
@@ -116,17 +117,47 @@ class CashIn extends Component {  //eslint-disable-line
     console.log("logout");
     _logout();
     async function _logout() {
-      // try {
       console.log("_logout");
         await AsyncStorage.removeItem('authData');
         _self.props.dispatch(logout());
         Actions.login({type: ActionConst.RESET});
-        // Actions.home();
-      // } catch (error) {
-      //   console.log("logout error", error);
-      // }
     };
   }
+
+
+  submit ()  {
+    var _self = this;
+    console.log("this.props",this.props);
+    const {code, serial, selectedCardType} = this.props;
+    httpService.post2("", {
+      command: "cash_in",
+      type: 1,
+      code,
+      serial,
+      telco : selectedCardType.code
+    }).then(async function (response) {
+      var data = response.data;
+      console.log("response.data",response.data);
+      if(data.status){
+        _self.setError(data.message);
+      }else{
+        _self.setError("");
+        Alert.alert(
+          'Thông báo',
+          'Bạn đã nạp thẻ thành công',
+          [
+            // {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+            // {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          { cancelable: true }
+        )
+      }
+    }).catch(function (thrown) {
+      console.log('thrown submit cast in', thrown);
+      _self.setError(thrown);
+    });
+  };
 
 
   setError(message) {
@@ -149,7 +180,8 @@ class CashIn extends Component {  //eslint-disable-line
 
 
   render() {
-    const {selectedCardType, configGoldRatio} = this.props;
+    const {selectedCardType, configGoldRatio, serial, code} = this.props;
+    console.log("configGoldRatio",configGoldRatio);
     var placeholderCode =  "Mã thẻ " + selectedCardType.name;
     var placeholderSerial = "Seri thẻ " + selectedCardType.name;
 
@@ -161,27 +193,25 @@ class CashIn extends Component {  //eslint-disable-line
     });
 
     return (
+
       <Container style={{backgroundColor: '#2a3146'}}>
+        <HeaderComponent/>
         <Image source={glow2} style={styles.container}>
-          <HeaderComponent/>
-
-
-          <View style={styles.cardWrappers}>
-            {cardsTemp1.map((item, index)=>{
-              var template = item.code === selectedCardType.code ? <Image source={item.image} key={item.code} resizeMode='cover' style={styles.cardImageActive}/> :
-               <TouchableHighlight key={item.code}  onPress={ () => this.onSelectCard(item) }><Image source={item.image} resizeMode='cover' style={styles.cardImage}/></TouchableHighlight>;
-               return template;
-            })}
-          </View>
-          <View style={styles.cardWrappers}>
-            {cardsTemp2.map((item, index)=>{
-              var template = item.code === selectedCardType.code ? <Image source={item.image} key={item.code} resizeMode='cover' style={styles.cardImageActive}/> :
-                <TouchableHighlight key={item.code}  onPress={ () => this.onSelectCard(item) }><Image source={item.image} key={item.code} resizeMode='cover' style={styles.cardImage}/></TouchableHighlight>;
-              return template;
-            })}
-          </View>
-
           <Content padder style={{backgroundColor: 'transparent'}}>
+            <View style={styles.cardWrappers}>
+              {cardsTemp1.map((item, index)=>{
+                var template = item.code === selectedCardType.code ? <Image source={item.image} key={item.code} resizeMode='cover' style={styles.cardImageActive}/> :
+                  <TouchableHighlight key={item.code}  onPress={ () => this.onSelectCard(item) }><Image source={item.image} resizeMode='cover' style={styles.cardImage}/></TouchableHighlight>;
+                return template;
+              })}
+            </View>
+            <View style={styles.cardWrappers}>
+              {cardsTemp2.map((item, index)=>{
+                var template = item.code === selectedCardType.code ? <Image source={item.image} key={item.code} resizeMode='cover' style={styles.cardImageActive}/> :
+                  <TouchableHighlight key={item.code}  onPress={ () => this.onSelectCard(item) }><Image source={item.image} key={item.code} resizeMode='cover' style={styles.cardImage}/></TouchableHighlight>;
+                return template;
+              })}
+            </View>
 
             <View style={styles.bg}>
               <View style={styles2.innerView}>
@@ -198,7 +228,6 @@ class CashIn extends Component {  //eslint-disable-line
                   <Input style={{textAlign: 'center', paddingRight: 20, paddingLeft: 20}}
                          placeholder={"Mã thẻ"}
                          placeholderTextColor="#7481a7"
-                         secureTextEntry
                          onChangeText={code => this.onChangeField("code",code)}
                   />
                 </Item>
@@ -210,7 +239,7 @@ class CashIn extends Component {  //eslint-disable-line
                 }}>
                   {this.state.errorMessage}
                 </Text>
-                <Button rounded block style={styles2.loginButton} onPress={ () => this.submit() }>
+                <Button rounded block style={styles2.loginButton} onPress={this.submit.bind(this)}>
                   <Text style={{color: '#ffffff', fontWeight: "bold"}}>
                     Nạp vàng
                   </Text>
@@ -223,29 +252,22 @@ class CashIn extends Component {  //eslint-disable-line
                   }
                 </View>
 
-                <Text style={{
-                  height: 30,
-                  color: 'red',
-                  marginBottom: (Platform.OS === 'ios') ? 10 : 0,
-                  marginTop: (Platform.OS === 'ios') ? 10 : 0
-                }}>
-                  {this.state.errorMessage}
-                </Text>
+                <Button
+                  style={styles.roundedButton}
+                  onPress={() => this.logout()}
+                >
+                  <Icon active name="close" style={styles.closeIcon}/>
+                </Button>
               </View>
             </View>
 
-
-            <Button
-              style={styles.roundedButton}
-              onPress={() => this.logout()}
-            >
-              <Icon active name="close" style={styles.closeIcon}/>
-            </Button>
           </Content>
 
           <Footer style={{borderTopWidth: 0, backgroundColor: 'transparent'}}>
             <FooterComponent navigator={this.props.navigation}/>
           </Footer>
+
+          <ConfirmComponent ></ConfirmComponent>
         </Image>
       </Container>
     );
@@ -262,7 +284,9 @@ const mapStateToProps = state => {
   const {selectedCardType, serial, code, configGoldRatio} = state.cashInScenes;
   return {
     selectedCardType: selectedCardType,
-    configGoldRatio : configGoldRatio
+    configGoldRatio : configGoldRatio,
+    code,
+    serial
   }
 };
 
