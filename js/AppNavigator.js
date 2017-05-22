@@ -1,8 +1,8 @@
 
 import React, { Component } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar,StyleSheet, Dimensions, Platform } from 'react-native';
 import { connect } from 'react-redux';
-import { Drawer } from 'native-base';
+import { Drawer,Container } from 'native-base';
 import { Router, Scene } from 'react-native-router-flux';
 
 import { closeDrawer } from './actions/drawer';
@@ -30,8 +30,16 @@ import Tranfer from './components/tranfer/';
 import Gift from './components/gift/';
 import Receive from './components/reveice/';
 
+const deviceHeight = Dimensions.get('window').height;
 
 const RouterWithRedux = connect()(Router);
+
+const wrapContainerStyle = {
+  height : deviceHeight * 0.96,
+  paddingTop : deviceHeight * 0.04,
+  position : "relative",
+  backgroundColor : "black",
+};
 
 class AppNavigator extends Component {
 
@@ -65,6 +73,7 @@ class AppNavigator extends Component {
 
   render() {
     return (
+    <Container style={wrapContainerStyle}>
       <Drawer
         ref={(ref) => { this._drawer = ref; }}
         type="overlay"
@@ -119,6 +128,7 @@ class AppNavigator extends Component {
           </Scene>
         </RouterWithRedux>
       </Drawer>
+    </Container>
     );
   }
 }

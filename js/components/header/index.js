@@ -36,8 +36,8 @@ class HeaderComponent extends Component {
     const {isActived, username, gold, mobile} = this.props;
 
     return (
-      <View style={styles.headerContainer}>
-        <Image source={headerBg} resizeMode='cover' style={styles.headerBg}/>
+      <Image source={headerBg} style={styles.headerContainer}>
+
         <View style={styles.headerInner}>
 
           <Button transparent onPress={this.props.openDrawer}>
@@ -63,8 +63,7 @@ class HeaderComponent extends Component {
             </Text>}
           </View>
         </View>
-
-      </View>
+      </Image>
 
 
     );
@@ -74,7 +73,7 @@ class HeaderComponent extends Component {
 function bindAction(dispatch) {
   return {
     openDrawer: () => dispatch(openDrawer()),
-    openConfirmPopup : () => dispatch(open_confirm_popup()),
+    openConfirmPopup: () => dispatch(open_confirm_popup()),
   };
 }
 

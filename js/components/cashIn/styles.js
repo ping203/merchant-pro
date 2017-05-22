@@ -9,7 +9,7 @@ export default {
   container: {
     flex: 1,
     width: null,
-    height: null,
+    height: null
   },
   headerContainer: {
     width: deviceWidth,

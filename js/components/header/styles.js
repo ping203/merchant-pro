@@ -4,24 +4,24 @@ const {StyleSheet, Dimensions, Platform} = React;
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
+console.log("deviceWidth",deviceWidth);
 
 export default {
-  container: {
-    flex: 1,
+  headerContainer: {
+    flex : 128 / 640,
     width: null,
     height: null,
-  },
-  headerContainer: {
-    width: deviceWidth,
-    height: deviceWidth * 128 / 640,
-    position: "relative"
+    resizeMode: 'cover'
   },
   headerBg: {
-    width: deviceWidth,
-    height: deviceWidth * 128 / 640,
-    position: "absolute",
-    top: 0,
-    left: 0,
+    // width: deviceWidth,
+    // height: deviceWidth * 128 / 640,
+    // position: "absolute",
+    // top: 0,
+    // left: 0,
+    // flex : deviceWidth/640,
+    // flex : 0.2,
+    // resizeMode: 'cover'
   },
   headerInner: {
     width: deviceWidth,

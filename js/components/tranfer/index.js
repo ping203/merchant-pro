@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, Platform, AsyncStorage, TouchableHighlight, View, Alert} from 'react-native';
+import {Image, Platform, AsyncStorage, TouchableHighlight, View, Alert, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import {Actions, ActionConst} from 'react-native-router-flux';
 import httpService from '../../common/http';
@@ -27,45 +27,16 @@ import HeaderComponent from './../header';
 import ConfirmComponent from './../confirmPopup';
 import styles from './styles';
 import styles2 from '../login/styles';
-import {logout} from '../../actions/auth';
-import {select_free_type, change_receiver, change_value, update_config_ratio} from './actions';
-
+import modalStyle from '../styles/modal';
+import {logout, update_gold} from '../../actions/auth';
+import {select_free_type, change_receiver, change_value, update_config_ratio, toggle_tutorial} from './actions';
+import Modal from 'react-native-modalbox';
+import axios, {CancelToken}from 'axios';
 
 const glow2 = require('../../../images/glow2-new.png');
-const vttImage = require('../../../images/cards/vtt.png');
-const vmsImage = require('../../../images/cards/vms.png');
-const vnpImage = require('../../../images/cards/vnp.png');
-const bitImage = require('../../../images/cards/bit.png');
-const gateImage = require('../../../images/cards/gate.png');
-const vcoinImage = require('../../../images/cards/vcoin.png');
 
-const configCard = [{
-  name: "Viettel",
-  code: "vtt",
-  image: vttImage
-}, {
-  name: "Mobifone",
-  code: "vms",
-  image: vmsImage
-}, {
-  name: "VinaPhone",
-  code: "vnp",
-  image: vnpImage
-}, {
-  name: "Bitcoin",
-  code: "bit",
-  image: bitImage
-}, {
-  name: "Gate",
-  code: "gate",
-  image: gateImage
-}, {
-  name: "Vcoin",
-  code: "vcoin",
-  image: vcoinImage
-}]
 
-class CashIn extends Component {  //eslint-disable-line
+class TranferComponent extends Component {  //eslint-disable-line
 
   static propTypes = {
     openDrawer: React.PropTypes.func,
@@ -91,19 +62,19 @@ class CashIn extends Component {  //eslint-disable-line
   }
 
   componentDidMount() {
-    this.getCardConfig().done();
+    this.getTranferConfig().done();
   }
 
-  getCardConfig = async () => {
+  getTranferConfig = async () => {
     var _self = this;
     httpService.post2("", {
-      command: "fetch_cash_in_exchange",
+      command: "fetch_transfer_config",
       cashInType: 1
 
     }).then(async function (response) {
       var data = response.data.data;
       if (data) {
-        _self.props.dispatch(update_config_ratio(data["1"]));
+        _self.props.dispatch(update_config_ratio(data.fee));
       }
     }).catch(function (thrown) {
       console.log('thrown.message 4', thrown);
@@ -114,7 +85,6 @@ class CashIn extends Component {  //eslint-disable-line
 
   logout() {
     var _self = this;
-    console.log("logout");
     _logout();
     async function _logout() {
       console.log("_logout");
@@ -128,27 +98,26 @@ class CashIn extends Component {  //eslint-disable-line
   submit() {
     var _self = this;
     console.log("this.props", this.props);
-    const {code, serial, selectedCardType} = this.props;
+    const {feeType, receiver, value} = this.props;
     httpService.post2("", {
-      command: "cash_in",
-      type: 1,
-      code,
-      serial,
-      telco: selectedCardType.code
+      command: "transfer_gold",
+      value,
+      toUsername : receiver,
+      feeOnSender : feeType == "sender"
     }).then(async function (response) {
       var data = response.data;
-      console.log("response.data", response.data);
-      if (data.status) {
+      if(typeof data.status == 'undefined'){
+        _self.setError("Server error");
+      }else      if (data.status) {
         _self.setError(data.message);
       } else {
         _self.setError("");
+        _self.props.dispatch(update_gold(data.money));
         Alert.alert(
           'Thông báo',
-          'Bạn đã nạp thẻ thành công',
+          data.message,
           [
-            // {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-            // {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
+            {text: 'OK', onPress: () => _self.clearState()},
           ],
           {cancelable: true}
         )
@@ -158,6 +127,11 @@ class CashIn extends Component {  //eslint-disable-line
       _self.setError(thrown);
     });
   };
+
+
+  clearState() {
+
+  }
 
 
   setError(message) {
@@ -172,24 +146,83 @@ class CashIn extends Component {  //eslint-disable-line
 
   onChangeField(type, value) {
     if (type === "receiver") {
+      this.checkReceiver(value);
       this.props.dispatch(change_receiver(value));
     } else {
       var _value = parseInt(value);
-      this.props.dispatch(change_value(isNaN(_value)? 0 : _value));
+      this.props.dispatch(change_value(isNaN(_value) ? 0 : _value));
     }
+  }
+
+  checkReceiver(username) {
+    var _self = this;
+    _self.isVerifyReceiver = false;
+
+    if (this.checkingReceiverSource) {
+      this.checkingReceiverSource.cancel();
+      this.checkingReceiverSource = undefined;
+    }
+    this.checkingReceiverSource = CancelToken.source();
+
+    httpService.post2("", {
+      command: "check_user_exist",
+      username
+    },{
+      cancelToken:  this.checkingReceiverSource.token
+    }).then(async function (response) {
+      console.log("check_user_exist response",response.data);
+      var data = response.data;
+      if (typeof data.status == "undefined") {
+        // _self.setError("Server error");
+      } else if (data.status) {
+        // console.log("user " + username + " not exist");
+      } else {
+        _self.isVerifyReceiver = true;
+        _self.forceUpdate();
+        // console.log("user " + username + " exist");
+      }
+    }).catch(function (thrown) {
+      console.log('thrown submit cast in', thrown);
+    });
+  }
+
+  goHistory(type, value) {
+    if (type === "receiver") {
+      this.props.dispatch(change_receiver(value));
+    } else {
+      var _value = parseInt(value);
+      this.props.dispatch(change_value(isNaN(_value) ? 0 : _value));
+    }
+  }
+
+  showTutorial(type, value) {
+    this.props.dispatch(toggle_tutorial(!this.props.tutorialPopupStatus));
+  }
+
+  toggleHistory() {
+    this.props.dispatch(toggle_tutorial(!this.props.tutorialPopupStatus));
+  }
+
+  onOpenHistory() {
+    this.props.dispatch(toggle_tutorial(true));
+  }
+
+  onCloseHistory() {
+    this.props.dispatch(toggle_tutorial(false));
   }
 
 
   render() {
-    const {feeType, receiver, value, ratio, gold} = this.props;
+    const {feeType, receiver, value, ratio, money, tutorialPopupStatus} = this.props;
+    const {isVerifyReceiver} = this;
     var remainingRatio = 1;
     var receiveValue = value;
-    if(feeType == "sender"){
+    if (feeType == "sender") {
       remainingRatio += ratio;
-    }else{
-      receiveValue = parseInt(value*(1 - ratio))
-    };
-    var remainingGold = parseInt(gold - remainingRatio*value);
+    } else {
+      receiveValue = parseInt(value * (1 - ratio))
+    }
+    var remainingGold = parseInt(money - remainingRatio * value);
 
     return (
 
@@ -199,7 +232,6 @@ class CashIn extends Component {  //eslint-disable-line
           <Content padder style={{backgroundColor: 'transparent'}}>
             <View style={styles.bg}>
               <View style={styles.innerView}>
-
                 <Item style={styles2.inputWrapper}>
                   <Input style={{textAlign: 'center', paddingRight: 20, paddingLeft: 20}}
                          autoCorrect={false}
@@ -207,6 +239,7 @@ class CashIn extends Component {  //eslint-disable-line
                          placeholderTextColor="#7481a7"
                          onChangeText={receiver => this.onChangeField("receiver", receiver)}
                   />
+                  {isVerifyReceiver && <Icon active name="ios-arrow-dropdown-circle" style={styles.isVerifyReceiver}/>}
                 </Item>
                 <Item style={styles2.inputWrapper}>
                   <Input style={{textAlign: 'center', paddingRight: 20, paddingLeft: 20}}
@@ -248,7 +281,7 @@ class CashIn extends Component {  //eslint-disable-line
                 {receiver.length > 0 && <View style={styles.centerBox}>
                   <Text style={{color: '#86b4ff', fontWeight: "bold"}}> {receiver} </Text>
                   <Text style={styles.centerBox}>
-                    <Text style={{color: '#7481a7', }}> nhận được</Text>
+                    <Text style={{color: '#7481a7',}}> nhận được</Text>
                     <Text style={{color: '#ffde00', fontWeight: "bold"}}> {receiveValue} V</Text>
                   </Text>
                 </View>}
@@ -258,17 +291,18 @@ class CashIn extends Component {  //eslint-disable-line
                     CHUYỂN VÀNG
                   </Text>
                 </Button>
+              </View>
+              <View style={styles.buttonGroup}>
+                <Button style={styles.buttonHistory} onPress={() => this.goHistory()}>
+                  <Text style={styles.buttonHistoryText}> Lịch sử </Text>
+                </Button>
 
-                <View style={[styles.centerBox]}>
-                  <Button style={styles.centerBox} onPress={() => this.logout()}>
-                    <Text style={{color: 'red', fontWeight: "bold"}}> Lịch sử </Text>
-                  </Button>
+                <Button style={styles.buttonHistory} onPress={() => this.showTutorial()}>
+                  <Text style={styles.buttonHistoryText}> Hướng dẫn </Text>
+                </Button>
+              </View>
 
-                  <Button style={styles.centerBox} >
-                    <Text style={{color: 'red', fontWeight: "bold"}}> Hướng dẫn </Text>
-                  </Button>
-                </View>
-
+              <View>
                 <Button
                   style={styles.roundedButton}
                   onPress={() => this.logout()}
@@ -283,6 +317,79 @@ class CashIn extends Component {  //eslint-disable-line
             <FooterComponent navigator={this.props.navigation}/>
           </Footer>
           <ConfirmComponent ></ConfirmComponent>
+
+          <Modal
+            style={[modalStyle.modal, modalStyle.modal2]}
+            backdrop={true}
+            ref={(c) => {
+              this.modal = c;
+            }}
+            swipeToClose={false}
+            isOpen={tutorialPopupStatus}
+            onClosed={this.onCloseHistory.bind(this)}
+            onOpened={this.onOpenHistory.bind(this)}
+          >
+            <View style={modalStyle.header}>
+              <Text style={{color: "#c4e1ff"}}>
+                HƯỚNG DẪN
+              </Text>
+              <Button
+                transparent
+                style={{position: 'absolute', top: 0, right: 0}}
+                onPress={this.toggleHistory.bind(this)}
+              >
+                <Icon name="close" style={{color: '#c4e1ff'}}/>
+              </Button>
+            </View>
+            <View style={modalStyle.space}>
+              <ScrollView >
+                <Text style={styles.descriptionText}>
+                  1Xác thực tài khoản để sử dụng đầy đủ {"\n"}
+                  8tính năng của game: Nhận quà, chuyển vàng ...
+                  9tính năng của game: Nhận quà, chuyển vàng ...
+                  10tính năng của game: Nhận quà, chuyển vàng ...
+                  11tính năng của game: Nhận quà, chuyển vàng ...
+                  8tính năng của game: Nhận quà, chuyển vàng ...
+                  9tính năng của game: Nhận quà, chuyển vàng ...
+                  10tính năng của game: Nhận quà, chuyển vàng ...
+                  11tính năng của game: Nhận quà, chuyển vàng ...
+                  8tính năng của game: Nhận quà, chuyển vàng ...
+                  9tính năng của game: Nhận quà, chuyển vàng ...
+                  10tính năng của game: Nhận quà, chuyển vàng ...
+                  11tính năng của game: Nhận quà, chuyển vàng ...
+                  8tính năng của game: Nhận quà, chuyển vàng ...
+                  9tính năng của game: Nhận quà, chuyển vàng ...
+                  10tính năng của game: Nhận quà, chuyển vàng ...
+                  11tính năng của game: Nhận quà, chuyển vàng ...
+                  8tính năng của game: Nhận quà, chuyển vàng ...
+                  9tính năng của game: Nhận quà, chuyển vàng ...
+                  10tính năng của game: Nhận quà, chuyển vàng ...
+                  11tính năng của game: Nhận quà, chuyển vàng ...
+                  8tính năng của game: Nhận quà, chuyển vàng ...
+                  9tính năng của game: Nhận quà, chuyển vàng ...
+                  10tính năng của game: Nhận quà, chuyển vàng ...
+                  11tính năng của game: Nhận quà, chuyển vàng ...
+                  8tính năng của game: Nhận quà, chuyển vàng ...
+                  9tính năng của game: Nhận quà, chuyển vàng ...
+                  10tính năng của game: Nhận quà, chuyển vàng ...
+                  11tính năng của game: Nhận quà, chuyển vàng ...
+                  8tính năng của game: Nhận quà, chuyển vàng ...
+                  9tính năng của game: Nhận quà, chuyển vàng ...
+                  10tính năng của game: Nhận quà, chuyển vàng ...
+                  11tính năng của game: Nhận quà, chuyển vàng ...
+                  8tính năng của game: Nhận quà, chuyển vàng ...
+                  9tính năng của game: Nhận quà, chuyển vàng ...
+                  10tính năng của game: Nhận quà, chuyển vàng ...
+                  11tính năng của game: Nhận quà, chuyển vàng ...
+                  8tính năng của game: Nhận quà, chuyển vàng ...
+                  9tính năng của game: Nhận quà, chuyển vàng ...
+                  10tính năng của game: Nhận quà, chuyển vàng ...
+                  11tính năng của game: Nhận quà, chuyển vàng ...
+                  Vui lòng chọn nhà mạng:
+                </Text>
+              </ScrollView>
+            </View>
+          </Modal>
         </Image>
       </Container>
     );
@@ -296,15 +403,16 @@ function bindAction(dispatch) {
 }
 
 const mapStateToProps = state => {
-  const {feeType, receiver, value, ratio} = state.tranferScene;
+  const {feeType, receiver, value, ratio, tutorialPopupStatus} = state.tranferScene;
   const {loginInfo} = state.auth;
   return {
     feeType,
     receiver,
     value,
     ratio,
-    gold: loginInfo.gold || 0,
+    money: loginInfo.money || 0,
+    tutorialPopupStatus: tutorialPopupStatus
   }
 };
 
-export default connect(mapStateToProps, bindAction)(CashIn);
+export default connect(mapStateToProps, bindAction)(TranferComponent);

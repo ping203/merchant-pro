@@ -109,9 +109,11 @@ class Login extends Component {
 
   goHome(loginData){
     this.props.dispatch(login_success(loginData));
-    this.props.dispatch(change_footer("cashIn"));
+    // this.props.dispatch(change_footer("cashIn"));
+    // Actions.cashIn();
     // Actions.cashIn({type: ActionConst.RESET});
-    Actions.cashIn();
+    this.props.dispatch(change_footer("tranfer"));
+    Actions.tranfer();
   }
 
   loginFacebook() {

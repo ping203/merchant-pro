@@ -11,7 +11,7 @@ export default {
     // flex: 1,
     width,
     flexDirection: 'row',
-    height: 88/1136 * height,
+    height: 55,
     borderWidth: 0,
     alignSelf: 'stretch',
     alignItems: 'center',

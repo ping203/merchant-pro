@@ -9,7 +9,7 @@
       "backgroundImage": "./images/launchscreen.png"
     },
     "orientation": "portrait",
-    "primaryColor": "#cccccc",
+    "primaryColor": "#000000",
     "packagerOpts": {
       "assetExts": [
         "ttf"

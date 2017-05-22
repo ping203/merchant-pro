@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, Platform, AsyncStorage, TouchableHighlight, View} from 'react-native';
+import {Image, Platform, AsyncStorage, TouchableHighlight, View, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import Communications from 'react-native-communications';
 
@@ -107,7 +107,7 @@ class ConfirmComponent extends Component {
             <Icon name="close" style={{color: '#c4e1ff'}}/>
           </Button>
         </View>
-        <View style={styles.space}>
+        <ScrollView style={styles.space}>
           <Text style={styles.descriptionText}>
             Xác thực tài khoản để sử dụng đầy đủ {"\n"}
             tính năng của game: Nhận quà, chuyển vàng ...{"\n"}
@@ -141,7 +141,7 @@ class ConfirmComponent extends Component {
               </Text>
             </Text>
           </View>
-        </View>
+        </ScrollView>
       </Modal>
     );
   }

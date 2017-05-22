@@ -1,3 +1,5 @@
+import theme from "../../themes/base-theme";
+
 const React = require('react-native');
 
 const {StyleSheet, Dimensions, Platform} = React;
@@ -135,6 +137,27 @@ export default {
     justifyContent : "center",
     alignItems : "center"
   },
+  buttonGroup : {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    marginTop: 10
+  },
+  buttonHistory : {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10,
+    width : deviceWidth * 240/640,
+    borderWidth: 2,
+    borderColor: '#555e94',
+    borderRadius: 5,
+    backgroundColor : "transparent"
+  },
+  buttonHistoryText : {
+    fontSize : theme.fontSizeBase * 1.1,
+    color : "#676da6",
+    fontWeight : "bold"
+  },
 
   buttonYellow: {
     marginTop : 10,
@@ -143,4 +166,11 @@ export default {
     borderRadius: 10,
     backgroundColor: "#cdac12"
   },
+  isVerifyReceiver : {
+    width: 30,
+    color: "#add329",
+    position : "absolute",
+    top : 12,
+    right : 5,
+  }
 }

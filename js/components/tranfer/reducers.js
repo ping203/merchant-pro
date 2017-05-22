@@ -1,6 +1,5 @@
 import {combineReducers} from 'redux';
-import {SELECT_FEE_TYPE, CHANGE_RECEIVER, CHANGE_VALUE, UPDATE_CONFIG_RATIO} from './actions';
-
+import {SELECT_FEE_TYPE, CHANGE_RECEIVER, CHANGE_VALUE, UPDATE_CONFIG_RATIO, TOGGLE_TUTORIAL} from './actions';
 
 
 function feeType(state = "sender", action) {
@@ -31,9 +30,17 @@ function updateConfigRatio(state = 0.05, action) {
   return state;
 }
 
+function changeTutorialPopup(state = false, action) {
+  if (action.type === TOGGLE_TUTORIAL) {
+    return action.status;
+  };
+  return state;
+}
+
 export default combineReducers({
   feeType,
   receiver: changeReceiver,
   value: changeValue,
-  ratio: updateConfigRatio
+  ratio: updateConfigRatio,
+  tutorialPopupStatus: changeTutorialPopup
 })

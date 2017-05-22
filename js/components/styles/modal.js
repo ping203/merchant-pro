@@ -13,6 +13,7 @@ export default {
     zIndex: 1000
   },
   modal2: {
+    marginTop : - height * 70 / 1136,
     width: width * 7 / 8,
     height: height * 0.55,
     position: 'relative',
@@ -40,15 +41,15 @@ export default {
     fontSize: theme.fontSizeH2
   },
   space: {
-    padding: 10,
-    paddingTop: 10 + height * 70 / 1136,
-    flex : 1
+    margin: 10,
+    paddingTop: 10 + height * 70 / 1136
   },
   descriptionText: {
     color: "#fff",
     justifyContent: "center",
     alignItems: "center",
-    textAlign: "center"
+    textAlign: "center",
+    marginBottom : 30,
   },
   checkboxList: {
     flexDirection: "row",
