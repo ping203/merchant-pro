@@ -8,7 +8,8 @@ import auth from './auth';
 import footerState from './footerState';
 import cashInScene from '../components/cashIn/reducers';
 import confirmPopup from './confirmPopup';
-import tranferScene from '../components/tranfer/reducers';
+import transferScene from '../components/transfer/reducers';
+import historyTransfer from '../components/historyTransfer/reducers';
 
 
 export default combineReducers({
@@ -17,7 +18,8 @@ export default combineReducers({
   footerState,
   cashInScene,
   confirmPopup,
-  tranferScene,
+  transferScene,
+  historyTransfer,
   services: servicesReducer,
   data: dataReducer,
 });

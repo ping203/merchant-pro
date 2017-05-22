@@ -9,7 +9,7 @@ import styles from './styles';
 
 const MappingTarget = {
   cashIn : "NẠP VÀNG",
-  tranfer : "CHUYỂN VÀNG",
+  transfer : "CHUYỂN VÀNG",
   gift : "QUÀ TẶNG",
   receice : "NHẬN QUÀ"
 }
@@ -23,8 +23,8 @@ class FooterButton extends Component {
         Actions.cashIn();
         break;
       };
-      case "tranfer" : {
-        Actions.tranfer();
+      case "transfer" : {
+        Actions.transfer();
         break;
       };
       case "gift" : {

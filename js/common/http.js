@@ -42,6 +42,15 @@ export default {
     });
     var request = axios.post(config.host + url, params, postConfig);
     return request;
+  },
+  postWithConvert : function (url,params, postConfig = {}) {
+    return this.post2(url,params, postConfig).then(this.convertData);
+  },
+  convertData : function(dataResponse){
+    var data = dataResponse.data && dataResponse.data;
+    if(typeof data.status === "undefined"){
+      throw "Server error !";
+    }else return data;
   }
 };
 

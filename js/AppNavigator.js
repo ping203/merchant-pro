@@ -23,10 +23,11 @@ import Calendar from './components/calendar/';
 import Form from './components/form/';
 import Modal from './components/modal/';
 import SideBar from './components/sideBar';
+import HistoryTransfer from './components/historyTransfer';
 import { statusBarColor } from '../native-base-theme/variables/commonColor';
 
 
-import Tranfer from './components/tranfer/';
+import Transfer from './components/transfer/';
 import Gift from './components/gift/';
 import Receive from './components/reveice/';
 
@@ -111,7 +112,7 @@ class AppNavigator extends Component {
             <Scene key="signUp" component={SignUp} />
             <Scene key="home" component={Home} />
             <Scene key="cashIn" component={CashIn} />
-            <Scene key="tranfer" component={Tranfer} />
+            <Scene key="transfer" component={Transfer} />
             <Scene key="gift" component={Gift} />
             <Scene key="receive" component={Receive} />
             <Scene key="inbox" component={Inbox} />
@@ -125,6 +126,7 @@ class AppNavigator extends Component {
             <Scene key="calendar" component={Calendar} />
             <Scene key="form" component={Form} />
             <Scene key="modal" component={Modal} />
+            <Scene key="historyTransfer" component={HistoryTransfer} />
           </Scene>
         </RouterWithRedux>
       </Drawer>

@@ -1,27 +1,29 @@
+import theme from "../../themes/base-theme";
+
 const React = require('react-native');
 
 const {StyleSheet, Dimensions, Platform} = React;
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
-import theme from "../../themes/base-theme";
 
 export default {
-  headerContainer: {
-    flex : 128 / 640,
+  container: {
+    flex: 1,
     width: null,
     height: null,
-    resizeMode: 'cover'
+  },
+  headerContainer: {
+    width: deviceWidth,
+    height: deviceWidth * 128 / 640,
+    position: "relative"
   },
   headerBg: {
-    // width: deviceWidth,
-    // height: deviceWidth * 128 / 640,
-    // position: "absolute",
-    // top: 0,
-    // left: 0,
-    // flex : deviceWidth/640,
-    // flex : 0.2,
-    // resizeMode: 'cover'
+    width: deviceWidth,
+    height: deviceWidth * 128 / 640,
+    position: "absolute",
+    top: 0,
+    left: 0,
   },
   headerInner: {
     width: deviceWidth,
@@ -85,13 +87,15 @@ export default {
     borderBottomColor: '#ddd',
   },
   bg: {
+    marginTop : 10,
     left: 0,
     paddingTop: 0,
     height: null,
     paddingLeft: 20,
     paddingRight: 20,
     paddingBottom: (Platform.OS === 'ios') ? 50 : 50,
-    position: "relative"
+    // position: "relative",
+    // zIndex : -1
   },
   cardImage: {
     width : deviceWidth/3.5,
@@ -108,22 +112,83 @@ export default {
     justifyContent: "space-around",
     marginTop : 10
   },
-  buttonConfirm : {
+  checkboxList: {
     flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 10
+  },
+  errorMessage :{
+    height: 30,
+    color: 'red',
+    marginBottom: (Platform.OS === 'ios') ? 10 : 0,
+    marginTop: (Platform.OS === 'ios') ? 10 : 0
+  },
+  innerView: {
+    paddingLeft: deviceWidth / 8,
+    paddingRight: deviceWidth / 8,
+  },
+  radioContainer: {
+    paddingLeft: deviceWidth / 30,
+    paddingRight: deviceWidth / 30,
+  },
+  centerBox : {
+    flexDirection : "row",
+    justifyContent : "center",
+    alignItems : "center"
+  },
+  buttonGroup : {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    marginTop: 10
+  },
+  buttonHistory : {
     justifyContent: "center",
-    alignItems : "center",
-    width : deviceWidth * 200/640,
-    height : deviceWidth * 60/640,
-    backgroundColor: "#3d5a98",
+    alignItems: "center",
+    marginTop: 10,
+    width : deviceWidth * 240/640,
+    borderWidth: 2,
+    borderColor: '#555e94',
+    borderRadius: 5,
+    backgroundColor : "transparent"
   },
-  headerBackButton : {
-    position : "absolute",
-    top : 25,
-    left : 5
-  },
-  headerBackTitle : {
-    color : "#7fa8d1",
-    fontSize : theme.fontSizeH2,
+  buttonHistoryText : {
+    fontSize : theme.fontSizeBase * 1.1,
+    color : "#676da6",
     fontWeight : "bold"
+  },
+
+  buttonYellow: {
+    marginTop : 10,
+    marginBottom: 10,
+    height: 50,
+    borderRadius: 10,
+    backgroundColor: "#cdac12"
+  },
+  isVerifyReceiver : {
+    width: 30,
+    color: "#add329",
+    position : "absolute",
+    top : 12,
+    right : 5,
+  },
+  historyItem : {
+    marginLeft : 10,
+    marginRight : 10,
+    marginTop : 5,
+    borderRadius : 3,
+    backgroundColor : "#343b52",
+    justifyContent : "space-between",
+    flex : 1,
+    flexDirection : "row"
+  },
+  historyLeft : {
+    alignItems : "flex-start",
+    backgroundColor : "red"
+  },
+  historyRight : {
+    alignItems : "flex-end",
+    backgroundColor : "blue"
   }
 }
