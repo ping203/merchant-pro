@@ -22,9 +22,9 @@ import {
 } from 'native-base';
 
 import {openDrawer} from '../../actions/drawer';
-import FooterComponent from './../footer';
-import HeaderComponent from './../header';
-import ConfirmComponent from './../confirmPopup';
+import FooterComponent from '../../components/footer/index';
+import HeaderComponent from '../../components/header/index';
+import ConfirmComponent from '../../components/confirmPopup/index';
 import styles from './styles';
 import styles2 from '../login/styles';
 import {logout, update_gold} from '../../actions/auth';

@@ -14,7 +14,8 @@ export default function receiverItems(state = initState, action) {
       ...state,
       isFetching : false,
       items : state.items.concat(action.items),
-      skip : state.skip + action.items.length
+      skip : state.skip + action.items.length,
+      total : action.total
     };
     return _return;
   }

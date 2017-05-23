@@ -7,9 +7,9 @@ import { Router, Scene } from 'react-native-router-flux';
 
 import { closeDrawer } from './actions/drawer';
 
-import Login from './components/login/';
+import Login from './scenes/login/';
 import Home from './components/home/';
-import CashIn from './components/cashIn/';
+import CashIn from './scenes/cashIn/';
 import SignUp from './components/sign-up/';
 import Inbox from './components/inbox/';
 import Mail from './components/mail/';
@@ -23,11 +23,11 @@ import Calendar from './components/calendar/';
 import Form from './components/form/';
 import Modal from './components/modal/';
 import SideBar from './components/sideBar';
-import HistoryTransfer from './components/historyTransfer';
+import HistoryTransfer from './scenes/historyTransfer';
 import { statusBarColor } from '../native-base-theme/variables/commonColor';
 
 
-import Transfer from './components/transfer/';
+import Transfer from './scenes/transfer/';
 import Gift from './components/gift/';
 import Receive from './components/reveice/';
 
@@ -109,10 +109,13 @@ class AppNavigator extends Component {
         <RouterWithRedux>
           <Scene key="root">
             <Scene key="login" component={Login} hideNavBar initial />
+            <Scene key="cashIn" component={CashIn} />
+            <Scene key="historyTransfer" component={HistoryTransfer} />
+            <Scene key="transfer" component={Transfer} />
+
+
             <Scene key="signUp" component={SignUp} />
             <Scene key="home" component={Home} />
-            <Scene key="cashIn" component={CashIn} />
-            <Scene key="transfer" component={Transfer} />
             <Scene key="gift" component={Gift} />
             <Scene key="receive" component={Receive} />
             <Scene key="inbox" component={Inbox} />
@@ -126,7 +129,6 @@ class AppNavigator extends Component {
             <Scene key="calendar" component={Calendar} />
             <Scene key="form" component={Form} />
             <Scene key="modal" component={Modal} />
-            <Scene key="historyTransfer" component={HistoryTransfer} />
           </Scene>
         </RouterWithRedux>
       </Drawer>

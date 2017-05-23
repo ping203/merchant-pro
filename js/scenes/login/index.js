@@ -114,6 +114,8 @@ class Login extends Component {
     // Actions.cashIn({type: ActionConst.RESET});
     this.props.dispatch(change_footer("transfer"));
     Actions.historyTransfer();
+    // this.props.dispatch(change_footer("transfer"));
+    // Actions.transfer();
   }
 
   loginFacebook() {

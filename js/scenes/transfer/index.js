@@ -22,12 +22,12 @@ import {
 } from 'native-base';
 
 import {openDrawer} from '../../actions/drawer';
-import FooterComponent from './../footer';
-import HeaderComponent from './../header';
-import ConfirmComponent from './../confirmPopup';
+import FooterComponent from '../../components/footer/index';
+import HeaderComponent from '../../components/header/index';
+import ConfirmComponent from '../../components/confirmPopup/index';
 import styles from './styles';
 import styles2 from '../login/styles';
-import modalStyle from '../styles/modal';
+import modalStyle from '../../components/styles/modal';
 import {logout, update_gold} from '../../actions/auth';
 import {select_free_type, change_receiver, change_value, update_config_ratio, toggle_tutorial} from './actions';
 import Modal from 'react-native-modalbox';

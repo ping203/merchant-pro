@@ -181,14 +181,41 @@ export default {
     backgroundColor : "#343b52",
     justifyContent : "space-between",
     flex : 1,
-    flexDirection : "row"
+    flexDirection : "row",
+    padding  : 10
   },
   historyLeft : {
     alignItems : "flex-start",
-    backgroundColor : "red"
+  },
+  historyLeftTittle : {
+    color : '#7b93cb',
+    fontSize : 17,
+    fontWeight: "bold"
+  },
+  historyLeftTime : {
+    color : '#5a6490',
+    fontSize : 13,
+    marginTop : 5
   },
   historyRight : {
     alignItems : "flex-end",
-    backgroundColor : "blue"
-  }
+  },
+  historyRightTittleReceive : {
+    color : '#ffde00',
+    fontSize : 17,
+    fontWeight: "bold"
+  },
+  historyRightTittleSend : {
+    color : '#fe9870',
+    fontSize : 17,
+    fontWeight: "bold"
+  },
+  historyRightMinePay : {
+    color : '#b07a7a',
+    fontSize : 13,
+  },
+  historyRightOtherPay : {
+    color : '#9fc55d',
+    fontSize : 13,
+  },
 }

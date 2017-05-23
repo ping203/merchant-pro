@@ -23,7 +23,7 @@ import {
 import {openDrawer} from '../../actions/drawer';
 import {open_confirm_popup} from '../../actions/confirmPopup';
 import styles from './styles';
-import {logout} from '../../actions/auth';
+import NumberFormater from '../numberFormatter';
 
 
 const headerBg = require('../../../images/layout/header-bg.png');
@@ -45,7 +45,8 @@ class HeaderComponent extends Component {
           </Button>
           <View style={styles.headerLeft}>
             <Text style={{color: '#c4e1ff',}}>{username}</Text>
-            <Text style={{color: '#ffde00',}}>{gold}V</Text>
+            {/*<Text style={{color: '#ffde00',}}>{gold}V</Text>*/}
+            <NumberFormater style={{color: '#ffde00',}} format="0,0">{gold}V</NumberFormater>
           </View>
 
           <Image source={defaultAvatar} resizeMode='cover' style={styles.headerAvatar}></Image>
