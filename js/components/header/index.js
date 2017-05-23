@@ -33,7 +33,7 @@ class HeaderComponent extends Component {
 
   render() {
 
-    const {isActived, username, gold, mobile} = this.props;
+    const {isActived, username, money, mobile} = this.props;
 
     return (
       <Image source={headerBg} style={styles.headerContainer}>
@@ -45,8 +45,8 @@ class HeaderComponent extends Component {
           </Button>
           <View style={styles.headerLeft}>
             <Text style={{color: '#c4e1ff',}}>{username}</Text>
-            {/*<Text style={{color: '#ffde00',}}>{gold}V</Text>*/}
-            <NumberFormater style={{color: '#ffde00',}} format="0,0">{gold}V</NumberFormater>
+            {/*<Text style={{color: '#ffde00',}}>{money}V</Text>*/}
+            <NumberFormater style={{color: '#ffde00',}} format="0,0">{money}V</NumberFormater>
           </View>
 
           <Image source={defaultAvatar} resizeMode='cover' style={styles.headerAvatar}></Image>
@@ -83,7 +83,7 @@ const mapStateToProps = state => {
   return {
     isActived: loginInfo.isTelephoneVerified,
     username: loginInfo.username,
-    gold: loginInfo.money || 0,
+    money: loginInfo.money || 0,
   }
 };
 

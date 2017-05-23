@@ -112,8 +112,10 @@ class Login extends Component {
     // this.props.dispatch(change_footer("cashIn"));
     // Actions.cashIn();
     // Actions.cashIn({type: ActionConst.RESET});
-    this.props.dispatch(change_footer("transfer"));
-    Actions.historyTransfer();
+    // this.props.dispatch(change_footer("transfer"));
+    // Actions.historyTransfer();
+    this.props.dispatch(change_footer("cashOut"));
+    Actions.cashOut();
     // this.props.dispatch(change_footer("transfer"));
     // Actions.transfer();
   }
@@ -190,7 +192,7 @@ class Login extends Component {
                          autoCorrect={false}
                          placeholder="Tài khoản"
                          placeholderTextColor="#7481a7"
-                         onChangeText={username => {this.setState({username});console.log("on change username")}}
+                         onChangeText={username => {this.setState({username});}}
                   />
                 </Item>
                 <Item style={styles.inputWrapper}>

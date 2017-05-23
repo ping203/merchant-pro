@@ -10,6 +10,7 @@ import cashInScene from '../scenes/cashIn/reducers';
 import confirmPopup from './confirmPopup';
 import transferScene from '../scenes/transfer/reducers';
 import historyTransfer from '../scenes/historyTransfer/reducers';
+import mobileCards from '../scenes/mobileCards/reducers';
 
 
 export default combineReducers({
@@ -20,6 +21,7 @@ export default combineReducers({
   confirmPopup,
   transferScene,
   historyTransfer,
+  mobileCards,
   services: servicesReducer,
   data: dataReducer,
 });

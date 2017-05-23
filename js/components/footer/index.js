@@ -20,8 +20,8 @@ class Footer extends Component {
       <FooterTab style={styles.footer}>
         <FooterButton target="cashIn"/>
         <FooterButton target="transfer" active/>
-        <FooterButton target="gift"/>
-        <FooterButton target="receice"/>
+        <FooterButton target="cashOut"/>
+        <FooterButton target="cashOutHistory"/>
       </FooterTab>
 
 

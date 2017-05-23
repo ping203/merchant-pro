@@ -8,8 +8,13 @@ import { Router, Scene } from 'react-native-router-flux';
 import { closeDrawer } from './actions/drawer';
 
 import Login from './scenes/login/';
-import Home from './components/home/';
+import Transfer from './scenes/transfer/';
 import CashIn from './scenes/cashIn/';
+import HistoryTransfer from './scenes/historyTransfer';
+import CashOut from './scenes/cashOut';
+import MobileCards from './scenes/mobileCards';
+
+import Home from './components/home/';
 import SignUp from './components/sign-up/';
 import Inbox from './components/inbox/';
 import Mail from './components/mail/';
@@ -23,11 +28,9 @@ import Calendar from './components/calendar/';
 import Form from './components/form/';
 import Modal from './components/modal/';
 import SideBar from './components/sideBar';
-import HistoryTransfer from './scenes/historyTransfer';
 import { statusBarColor } from '../native-base-theme/variables/commonColor';
 
 
-import Transfer from './scenes/transfer/';
 import Gift from './components/gift/';
 import Receive from './components/reveice/';
 
@@ -112,6 +115,8 @@ class AppNavigator extends Component {
             <Scene key="cashIn" component={CashIn} />
             <Scene key="historyTransfer" component={HistoryTransfer} />
             <Scene key="transfer" component={Transfer} />
+            <Scene key="cashOut" component={CashOut} />
+            <Scene key="mobileCards" component={MobileCards} />
 
 
             <Scene key="signUp" component={SignUp} />

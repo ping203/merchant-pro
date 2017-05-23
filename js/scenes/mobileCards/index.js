@@ -20,7 +20,7 @@ moment.locale('vi');
 const glow2 = require('../../../images/glow2-new.png');
 
 
-class HistoryTransferComponent extends Component {
+class MobileCardsComponent extends Component {
   constructor(props, context) {
     super(props);
     this.dataSource = new ListView.DataSource({
@@ -35,8 +35,8 @@ class HistoryTransferComponent extends Component {
 
   _loadMoreContentAsync() {
     this.props.dispatch(fetchPosts({
-      "command": "fetch_transfer_log",
-      "type": 0,
+      "command": "fetch_cash_out_item",
+      "type": 1,
       "skip": this.props.items.length,
       "limit": 10
     }));
@@ -48,7 +48,11 @@ class HistoryTransferComponent extends Component {
   }
 
   getUpdatedDataSource(props) {
-    let rows = props.items;
+    let items = props.items.slice();
+    var rows = [];
+    while(items.length){
+      rows.push(items.splice(0,2));
+    }
     let ids = rows.map((obj, index) => index);
     return this.dataSource.cloneWithRows(rows, ids);
   }
@@ -69,6 +73,8 @@ class HistoryTransferComponent extends Component {
 
 
   _renderRowData(rowData) {
+    console.log("rowData",rowData);
+    return;
     if(!rowData) return;
     const { total, skip, isFetching, username} = this.props;
     const { toUsername, userPayFee, fee, createdTime,transferType, value,fromUsername} = rowData;
@@ -130,20 +136,6 @@ class HistoryTransferComponent extends Component {
               canLoadMore={!items.length || items.length < total}
               enableEmptySections={true}
             />
-            {/*<GiftedListView*/}
-              {/*rowView={(rowData) => this._renderRowData.call(this, rowData)}*/}
-              {/*onFetch={this._loadMoreContentAsync.bind(this)}*/}
-              {/*firstLoader={true} // display a loader for the first fetching*/}
-              {/*pagination={true} // enable infinite scrolling using touch to load more*/}
-              {/*refreshable={true} // enable pull-to-refresh for iOS and touch-to-refresh for Android*/}
-              {/*withSections={false} // enable sections*/}
-              {/*customStyles={{*/}
-                {/*paginationView: {*/}
-                  {/*backgroundColor: '#eee',*/}
-                {/*},*/}
-              {/*}}*/}
-              {/*refreshableTintColor="blue"*/}
-            {/*/>*/}
 
           </View>
         </Image>
@@ -159,13 +151,12 @@ function bindAction(dispatch) {
 }
 
 const mapStateToProps = state => {
-  const {items, total, skip, isFetching} = state.historyTransfer;
-  // console.log("items",items.length,"total", total, "isFetching",isFetching );
+  const {items, total, skip, isFetching} = state.mobileCards;
   const {loginInfo} = state.auth;
   return {
     items, total, skip, isFetching,
-    username: loginInfo.username,
+    money: loginInfo.money || 0,
   };
 };
 
-export default connect(mapStateToProps)(HistoryTransferComponent);
+export default connect(mapStateToProps)(MobileCardsComponent);
