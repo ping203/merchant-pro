@@ -1,5 +1,5 @@
-import type { Action } from './types';
-
+import {AsyncStorage} from 'react-native';
+import store from '../configureStore';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT = 'LOGOUT';
 export const UPDATE_GOLD = 'UPDATE_GOLD';
@@ -18,9 +18,18 @@ export function logout() {
   };
 }
 
-export function update_gold(gold) {
+function update_gold_redux(gold) {
   return {
     type: UPDATE_GOLD,
     gold
   };
+}
+
+export function update_gold(gold) {
+  return async function (dispatch) {
+    var storeData = Object.assign({},store.getState());
+    storeData.auth.loginInfo.money = gold;
+    const a = await AsyncStorage.setItem('authData', JSON.stringify(storeData.auth.loginInfo));
+    dispatch(update_gold_redux(gold));
+  }
 }

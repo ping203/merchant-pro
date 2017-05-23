@@ -1,20 +1,25 @@
 import React, {Component} from 'react';
-import {Image, View, ListView, RefreshControl} from 'react-native';
+import {Image, View, ListView, RefreshControl, TouchableHighlight, Alert} from 'react-native';
 import {connect} from 'react-redux';
 import {
   Container,
   Content,
+  Button,
+  Icon,
   Text,
 } from 'native-base';
 
 import {fetchPosts} from './actions';
-import HeaderWithBackComponent from '../../components/header/headerWithBack';
+import HeaderComponent from '../../components/header/index';
 import InfiniteScrollView from 'react-native-infinite-scroll-view';
 import NumberFormater from '../../components/numberFormatter';
 import styles from './styles';
+import modalStyle from '../../components/styles/modal';
 let moment = require('moment');
-var GiftedListView = require('react-native-gifted-listview');
-var GiftedSpinner = require('react-native-gifted-spinner');
+import Modal from 'react-native-modalbox';
+import httpService from '../../common/http';
+import {logout, update_gold} from '../../actions/auth';
+
 moment.locale('vi');
 
 const glow2 = require('../../../images/glow2-new.png');
@@ -27,6 +32,11 @@ class MobileCardsComponent extends Component {
       rowHasChanged: this._rowHasChanged.bind(this),
     });
     this.dataSource = this.getUpdatedDataSource(props);
+
+    this.modalData = {
+      openModal: false,
+      modalData: {}
+    }
   }
 
   componentWillMount() {
@@ -38,9 +48,45 @@ class MobileCardsComponent extends Component {
       "command": "fetch_cash_out_item",
       "type": 1,
       "skip": this.props.items.length,
-      "limit": 10
+      "limit": 30
     }));
   }
+
+  submit() {
+    var _self = this;
+    const {modalData} = this.modalData;
+    const {providerCode, netValue, price, imageUrl, name, id} = modalData;
+
+    httpService.postWithConvert("", {
+      command: "cash_out",
+      productId : id
+    }).then(async function (response) {
+      if (response.status) {
+        // _self.setError(data.message);
+      } else {
+        _self.props.dispatch(update_gold(response.money));
+      }
+
+      Alert.alert(
+        'Thông báo',
+        response.message,
+        [
+          {text: 'OK', onPress: () =>{ _self.closeModal.call(_self)}},
+        ],
+        {cancelable: true}
+      )
+    }).catch(function (thrown) {
+      console.log('thrown submit cast in', thrown);
+      Alert.alert(
+        'Thông báo',
+        thrown,
+        [
+          {text: 'OK', onPress: () =>{_self.closeModal.call(_self)}},
+        ],
+        {cancelable: true}
+      )
+    });
+  };
 
   componentWillReceiveProps(nextProps) {
     this.dataSource = this.getUpdatedDataSource(nextProps);
@@ -50,8 +96,8 @@ class MobileCardsComponent extends Component {
   getUpdatedDataSource(props) {
     let items = props.items.slice();
     var rows = [];
-    while(items.length){
-      rows.push(items.splice(0,2));
+    while (items.length) {
+      rows.push(items.splice(0, 2));
     }
     let ids = rows.map((obj, index) => index);
     return this.dataSource.cloneWithRows(rows, ids);
@@ -71,43 +117,49 @@ class MobileCardsComponent extends Component {
     )
   }
 
+  showConfirmPopup(itemData) {
+    this.modalData = {
+      openModal: true,
+      modalData: itemData
+    };
+    this.forceUpdate();
+  }
+
+  closeModal() {
+    this.modalData = {
+      openModal: false,
+      modalData: {}
+    };
+    this.forceUpdate();
+  }
+
 
   _renderRowData(rowData) {
-    console.log("rowData",rowData);
-    return;
-    if(!rowData) return;
-    const { total, skip, isFetching, username} = this.props;
-    const { toUsername, userPayFee, fee, createdTime,transferType, value,fromUsername} = rowData;
-    let transferTypeCode = (toUsername == username );// true : nhận, false : chuyển;
-    let transferPayFeeType = (userPayFee == username ); //true : "Bạn";// false : chuyển;
-    let formatTime =  moment(createdTime*1000).format('h:mm a - D/M/YYYY');
+    var _self = this;
+    let firstItem = rowData[0];
+    let seconItem = rowData[1];
+
+    function createItem(itemData) {
+      const {providerCode, netValue, price, imageUrl, name, id} = itemData;
+      return (
+        <TouchableHighlight onPress={() => _self.showConfirmPopup(itemData)}>
+          <View style={styles.historyRight}>
+            <Image style={styles.itemImage} source={{uri: imageUrl}}></Image>
+            <Text style={styles.priceWraper}>
+              <NumberFormater format="0,0" style={styles.price}>{price}</NumberFormater>V
+            </Text>
+          </View>
+        </TouchableHighlight>)
+    }
 
     // Reload all data
     return (
       <View style={styles.historyItem}>
         <View style={styles.historyLeft}>
-          {transferTypeCode && <Text style={styles.historyLeftTittle}>
-            Nhận từ {fromUsername} {"\n"}
-          </Text>}
-          {transferTypeCode && <Text style={styles.historyLeftTime}> {formatTime}</Text>}
-          {!transferTypeCode && <Text style={styles.historyLeftTittle}>
-            Chuyển cho {toUsername} {"\n"}
-          </Text>}
-          {!transferTypeCode && <Text style={styles.historyLeftTime}> {formatTime}</Text>}
+          {firstItem && createItem(firstItem)}
         </View>
         <View style={styles.historyRight}>
-          {transferTypeCode && <Text style={styles.historyRightTittleReceive}>
-            + <NumberFormater format="0,0" style={styles.historyRightTittleReceive}>{value}</NumberFormater> V {"\n"}
-          </Text>}
-          {!transferTypeCode && <Text style={styles.historyRightTittleSend}>
-            - <NumberFormater format="0,0" style={styles.historyRightTittleSend}>{value}</NumberFormater> V {"\n"}
-          </Text>}
-          {transferPayFeeType && <Text style={styles.historyRightMinePay}>
-            Bạn chịu phí
-          </Text>}
-          {!transferPayFeeType && <Text style={styles.historyRightOtherPay}>
-            {userPayFee} chịu phí
-          </Text>}
+          {seconItem && createItem(seconItem)}
         </View>
       </View>
     );
@@ -120,11 +172,14 @@ class MobileCardsComponent extends Component {
   }
 
   render() {
-    const {items, total, skip} = this.props;
+    const {items, total, skip, money} = this.props;
     // console.log("!items.length || items.length < total",!items.length, items.length < total,!items.length || items.length < total)
+    const {openModal, modalData} = this.modalData;
+
+    {/*const {providerCode, netValue, price, imageUrl, name, id} = itemData;*/}
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
-        <HeaderWithBackComponent tittle="LỊCH SỬ CHUYỂN VÀNG"/>
+        <HeaderComponent/>
         <Image source={glow2} style={styles.container}>
           <View padder style={{backgroundColor: 'transparent'}}>
             <ListView
@@ -139,7 +194,66 @@ class MobileCardsComponent extends Component {
 
           </View>
         </Image>
+        <Modal
+          style={[modalStyle.modal, modalStyle.modal2, styles.confirmModal]}
+          backdrop={true}
+          ref={(c) => {
+            this.modal = c;
+          }}
+          swipeToClose={false}
+          isOpen={openModal}
+        >
+          <View style={modalStyle.header}>
+            <Text style={{color: "#c4e1ff"}}>
+              XÁC NHẬN
+            </Text>
+            <Button
+              transparent
+              style={{position: 'absolute', top: 0, right: 0}}
+              onPress={this.closeModal.bind(this)}
+            >
+              <Icon name="close" style={{color: '#c4e1ff'}}/>
+            </Button>
+          </View>
+          <View style={[modalStyle.space, styles.modalContent]}>
+            <Text style={styles.modalText}>
+              Đổi{"\u0020"}
+              <Text style={styles.yellowText}>
+                <NumberFormater format="0,0" style={styles.yellowText}>{modalData.price}</NumberFormater>
+                {"\u0020"}vàng
+              </Text>
+              {"\u0020"}lấy thẻ cào{"\u0020"}
+              <Text style={styles.yellowText}>{modalData.name}</Text>
+              {"\u0020"}?
+            </Text>
+            <Text style={styles.modalText}>
+              Vàng còn lại:{"\u0020"}
+              <Text style={styles.yellowText}>
+                <NumberFormater format="0,0" style={styles.yellowText}>
+                  {money - modalData.price}
+                </NumberFormater>
+                {"\u0020"}V
+              </Text>
+            </Text>
+            <View style={styles.modalButtonBar}>
+              <Button rounded block style={styles.whiteButton}
+                      onPress={this.closeModal.bind(this)}>
+                <Text style={styles.whiteButtonText}>
+                  Hủy bỏ
+                </Text>
+              </Button>
+              <Button rounded block style={styles.yellowButton}
+                      onPress={this.submit.bind(this)}>
+                <Text style={styles.yellowButtonText}>
+                  Đồng ý
+                </Text>
+              </Button>
+            </View>
+          </View>
+        </Modal>
       </Container>
+
+
     );
   }
 }

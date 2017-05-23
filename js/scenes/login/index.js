@@ -38,6 +38,7 @@ class Login extends Component {
       var value = await AsyncStorage.getItem("authData");
       if (value !== null) {
         var authData = JSON.parse(value);
+        console.log("authData",authData);
         if (new Date().getTime() < authData.exp) {
           _self.goHome(authData);
         }
@@ -115,7 +116,7 @@ class Login extends Component {
     // this.props.dispatch(change_footer("transfer"));
     // Actions.historyTransfer();
     this.props.dispatch(change_footer("cashOut"));
-    Actions.cashOut();
+    Actions.mobileCards();
     // this.props.dispatch(change_footer("transfer"));
     // Actions.transfer();
   }
