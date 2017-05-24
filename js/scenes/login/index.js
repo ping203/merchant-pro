@@ -116,7 +116,7 @@ class Login extends Component {
     // this.props.dispatch(change_footer("transfer"));
     // Actions.historyTransfer();
     this.props.dispatch(change_footer("cashOut"));
-    Actions.mobileCards();
+    Actions.cashOut();
     // this.props.dispatch(change_footer("transfer"));
     // Actions.transfer();
   }
