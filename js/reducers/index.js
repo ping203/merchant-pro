@@ -12,6 +12,7 @@ import transferScene from '../scenes/transfer/reducers';
 import historyTransfer from '../scenes/historyTransfer/reducers';
 import mobileCards from '../scenes/mobileCards/reducers';
 import itemsCashOut from '../scenes/itemsCashOut/reducers';
+import merchants from '../scenes/merchants/reducers';
 
 
 export default combineReducers({
@@ -24,6 +25,7 @@ export default combineReducers({
   historyTransfer,
   mobileCards,
   itemsCashOut,
+  merchants,
   services: servicesReducer,
   data: dataReducer,
 });

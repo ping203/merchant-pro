@@ -14,6 +14,7 @@ import HistoryTransfer from './scenes/historyTransfer';
 import CashOut from './scenes/cashOut';
 import MobileCards from './scenes/mobileCards';
 import ItemsCashOut from './scenes/itemsCashOut';
+import Merchants from './scenes/merchants';
 
 import Home from './components/home/';
 import SignUp from './components/sign-up/';
@@ -119,7 +120,7 @@ class AppNavigator extends Component {
             <Scene key="cashOut" component={CashOut} />
             <Scene key="mobileCards" component={MobileCards} />
             <Scene key="itemsCashOut" component={ItemsCashOut} />
-
+            <Scene key="merchants" component={Merchants} />
 
             <Scene key="signUp" component={SignUp} />
             <Scene key="home" component={Home} />

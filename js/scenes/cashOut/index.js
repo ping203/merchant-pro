@@ -67,9 +67,9 @@ class CashoutComponent extends Component {  //eslint-disable-line
                     Vật phẩm
                   </Text>
                 </Button>
-                <Button rounded block style={styles.button} onPress={ () => this.login() }>
+                <Button rounded block style={styles.button} onPress={ () => Actions.merchants() }>
                   <Text style={{color: '#b9cbdc'}}>
-                    Ngân hàng
+                    Đại lý
                   </Text>
                 </Button>
                 <Button rounded block style={styles.button} onPress={ () => this.login() }>
