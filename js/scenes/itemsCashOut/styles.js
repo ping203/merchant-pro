@@ -190,8 +190,8 @@ export default {
   },
   itemImage: {
     width: 260 / 640 * deviceWidth,
-    height: 160 / 640 * deviceWidth,
-    // resizeMode: 'cover'
+    height: 276 / 640 * deviceWidth,
+    resizeMode: 'cover'
   },
   priceWraper: {
     backgroundColor: '#373f62',

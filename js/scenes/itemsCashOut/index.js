@@ -46,7 +46,7 @@ class ItemsCashOutComponent extends Component {
   _loadMoreContentAsync() {
     this.props.dispatch(fetchPosts({
       "command": "fetch_cash_out_item",
-      "type": 1,
+      "type": 4,//1: thẻ       2: ngân hàng        3: đại lý      4: vật phẩm
       "skip": this.props.items.length,
       "limit": 30
     }));
@@ -59,7 +59,7 @@ class ItemsCashOutComponent extends Component {
 
     httpService.postWithConvert("", {
       command: "cash_out",
-      productId : id
+      productId: id
     }).then(async function (response) {
       if (response.status) {
         // _self.setError(data.message);
@@ -71,7 +71,11 @@ class ItemsCashOutComponent extends Component {
         'Thông báo',
         response.message,
         [
-          {text: 'OK', onPress: () =>{ _self.closeModal.call(_self)}},
+          {
+            text: 'OK', onPress: () => {
+            _self.closeModal.call(_self)
+          }
+          },
         ],
         {cancelable: true}
       )
@@ -81,7 +85,11 @@ class ItemsCashOutComponent extends Component {
         'Thông báo',
         thrown,
         [
-          {text: 'OK', onPress: () =>{_self.closeModal.call(_self)}},
+          {
+            text: 'OK', onPress: () => {
+            _self.closeModal.call(_self)
+          }
+          },
         ],
         {cancelable: true}
       )
@@ -176,19 +184,26 @@ class ItemsCashOutComponent extends Component {
     // console.log("!items.length || items.length < total",!items.length, items.length < total,!items.length || items.length < total)
     const {openModal, modalData} = this.modalData;
 
-    {/*const {providerCode, netValue, price, imageUrl, name, id} = itemData;*/}
+    {/*const {providerCode, netValue, price, imageUrl, name, id} = itemData;*/
+    }
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
         <HeaderComponent/>
         <Image source={glow2} style={styles.container}>
           <View padder style={{backgroundColor: 'transparent'}}>
+            {/*<ListView*/}
+              {/*renderScrollComponent={props => <InfiniteScrollView {...props} />}*/}
+              {/*dataSource={this.dataSource}*/}
+              {/*renderRow={(rowData) => this._renderRowData.call(this, rowData)}*/}
+              {/*refreshControl={this._renderRefreshControl()}*/}
+              {/*onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}*/}
+              {/*canLoadMore={!items.length || items.length < total}*/}
+              {/*enableEmptySections={true}*/}
+            {/*/>*/}
+
             <ListView
-              renderScrollComponent={props => <InfiniteScrollView {...props} />}
               dataSource={this.dataSource}
               renderRow={(rowData) => this._renderRowData.call(this, rowData)}
-              refreshControl={this._renderRefreshControl()}
-              onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}
-              canLoadMore={!items.length || items.length < total}
               enableEmptySections={true}
             />
 

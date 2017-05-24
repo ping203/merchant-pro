@@ -12,7 +12,7 @@ function request(subreddit) {
 function receive(data) {
   return {
     type: RECEIVE_ITEMS,
-    ...data
+    items : data
   }
 }
 
@@ -23,7 +23,7 @@ export function fetchPosts(params) {
     return http.postWithConvert("", params)
       .then(response => {
         if (response.status == 0) {
-          dispatch(receive(response.data));
+          dispatch(receive(response.data["4"]));
         }else {
           throw data.message;
         }

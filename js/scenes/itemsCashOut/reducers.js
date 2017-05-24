@@ -12,9 +12,9 @@ export default function receiverItems(state = initState, action) {
     var _return = {
       ...state,
       isFetching : false,
-      items : state.items.concat(action.items),
+      items : action.items,
       skip : state.skip + action.items.length,
-      total : action.total
+      total : action.total || 100
     };
     return _return;
   }

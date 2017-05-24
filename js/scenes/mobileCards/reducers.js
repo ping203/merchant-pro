@@ -2,7 +2,7 @@ import {REQUEST_ITEMS, RECEIVE_ITEMS} from './actions';
 
 const initState = {
   items : [],
-  total : 0,
+  total : 100,
   skip : 0,
   isFetching : false
 };
@@ -12,10 +12,11 @@ export default function receiverItems(state = initState, action) {
     var _return = {
       ...state,
       isFetching : false,
-      items : state.items.concat(action.items),
+      items : action.items,
       skip : state.skip + action.items.length,
-      total : action.total
+      total : action.total || 100
     };
+    console.log("_return",_return);
     return _return;
   }
   if (action.type === REQUEST_ITEMS) {

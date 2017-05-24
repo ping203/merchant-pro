@@ -182,13 +182,19 @@ class MobileCardsComponent extends Component {
         <HeaderComponent/>
         <Image source={glow2} style={styles.container}>
           <View padder style={{backgroundColor: 'transparent'}}>
+            {/*<ListView*/}
+              {/*renderScrollComponent={props => <InfiniteScrollView {...props} />}*/}
+              {/*dataSource={this.dataSource}*/}
+              {/*renderRow={(rowData) => this._renderRowData.call(this, rowData)}*/}
+              {/*refreshControl={this._renderRefreshControl()}*/}
+              {/*onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}*/}
+              {/*canLoadMore={!items.length || items.length < total}*/}
+              {/*enableEmptySections={true}*/}
+            {/*/>*/}
+
             <ListView
-              renderScrollComponent={props => <InfiniteScrollView {...props} />}
               dataSource={this.dataSource}
               renderRow={(rowData) => this._renderRowData.call(this, rowData)}
-              refreshControl={this._renderRefreshControl()}
-              onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}
-              canLoadMore={!items.length || items.length < total}
               enableEmptySections={true}
             />
 
