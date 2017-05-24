@@ -24,7 +24,6 @@ class Footer extends Component {
         <FooterButton target="cashOutHistory"/>
       </FooterTab>
 
-
     );
   }
 }

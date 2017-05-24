@@ -20,7 +20,7 @@ moment.locale('vi');
 const glow2 = require('../../../images/glow2-new.png');
 
 
-class HistoryTransferComponent extends Component {
+class CashOutHistoryComponent extends Component {
   constructor(props, context) {
     super(props);
     this.dataSource = new ListView.DataSource({
@@ -159,7 +159,7 @@ function bindAction(dispatch) {
 }
 
 const mapStateToProps = state => {
-  const {items, total, skip, isFetching} = state.historyTransfer;
+  const {items, total, skip, isFetching} = state.cashOutHistory;
   // console.log("items",items.length,"total", total, "isFetching",isFetching );
   const {loginInfo} = state.auth;
   return {
@@ -168,4 +168,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(HistoryTransferComponent);
+export default connect(mapStateToProps)(CashOutHistoryComponent);

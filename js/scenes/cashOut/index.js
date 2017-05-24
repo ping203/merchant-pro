@@ -28,7 +28,7 @@ import styles from './styles';
 
 const glow2 = require('../../../images/glow2-new.png');
 const giftImage = require('../../../images/cashOut/gift.png');
-
+import { change_footer } from '../../actions/footerState';
 
 class CashoutComponent extends Component {  //eslint-disable-line
 
@@ -47,7 +47,7 @@ class CashoutComponent extends Component {  //eslint-disable-line
 
 
   render() {
-
+    const {dispatch} = this.props;
     return (
 
       <Container style={{backgroundColor: '#2a3146'}}>
@@ -72,7 +72,10 @@ class CashoutComponent extends Component {  //eslint-disable-line
                     Đại lý
                   </Text>
                 </Button>
-                <Button rounded block style={styles.button} onPress={ () => this.login() }>
+                <Button rounded block style={styles.button} onPress={ () => {
+                  dispatch(change_footer("cashOutHistory"));
+                  Actions.cashOutHistory();
+                }}>
                   <Text style={{color: '#b9cbdc'}}>
                     Nhận quà
                   </Text>

@@ -15,6 +15,7 @@ import CashOut from './scenes/cashOut';
 import MobileCards from './scenes/mobileCards';
 import ItemsCashOut from './scenes/itemsCashOut';
 import Merchants from './scenes/merchants';
+import CashOutHistory from './scenes/cashOutHistory';
 
 import Home from './components/home/';
 import SignUp from './components/sign-up/';
@@ -121,6 +122,7 @@ class AppNavigator extends Component {
             <Scene key="mobileCards" component={MobileCards} />
             <Scene key="itemsCashOut" component={ItemsCashOut} />
             <Scene key="merchants" component={Merchants} />
+            <Scene key="cashOutHistory" component={CashOutHistory} />
 
             <Scene key="signUp" component={SignUp} />
             <Scene key="home" component={Home} />

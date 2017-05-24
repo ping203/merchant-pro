@@ -48,6 +48,7 @@ export default {
   },
   convertData : function(dataResponse){
     var data = dataResponse.data && dataResponse.data;
+    // console.log("data",data);
     if(typeof data.status === "undefined"){
       throw "Server error !";
     }else return data;

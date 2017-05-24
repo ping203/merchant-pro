@@ -84,6 +84,7 @@ class Login extends Component {
 
     }).then(async function (response) {
       var data = response.data;
+      console.log("response",response, response.d);
       if (data.status) {
         _self.setError(data.message);
       } else {
