@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 
 import { reducer as dataReducer } from '../data/reducer';
 import { reducer as servicesReducer } from '../services/reducer';
+import { reducer as formReducer } from 'redux-form';
 import drawer from './drawer';
 import auth from './auth';
 import footerState from './footerState';
@@ -27,6 +28,7 @@ export default combineReducers({
   itemsCashOut,
   merchants,
   cashOutHistory,
+  form: formReducer,
   services: servicesReducer,
   data: dataReducer,
 });

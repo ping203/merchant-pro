@@ -44,6 +44,7 @@ export default {
     return request;
   },
   postWithConvert : function (url,params, postConfig = {}) {
+    // console.log("params",params);
     return this.post2(url,params, postConfig).then(this.convertData);
   },
   convertData : function(dataResponse){
