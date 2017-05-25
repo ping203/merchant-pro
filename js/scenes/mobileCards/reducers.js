@@ -13,7 +13,8 @@ export default function receiverItems(state = initState, action) {
       ...state,
       isFetching : false,
       items : action.items,
-      skip : state.skip + action.items.length,
+      // skip : state.skip + action.items.length,
+      skip : 0,
       total : action.total || 100
     };
     console.log("_return",_return);

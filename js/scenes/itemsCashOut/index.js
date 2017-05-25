@@ -47,7 +47,8 @@ class ItemsCashOutComponent extends Component {
     this.props.dispatch(fetchPosts({
       "command": "fetch_cash_out_item",
       "type": 4,//1: thẻ       2: ngân hàng        3: đại lý      4: vật phẩm
-      "skip": this.props.items.length,
+      // "skip": this.props.items.length,
+      "skip": 0,
       "limit": 30
     }));
   }

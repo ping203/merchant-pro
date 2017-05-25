@@ -20,7 +20,7 @@ moment.locale('vi');
 const glow2 = require('../../../images/glow2-new.png');
 
 
-class HistoryTransferComponent extends Component {
+class HistoryTransferMerchantComponent extends Component {
   constructor(props, context) {
     super(props);
     this.dataSource = new ListView.DataSource({
@@ -36,7 +36,7 @@ class HistoryTransferComponent extends Component {
   _loadMoreContentAsync() {
     this.props.dispatch(fetchPosts({
       "command": "fetch_transfer_log",
-      "type": 0,
+      "type": 3,
       "skip": this.props.items.length,
       "limit": 10
     }));
@@ -118,7 +118,7 @@ class HistoryTransferComponent extends Component {
     // console.log("!items.length || items.length < total",!items.length, items.length < total,!items.length || items.length < total)
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
-        <HeaderWithBackComponent tittle="LỊCH SỬ CHUYỂN VÀNG"/>
+        <HeaderWithBackComponent tittle="CHUYỂN VÀNG ĐẠI LÝ"/>
         <Image source={glow2} style={styles.container}>
           <View padder style={{backgroundColor: 'transparent'}}>
             <ListView
@@ -159,7 +159,7 @@ function bindAction(dispatch) {
 }
 
 const mapStateToProps = state => {
-  const {items, total, skip, isFetching} = state.historyTransfer;
+  const {items, total, skip, isFetching} = state.historyTransferMerchant;
   // console.log("items",items.length,"total", total, "isFetching",isFetching );
   const {loginInfo} = state.auth;
   return {
@@ -168,4 +168,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(HistoryTransferComponent);
+export default connect(mapStateToProps)(HistoryTransferMerchantComponent);

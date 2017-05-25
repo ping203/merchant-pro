@@ -137,27 +137,6 @@ export default {
     justifyContent: "center",
     alignItems: "center"
   },
-  buttonGroup: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    marginTop: 10
-  },
-  buttonHistory: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 10,
-    width: deviceWidth * 240 / 640,
-    borderWidth: 2,
-    borderColor: '#555e94',
-    borderRadius: 5,
-    backgroundColor: "transparent"
-  },
-  buttonHistoryText: {
-    fontSize: theme.fontSizeBase * 1.1,
-    color: "#676da6",
-    fontWeight: "bold"
-  },
 
   buttonYellow: {
     marginTop: 10,
@@ -265,5 +244,37 @@ export default {
   },
   modalWrapper : {
     height : deviceHeight * 6.5/10,
-  }
+  },
+  footer: {
+    flex : 80/640,
+    backgroundColor: '#434973',
+  },
+  buttonGroup: {
+    flex : 80/640,
+    flexDirection: "row",
+    paddingTop: 5,
+    paddingBottom : 5,
+  },
+  buttonHistory: {
+    borderWidth: 1,
+    borderColor: '#555e94',
+    borderRadius: 5,
+    marginLeft : 30,
+    marginRight : 30,
+    marginTop : 5,
+    marginBottom : 5,
+    height : deviceWidth *60/640,
+  },
+  buttonHistoryText: {
+    fontSize: theme.fontSizeBase * 1.05,
+    color: "#676da6",
+    fontWeight: "bold"
+  },
+  descriptionText: {
+    color: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    marginBottom : 30,
+  },
 }

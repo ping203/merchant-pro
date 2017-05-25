@@ -7,7 +7,8 @@ import {
   Button,
   Icon,
   Text,
-  Input
+  Input,
+  FooterTab
 } from 'native-base';
 
 import {fetchPosts, fetchConfig} from './actions';
@@ -16,11 +17,13 @@ import InfiniteScrollView from 'react-native-infinite-scroll-view';
 import NumberFormater from '../../components/numberFormatter';
 import styles from './styles';
 let moment = require('moment');
+import {Actions, ActionConst} from 'react-native-router-flux';
 moment.locale('vi');
 
 import Modal from 'react-native-modalbox';
 import modalStyle from '../../components/styles/modal';
 import TransferMerchantForm from './transferMerchant'
+import FooterComponent from '../../components/footer/index';
 
 const glow2 = require('../../../images/glow2-new.png');
 
@@ -93,6 +96,15 @@ class MerchantsComponent extends Component {
       modalData: {}
     };
     this.forceUpdate();
+  }
+
+  setTutorial(flag) {
+    this.openTutorial = flag;
+    this.forceUpdate();
+  }
+
+  goHistory() {
+    Actions.historyTransferMerchant();
   }
 
   submit() {
@@ -217,6 +229,19 @@ class MerchantsComponent extends Component {
         </Image>
 
 
+        <FooterTab style={styles.footer}>
+
+          <View style={styles.buttonGroup}>
+            <Button style={styles.buttonHistory} onPress={() => this.goHistory()}>
+              <Text style={styles.buttonHistoryText}> Lịch sử </Text>
+            </Button>
+
+            <Button style={styles.buttonHistory} onPress={() => this.setTutorial(true)}>
+              <Text style={styles.buttonHistoryText}> Hướng dẫn </Text>
+            </Button>
+          </View>
+        </FooterTab>
+
         <Modal
           style={[modalStyle.modal, modalStyle.modal2, styles.modalWrapper]}
           backdrop={true}
@@ -294,6 +319,77 @@ class MerchantsComponent extends Component {
               </View>
             </ScrollView>
 
+          </View>
+        </Modal>
+
+        <Modal
+          style={[modalStyle.modal, modalStyle.modal2]}
+          backdrop={true}
+          ref={(c) => {
+            this.tutorialModal = c;
+          }}
+          swipeToClose={false}
+          isOpen={this.openTutorial}
+        >
+          <View style={modalStyle.header}>
+            <Text style={{color: "#c4e1ff"}}>
+              HƯỚNG DẪN
+            </Text>
+            <Button
+              transparent
+              style={{position: 'absolute', top: 0, right: 0}}
+              onPress={()=>this.setTutorial(false)}
+            >
+              <Icon name="close" style={{color: '#c4e1ff'}}/>
+            </Button>
+          </View>
+          <View style={modalStyle.space}>
+            <ScrollView >
+              <Text style={styles.descriptionText}>
+                1Xác thực tài khoản để sử dụng đầy đủ {"\n"}
+                8tính năng của game: Nhận quà, chuyển vàng ...
+                9tính năng của game: Nhận quà, chuyển vàng ...
+                10tính năng của game: Nhận quà, chuyển vàng ...
+                11tính năng của game: Nhận quà, chuyển vàng ...
+                8tính năng của game: Nhận quà, chuyển vàng ...
+                9tính năng của game: Nhận quà, chuyển vàng ...
+                10tính năng của game: Nhận quà, chuyển vàng ...
+                11tính năng của game: Nhận quà, chuyển vàng ...
+                8tính năng của game: Nhận quà, chuyển vàng ...
+                9tính năng của game: Nhận quà, chuyển vàng ...
+                10tính năng của game: Nhận quà, chuyển vàng ...
+                11tính năng của game: Nhận quà, chuyển vàng ...
+                8tính năng của game: Nhận quà, chuyển vàng ...
+                9tính năng của game: Nhận quà, chuyển vàng ...
+                10tính năng của game: Nhận quà, chuyển vàng ...
+                11tính năng của game: Nhận quà, chuyển vàng ...
+                8tính năng của game: Nhận quà, chuyển vàng ...
+                9tính năng của game: Nhận quà, chuyển vàng ...
+                10tính năng của game: Nhận quà, chuyển vàng ...
+                11tính năng của game: Nhận quà, chuyển vàng ...
+                8tính năng của game: Nhận quà, chuyển vàng ...
+                9tính năng của game: Nhận quà, chuyển vàng ...
+                10tính năng của game: Nhận quà, chuyển vàng ...
+                11tính năng của game: Nhận quà, chuyển vàng ...
+                8tính năng của game: Nhận quà, chuyển vàng ...
+                9tính năng của game: Nhận quà, chuyển vàng ...
+                10tính năng của game: Nhận quà, chuyển vàng ...
+                11tính năng của game: Nhận quà, chuyển vàng ...
+                8tính năng của game: Nhận quà, chuyển vàng ...
+                9tính năng của game: Nhận quà, chuyển vàng ...
+                10tính năng của game: Nhận quà, chuyển vàng ...
+                11tính năng của game: Nhận quà, chuyển vàng ...
+                8tính năng của game: Nhận quà, chuyển vàng ...
+                9tính năng của game: Nhận quà, chuyển vàng ...
+                10tính năng của game: Nhận quà, chuyển vàng ...
+                11tính năng của game: Nhận quà, chuyển vàng ...
+                8tính năng của game: Nhận quà, chuyển vàng ...
+                9tính năng của game: Nhận quà, chuyển vàng ...
+                10tính năng của game: Nhận quà, chuyển vàng ...
+                11tính năng của game: Nhận quà, chuyển vàng ...
+                Vui lòng chọn nhà mạng:
+              </Text>
+            </ScrollView>
           </View>
         </Modal>
       </Container>

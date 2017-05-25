@@ -35,7 +35,7 @@ class CashOutHistoryComponent extends Component {
 
   _loadMoreContentAsync() {
     this.props.dispatch(fetchPosts({
-      "command": "fetch_transfer_log",
+      "command": "fetch_cash_out_log",
       "type": 0,
       "skip": this.props.items.length,
       "limit": 10
@@ -80,6 +80,7 @@ class CashOutHistoryComponent extends Component {
     return (
       <View style={styles.historyItem}>
         <View style={styles.historyLeft}>
+          
           {transferTypeCode && <Text style={styles.historyLeftTittle}>
             Nhận từ {fromUsername} {"\n"}
           </Text>}

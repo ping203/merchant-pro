@@ -1,6 +1,6 @@
 import http  from "../../common/http"
 
-const prefix = "historyTransfer/";
+const prefix = "historyTransferMerchant/";
 export const REQUEST_ITEMS = prefix + 'REQUEST_ITEMS';
 export const RECEIVE_ITEMS = prefix + 'RECEIVE_ITEMS';
 

@@ -47,7 +47,8 @@ class MobileCardsComponent extends Component {
     this.props.dispatch(fetchPosts({
       "command": "fetch_cash_out_item",
       "type": 1,
-      "skip": this.props.items.length,
+      // "skip": this.props.items.length,
+      "skip": 0,
       "limit": 30
     }));
   }
