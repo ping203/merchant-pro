@@ -181,21 +181,51 @@ export default {
     backgroundColor : "#343b52",
     justifyContent : "space-between",
     flex : 1,
-    flexDirection : "row",
+    flexDirection : "column",
     padding  : 10
+  },
+  historyItemReject : {
+    marginLeft : 10,
+    marginRight : 10,
+    marginTop : 5,
+    borderRadius : 3,
+    backgroundColor : "#343b52",
+    justifyContent : "space-between",
+    flex : 1,
+    flexDirection : "column",
+    padding  : 10,
+    opacity: 0.5
+  },
+  historyHeader : {
+    borderBottomWidth : 1,
+    borderBottomColor : "#2a3146",
+    justifyContent : "space-between",
+    flex : 1,
+    flexDirection : "row",
+    paddingBottom : 5
   },
   historyLeft : {
     alignItems : "flex-start",
   },
   historyLeftTittle : {
     color : '#7b93cb',
-    fontSize : 17,
-    fontWeight: "bold"
+    fontSize : 17
   },
   historyLeftTime : {
     color : '#5a6490',
     fontSize : 13,
     marginTop : 5
+  },
+  historyRightTittle : {
+    color : '#ffde00',
+    alignItems : "flex-end",
+  },
+  historyContent : {
+    justifyContent : "space-between",
+    flex : 1,
+    flexDirection : "row",
+    marginTop : 10,
+    marginBottom : 5,
   },
   historyRight : {
     alignItems : "flex-end",
@@ -205,17 +235,49 @@ export default {
     fontSize : 17,
     fontWeight: "bold"
   },
-  historyRightTittleSend : {
-    color : '#fe9870',
-    fontSize : 17,
+  historyItemField : {
+    color : '#c4e1ff',
     fontWeight: "bold"
+  },
+  historyItemValue : {
+    color : '#a6adcb'
+  },
+  historyRowButtonCopy : {
+    justifyContent : "space-between",
+    flexDirection : "row",
+    alignItems : "center",
+    width : deviceWidth * 3/8
+  },
+  historyButtonCopy : {
+    borderRadius : 3,
+    backgroundColor : "#7fa8d1",
+    paddingLeft: 5,
+    paddingRight : 5,
+    paddingTop : 0,
+    paddingBottom : 0
+  },
+  historyButtonCopyText : {
+    color : '#343b52',
   },
   historyRightMinePay : {
     color : '#b07a7a',
     fontSize : 13,
   },
-  historyRightOtherPay : {
+  historyRightOtherPaySuccess : {
     color : '#9fc55d',
     fontSize : 13,
+  },
+  historyRightOtherPayWait : {
+    color : '#4a526a',
+    fontSize : 13,
+  },
+  historyRightOtherPayReject : {
+    color : '#9a6161',
+    fontSize : 13,
+  },
+  historyBottom : {
+    flexDirection : "row",
+    alignItems : "center",
+    justifyContent : "space-between"
   },
 }

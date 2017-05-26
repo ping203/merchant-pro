@@ -10,7 +10,6 @@ const initState = {
 
 export default function receiverItems(state = initState, action) {
   if (action.type === RECEIVE_ITEMS) {
-    console.log("RECEIVE_ITEMS",action);
     var _return = {
       ...state,
       isFetching : false,

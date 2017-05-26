@@ -117,7 +117,6 @@ class CashIn extends Component {  //eslint-disable-line
     console.log("logout");
     _logout();
     async function _logout() {
-      console.log("_logout");
         await AsyncStorage.removeItem('authData');
         _self.props.dispatch(logout());
         Actions.login({type: ActionConst.RESET});
@@ -127,7 +126,6 @@ class CashIn extends Component {  //eslint-disable-line
 
   submit ()  {
     var _self = this;
-    console.log("this.props",this.props);
     const {code, serial, selectedCardType} = this.props;
     httpService.post2("", {
       command: "cash_in",
@@ -137,7 +135,6 @@ class CashIn extends Component {  //eslint-disable-line
       telco : selectedCardType.code
     }).then(async function (response) {
       var data = response.data;
-      console.log("response.data",response.data);
       if(typeof data.status === "undefined"){
         _self.setError("Server error");
       }else if(data.status){
@@ -224,6 +221,7 @@ class CashIn extends Component {  //eslint-disable-line
                          placeholder={"Serial thẻ"}
                          placeholderTextColor="#7481a7"
                          onChangeText={serial => this.onChangeField("serial",serial)}
+                         defaultValue={serial}
                   />
                 </Item>
                 <Item style={styles2.inputWrapper}>
@@ -231,6 +229,7 @@ class CashIn extends Component {  //eslint-disable-line
                          placeholder={"Mã thẻ"}
                          placeholderTextColor="#7481a7"
                          onChangeText={code => this.onChangeField("code",code)}
+                         defaultValue={code}
                   />
                 </Item>
                 <Text style={{

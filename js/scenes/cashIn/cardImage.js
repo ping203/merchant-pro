@@ -7,38 +7,8 @@ import { change_footer } from '../../actions/footerState';
 
 import styles from './styles';
 
-const MappingTarget = {
-  cashIn : "NẠP VÀNG",
-  transfer : "CHUYỂN VÀNG",
-  gift : "QUÀ TẶNG",
-  receice : "NHẬN QUÀ"
-}
 
-class FooterButton extends Component {
-  changeFooterState() {
-    const {target, dispatch} = this.props;
-    dispatch(change_footer(target));
-    switch (target){
-      case "cashIn" : {
-        Actions.cashIn();
-        break;
-      };
-      case "transfer" : {
-        Actions.transfer();
-        break;
-      };
-      case "gift" : {
-        Actions.gift();
-        break;
-      };
-      case "receice" : {
-        Actions.receive();
-        break;
-      };
-      default:
-        Actions.cashIn();
-    }
-  }
+class CardImageCashIn extends Component {
 
   render() {
     const {active} = this.props;
@@ -56,4 +26,4 @@ class FooterButton extends Component {
   }
 }
 
-export default FooterButton;
+export default CardImageCashIn;

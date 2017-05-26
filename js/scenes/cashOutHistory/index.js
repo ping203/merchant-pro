@@ -1,20 +1,27 @@
 import React, {Component} from 'react';
-import {Image, View, ListView, RefreshControl} from 'react-native';
+import {Image, View, ListView, RefreshControl, Clipboard} from 'react-native';
 import {connect} from 'react-redux';
 import {
   Container,
   Content,
   Text,
+  Button,
+  Footer
 } from 'native-base';
 
 import {fetchPosts} from './actions';
+import {select_card_type, change_code, change_serial, update_config_ratio} from '../cashIn/actions';
 import HeaderWithBackComponent from '../../components/header/headerWithBack';
+import FooterComponent from '../../components/footer/index';
+import HeaderComponent from '../../components/header/index';
 import InfiniteScrollView from 'react-native-infinite-scroll-view';
 import NumberFormater from '../../components/numberFormatter';
 import styles from './styles';
 let moment = require('moment');
 var GiftedListView = require('react-native-gifted-listview');
 var GiftedSpinner = require('react-native-gifted-spinner');
+import {Actions, ActionConst} from 'react-native-router-flux';
+import {change_footer} from '../../actions/footerState';
 moment.locale('vi');
 
 const glow2 = require('../../../images/glow2-new.png');
@@ -69,40 +76,55 @@ class CashOutHistoryComponent extends Component {
 
 
   _renderRowData(rowData) {
-    if(!rowData) return;
-    const { total, skip, isFetching, username} = this.props;
-    const { toUsername, userPayFee, fee, createdTime,transferType, value,fromUsername} = rowData;
-    let transferTypeCode = (toUsername == username );// true : nhận, false : chuyển;
-    let transferPayFeeType = (userPayFee == username ); //true : "Bạn";// false : chuyển;
-    let formatTime =  moment(createdTime*1000).format('h:mm a - D/M/YYYY');
+    if (!rowData) return;
+    const {total, skip, isFetching, username} = this.props;
+    const {orderId, createdTime, productName, productType, status, resultContent, code, serial, telco, isUsed} = rowData;
+    var productNameArray = productName.match(/[^\r\n]+/g);
+    var onlyProductName = productNameArray[0];
+    var onlyProductPrice = productNameArray[1];
+
+    let formatTime = moment(createdTime * 1000).format('h:mm a - D/M/YYYY');
 
     // Reload all data
     return (
-      <View style={styles.historyItem}>
-        <View style={styles.historyLeft}>
-          
-          {transferTypeCode && <Text style={styles.historyLeftTittle}>
-            Nhận từ {fromUsername} {"\n"}
-          </Text>}
-          {transferTypeCode && <Text style={styles.historyLeftTime}> {formatTime}</Text>}
-          {!transferTypeCode && <Text style={styles.historyLeftTittle}>
-            Chuyển cho {toUsername} {"\n"}
-          </Text>}
-          {!transferTypeCode && <Text style={styles.historyLeftTime}> {formatTime}</Text>}
+      <View style={status == 2 ? styles.historyItemReject : styles.historyItem }>
+        <View style={styles.historyHeader}>
+          <View style={styles.historyLeft}>
+            <Text style={styles.historyLeftTittle}>
+              Thẻ {onlyProductName} {"\n"}
+              <Text style={styles.historyLeftTime}> {createdTime}</Text>
+            </Text>
+          </View>
+          <Text style={styles.historyRightTittle}>
+            {onlyProductPrice} {"\n"}
+          </Text>
         </View>
-        <View style={styles.historyRight}>
-          {transferTypeCode && <Text style={styles.historyRightTittleReceive}>
-            + <NumberFormater format="0,0" style={styles.historyRightTittleReceive}>{value}</NumberFormater> V {"\n"}
-          </Text>}
-          {!transferTypeCode && <Text style={styles.historyRightTittleSend}>
-            - <NumberFormater format="0,0" style={styles.historyRightTittleSend}>{value}</NumberFormater> V {"\n"}
-          </Text>}
-          {transferPayFeeType && <Text style={styles.historyRightMinePay}>
-            Bạn chịu phí
-          </Text>}
-          {!transferPayFeeType && <Text style={styles.historyRightOtherPay}>
-            {userPayFee} chịu phí
-          </Text>}
+        {status == 0 && <View style={styles.historyContent}>
+          <View style={styles.historyLeft}>
+            <Text style={styles.historyItemField}>
+              Seri : <Text style={styles.historyItemValue}> {serial}</Text>
+            </Text>
+            <Text style={styles.historyItemField}>
+              Mã thẻ : <Text style={styles.historyItemValue}> {code}</Text>
+            </Text>
+          </View>
+          <View style={[styles.historyRight, styles.historyRowButtonCopy]}>
+            <Button style={styles.historyButtonCopy} onPress={() => this.copy(serial)}>
+              <Text style={styles.historyButtonCopyText}>Copy Seri</Text>
+            </Button>
+            <Button style={styles.historyButtonCopy} onPress={() => this.copy(code)}>
+              <Text style={styles.historyButtonCopyText}>Copy Mã</Text>
+            </Button>
+          </View>
+        </View>}
+        <View style={styles.historyBottom}>
+          {isUsed == false &&
+          <Button style={styles.historyButtonCopy} onPress={() => this.copyToCashIn.apply(this, [serial, code, telco])}>
+            <Text style={styles.historyButtonCopyText}>Nạp thẻ</Text>
+          </Button>}
+          {status == 0 && <Text style={styles.historyRightOtherPaySuccess}> Đã nhận {isUsed}</Text>}
+          {status == 2 && < Text style={styles.historyRightOtherPayReject}> Bị từ chối </Text>}
+          {status == 1 && < Text style={styles.historyRightOtherPayWait}> Chờ duyệt ... </Text>}
         </View>
       </View>
     );
@@ -114,12 +136,28 @@ class CashOutHistoryComponent extends Component {
     }));
   }
 
+  copy(code) {
+    Clipboard.setString(code);
+  }
+
+  copyToCashIn(serial, code, telco) {
+    this.props.dispatch(select_card_type({
+      name: telco,
+      code: telco.toLowerCase()
+    }));
+    this.props.dispatch(change_code(      code    ));
+    this.props.dispatch(change_serial(      serial    ));
+    this.props.dispatch(change_footer("cashIn"));
+    Actions.cashIn();
+  }
+
   render() {
     const {items, total, skip} = this.props;
     // console.log("!items.length || items.length < total",!items.length, items.length < total,!items.length || items.length < total)
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
-        <HeaderWithBackComponent tittle="LỊCH SỬ CHUYỂN VÀNG"/>
+        {/*<HeaderWithBackComponent tittle="LỊCH SỬ CHUYỂN VÀNG"/>*/}
+        <HeaderComponent/>
         <Image source={glow2} style={styles.container}>
           <View padder style={{backgroundColor: 'transparent'}}>
             <ListView
@@ -131,23 +169,12 @@ class CashOutHistoryComponent extends Component {
               canLoadMore={!items.length || items.length < total}
               enableEmptySections={true}
             />
-            {/*<GiftedListView*/}
-              {/*rowView={(rowData) => this._renderRowData.call(this, rowData)}*/}
-              {/*onFetch={this._loadMoreContentAsync.bind(this)}*/}
-              {/*firstLoader={true} // display a loader for the first fetching*/}
-              {/*pagination={true} // enable infinite scrolling using touch to load more*/}
-              {/*refreshable={true} // enable pull-to-refresh for iOS and touch-to-refresh for Android*/}
-              {/*withSections={false} // enable sections*/}
-              {/*customStyles={{*/}
-                {/*paginationView: {*/}
-                  {/*backgroundColor: '#eee',*/}
-                {/*},*/}
-              {/*}}*/}
-              {/*refreshableTintColor="blue"*/}
-            {/*/>*/}
 
           </View>
         </Image>
+        <Footer style={{borderTopWidth: 0, backgroundColor: 'transparent'}}>
+          <FooterComponent navigator={this.props.navigation}/>
+        </Footer>
       </Container>
     );
   }

@@ -115,8 +115,10 @@ class Login extends Component {
     // Actions.cashIn({type: ActionConst.RESET});
     // this.props.dispatch(change_footer("transfer"));
     // Actions.historyTransfer();
-    this.props.dispatch(change_footer("cashOut"));
-    Actions.cashOut();
+    // this.props.dispatch(change_footer("cashOut"));
+    // Actions.cashOut();
+    this.props.dispatch(change_footer("cashOutHistory"));
+    Actions.cashOutHistory();
     // this.props.dispatch(change_footer("transfer"));
     // Actions.transfer();
   }
