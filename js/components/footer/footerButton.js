@@ -3,38 +3,40 @@ import {connect} from 'react-redux';
 import {Icon, FooterTab, Button, Text} from 'native-base';
 
 import {Actions, ActionConst} from 'react-native-router-flux';
-import { change_footer } from '../../actions/footerState';
+import {change_footer} from '../../actions/footerState';
+import animationStyle from '../../animationStyle';
 
 import styles from './styles';
 
 const MappingTarget = {
-  cashIn : "NẠP VÀNG",
-  transfer : "CHUYỂN VÀNG",
-  cashOut : "QUÀ TẶNG",
-  cashOutHistory : "NHẬN QUÀ"
+  cashIn: "NẠP VÀNG",
+  transfer: "CHUYỂN VÀNG",
+  cashOut: "QUÀ TẶNG",
+  cashOutHistory: "NHẬN QUÀ"
 }
 
 class FooterButton extends Component {
   changeFooterState() {
     const {target, dispatch} = this.props;
     dispatch(change_footer(target));
-    switch (target){
+    switch (target) {
       case "cashIn" : {
+        // Actions.cashIn({type: "replace", sceneConfig: {animationStyle}});
         Actions.cashIn();
         break;
-      };
+      }
       case "transfer" : {
         Actions.transfer();
         break;
-      };
+      }
       case "cashOut" : {
         Actions.cashOut();
         break;
-      };
+      }
       case "cashOutHistory" : {
         Actions.cashOutHistory();
         break;
-      };
+      }
       default:
         Actions.cashIn();
     }
@@ -44,8 +46,8 @@ class FooterButton extends Component {
     const {target, dispatch, footerState} = this.props;
     if (target === footerState) {
       return (
-        <Button  style={styles.activeButton}>
-            < Text style={{color: "#a49ad3"}}> {MappingTarget[target]} </Text>
+        <Button style={styles.activeButton}>
+          < Text style={{color: "#a49ad3"}}> {MappingTarget[target]} </Text>
         </Button>
       );
     } else {

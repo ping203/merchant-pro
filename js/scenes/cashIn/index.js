@@ -88,10 +88,21 @@ class CashIn extends Component {  //eslint-disable-line
         code: "vtt"
       }
     };
+
+    console.log("constructor cashIn");
   }
 
   componentDidMount() {
+    console.log("componentDidMount");
     this.getCardConfig().done();
+  }
+
+  componentDidUpdate() {
+    console.log("componentDidUpdate");
+    // this.getCardConfig().done();
+  }
+  componentWillUnmount(){
+    console.log("componentWillUnmount");
   }
 
   getCardConfig = async () => {
@@ -180,6 +191,7 @@ class CashIn extends Component {  //eslint-disable-line
 
 
   render() {
+    console.log("render");
     const {selectedCardType, configGoldRatio, serial, code} = this.props;
     var placeholderCode =  "Mã thẻ " + selectedCardType.name;
     var placeholderSerial = "Seri thẻ " + selectedCardType.name;

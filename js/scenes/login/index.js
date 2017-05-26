@@ -110,15 +110,15 @@ class Login extends Component {
 
   goHome(loginData){
     this.props.dispatch(login_success(loginData));
-    // this.props.dispatch(change_footer("cashIn"));
-    // Actions.cashIn();
+    this.props.dispatch(change_footer("cashIn"));
+    Actions.cashIn();
     // Actions.cashIn({type: ActionConst.RESET});
     // this.props.dispatch(change_footer("transfer"));
     // Actions.historyTransfer();
     // this.props.dispatch(change_footer("cashOut"));
     // Actions.cashOut();
-    this.props.dispatch(change_footer("cashOutHistory"));
-    Actions.cashOutHistory();
+    // this.props.dispatch(change_footer("cashOutHistory"));
+    // Actions.cashOutHistory();
     // this.props.dispatch(change_footer("transfer"));
     // Actions.transfer();
   }
