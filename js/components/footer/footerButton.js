@@ -4,7 +4,7 @@ import {Icon, FooterTab, Button, Text} from 'native-base';
 
 import {Actions, ActionConst} from 'react-native-router-flux';
 import {change_footer} from '../../actions/footerState';
-import animationStyle from '../../animationStyle';
+import { NavigationActions } from 'react-navigation';
 
 import styles from './styles';
 
@@ -19,27 +19,8 @@ class FooterButton extends Component {
   changeFooterState() {
     const {target, dispatch} = this.props;
     dispatch(change_footer(target));
-    switch (target) {
-      case "cashIn" : {
-        // Actions.cashIn({type: "replace", sceneConfig: {animationStyle}});
-        Actions.cashIn();
-        break;
-      }
-      case "transfer" : {
-        Actions.transfer();
-        break;
-      }
-      case "cashOut" : {
-        Actions.cashOut();
-        break;
-      }
-      case "cashOutHistory" : {
-        Actions.cashOutHistory();
-        break;
-      }
-      default:
-        Actions.cashIn();
-    }
+
+    dispatch(NavigationActions.navigate({ routeName: target }));
   }
 
   render() {

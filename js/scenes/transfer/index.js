@@ -208,6 +208,7 @@ class TransferComponent extends Component {  //eslint-disable-line
 
 
   render() {
+    console.log("render tranfer");
     const {feeType, receiver, value, ratio, money, tutorialPopupStatus} = this.props;
     const {isVerifyReceiver} = this;
     var remainingRatio = 1;
@@ -410,4 +411,4 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps, bindAction)(TransferComponent);
+export default connect(mapStateToProps)(TransferComponent);

@@ -7,6 +7,7 @@ import { reducer as formReducer } from 'redux-form';
 import drawer from './drawer';
 import auth from './auth';
 import footerState from './footerState';
+import nav from './nav';
 import cashInScene from '../scenes/cashIn/reducers';
 import confirmPopup from './confirmPopup';
 import transferScene from '../scenes/transfer/reducers';
@@ -18,6 +19,7 @@ import historyTransferMerchant from '../scenes/historyTransferMerchant/reducers'
 import cashOutHistory from '../scenes/cashOutHistory/reducers';
 
 export default combineReducers({
+  nav,
   drawer,
   auth,
   footerState,

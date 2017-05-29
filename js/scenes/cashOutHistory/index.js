@@ -152,6 +152,7 @@ class CashOutHistoryComponent extends Component {
   }
 
   render() {
+    console.log("render cashOutHistory");
     const {items, total, skip} = this.props;
     // console.log("!items.length || items.length < total",!items.length, items.length < total,!items.length || items.length < total)
     return (

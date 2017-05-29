@@ -93,16 +93,16 @@ class CashIn extends Component {  //eslint-disable-line
   }
 
   componentDidMount() {
-    console.log("componentDidMount");
+    // console.log("componentDidMount");
     this.getCardConfig().done();
   }
 
   componentDidUpdate() {
-    console.log("componentDidUpdate");
+    // console.log("componentDidUpdate");
     // this.getCardConfig().done();
   }
   componentWillUnmount(){
-    console.log("componentWillUnmount");
+    // console.log("componentWillUnmount");
   }
 
   getCardConfig = async () => {
@@ -191,7 +191,7 @@ class CashIn extends Component {  //eslint-disable-line
 
 
   render() {
-    console.log("render");
+    console.log("render cashIn");
     const {selectedCardType, configGoldRatio, serial, code} = this.props;
     var placeholderCode =  "Mã thẻ " + selectedCardType.name;
     var placeholderSerial = "Seri thẻ " + selectedCardType.name;
@@ -287,11 +287,6 @@ class CashIn extends Component {  //eslint-disable-line
   }
 }
 
-function bindAction(dispatch) {
-  return {
-    openDrawer: () => dispatch(openDrawer()),
-  };
-}
 
 const mapStateToProps = state => {
   const {selectedCardType, serial, code, configGoldRatio} = state.cashInScene;
@@ -303,4 +298,4 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps, bindAction)(CashIn);
+export default connect(mapStateToProps)(CashIn);

@@ -5,7 +5,7 @@ import {Actions, ActionConst} from 'react-native-router-flux';
 import {Container, Content, Text, Item, Input, Button, Icon, View, Form} from 'native-base';
 import httpService from '../../common/http';
 import {Facebook} from 'expo';
-import { login_success } from '../../actions/auth';
+import {login_success} from '../../actions/auth';
 
 import styles from './styles';
 
@@ -13,7 +13,8 @@ import styles from './styles';
 const backgroundImage = require('../../../images/glow2-old.png');
 const logo = require('../../../images/logo.png');
 const facebookButton = require('../../../images/facebook-button.png');
-import { change_footer } from '../../actions/footerState';
+import {change_footer} from '../../actions/footerState';
+import { NavigationActions } from 'react-navigation';
 
 
 class Login extends Component {
@@ -24,7 +25,7 @@ class Login extends Component {
       username: '',
       password: '',
       errorMessage: '',
-      onExp : false
+      onExp: false
     };
   }
 
@@ -47,6 +48,10 @@ class Login extends Component {
     } catch (error) {
       _self.setError('AsyncStorage error: ' + error.message);
     }
+  };
+
+  static navigationOptions = {
+    title: 'Welcome',
   };
 
   checkState() {
@@ -84,7 +89,7 @@ class Login extends Component {
 
     }).then(async function (response) {
       var data = response.data;
-      console.log("response",response, response.d);
+      console.log("response", response, response.d);
       if (data.status) {
         _self.setError(data.message);
       } else {
@@ -93,7 +98,6 @@ class Login extends Component {
         if (accessToken) {
           try {
             const a = await AsyncStorage.setItem('authData', JSON.stringify(data.data));
-            console.log("set Item success");
             _self.goHome(data.data);
           } catch (error) {
             console.log("error", error);
@@ -108,19 +112,11 @@ class Login extends Component {
 
   }
 
-  goHome(loginData){
-    this.props.dispatch(login_success(loginData));
-    this.props.dispatch(change_footer("cashIn"));
-    Actions.cashIn();
-    // Actions.cashIn({type: ActionConst.RESET});
-    // this.props.dispatch(change_footer("transfer"));
-    // Actions.historyTransfer();
-    // this.props.dispatch(change_footer("cashOut"));
-    // Actions.cashOut();
-    // this.props.dispatch(change_footer("cashOutHistory"));
-    // Actions.cashOutHistory();
-    // this.props.dispatch(change_footer("transfer"));
-    // Actions.transfer();
+  goHome(loginData) {
+    const {dispatch} = this.props;
+    dispatch(login_success(loginData));
+    dispatch(change_footer("cashIn"));
+    dispatch(NavigationActions.navigate({ routeName: 'cashIn' }));
   }
 
   loginFacebook() {
@@ -134,12 +130,6 @@ class Login extends Component {
       if (type === 'success') {
         console.log("type, token", type, token);
         _self.loginWidthToken(token);
-        // const response = await fetch(
-        //   `https://graph.facebook.com/me?access_token=${token}`);
-        // Alert.alert(
-        //   'Logged in!',
-        //   `Hi ${(await response.json()).name}!`,
-        // );
       } else {
         console.log("hihii");
       }
@@ -177,6 +167,7 @@ class Login extends Component {
   }
 
   render() {
+    console.log("render login");
     return (
       <Container>
 
@@ -195,7 +186,9 @@ class Login extends Component {
                          autoCorrect={false}
                          placeholder="Tài khoản"
                          placeholderTextColor="#7481a7"
-                         onChangeText={username => {this.setState({username});}}
+                         onChangeText={username => {
+                           this.setState({username});
+                         }}
                   />
                 </Item>
                 <Item style={styles.inputWrapper}>
@@ -263,9 +256,11 @@ function bindAction(dispatch) {
   };
 }
 
-const mapStateToProps = state => ({
-  drawerState: state.drawer.drawerState,
-  navigation: state.cardNavigation,
-});
+const mapStateToProps = state => {
+  return ({
+    drawerState: state.drawer.drawerState,
+    navigation: state.nav,
+  });
+}
 
-export default connect(mapStateToProps, bindAction)(Login);
+export default connect(mapStateToProps)(Login);
