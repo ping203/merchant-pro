@@ -1,21 +1,35 @@
 import {AsyncStorage} from 'react-native';
 import store from '../configureStore';
+import { NavigationActions } from 'react-navigation';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT = 'LOGOUT';
 export const UPDATE_GOLD = 'UPDATE_GOLD';
 
 export function login_success(loginInfo) {
-  return {
-    type: LOGIN_SUCCESS,
-    loginInfo : loginInfo
-  };
+
+  return async function (dispatch) {
+    await AsyncStorage.setItem('authData', JSON.stringify(loginInfo));
+    dispatch({
+      type: LOGIN_SUCCESS,
+      loginInfo : loginInfo
+    });
+    dispatch(NavigationActions.navigate({
+      routeName: 'home',
+    }));
+  }
 }
 
 export function logout() {
-  return {
-    type: LOGOUT,
-    loginInfo : {}
-  };
+  return async function (dispatch) {
+    await AsyncStorage.removeItem('authData');
+    dispatch({
+      type: LOGOUT,
+      loginInfo : {}
+    });
+    dispatch(NavigationActions.navigate({
+      routeName: 'login',
+    }));
+  }
 }
 
 function update_gold_redux(gold) {

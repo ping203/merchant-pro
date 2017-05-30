@@ -42,6 +42,10 @@ class TransferComponent extends Component {  //eslint-disable-line
     openDrawer: React.PropTypes.func,
   }
 
+  static navigationOptions = ({ navigation }) => ({
+    title: `CHUYỂN VÀNG`,
+  });
+
   constructor(props) {
     super(props);
     this.state = {
@@ -309,9 +313,9 @@ class TransferComponent extends Component {  //eslint-disable-line
             </View>
 
           </Content>
-          <Footer style={{borderTopWidth: 0, backgroundColor: 'transparent'}}>
-            <FooterComponent navigator={this.props.navigation}/>
-          </Footer>
+          {/*<Footer style={{borderTopWidth: 0, backgroundColor: 'transparent'}}>*/}
+            {/*<FooterComponent navigator={this.props.navigation}/>*/}
+          {/*</Footer>*/}
           <ConfirmComponent ></ConfirmComponent>
 
           <Modal

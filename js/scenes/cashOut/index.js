@@ -36,6 +36,10 @@ class CashoutComponent extends Component {  //eslint-disable-line
     openDrawer: React.PropTypes.func,
   }
 
+  static navigationOptions = ({ navigation }) => ({
+    title: `QUÀ TẶNG`,
+  });
+
   constructor(props) {
     super(props);
     this.state = {};
@@ -86,9 +90,9 @@ class CashoutComponent extends Component {  //eslint-disable-line
             </View>
 
           </Content>
-          <Footer style={{borderTopWidth: 0, backgroundColor: 'transparent'}}>
-            <FooterComponent navigator={this.props.navigation}/>
-          </Footer>
+          {/*<Footer style={{borderTopWidth: 0, backgroundColor: 'transparent'}}>*/}
+            {/*<FooterComponent navigator={this.props.navigation}/>*/}
+          {/*</Footer>*/}
 
         </Image>
       </Container>

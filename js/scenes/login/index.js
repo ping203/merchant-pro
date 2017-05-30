@@ -20,6 +20,7 @@ import { NavigationActions } from 'react-navigation';
 class Login extends Component {
 
   constructor(props) {
+    console.log("construct login");
     super(props);
     this.state = {
       username: '',
@@ -40,7 +41,7 @@ class Login extends Component {
       if (value !== null) {
         var authData = JSON.parse(value);
         if (new Date().getTime() < authData.exp) {
-          _self.goHome(authData);
+          _self.props.dispatch(login_success(authData));
         }
       } else {
         console.log("Initialized with no selection on disk.");
@@ -89,7 +90,6 @@ class Login extends Component {
 
     }).then(async function (response) {
       var data = response.data;
-      console.log("response", response, response.d);
       if (data.status) {
         _self.setError(data.message);
       } else {
@@ -97,8 +97,7 @@ class Login extends Component {
         var accessToken = data.data && data.data.accessToken;
         if (accessToken) {
           try {
-            const a = await AsyncStorage.setItem('authData', JSON.stringify(data.data));
-            _self.goHome(data.data);
+            _self.props.dispatch(login_success(data.data));
           } catch (error) {
             console.log("error", error);
             _self.setError(error);
@@ -110,13 +109,6 @@ class Login extends Component {
       _self.setError(thrown);
     });
 
-  }
-
-  goHome(loginData) {
-    const {dispatch} = this.props;
-    dispatch(login_success(loginData));
-    dispatch(change_footer("cashIn"));
-    dispatch(NavigationActions.navigate({ routeName: 'cashIn' }));
   }
 
   loginFacebook() {
@@ -150,7 +142,6 @@ class Login extends Component {
         _self.setError(data.message);
       } else {
         _self.setError("");
-        Actions.home();
       }
       console.log(response.data);
     }).catch(function (thrown) {
@@ -208,15 +199,6 @@ class Login extends Component {
                 }}>
                   {this.state.errorMessage}
                 </Text>
-                {/*<Button transparent style={{*/}
-                {/*alignSelf: 'flex-end',*/}
-                {/*marginBottom: (Platform.OS === 'ios') ? 5 : 0,*/}
-                {/*marginTop: (Platform.OS === 'ios') ? -10 : 0*/}
-                {/*}}>*/}
-                {/*<Text>*/}
-                {/*Forgot Password*/}
-                {/*</Text>*/}
-                {/*</Button>*/}
                 <Button rounded block style={styles.loginButton} onPress={ () => this.login() }>
                   <Text style={{color: '#ffffff'}}>
                     Login
@@ -258,8 +240,7 @@ function bindAction(dispatch) {
 
 const mapStateToProps = state => {
   return ({
-    drawerState: state.drawer.drawerState,
-    navigation: state.nav,
+    drawerState: state.drawer.drawerState
   });
 }
 

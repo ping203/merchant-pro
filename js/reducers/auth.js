@@ -18,7 +18,7 @@ export default function (state = initialState, action) {
 
   if (action.type === LOGOUT) {
     return {
-      isLogin: true,
+      isLogin: false,
       loginInfo : {}
     };
   }

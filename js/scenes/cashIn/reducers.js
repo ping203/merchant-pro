@@ -31,11 +31,7 @@ function changeSerial(state = null, action) {
   return state;
 }
 
-const initialConfigGoldRatio = [{
-  gold: "20000",
-  price: "20000",
-  currency: "VND"
-}];
+const initialConfigGoldRatio = [];
 
 function updateConfigGoldRatio(state = initialConfigGoldRatio, action) {
   if (action.type === UPDATE_CONFIG_RATIO) {

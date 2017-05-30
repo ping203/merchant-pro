@@ -28,6 +28,10 @@ const glow2 = require('../../../images/glow2-new.png');
 
 
 class CashOutHistoryComponent extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: `NHẬN QUÀ`,
+  });
+
   constructor(props, context) {
     super(props);
     this.dataSource = new ListView.DataSource({
@@ -173,9 +177,9 @@ class CashOutHistoryComponent extends Component {
 
           </View>
         </Image>
-        <Footer style={{borderTopWidth: 0, backgroundColor: 'transparent'}}>
-          <FooterComponent navigator={this.props.navigation}/>
-        </Footer>
+        {/*<Footer style={{borderTopWidth: 0, backgroundColor: 'transparent'}}>*/}
+          {/*<FooterComponent navigator={this.props.navigation}/>*/}
+        {/*</Footer>*/}
       </Container>
     );
   }

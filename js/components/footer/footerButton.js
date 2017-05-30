@@ -20,7 +20,10 @@ class FooterButton extends Component {
     const {target, dispatch} = this.props;
     dispatch(change_footer(target));
 
-    dispatch(NavigationActions.navigate({ routeName: target }));
+    dispatch(NavigationActions.navigate({
+      routeName: "home" ,
+      action: NavigationActions.navigate({ routeName: target})
+    }));
   }
 
   render() {
