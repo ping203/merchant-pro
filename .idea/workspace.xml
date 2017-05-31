@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b06418f6-cf1e-4e93-8754-b4111226420d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/actions/nav.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/logo.png" afterPath="$PROJECT_DIR$/images/logo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/launchscreen.png" afterPath="$PROJECT_DIR$/images/launchscreen.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.json" afterPath="$PROJECT_DIR$/app.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/AppNavigatorWrap.js" afterPath="$PROJECT_DIR$/js/AppNavigatorWrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/AppRouteConfigs.js" afterPath="$PROJECT_DIR$/js/AppRouteConfigs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/actions/auth.js" afterPath="$PROJECT_DIR$/js/actions/auth.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/header/index.js" afterPath="$PROJECT_DIR$/js/components/header/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/header/styles.js" afterPath="$PROJECT_DIR$/js/components/header/styles.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/sideBar/index.js" afterPath="$PROJECT_DIR$/js/components/sideBar/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/reducers/nav.js" afterPath="$PROJECT_DIR$/js/reducers/nav.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/cashIn/index.js" afterPath="$PROJECT_DIR$/js/scenes/cashIn/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/login/index.js" afterPath="$PROJECT_DIR$/js/scenes/login/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/themes/base-theme.js" afterPath="$PROJECT_DIR$/js/themes/base-theme.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -43,12 +31,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppNavigatorWrap.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AppNavigatorWrap.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/AppNavigatorWrap.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-714">
-              <caret line="15" column="12" lean-forward="true" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
-              <folding />
+            <state relative-caret-position="306">
+              <caret line="90" column="16" lean-forward="false" selection-start-line="90" selection-start-column="16" selection-end-line="90" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -75,21 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/scenes/login/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3107">
-              <caret line="243" column="5" lean-forward="false" selection-start-line="243" selection-start-column="5" selection-end-line="243" selection-end-column="5" />
+            <state relative-caret-position="255">
+              <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -611,12 +591,12 @@
       <workItem from="1495503522212" duration="34193000" />
       <workItem from="1495593925842" duration="22118000" />
       <workItem from="1495675140293" duration="71514000" />
-      <workItem from="1496108750016" duration="27622000" />
+      <workItem from="1496108750016" duration="28490000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="490341000" />
+    <option name="totallyTimeSpent" value="491209000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -719,14 +699,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/scenes/itemsCashOut/reducers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="16" column="15" lean-forward="false" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/mobileCards/reducers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1088,14 +1060,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/AppNavigatorWrap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-714">
-          <caret line="15" column="12" lean-forward="true" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/actions/auth.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="137">
@@ -1136,9 +1100,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+        <state relative-caret-position="255">
+          <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-native/Libraries/react-native/react-native.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="53" column="6" lean-forward="false" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/AppNavigatorWrap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="90" column="16" lean-forward="false" selection-start-line="90" selection-start-column="16" selection-end-line="90" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
