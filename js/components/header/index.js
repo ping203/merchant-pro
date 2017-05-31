@@ -40,9 +40,11 @@ class HeaderComponent extends Component {
 
         <View style={styles.headerInner}>
 
-          <Button transparent onPress={this.props.openDrawer}>
-            <Icon active name="menu" style={{fontSize: 30, lineHeight: 32}}/>
-          </Button>
+          <View style={styles.headerButtonLeftWrapper}>
+            <Button transparent onPress={this.props.openDrawer} style={styles.headerButtonLeft}>
+              <Icon active name="menu" style={{fontSize: 30, lineHeight: 32}}/>
+            </Button>
+          </View>
           <View style={styles.headerLeft}>
             <Text style={{color: '#c4e1ff',}}>{username}</Text>
             {/*<Text style={{color: '#ffde00',}}>{money}V</Text>*/}

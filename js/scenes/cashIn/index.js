@@ -139,6 +139,7 @@ class CashIn extends Component {  //eslint-disable-line
 
     }).then(async function (response) {
       var data = response.data.data;
+      console.log("data",data);
       if (data) {
         _self.props.dispatch(update_config_ratio(data["1"]));
       }

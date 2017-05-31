@@ -32,6 +32,15 @@ export default {
     alignItems: 'center',
     flexDirection: 'row'
   },
+  headerButtonLeftWrapper: {
+    position: "absolute",
+    height: deviceWidth * 128 / 640,
+    justifyContent: "center",
+    top : 0,
+    left : 0,
+  },
+  headerButtonLeft: {
+  },
   headerAvatar: {
     width: deviceWidth / 8,
     height: deviceWidth / 8

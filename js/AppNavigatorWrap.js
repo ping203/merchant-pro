@@ -89,7 +89,8 @@ class AppNavigatorWrap extends Component {
           negotiatePan
         >
           <StatusBar
-            backgroundColor={statusBarColor}
+            // backgroundColor={statusBarColor}
+            backgroundColor="red"
             barStyle="light-content"
           />
           <AppNavigator/>

@@ -4,6 +4,8 @@ const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.g
 
 export default function (state = initialState, action) {
   const nextState = AppNavigator.router.getStateForAction(action, state);
-
+  if(nextState){
+    console.log("nextState", nextState);
+  }
   return nextState || state;
 }

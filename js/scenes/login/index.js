@@ -240,7 +240,7 @@ function bindAction(dispatch) {
 
 const mapStateToProps = state => {
   return ({
-    drawerState: state.drawer.drawerState
+    // drawerState: state.drawer.drawerState
   });
 }
 

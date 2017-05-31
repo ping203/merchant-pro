@@ -1,6 +1,7 @@
 import color from 'color';
 
-import { Platform } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
+const {width, height} = Dimensions.get('window');
 
 export default{
   brandPrimary: '#428bca',
@@ -19,7 +20,7 @@ export default{
   inverseTextColor: '#000',
   textColor: '#fff',
 
-  fontSizeBase: 15,
+  fontSizeBase: width < 500 ? 12 : 15,
   titleFontSize: (Platform.OS === 'ios') ? 17 : 19,
   subTitleFontSize: (Platform.OS === 'ios') ? 12 : 14,
 
