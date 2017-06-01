@@ -5,7 +5,9 @@ import {Actions, ActionConst} from 'react-native-router-flux';
 import {Container, Content, Text, Item, Input, Button, Icon, View, Form} from 'native-base';
 import httpService from '../../common/http';
 import {Facebook} from 'expo';
+console.log("import {login_success} from '../../actions/auth' start");
 import {login_success} from '../../actions/auth';
+// console.error("import {login_success} from '../../actions/auth' end", login_success);
 
 import styles from './styles';
 
@@ -13,8 +15,6 @@ import styles from './styles';
 const backgroundImage = require('../../../images/glow2-old.png');
 const logo = require('../../../images/logo.png');
 const facebookButton = require('../../../images/facebook-button.png');
-import {change_footer} from '../../actions/footerState';
-import { NavigationActions } from 'react-navigation';
 
 
 class Login extends Component {

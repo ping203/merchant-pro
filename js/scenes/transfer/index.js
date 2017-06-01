@@ -29,9 +29,10 @@ import styles from './styles';
 import styles2 from '../login/styles';
 import modalStyle from '../../components/styles/modal';
 import {logout, update_gold} from '../../actions/auth';
-import {select_free_type, change_receiver, change_value, update_config_ratio, toggle_tutorial} from './actions';
+import {select_free_type, change_receiver, change_value, update_config_ratio, toggle_tutorial, go_history} from './actions';
 import Modal from 'react-native-modalbox';
 import axios, {CancelToken}from 'axios';
+
 
 const glow2 = require('../../../images/glow2-new.png');
 
@@ -43,7 +44,7 @@ class TransferComponent extends Component {  //eslint-disable-line
   }
 
   static navigationOptions = ({ navigation }) => ({
-    title: `CHUYỂN VÀNG`,
+    // title: `CHUYỂN VÀNG`,
   });
 
   constructor(props) {
@@ -190,8 +191,8 @@ class TransferComponent extends Component {  //eslint-disable-line
     });
   }
 
-  goHistory(type, value) {
-    Actions.historyTransfer();
+  goHistory() {
+    this.props.dispatch(go_history());
   }
 
   showTutorial(type, value) {
@@ -413,6 +414,11 @@ const mapStateToProps = state => {
     money: loginInfo.money || 0,
     tutorialPopupStatus: tutorialPopupStatus
   }
-};
+}
+const TransferWidthRedux = connect(mapStateToProps)(TransferComponent);
 
-export default connect(mapStateToProps)(TransferComponent);
+export function getTransfer() {
+  return TransferWidthRedux;
+}
+
+export default TransferWidthRedux;

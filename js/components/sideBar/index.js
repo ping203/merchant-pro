@@ -6,17 +6,14 @@ import {closeDrawer} from '../../actions/drawer';
 import {logout} from '../../actions/auth';
 import styles from './style';
 import {NavigationActions} from 'react-navigation';
+import HomeNavigation from '../../scenes/home';
 
 const logo = require('../../../images/logo.png');
 
 class SideBar extends Component {
 
   changeNavigation(target) {
-    var targetNavigation = NavigationActions.navigate({
-        routeName: 'home',
-        action: NavigationActions.navigate({routeName: target})
-      });
-    // console.log("reset NavigationActions", target);
+    var targetNavigation  = HomeNavigation.router.getActionForPathAndParams(target);
     this.props.changeNavigation(targetNavigation);
     this.props.closeDrawer();
   }
@@ -46,7 +43,7 @@ class SideBar extends Component {
           <Right />
         </ListItem>
         <ListItem button onPress={() => {
-           this.changeNavigation.call(this, "transfer")
+           this.changeNavigation.call(this, "transferTab")
         }} icon style={styles.links}>
           <Left>
             <Icon active name="ios-paper-plane"/>

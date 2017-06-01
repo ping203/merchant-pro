@@ -1,27 +1,24 @@
 import React, {Component} from 'react';
 
-import Transfer from '../transfer/';
+import TransferTab from '../transferTab/';
 import CashIn from '../cashIn/';
 import CashOut from '../cashOut';
 import CashOutHistory from '../cashOutHistory';
 import {StackNavigator, addNavigationHelpers, TabNavigator} from 'react-navigation';
 
 const AppRouteConfigs = {
-  cashIn: {
-    screen: CashIn,
-    title: `NẠP VÀNG`,
-  },
-  transfer: {screen: Transfer},
+  cashIn: {screen: CashIn},
+  transferTab: {screen: TransferTab },
   cashOut: {screen: CashOut},
   cashOutHistory: {screen: CashOutHistory},
 };
-// const AppNavigator = TabNavigator(AppRouteConfigs);
 const HomeNavigation = TabNavigator(AppRouteConfigs, {
   lazy: true,
   swipeEnabled: false,
   tabBarVisible: false,
   tabBarPosition : "bottom",
   initialRouteName : "cashIn",
+  // backBehavior : "cashIn",
 
   tabBarOptions: {
     tabBarVisible: false,
@@ -45,5 +42,10 @@ const HomeNavigation = TabNavigator(AppRouteConfigs, {
 
   }
 });
+
+
+export function getHomeNavigation() {
+  return HomeNavigation;
+};
 
 export default HomeNavigation;

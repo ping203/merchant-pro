@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Image, View} from 'react-native';
 import {connect} from 'react-redux';
-import {Actions} from 'react-native-router-flux';
+import { NavigationActions } from 'react-navigation'
 import {
   Button,
   Icon,
@@ -15,7 +15,7 @@ const headerBg = require('../../../images/layout/header-bg.png');
 class HeaderWithBackComponent extends Component {
 
   back(){
-    Actions.pop();
+    this.props.dispatch(NavigationActions.back());
   };
 
   render() {
@@ -27,7 +27,7 @@ class HeaderWithBackComponent extends Component {
 
         <View style={styles.headerInner}>
 
-          <Button  style={styles.headerBackButton} transparent onPress={this.back}>
+          <Button  style={styles.headerBackButton} transparent onPress={()=>this.back.call(this)}>
             <Icon active name="md-arrow-dropleft-circle" style={{fontSize: 50, color : "#616da2"}}/>
           </Button>
 

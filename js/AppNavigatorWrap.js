@@ -7,14 +7,7 @@ import {closeDrawer} from './actions/drawer';
 import SideBar from './components/sideBar';
 import {statusBarColor} from '../native-base-theme/variables/commonColor';
 
-
-import Gift from './components/gift/';
-import Receive from './components/reveice/';
-import animationStyle from './animationStyle';
-
-import { StackNavigator } from 'react-navigation';
 import AppNavigator from './AppRouteConfigs';
-
 
 const deviceHeight = Dimensions.get('window').height;
 
@@ -92,6 +85,7 @@ class AppNavigatorWrap extends Component {
             // backgroundColor={statusBarColor}
             backgroundColor="red"
             barStyle="light-content"
+            style={{height: 50}}
           />
           <AppNavigator/>
         </Drawer>

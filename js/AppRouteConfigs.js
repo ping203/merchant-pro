@@ -2,8 +2,9 @@
  * Created by Admin on 5/29/2017.
  */
 import React, {Component} from 'react';
-
+console.log("import Login from './scenes/login/' start");
 import Login from './scenes/login/';
+// console.error("import Login from './scenes/login/' end", Login);
 import Home from './scenes/home/';
 
 import {StackNavigator, addNavigationHelpers, TabNavigator} from 'react-navigation';

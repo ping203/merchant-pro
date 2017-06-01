@@ -39,3 +39,12 @@ export function toggle_tutorial(status) {
     status
   };
 }
+import TransferTab,{ getTransferTabNavigation } from '../transferTab';
+// const TransferTab = getTransferTabNavigation();
+
+export function go_history() {
+  return async function (dispatch) {
+    dispatch(TransferTab.router.getActionForPathAndParams('historyTransfer'));
+  }
+}
+// console.log("import {getTransferTabNavigation2}");
