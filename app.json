@@ -21,10 +21,10 @@
   "android": {
      "package": "com.puppet.merchant",
    },
-    "androidStatusBarColor": "#00ff00",
+    "androidStatusBarColor": "#000000",
     "androidStatusBar": {
       "barStyle": "dark-content",
-      "backgroundColor": "#0000ff",
+      "backgroundColor": "#000000",
     },
   }
 }

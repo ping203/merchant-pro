@@ -272,9 +272,9 @@ export default {
   },
   descriptionText: {
     color: "#fff",
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    marginBottom : 30,
+    // justifyContent: "center",
+    // alignItems: "center",
+    textAlign: "left",
+    marginBottom : 10,
   },
 }

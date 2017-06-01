@@ -20,7 +20,7 @@ export default{
   inverseTextColor: '#000',
   textColor: '#fff',
 
-  fontSizeBase: width < 500 ? 12 : 15,
+  fontSizeBase: width < 500 ? 13 : 15,
   titleFontSize: (Platform.OS === 'ios') ? 17 : 19,
   subTitleFontSize: (Platform.OS === 'ios') ? 12 : 14,
 

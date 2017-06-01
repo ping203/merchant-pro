@@ -5,17 +5,10 @@ import {Actions, ActionConst} from 'react-native-router-flux';
 import httpService from '../../common/http';
 import {
   Container,
-  Header,
-  Title,
   Content,
   Button,
   Icon,
-  List,
-  ListItem,
   Text,
-  Footer,
-  Left,
-  Right,
   Radio,
   Item,
   Input
@@ -32,6 +25,7 @@ import {logout, update_gold} from '../../actions/auth';
 import {select_free_type, change_receiver, change_value, update_config_ratio, toggle_tutorial, go_history} from './actions';
 import Modal from 'react-native-modalbox';
 import axios, {CancelToken}from 'axios';
+import NumberFormater from '../../components/numberFormatter';
 
 
 const glow2 = require('../../../images/glow2-new.png');
@@ -87,19 +81,6 @@ class TransferComponent extends Component {  //eslint-disable-line
     });
   };
 
-
-  logout() {
-    var _self = this;
-    _logout();
-    async function _logout() {
-      console.log("_logout");
-      await AsyncStorage.removeItem('authData');
-      _self.props.dispatch(logout());
-      Actions.login({type: ActionConst.RESET});
-    };
-  }
-
-
   submit() {
     var _self = this;
     console.log("this.props", this.props);
@@ -135,7 +116,10 @@ class TransferComponent extends Component {  //eslint-disable-line
 
 
   clearState() {
-
+    this.isVerifyReceiver = false;
+    this.props.dispatch(change_value("0"));
+    this.props.dispatch(change_receiver(""));
+    this.setError("");
   }
 
 
@@ -239,6 +223,7 @@ class TransferComponent extends Component {  //eslint-disable-line
                          placeholder={"Người nhận"}
                          placeholderTextColor="#7481a7"
                          onChangeText={receiver => this.onChangeField("receiver", receiver)}
+                         defaultValue={receiver}
                   />
                   {isVerifyReceiver && <Icon active name="ios-arrow-dropdown-circle" style={styles.isVerifyReceiver}/>}
                 </Item>
@@ -248,6 +233,7 @@ class TransferComponent extends Component {  //eslint-disable-line
                          keyboardType="numeric"
                          placeholderTextColor="#7481a7"
                          onChangeText={value => this.onChangeField("value", value)}
+                         defaultValue={value}
                   />
                 </Item>
               </View>
@@ -257,14 +243,14 @@ class TransferComponent extends Component {  //eslint-disable-line
                   <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
                     <Radio selected={feeType == "sender"} onPress={this.onSelectType.bind(this, "sender")}
                            radioColor="#86b4ff" color="#86b4ff"/>
-                    <Text onPress={this.onSelectType.bind(this, "sender")} style={{color: "#86b4ff", paddingLeft: 5}}>
+                    <Text onPress={this.onSelectType.bind(this, "sender")} style={styles.checkboxText}>
                       Người gửi chịu phí
                     </Text>
                   </View>
                   <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
                     <Radio selected={feeType != "sender"} onPress={this.onSelectType.bind(this, "receiver")}
                            radioColor="#86b4ff" color="#86b4ff"/>
-                    <Text onPress={this.onSelectType.bind(this, "receiver")} style={{color: "#86b4ff", paddingLeft: 5}}>
+                    <Text onPress={this.onSelectType.bind(this, "receiver")} style={styles.checkboxText}>
                       Người nhận chịu phí
                     </Text>
                   </View>
@@ -277,13 +263,17 @@ class TransferComponent extends Component {  //eslint-disable-line
                 </Text>
                 {value != 0 && <View style={[styles.centerBox]}>
                   <Text style={{color: '#7481a7', textAlign: "right"}}> Còn lại </Text>
-                  <Text style={{color: '#ffde00', fontWeight: "bold"}}> {remainingGold} V </Text>
+                  <Text style={{color: '#ffde00', fontWeight: "bold"}}>
+                    <NumberFormater style={{color: '#ffde00',}} format="0,0">{remainingGold} V </NumberFormater>
+                  </Text>
                 </View>}
                 {receiver.length > 0 && <View style={styles.centerBox}>
                   <Text style={{color: '#86b4ff', fontWeight: "bold"}}> {receiver} </Text>
                   <Text style={styles.centerBox}>
-                    <Text style={{color: '#7481a7',}}> nhận được</Text>
-                    <Text style={{color: '#ffde00', fontWeight: "bold"}}> {receiveValue} V</Text>
+                    <Text style={{color: '#7481a7',}}> nhận được </Text>
+                    <Text style={{color: '#ffde00', fontWeight: "bold"}}>
+                      <NumberFormater style={{color: '#ffde00',}} format="0,0">{receiveValue} V </NumberFormater>
+                    </Text>
                   </Text>
                 </View>}
 
@@ -303,14 +293,6 @@ class TransferComponent extends Component {  //eslint-disable-line
                 </Button>
               </View>
 
-              <View>
-                <Button
-                  style={styles.roundedButton}
-                  onPress={() => this.logout()}
-                >
-                  <Icon active name="close" style={styles.closeIcon}/>
-                </Button>
-              </View>
             </View>
 
           </Content>
@@ -345,48 +327,19 @@ class TransferComponent extends Component {  //eslint-disable-line
             <View style={modalStyle.space}>
               <ScrollView >
                 <Text style={styles.descriptionText}>
-                  1Xác thực tài khoản để sử dụng đầy đủ {"\n"}
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  Vui lòng chọn nhà mạng:
+                  - Người gửi phải từ vip 3, level 3 trở lên mới được chuyển vàng đi, người nhận không bị giới hạn.
+                </Text>
+                <Text style={styles.descriptionText}>
+                  - Sau khi chuyển vàng cần còn lại trên 50.000 vàng
+                </Text>
+                <Text style={styles.descriptionText}>
+                  - Số vàng chuyển 1 lần tối thiểu là 50.000 vàng
+                </Text>
+                <Text style={styles.descriptionText}>
+                  - Số vàng có thể chuyển trong ngày tối đa là 10.000.000
+                </Text>
+                <Text style={styles.descriptionText}>
+                  - Phí chuyển vàng có thể do người gửi hoặc người nhận chịu.
                 </Text>
               </ScrollView>
             </View>

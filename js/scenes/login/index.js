@@ -51,10 +51,6 @@ class Login extends Component {
     }
   };
 
-  static navigationOptions = {
-    title: 'Welcome',
-  };
-
   checkState() {
     getLocalState()
     async function getLocalState() {

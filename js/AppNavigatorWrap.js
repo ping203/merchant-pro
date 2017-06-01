@@ -8,7 +8,7 @@ import SideBar from './components/sideBar';
 import {statusBarColor} from '../native-base-theme/variables/commonColor';
 
 import AppNavigator from './AppRouteConfigs';
-
+console.log("Platform",Platform);
 const deviceHeight = Dimensions.get('window').height;
 
 const wrapContainerStyle = {
@@ -51,7 +51,7 @@ class AppNavigatorWrap extends Component {
 
   render() {
     return (
-      <Container style={wrapContainerStyle}>
+      <Container style={(Platform.OS == "android" && Platform.Version < 20) ? wrapContainerStyle : {}}>
         <Drawer
           ref={(ref) => {
             this._drawer = ref;
@@ -83,7 +83,7 @@ class AppNavigatorWrap extends Component {
         >
           <StatusBar
             // backgroundColor={statusBarColor}
-            backgroundColor="red"
+            backgroundColor="black"
             barStyle="light-content"
             style={{height: 50}}
           />

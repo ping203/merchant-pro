@@ -189,7 +189,7 @@ class ItemsCashOutComponent extends Component {
     }
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
-        <HeaderComponent/>
+        <HeaderComponent hasBack/>
         <Image source={glow2} style={styles.container}>
           <View padder style={{backgroundColor: 'transparent'}}>
             {/*<ListView*/}

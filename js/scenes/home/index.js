@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 
 import TransferTab from '../transferTab/';
 import CashIn from '../cashIn/';
-import CashOut from '../cashOut';
+import CashOutTab from '../cashOutTab';
 import CashOutHistory from '../cashOutHistory';
 import {StackNavigator, addNavigationHelpers, TabNavigator} from 'react-navigation';
 
 const AppRouteConfigs = {
   cashIn: {screen: CashIn},
   transferTab: {screen: TransferTab },
-  cashOut: {screen: CashOut},
+  cashOutTab: {screen: CashOutTab},
   cashOutHistory: {screen: CashOutHistory},
 };
 const HomeNavigation = TabNavigator(AppRouteConfigs, {
@@ -17,10 +17,12 @@ const HomeNavigation = TabNavigator(AppRouteConfigs, {
   swipeEnabled: false,
   tabBarVisible: false,
   tabBarPosition : "bottom",
-  initialRouteName : "cashIn",
-  // backBehavior : "cashIn",
+  // initialRouteName : "cashOutTab",
+  // backBehavior : "cashOutTab",
+  // backBehavior : "cashOutTab",
 
   tabBarOptions: {
+    initialRouteName : "cashIn",
     tabBarVisible: false,
     activeTintColor: 'white',
     labelStyle: {

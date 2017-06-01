@@ -22,6 +22,7 @@ var GiftedListView = require('react-native-gifted-listview');
 var GiftedSpinner = require('react-native-gifted-spinner');
 import {Actions, ActionConst} from 'react-native-router-flux';
 import {change_footer} from '../../actions/footerState';
+import homeNavigation from '../home';
 moment.locale('vi');
 
 const glow2 = require('../../../images/glow2-new.png');
@@ -152,7 +153,7 @@ class CashOutHistoryComponent extends Component {
     this.props.dispatch(change_code(      code    ));
     this.props.dispatch(change_serial(      serial    ));
     this.props.dispatch(change_footer("cashIn"));
-    Actions.cashIn();
+    this.props.dispatch(homeNavigation.router.getActionForPathAndParams("cashIn"));
   }
 
   render() {

@@ -5,40 +5,25 @@ import {Actions, ActionConst} from 'react-native-router-flux';
 import httpService from '../../common/http';
 import {
   Container,
-  Header,
-  Title,
   Content,
   Button,
-  Icon,
-  List,
-  ListItem,
   Text,
-  Footer,
-  Left,
-  Right,
-  Radio,
-  Item,
-  Input
 } from 'native-base';
 
-import {openDrawer} from '../../actions/drawer';
-import FooterComponent from '../../components/footer/index';
 import HeaderComponent from '../../components/header/index';
 import styles from './styles';
 
 const glow2 = require('../../../images/glow2-new.png');
 const giftImage = require('../../../images/cashOut/gift.png');
-import { change_footer } from '../../actions/footerState';
+import {change_footer} from '../../actions/footerState';
+import cashOutTab from '../cashOutTab';
+import homeNavigation from '../home';
 
 class CashoutComponent extends Component {  //eslint-disable-line
 
   static propTypes = {
     openDrawer: React.PropTypes.func,
   }
-
-  static navigationOptions = ({ navigation }) => ({
-    title: `QUÀ TẶNG`,
-  });
 
   constructor(props) {
     super(props);
@@ -47,6 +32,14 @@ class CashoutComponent extends Component {  //eslint-disable-line
 
   componentDidMount() {
     // this.getTransferConfig().done();
+  }
+
+  goOtherPage(routerName) {
+    this.props.dispatch(cashOutTab.router.getActionForPathAndParams(routerName));
+  }
+
+  goCashOutHistory() {
+    this.props.dispatch(homeNavigation.router.getActionForPathAndParams("cashOutHistory"));
   }
 
 
@@ -62,25 +55,24 @@ class CashoutComponent extends Component {  //eslint-disable-line
             <View style={styles.bg}>
               <View style={styles.innerView}>
                 <Image source={giftImage} style={styles.giftImage}/>
-                <Button rounded block style={styles.button} onPress={ () => Actions.mobileCards() }>
+                <Button rounded block style={styles.button}
+                        onPress={ () => this.goOtherPage.call(this, 'mobileCards') }>
                   <Text style={{color: '#b9cbdc'}}>
                     Thẻ cào
                   </Text>
                 </Button>
-                <Button rounded block style={styles.button} onPress={ () => Actions.itemsCashOut() }>
+                <Button rounded block style={styles.button}
+                        onPress={ () => this.goOtherPage.call(this, 'itemsCashOut') }>
                   <Text style={{color: '#b9cbdc'}}>
                     Vật phẩm
                   </Text>
                 </Button>
-                <Button rounded block style={styles.button} onPress={ () => Actions.merchants() }>
+                <Button rounded block style={styles.button} onPress={ () => this.goOtherPage.call(this, 'merchants') }>
                   <Text style={{color: '#b9cbdc'}}>
                     Đại lý
                   </Text>
                 </Button>
-                <Button rounded block style={styles.button} onPress={ () => {
-                  dispatch(change_footer("cashOutHistory"));
-                  Actions.cashOutHistory();
-                }}>
+                <Button rounded block style={styles.button}  onPress={ () => this.goCashOutHistory.call(this)}>
                   <Text style={{color: '#b9cbdc'}}>
                     Nhận quà
                   </Text>
@@ -91,7 +83,7 @@ class CashoutComponent extends Component {  //eslint-disable-line
 
           </Content>
           {/*<Footer style={{borderTopWidth: 0, backgroundColor: 'transparent'}}>*/}
-            {/*<FooterComponent navigator={this.props.navigation}/>*/}
+          {/*<FooterComponent navigator={this.props.navigation}/>*/}
           {/*</Footer>*/}
 
         </Image>

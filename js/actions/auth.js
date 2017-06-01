@@ -16,13 +16,15 @@ export function login_success(loginInfo) {
       type: LOGIN_SUCCESS,
       loginInfo : loginInfo
     });
-    dispatch(NavigationActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({ routeName: 'home'})
-      ]
-    }));
+    // dispatch(NavigationActions.reset({
+    //   index: 0,
+    //   actions: [
+    //     NavigationActions.navigate({ routeName: 'home'})
+    //   ]
+    // }));
     // dispatch(AppNavigator.router.getActionForPathAndParams('home'));
+    dispatch(NavigationActions.navigate({ routeName: 'home'}));
+
   }
 }
 

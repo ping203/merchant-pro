@@ -28,18 +28,28 @@ export default {
     height: deviceWidth * 128 / 640,
     position: "relative",
     flex: 1,
+    // justifyContent: "space-between",
     justifyContent: "center",
     alignItems: 'center',
     flexDirection: 'row'
   },
   headerButtonLeftWrapper: {
-    position: "absolute",
+    // position: "absolute",
     height: deviceWidth * 128 / 640,
     justifyContent: "center",
+    // flex: 1,
     top : 0,
     left : 0,
   },
+  headerButtonRightWrapper: {
+    // position: "absolute",
+    height: deviceWidth * 128 / 640,
+    justifyContent: "center",
+    top : 0,
+    right : 0,
+  },
   headerButtonLeft: {
+    // backgroundColor : "red"
   },
   headerAvatar: {
     width: deviceWidth / 8,
@@ -52,7 +62,7 @@ export default {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "flex-end",
-    marginRight: 15
+    marginRight: 15,
   },
   headerRight: {
     width: deviceWidth * 0.27,
@@ -61,7 +71,7 @@ export default {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: 15
+    marginLeft: 15,
   },
   roundedButton: {
     alignSelf: 'center',

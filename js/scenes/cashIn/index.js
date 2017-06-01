@@ -107,30 +107,6 @@ class CashIn extends Component {  //eslint-disable-line
     // this.getCardConfig().done();
   }
 
-  componentWillUnmount() {
-    console.log("componentWillUnmount2");
-  }
-
-  componentWillFocus() {
-    console.log("componentWillFocus ");
-  }
-
-  componentDidFocus() {
-    console.log("componentDidFocus ");
-  }
-
-  componentWillBlur() {
-    console.log("componentWillBlur ");
-  }
-
-  componentDidBlur() {
-    console.log("componentDidBlur  ");
-  }
-
-  shouldComponentUpdate(){
-    return true;
-  }
-
   getCardConfig = async () => {
     var _self = this;
     httpService.post2("", {
@@ -173,14 +149,14 @@ class CashIn extends Component {  //eslint-disable-line
         _self.setError(data.message);
       } else {
         _self.setError("");
-        _self.props.dispatch(update_gold(data.gold));
+        _self.props.dispatch(update_gold(data.money));
         Alert.alert(
           'Thông báo',
           data.message,
           [
             // {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
             // {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
+            {text: 'OK', onPress: () => _self.clear()},
           ],
           {cancelable: true}
         )
@@ -190,7 +166,10 @@ class CashIn extends Component {  //eslint-disable-line
       _self.setError(thrown);
     });
   };
-
+  clear(){
+    this.props.dispatch(change_code(""));
+    this.props.dispatch(change_serial(""));
+  }
 
   setError(message) {
     this.setState(prevState => ({
@@ -292,12 +271,12 @@ class CashIn extends Component {  //eslint-disable-line
                   }
                 </View>
 
-                <Button
-                  style={styles.roundedButton}
-                  onPress={() => this.logout()}
-                >
-                  <Icon active name="close" style={styles.closeIcon}/>
-                </Button>
+                {/*<Button*/}
+                  {/*style={styles.roundedButton}*/}
+                  {/*onPress={() => this.logout()}*/}
+                {/*>*/}
+                  {/*<Icon active name="close" style={styles.closeIcon}/>*/}
+                {/*</Button>*/}
               </View>
             </View>
 

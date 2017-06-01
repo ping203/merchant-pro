@@ -96,12 +96,9 @@ class HistoryTransferMerchantComponent extends Component {
           {!transferTypeCode && <Text style={styles.historyRightTittleSend}>
             - <NumberFormater format="0,0" style={styles.historyRightTittleSend}>{value}</NumberFormater> V {"\n"}
           </Text>}
-          {transferPayFeeType && <Text style={styles.historyRightMinePay}>
+          <Text style={styles.historyRightMinePay}>
             Bạn chịu phí
-          </Text>}
-          {!transferPayFeeType && <Text style={styles.historyRightOtherPay}>
-            {userPayFee} chịu phí
-          </Text>}
+          </Text>
         </View>
       </View>
     );

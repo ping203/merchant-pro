@@ -118,6 +118,11 @@ export default {
     alignItems: "center",
     marginTop: 10
   },
+  checkboxText: {
+    color: "#86b4ff",
+    paddingLeft: 5,
+    fontSize : theme.fontSizeBase
+  }  ,
   errorMessage :{
     height: 30,
     color: 'red',
@@ -172,5 +177,10 @@ export default {
     position : "absolute",
     top : 12,
     right : 5,
-  }
+  },
+  descriptionText: {
+    color: "#fff",
+    textAlign: "left",
+    marginBottom : 10,
+  },
 }
