@@ -84,28 +84,33 @@ class Login extends Component {
       username: this.state.username, //ndn199101
       password: this.state.password //ndn123456
 
-    }).then(async function (response) {
-      var data = response.data;
-      if (data.status) {
-        _self.setError(data.message);
-      } else {
-        _self.setError("");
-        var accessToken = data.data && data.data.accessToken;
-        if (accessToken) {
-          try {
-            _self.props.dispatch(login_success(data.data));
-          } catch (error) {
-            console.log("error", error);
-            _self.setError(error);
-          }
-        }
-      }
-    }).catch(function (thrown) {
+    }).then(this.handleLogin.bind(this)).catch(function (thrown) {
       console.log('thrown.message login', thrown);
       _self.setError(thrown);
     });
 
   }
+
+  handleLogin (response) {
+    var _self = this;
+    console.log("handleLogin",response.data);
+    var data = response.data;
+    if (data.status) {
+      _self.setError(data.message);
+    } else {
+      _self.setError("");
+      var accessToken = data.data && data.data.accessToken;
+      if (accessToken) {
+        try {
+          _self.props.dispatch(login_success(data.data));
+        } catch (error) {
+          console.log("error", error);
+          _self.setError(error);
+        }
+      }
+    }
+  }
+
 
   loginFacebook() {
     var _self = this;
@@ -119,28 +124,18 @@ class Login extends Component {
         console.log("type, token", type, token);
         _self.loginWidthToken(token);
       } else {
-        console.log("hihii");
+        _self.setError("Lỗi login !");
       }
     }
   }
 
   loginWidthToken(token) {
     var _self = this;
-    console.log("this", this.setError, _self.setError);
     httpService.post("", {
       command: "login",
       type: "facebook",
       accessToken: token
-    }).then(function (response) {
-      var data = response.data;
-      if (data.status) {
-        console.log("data", data);
-        _self.setError(data.message);
-      } else {
-        _self.setError("");
-      }
-      console.log(response.data);
-    }).catch(function (thrown) {
+    }).then(this.handleLogin.bind(this)).catch(function (thrown) {
       console.log('thrown.message loginWidthToken', thrown);
       _self.setError(thrown);
     });
@@ -154,7 +149,7 @@ class Login extends Component {
   }
 
   render() {
-    console.log("render login");
+    // console.log("render login");
     return (
       <Container>
 
