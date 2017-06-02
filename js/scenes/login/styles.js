@@ -11,7 +11,7 @@ export default{
   container: {
     flex: 1,
     width: deviceWidth,
-    height: null
+    height: deviceHeight
   },
   shadow: {
     flex: 1,
@@ -64,7 +64,7 @@ export default{
     paddingRight: deviceWidth / 8,
   },
   facebookWrapper: {
-    flex: 1,
+    // flex: 1,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",

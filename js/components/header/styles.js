@@ -4,6 +4,7 @@ const {StyleSheet, Dimensions, Platform} = React;
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
+console.log("deviceWidth",deviceWidth);
 import theme from "../../themes/base-theme";
 
 export default {
@@ -131,7 +132,7 @@ export default {
     flexDirection: "row",
     justifyContent: "center",
     alignItems : "center",
-    width : deviceWidth * 200/640,
+    width : deviceWidth * 0.27,
     height : deviceWidth * 60/640,
     backgroundColor: "#3d5a98",
   },

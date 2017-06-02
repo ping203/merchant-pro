@@ -68,9 +68,8 @@ class HeaderComponent extends Component {
           </View>}
           {/*<View>*/}
             <View style={styles.headerLeft}>
-              <Text style={{color: '#c4e1ff',}}>{username}</Text>
-              {/*<Text style={{color: '#ffde00',}}>{money}V</Text>*/}
-              <NumberFormater style={{color: '#ffde00',}} format="0,0">{money}V</NumberFormater>
+              <Text numberOfLines={1} ellipsizeMode="tail"  style={{color: '#c4e1ff',}}>{username}</Text>
+              <NumberFormater numberOfLines={1} ellipsizeMode="tail" style={{color: '#ffde00',}} format="0,0">{money}V</NumberFormater>
             </View>
 
             <Image source={defaultAvatar} resizeMode='cover' style={styles.headerAvatar}></Image>

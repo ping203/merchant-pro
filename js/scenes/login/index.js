@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {Image, Platform, AsyncStorage, TouchableHighlight} from 'react-native';
 import {connect} from 'react-redux';
 import {Actions, ActionConst} from 'react-native-router-flux';
-import {Container, Content, Text, Item, Input, Button, Icon, View, Form} from 'native-base';
+import {Container, Content, Text, Item, Input, Button, Icon, View, Form, Spinner} from 'native-base';
 import httpService from '../../common/http';
 import {Facebook} from 'expo';
 console.log("import {login_success} from '../../actions/auth' start");
-import {login_success} from '../../actions/auth';
+import {login_success,toggle_spin} from '../../actions/auth';
 // console.error("import {login_success} from '../../actions/auth' end", login_success);
 
 import styles from './styles';
@@ -31,12 +31,13 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    this._loadInitialState().done();
+    this._loadInitialState.call(this);
   }
 
   _loadInitialState = async () => {
     var _self = this;
     try {
+      _self.props.dispatch(toggle_spin(true));
       var value = await AsyncStorage.getItem("authData");
       if (value !== null) {
         var authData = JSON.parse(value);
@@ -44,40 +45,18 @@ class Login extends Component {
           _self.props.dispatch(login_success(authData));
         }
       } else {
+        _self.props.dispatch(toggle_spin(false));
         console.log("Initialized with no selection on disk.");
       }
     } catch (error) {
-      _self.setError('AsyncStorage error: ' + error.message);
+      _self.setError('' + error.message);
     }
   };
-
-  checkState() {
-    getLocalState()
-    async function getLocalState() {
-      try {
-        const value = await
-          AsyncStorage.getItem('@MySuperStore:key');
-        if (value !== null) {
-          // We have data!!
-          this.state = {
-            username: '',
-            password: '',
-            scroll: false,
-            errorMessage: ''
-          };
-          console.log(value);
-        }
-      } catch (error) {
-        _self.setError(thrown);
-      }
-    }
-
-
-  }
 
 
   login() {
     var _self = this;
+    _self.props.dispatch(toggle_spin(true));
     httpService.post("", {
       command: "login",
       type: "normal",
@@ -150,12 +129,10 @@ class Login extends Component {
 
   render() {
     // console.log("render login");
+    const {showSpin} = this.props;
     return (
-      <Container>
-
-        <Content style={{backgroundColor: '#2a3146'}}>
+      <Container style={{backgroundColor: '#2a3146'}}>
           <Image source={backgroundImage} style={styles.container}>
-            {/*<View style={styles.shadow}>*/}
             <View style={styles.bg}>
               <Image source={logo} resizeMode='cover' style={styles.logo}/>
               {/*<Item underline style={{marginBottom: 20}}>*/}
@@ -190,14 +167,16 @@ class Login extends Component {
                 }}>
                   {this.state.errorMessage}
                 </Text>
-                <Button rounded block style={styles.loginButton} onPress={ () => this.login() }>
+
+                {showSpin && <Spinner color="#999" />}
+                {!showSpin && <Button rounded block style={styles.loginButton} onPress={ () => this.login() }>
                   <Text style={{color: '#ffffff'}}>
                     Login
                   </Text>
-                </Button>
+                </Button>}
 
 
-                <View style={styles.facebookWrapper}>
+                {!showSpin && <View style={styles.facebookWrapper}>
                   {/*<Button rounded block style={{marginBottom: 10}} >*/}
                   {/*</Button>*/}
                   <TouchableHighlight onPress={ () => this.loginFacebook() }>
@@ -206,7 +185,7 @@ class Login extends Component {
                   <Text onPress={ () => this.loginFacebook() } style={{color: '#405688'}}>
                     Đăng nhập qua Facebook
                   </Text>
-                </View>
+                </View>}
                 {/*<Button transparent style={{alignSelf: 'center'}} onPress={() => Actions.signUp()}>*/}
                 {/*<Text>*/}
                 {/*Sign Up Here*/}
@@ -214,9 +193,7 @@ class Login extends Component {
                 {/*</Button>*/}
               </View>
             </View>
-            {/*</View>*/}
           </Image>
-        </Content>
       </Container>
     );
   }
@@ -230,9 +207,10 @@ function bindAction(dispatch) {
 }
 
 const mapStateToProps = state => {
-  return ({
-    // drawerState: state.drawer.drawerState
-  });
+  const {showSpin} = state.auth;
+  return {
+    showSpin
+  }
 }
 
 export default connect(mapStateToProps)(Login);

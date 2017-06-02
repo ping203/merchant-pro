@@ -1,12 +1,20 @@
 import {AsyncStorage} from 'react-native';
 import store from '../configureStore';
 import { NavigationActions } from 'react-navigation';
+export const TOGGLE_SPIN = 'TOGGLE_SPIN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT = 'LOGOUT';
 export const UPDATE_GOLD = 'UPDATE_GOLD';
 console.log("import {getAppNavigator}  from '../AppRouteConfigs' start");
 import {getAppNavigator}  from '../AppRouteConfigs';
 const AppNavigator = getAppNavigator();
+
+export function toggle_spin(showSpin) {
+  return {
+    type: TOGGLE_SPIN,
+    showSpin
+  };
+}
 
 export function login_success(loginInfo) {
 
@@ -16,6 +24,7 @@ export function login_success(loginInfo) {
       type: LOGIN_SUCCESS,
       loginInfo : loginInfo
     });
+    dispatch(toggle_spin(false));
     // dispatch(NavigationActions.reset({
     //   index: 0,
     //   actions: [
@@ -35,6 +44,7 @@ export function logout() {
       type: LOGOUT,
       loginInfo : {}
     });
+    dispatch(toggle_spin(false));
     dispatch(AppNavigator.router.getActionForPathAndParams('login'));
   }
 }
