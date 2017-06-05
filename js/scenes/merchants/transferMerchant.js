@@ -29,7 +29,6 @@ class TransferMerchantForm extends Component {
     this.state={
       isReady: false
     };
-    console.log("constructor .props", props);
   }
 
   closeModal(){
@@ -41,7 +40,6 @@ class TransferMerchantForm extends Component {
   }
 
   render(){
-    console.log("render .props", this.props);
     return (
       <ScrollView keyboardShouldPersistTaps={'handled'}>
         <Field

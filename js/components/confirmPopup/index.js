@@ -68,7 +68,6 @@ class ConfirmComponent extends Component {
 
   submit (phoneNumber, body)  {
     var _self = this;
-    console.log("phoneNumber, body",phoneNumber, body);
     Communications.text(phoneNumber, body);
   };
 

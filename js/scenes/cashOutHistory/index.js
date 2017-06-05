@@ -157,9 +157,7 @@ class CashOutHistoryComponent extends Component {
   }
 
   render() {
-    console.log("render cashOutHistory");
     const {items, total, skip} = this.props;
-    // console.log("!items.length || items.length < total",!items.length, items.length < total,!items.length || items.length < total)
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
         {/*<HeaderWithBackComponent tittle="LỊCH SỬ CHUYỂN VÀNG"/>*/}
@@ -194,7 +192,6 @@ function bindAction(dispatch) {
 
 const mapStateToProps = state => {
   const {items, total, skip, isFetching} = state.cashOutHistory;
-  // console.log("items",items.length,"total", total, "isFetching",isFetching );
   const {loginInfo} = state.auth;
   return {
     items, total, skip, isFetching,

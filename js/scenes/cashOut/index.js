@@ -44,7 +44,6 @@ class CashoutComponent extends Component {  //eslint-disable-line
 
 
   render() {
-    console.log("render cashOut");
     const {dispatch} = this.props;
     return (
 

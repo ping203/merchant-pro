@@ -41,17 +41,4 @@ export default class Setup extends Component {
       </StyleProvider>
     );
   }
-
-  // render() {
-  //   if (!this.state.isReady) {
-  //     return <Expo.AppLoading />;
-  //   }
-  //   return (
-  //     <StyleProvider style={getTheme(variables)}>
-  //       <Provider store={this.state.store}>
-  //         <AppNavigatorWrap />
-  //       </Provider>
-  //     </StyleProvider>
-  //   );
-  // }
 }

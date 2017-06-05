@@ -31,9 +31,7 @@ export function login_success(loginInfo) {
     //   ]
     // }));
     dispatch(AppNavigator.router.getActionForPathAndParams('home'));
-    // console.log("getActionForPathAndParams");
     // dispatch(NavigationActions.navigate({ routeName: 'home'}));
-    // console.log("navigate");
   }
 }
 

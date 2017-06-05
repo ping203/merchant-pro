@@ -47,7 +47,6 @@ export function fetchConfig(params) {
   return function (dispatch) {
     return http.postWithConvert("", params)
       .then(response => {
-        console.log("receiveConfig",response.data);
         if (response.status == 0) {
           dispatch(receiveConfig(response.data));
         }else {

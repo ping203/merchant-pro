@@ -47,4 +47,3 @@ export function go_history() {
     dispatch(TransferTab.router.getActionForPathAndParams('historyTransfer'));
   }
 }
-// console.log("import {getTransferTabNavigation2}");

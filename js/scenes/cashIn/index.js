@@ -77,7 +77,6 @@ class CashIn extends Component {  //eslint-disable-line
   });
 
   constructor(props) {
-    console.log("constructor2 cashIn");
     super(props);
     this.state = {
       serial: '',
@@ -103,7 +102,6 @@ class CashIn extends Component {  //eslint-disable-line
   }
 
   componentDidUpdate() {
-    // console.log("componentDidUpdate");
     // this.getCardConfig().done();
   }
 
@@ -115,7 +113,6 @@ class CashIn extends Component {  //eslint-disable-line
 
     }).then(async function (response) {
       var data = response.data.data;
-      console.log("data",data);
       if (data) {
         _self.props.dispatch(update_config_ratio(data["1"]));
       }
@@ -154,8 +151,6 @@ class CashIn extends Component {  //eslint-disable-line
           'Thông báo',
           data.message,
           [
-            // {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-            // {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
             {text: 'OK', onPress: () => _self.clear()},
           ],
           {cancelable: true}
@@ -191,7 +186,6 @@ class CashIn extends Component {  //eslint-disable-line
 
 
   render() {
-    console.log("render cashIn");
     const {selectedCardType, configGoldRatio, serial, code} = this.props;
     var placeholderCode = "Mã thẻ " + selectedCardType.name;
     var placeholderSerial = "Seri thẻ " + selectedCardType.name;

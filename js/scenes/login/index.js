@@ -90,14 +90,12 @@ class Login extends Component {
 
   loginFacebook() {
     var _self = this;
-    console.log("loginfacebook");
     logIn();
     async function logIn() {
       const {type, token} = await Facebook.logInWithReadPermissionsAsync('1472518432772370', {
         permissions: ['public_profile'],
       });
       if (type === 'success') {
-        console.log("type, token", type, token);
         _self.loginWidthToken(token);
       } else {
         _self.setError("Lỗi login !");
@@ -125,7 +123,6 @@ class Login extends Component {
   }
 
   render() {
-    // console.log("render login");
     const {showSpin} = this.props;
     return (
       <Container style={{backgroundColor: '#2a3146'}}>

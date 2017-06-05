@@ -120,7 +120,6 @@ class MerchantsComponent extends Component {
       value,
       description
     }).then(async function (response) {
-      console.log("response.message",response);
       if (response.status) {
         Alert.alert(
           'Thông báo',

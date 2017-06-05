@@ -34,17 +34,6 @@ class Home extends Component {  //eslint-disable-line
     openDrawer: React.PropTypes.func,
   }
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     username: '',
-  //     password: '',
-  //     errorMessage: '',
-  //     onExp : false
-  //   };
-  //   console.log('constructors', this.props);
-  // }
-
 
 
   logout() {

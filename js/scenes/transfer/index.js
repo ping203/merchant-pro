@@ -83,7 +83,6 @@ class TransferComponent extends Component {  //eslint-disable-line
 
   submit() {
     var _self = this;
-    console.log("this.props", this.props);
     const {feeType, receiver, value} = this.props;
     httpService.post2("", {
       command: "transfer_gold",
@@ -159,16 +158,13 @@ class TransferComponent extends Component {  //eslint-disable-line
     },{
       cancelToken:  this.checkingReceiverSource.token
     }).then(async function (response) {
-      console.log("check_user_exist response",response.data);
       var data = response.data;
       if (typeof data.status == "undefined") {
         // _self.setError("Server error");
       } else if (data.status) {
-        // console.log("user " + username + " not exist");
       } else {
         _self.isVerifyReceiver = true;
         _self.forceUpdate();
-        // console.log("user " + username + " exist");
       }
     }).catch(function (thrown) {
       console.log('thrown submit cast in', thrown);
@@ -197,7 +193,6 @@ class TransferComponent extends Component {  //eslint-disable-line
 
 
   render() {
-    console.log("render tranfer");
     const {feeType, receiver, value, ratio, money, tutorialPopupStatus} = this.props;
     const {isVerifyReceiver} = this;
     var remainingRatio = 1;
