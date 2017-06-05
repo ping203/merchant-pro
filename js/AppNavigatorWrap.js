@@ -8,7 +8,6 @@ import SideBar from './components/sideBar';
 import {statusBarColor} from '../native-base-theme/variables/commonColor';
 
 import AppNavigator from './AppRouteConfigs';
-console.log("Platform",Platform);
 const deviceHeight = Dimensions.get('window').height;
 
 const wrapContainerStyle = {
