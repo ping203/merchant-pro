@@ -5,9 +5,7 @@ import {Actions, ActionConst} from 'react-native-router-flux';
 import {Container, Content, Text, Item, Input, Button, Icon, View, Form, Spinner} from 'native-base';
 import httpService from '../../common/http';
 import {Facebook} from 'expo';
-console.log("import {login_success} from '../../actions/auth' start");
 import {login_success,toggle_spin} from '../../actions/auth';
-// console.error("import {login_success} from '../../actions/auth' end", login_success);
 
 import styles from './styles';
 
@@ -20,7 +18,6 @@ const facebookButton = require('../../../images/facebook-button.png');
 class Login extends Component {
 
   constructor(props) {
-    console.log("construct login");
     super(props);
     this.state = {
       username: '',
@@ -43,10 +40,11 @@ class Login extends Component {
         var authData = JSON.parse(value);
         if (new Date().getTime() < authData.exp) {
           _self.props.dispatch(login_success(authData));
+        }else{
+          _self.props.dispatch(toggle_spin(false));
         }
       } else {
         _self.props.dispatch(toggle_spin(false));
-        console.log("Initialized with no selection on disk.");
       }
     } catch (error) {
       _self.setError('' + error.message);

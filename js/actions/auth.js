@@ -5,7 +5,6 @@ export const TOGGLE_SPIN = 'TOGGLE_SPIN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT = 'LOGOUT';
 export const UPDATE_GOLD = 'UPDATE_GOLD';
-console.log("import {getAppNavigator}  from '../AppRouteConfigs' start");
 import {getAppNavigator}  from '../AppRouteConfigs';
 const AppNavigator = getAppNavigator();
 
