@@ -30,8 +30,8 @@ export function login_success(loginInfo) {
     //     NavigationActions.navigate({ routeName: 'home'})
     //   ]
     // }));
-    dispatch(AppNavigator.router.getActionForPathAndParams('home'));
-    // dispatch(NavigationActions.navigate({ routeName: 'home'}));
+    // dispatch(AppNavigator.router.getActionForPathAndParams('home'));
+    dispatch(NavigationActions.navigate({ routeName: 'home'}));
   }
 }
 

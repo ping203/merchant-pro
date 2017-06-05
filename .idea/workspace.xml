@@ -2,26 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b06418f6-cf1e-4e93-8754-b4111226420d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/actions/auth.js" afterPath="$PROJECT_DIR$/js/actions/auth.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/common/http.js" afterPath="$PROJECT_DIR$/js/common/http.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/confirmPopup/index.js" afterPath="$PROJECT_DIR$/js/components/confirmPopup/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/gift/index.js" afterPath="$PROJECT_DIR$/js/components/gift/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/reveice/index.js" afterPath="$PROJECT_DIR$/js/components/reveice/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/cashIn/index.js" afterPath="$PROJECT_DIR$/js/scenes/cashIn/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/cashOut/index.js" afterPath="$PROJECT_DIR$/js/scenes/cashOut/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/cashOutHistory/index.js" afterPath="$PROJECT_DIR$/js/scenes/cashOutHistory/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/historyTransfer/index.js" afterPath="$PROJECT_DIR$/js/scenes/historyTransfer/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/historyTransferMerchant/index.js" afterPath="$PROJECT_DIR$/js/scenes/historyTransferMerchant/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/login/index.js" afterPath="$PROJECT_DIR$/js/scenes/login/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/merchants/actions.js" afterPath="$PROJECT_DIR$/js/scenes/merchants/actions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/merchants/index.js" afterPath="$PROJECT_DIR$/js/scenes/merchants/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/merchants/transferMerchant.js" afterPath="$PROJECT_DIR$/js/scenes/merchants/transferMerchant.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/mobileCards/index.js" afterPath="$PROJECT_DIR$/js/scenes/mobileCards/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/transfer/actions.js" afterPath="$PROJECT_DIR$/js/scenes/transfer/actions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/transfer/index.js" afterPath="$PROJECT_DIR$/js/scenes/transfer/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/setup.js" afterPath="$PROJECT_DIR$/js/setup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/native-base-theme/components/index.js" afterPath="$PROJECT_DIR$/native-base-theme/components/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -39,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="auth.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/actions/auth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="33" column="66" lean-forward="false" selection-start-line="33" selection-start-column="66" selection-end-line="33" selection-end-column="66" />
+            <state relative-caret-position="397">
+              <caret line="32" column="71" lean-forward="true" selection-start-line="32" selection-start-column="71" selection-end-line="32" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -52,18 +33,18 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/scenes/transfer/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="194" column="12" lean-forward="false" selection-start-line="194" selection-start-column="12" selection-end-line="194" selection-end-column="12" />
+            <state relative-caret-position="491">
+              <caret line="224" column="32" lean-forward="false" selection-start-line="224" selection-start-column="32" selection-end-line="224" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="transferMerchant.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/scenes/merchants/transferMerchant.js">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/scenes/login/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="41" column="11" lean-forward="false" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
+            <state relative-caret-position="340">
+              <caret line="80" column="39" lean-forward="true" selection-start-line="80" selection-start-column="39" selection-end-line="80" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -244,9 +225,9 @@
         <option value="$PROJECT_DIR$/js/components/reveice/index.js" />
         <option value="$PROJECT_DIR$/js/scenes/merchants/actions.js" />
         <option value="$PROJECT_DIR$/js/scenes/cashOut/index.js" />
-        <option value="$PROJECT_DIR$/js/actions/auth.js" />
         <option value="$PROJECT_DIR$/js/scenes/transfer/index.js" />
         <option value="$PROJECT_DIR$/js/scenes/merchants/transferMerchant.js" />
+        <option value="$PROJECT_DIR$/js/actions/auth.js" />
       </list>
     </option>
   </component>
@@ -389,51 +370,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="transfer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="merchant-pro" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="merchant-pro" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scenes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="login" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="merchant-pro" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="merchant-pro" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scenes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -685,7 +622,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="556197000" />
+    <option name="totallyTimeSpent" value="557195000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1072,14 +1009,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/login/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="123" column="0" lean-forward="true" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/transfer/actions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
@@ -1194,26 +1123,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/actions/auth.js">
+    <entry file="file://$PROJECT_DIR$/js/scenes/merchants/transferMerchant.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="33" column="66" lean-forward="false" selection-start-line="33" selection-start-column="66" selection-end-line="33" selection-end-column="66" />
+        <state relative-caret-position="-396">
+          <caret line="41" column="11" lean-forward="false" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/transfer/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="194" column="12" lean-forward="false" selection-start-line="194" selection-start-column="12" selection-end-line="194" selection-end-column="12" />
+        <state relative-caret-position="491">
+          <caret line="224" column="32" lean-forward="false" selection-start-line="224" selection-start-column="32" selection-end-line="224" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/merchants/transferMerchant.js">
+    <entry file="file://$PROJECT_DIR$/js/scenes/login/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="41" column="11" lean-forward="false" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
+        <state relative-caret-position="340">
+          <caret line="80" column="39" lean-forward="true" selection-start-line="80" selection-start-column="39" selection-end-line="80" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/actions/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="32" column="71" lean-forward="true" selection-start-line="32" selection-start-column="71" selection-end-line="32" selection-end-column="71" />
           <folding />
         </state>
       </provider>
