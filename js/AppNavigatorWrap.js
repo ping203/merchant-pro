@@ -32,7 +32,15 @@ class AppNavigatorWrap extends Component {
 
   render() {
     return (
-      <DrawerNavigation/>
+      <Container style={(Platform.OS == "android" && Platform.Version < 20) ? wrapContainerStyle : {}}>
+          <StatusBar
+            // backgroundColor={statusBarColor}
+            backgroundColor="black"
+            barStyle="light-content"
+            style={{height: 50}}
+          />
+          <DrawerNavigation/>
+      </Container>
     );
   }
 }

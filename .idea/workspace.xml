@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b06418f6-cf1e-4e93-8754-b4111226420d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/actions/auth.js" afterPath="$PROJECT_DIR$/js/actions/auth.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/AppNavigatorWrap.js" afterPath="$PROJECT_DIR$/js/AppNavigatorWrap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/historyTransfer/index.js" afterPath="$PROJECT_DIR$/js/scenes/historyTransfer/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,102 +21,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="auth.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/actions/auth.js">
+      <file leaf-file-name="setup.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/setup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="32" column="71" lean-forward="true" selection-start-line="32" selection-start-column="71" selection-end-line="32" selection-end-column="71" />
-              <folding />
+            <state relative-caret-position="403">
+              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+                <marker date="1496652935899" expanded="true" signature="1196:1197" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/scenes/transfer/index.js">
+      <file leaf-file-name="AppRouteConfigs.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/AppRouteConfigs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="224" column="32" lean-forward="false" selection-start-line="224" selection-start-column="32" selection-end-line="224" selection-end-column="32" />
-              <folding />
+            <state relative-caret-position="442">
+              <caret line="26" column="23" lean-forward="true" selection-start-line="26" selection-start-column="23" selection-end-line="27" selection-end-column="0" />
+              <folding>
+                <element signature="e#1#40#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/scenes/login/index.js">
+      <file leaf-file-name="AppNavigatorWrap.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/AppNavigatorWrap.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="80" column="39" lean-forward="true" selection-start-line="80" selection-start-column="39" selection-end-line="80" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="http.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/common/http.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="45" column="60" lean-forward="false" selection-start-line="45" selection-start-column="60" selection-end-line="45" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/components/reveice/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
-              <caret line="34" column="3" lean-forward="false" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="actions.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/scenes/merchants/actions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="48" column="25" lean-forward="false" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/scenes/cashOut/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="45" column="12" lean-forward="false" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/components/confirmPopup/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="54" column="7" lean-forward="true" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/scenes/cashOutHistory/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="158" column="12" lean-forward="false" selection-start-line="158" selection-start-column="12" selection-end-line="158" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/scenes/merchants/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="121" column="39" lean-forward="false" selection-start-line="121" selection-start-column="39" selection-end-line="121" selection-end-column="39" />
-              <folding />
+            <state relative-caret-position="100">
+              <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+              <folding>
+                <marker date="1496656302909" expanded="true" signature="1248:1259" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -132,15 +70,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Acti</find>
-      <find>Action</find>
-      <find>Actio</find>
-      <find>conso</find>
-      <find>consol</find>
-      <find>console.</find>
-      <find>console.l</find>
-      <find>console.log(</find>
-      <find>console.log&quot;</find>
       <find>console.log A</find>
       <find>console.log</find>
       <find>console.logA</find>
@@ -162,6 +91,15 @@
       <find>cón</find>
       <find>cons</find>
       <find>console</find>
+      <find>pẻo</find>
+      <find>pẻ</find>
+      <find>p</find>
+      <find>proce</find>
+      <find>proces</find>
+      <find>process</find>
+      <find>processB</find>
+      <find>processBa</find>
+      <find>processBar</find>
     </findStrings>
     <dirStrings>
       <dir>D:\xampp\htdocs\merchant-pro\js\components\sideBar</dir>
@@ -208,7 +146,6 @@
         <option value="$PROJECT_DIR$/js/components/header/index.js" />
         <option value="$PROJECT_DIR$/js/actions/drawer.js" />
         <option value="$PROJECT_DIR$/js/AppRouteConfigs.js" />
-        <option value="$PROJECT_DIR$/js/AppNavigatorWrap.js" />
         <option value="$PROJECT_DIR$/js/setup.js" />
         <option value="$PROJECT_DIR$/js/scenes/login/index.js" />
         <option value="$PROJECT_DIR$/js/scenes/transfer/actions.js" />
@@ -218,7 +155,6 @@
         <option value="$PROJECT_DIR$/js/scenes/cashIn/index.js" />
         <option value="$PROJECT_DIR$/js/scenes/mobileCards/index.js" />
         <option value="$PROJECT_DIR$/js/components/gift/index.js" />
-        <option value="$PROJECT_DIR$/js/scenes/historyTransfer/index.js" />
         <option value="$PROJECT_DIR$/js/scenes/cashOutHistory/index.js" />
         <option value="$PROJECT_DIR$/js/scenes/merchants/index.js" />
         <option value="$PROJECT_DIR$/js/common/http.js" />
@@ -228,6 +164,8 @@
         <option value="$PROJECT_DIR$/js/scenes/transfer/index.js" />
         <option value="$PROJECT_DIR$/js/scenes/merchants/transferMerchant.js" />
         <option value="$PROJECT_DIR$/js/actions/auth.js" />
+        <option value="$PROJECT_DIR$/js/scenes/historyTransfer/index.js" />
+        <option value="$PROJECT_DIR$/js/AppNavigatorWrap.js" />
       </list>
     </option>
   </component>
@@ -371,6 +309,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="login" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="merchant-pro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="merchant-pro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scenes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="historyTransfer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -622,7 +582,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="557195000" />
+    <option name="totallyTimeSpent" value="559458000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -968,44 +928,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/AppNavigatorWrap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <marker date="1496652841914" expanded="true" signature="931:944" ph="{...}" />
-            <marker date="1496652841914" expanded="true" signature="931:946" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/components/sideBar/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/AppRouteConfigs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="25" lean-forward="true" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
-          <folding>
-            <element signature="e#1#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/setup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="42" column="3" lean-forward="false" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-            <marker date="1496652935899" expanded="true" signature="1196:1197" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1054,16 +981,6 @@
         <state relative-caret-position="153">
           <caret line="32" column="9" lean-forward="false" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/historyTransfer/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="160" column="65" lean-forward="false" selection-start-line="160" selection-start-column="65" selection-end-line="160" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1149,9 +1066,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/actions/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
+        <state relative-caret-position="306">
           <caret line="32" column="71" lean-forward="true" selection-start-line="32" selection-start-column="71" selection-end-line="32" selection-end-column="71" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/AppNavigatorWrap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+          <folding>
+            <marker date="1496656302909" expanded="true" signature="1248:1259" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/AppRouteConfigs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="23" lean-forward="true" selection-start-line="26" selection-start-column="23" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#1#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/historyTransfer/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="139" column="39" lean-forward="true" selection-start-line="139" selection-start-column="39" selection-end-line="139" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/setup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <marker date="1496652935899" expanded="true" signature="1196:1197" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>

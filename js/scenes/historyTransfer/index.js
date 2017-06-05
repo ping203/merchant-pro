@@ -142,6 +142,7 @@ class HistoryTransferComponent extends Component {
                 {/*},*/}
               {/*}}*/}
               {/*refreshableTintColor="blue"*/}
+              {/*enableEmptySections={true}*/}
             {/*/>*/}
 
           </View>
