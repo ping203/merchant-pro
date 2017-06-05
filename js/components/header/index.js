@@ -47,6 +47,11 @@ class HeaderComponent extends Component {
     });
   };
 
+  openDrawer(){
+    this.props.appNavigation.navigate("DrawerOpen");
+    // NavigationActions.navigate({ routeName: 'DrawerOpen'});
+  }
+
   render() {
 
     const {isActived, username, money, mobile, hasBack} = this.props;
@@ -62,7 +67,7 @@ class HeaderComponent extends Component {
             </Button>
           </View>}
           {!hasBack && <View style={styles.headerButtonLeftWrapper}>
-            <Button transparent onPress={this.props.openDrawer} style={styles.headerButtonLeft}>
+            <Button transparent onPress={()=>this.openDrawer.call(this)} style={styles.headerButtonLeft}>
               <Icon active name="menu" style={{fontSize: 30, lineHeight: 32}}/>
             </Button>
           </View>}
@@ -110,10 +115,12 @@ function bindAction(dispatch) {
 
 const mapStateToProps = state => {
   const {loginInfo} = state.auth;
+  const {appNavigation} = state;
   return {
     isActived: loginInfo.isTelephoneVerified,
     username: loginInfo.username,
-    money: loginInfo.money || 0
+    money: loginInfo.money || 0,
+    appNavigation
   }
 };
 

@@ -1,10 +1,8 @@
-/**
- * Created by Admin on 5/29/2017.
- */
+
 import React, {Component} from 'react';
 import Login from './scenes/login/';
-// console.error("import Login from './scenes/login/' end", Login);
 import Home from './scenes/home/';
+import {update_app_navigation} from './actions/nav';
 
 import {StackNavigator, addNavigationHelpers, TabNavigator} from 'react-navigation';
 import {connect} from 'react-redux';
@@ -29,12 +27,19 @@ export function getAppNavigator() {
 // export AppNavigator;
 
 class App extends Component {
+
+  componentDidMount() {
+    this.props.dispatch(update_app_navigation(this.props.navigation));
+  }
+
   render() {
     return (
-      <AppNavigator navigation={addNavigationHelpers({
+      <AppNavigator
+        navigation={addNavigationHelpers({
         dispatch: this.props.dispatch,
         state: this.props.nav,
-      })}/>
+      })}
+      />
     );
   }
 }

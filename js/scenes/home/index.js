@@ -17,8 +17,8 @@ const HomeNavigation = TabNavigator(AppRouteConfigs, {
   swipeEnabled: false,
   tabBarVisible: false,
   tabBarPosition : "bottom",
-  // initialRouteName : "cashOutTab",
-  // backBehavior : "cashOutTab",
+  initialRouteName : "cashIn",
+  backBehavior : "cashOutTab",
   // backBehavior : "cashOutTab",
 
   tabBarOptions: {

@@ -182,7 +182,6 @@ class ItemsCashOutComponent extends Component {
 
   render() {
     const {items, total, skip, money} = this.props;
-    // console.log("!items.length || items.length < total",!items.length, items.length < total,!items.length || items.length < total)
     const {openModal, modalData} = this.modalData;
 
     {/*const {providerCode, netValue, price, imageUrl, name, id} = itemData;*/

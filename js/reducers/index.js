@@ -8,6 +8,7 @@ import drawer from './drawer';
 import auth from './auth';
 import footerState from './footerState';
 import nav from './nav';
+import appNavigation from './appNavigation';
 import cashInScene from '../scenes/cashIn/reducers';
 import confirmPopup from './confirmPopup';
 import transferScene from '../scenes/transfer/reducers';
@@ -20,6 +21,7 @@ import cashOutHistory from '../scenes/cashOutHistory/reducers';
 
 export default combineReducers({
   nav,
+  appNavigation,
   drawer,
   auth,
   footerState,

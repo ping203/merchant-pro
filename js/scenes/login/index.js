@@ -70,7 +70,6 @@ class Login extends Component {
 
   handleLogin (response) {
     var _self = this;
-    console.log("handleLogin",response.data);
     var data = response.data;
     if (data.status) {
       _self.setError(data.message);

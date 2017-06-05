@@ -15,11 +15,11 @@ class SideBar extends Component {
   changeNavigation(target) {
     var targetNavigation  = HomeNavigation.router.getActionForPathAndParams(target);
     this.props.changeNavigation(targetNavigation);
-    this.props.closeDrawer();
+    this.props.appNavigation.navigate("DrawerClose");
   }
   logout(){
     this.props.logout();
-    this.props.closeDrawer();
+    this.props.appNavigation.navigate("DrawerClose");
   }
 
   render() {
@@ -99,6 +99,11 @@ function bindAction(dispatch) {
   };
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => {
+  const {appNavigation} = state;
+  return {
+    appNavigation
+  }
+};
 
 export default connect(mapStateToProps, bindAction)(SideBar);
