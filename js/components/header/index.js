@@ -54,7 +54,7 @@ class HeaderComponent extends Component {
 
   render() {
 
-    const {isActived, username, money, mobile, hasBack} = this.props;
+    const {isActived, username, money, telephone, hasBack, avtUrl} = this.props;
 
     return (
       <Image source={headerBg} style={styles.headerContainer}>
@@ -77,7 +77,7 @@ class HeaderComponent extends Component {
               <NumberFormater numberOfLines={1} ellipsizeMode="tail" style={{color: '#ffde00',}} format="0,0">{money}V</NumberFormater>
             </View>
 
-            <Image source={defaultAvatar} resizeMode='cover' style={styles.headerAvatar}></Image>
+            <Image source={{uri: avtUrl}} resizeMode='cover' style={styles.headerAvatar}></Image>
             <View style={styles.headerRight}>
               {!isActived &&
               <Button onPress={this.props.openConfirmPopup} style={styles.buttonConfirm}>
@@ -88,7 +88,7 @@ class HeaderComponent extends Component {
               < Text style={{
                 color: "#add329", flex: 1, flexDirection: 'row', justifyContent: "center", alignItems: "center"
               }}>
-                {mobile}
+                {telephone}
               </Text>}
             </View>
           {/*</View>*/}
@@ -119,6 +119,8 @@ const mapStateToProps = state => {
   return {
     isActived: loginInfo.isTelephoneVerified,
     username: loginInfo.username,
+    telephone : loginInfo.telephone,
+    avtUrl : loginInfo.avtUrl,
     money: loginInfo.money || 0,
     appNavigation
   }
