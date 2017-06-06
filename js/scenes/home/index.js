@@ -4,7 +4,9 @@ import TransferTab from '../transferTab/';
 import CashIn from '../cashIn/';
 import CashOutTab from '../cashOutTab';
 import CashOutHistory from '../cashOutHistory';
-import {StackNavigator, addNavigationHelpers, TabNavigator} from 'react-navigation';
+import {StackNavigator, addNavigationHelpers, TabNavigator, NavigationActions} from 'react-navigation';
+import store from '../../configureStore';
+import {open_confirm_popup} from '../../actions/confirmPopup';
 
 const AppRouteConfigs = {
   cashIn: {screen: CashIn},
@@ -13,7 +15,7 @@ const AppRouteConfigs = {
   cashOutHistory: {screen: CashOutHistory},
 };
 const HomeNavigation = TabNavigator(AppRouteConfigs, {
-  lazy: true,
+  // lazy: true,
   swipeEnabled: false,
   tabBarVisible: false,
   tabBarPosition : "bottom",
@@ -49,5 +51,17 @@ const HomeNavigation = TabNavigator(AppRouteConfigs, {
 export function getHomeNavigation() {
   return HomeNavigation;
 };
+
+const defaultGetStateForAction = HomeNavigation.router.getStateForAction;
+
+HomeNavigation.router.getStateForAction = (action, state) => {
+  var storeData = Object.assign({},store.getState());
+  var isActived = storeData.auth.loginInfo.isTelephoneVerified;
+  var isLogin = storeData.auth.isLogin;
+  if(isLogin && !isActived){
+    return defaultGetStateForAction(HomeNavigation.router.getActionForPathAndParams('cashIn'), state);
+  }
+  return defaultGetStateForAction(action, state);
+}
 
 export default HomeNavigation;

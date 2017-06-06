@@ -2,7 +2,7 @@
   "expo": {
     "sdkVersion": "15.0.0",
     "icon": "./images/logo-2.png",
-    "slug": "merchantpro",
+    "slug": "C567Plus",
     "loading": {
       "hideExponentText": true,
       "icon": "./images/loading.png",
@@ -16,10 +16,10 @@
       ]
     },
   "ios": {
-    "bundleIdentifier": "com.puppet.merchant",
+    "bundleIdentifier": "com.c567.plus",
   },
   "android": {
-     "package": "com.puppet.merchant",
+     "package": "com.c567.plus",
    },
     "androidStatusBarColor": "#000000",
     "androidStatusBar": {

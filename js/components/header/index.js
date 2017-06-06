@@ -40,14 +40,14 @@ class HeaderComponent extends Component {
     httpService.postWithConvert("", {
       command: "get_money",
     }).then(async function (response) {
-      if(!response.status){
+      if (!response.status) {
         _self.props.dispatch(update_gold(response.data.gold));
       }
     }).catch(function (thrown) {
     });
   };
 
-  openDrawer(){
+  openDrawer() {
     this.props.appNavigation.navigate("DrawerOpen");
     // NavigationActions.navigate({ routeName: 'DrawerOpen'});
   }
@@ -67,34 +67,36 @@ class HeaderComponent extends Component {
             </Button>
           </View>}
           {!hasBack && <View style={styles.headerButtonLeftWrapper}>
-            <Button transparent onPress={()=>this.openDrawer.call(this)} style={styles.headerButtonLeft}>
+            <Button transparent onPress={() => this.openDrawer.call(this)} style={styles.headerButtonLeft}>
               <Icon active name="menu" style={{fontSize: 30, lineHeight: 32}}/>
             </Button>
           </View>}
           {/*<View>*/}
-            <View style={styles.headerLeft}>
-              <Text numberOfLines={1} ellipsizeMode="tail"  style={{color: '#c4e1ff',}}>{username}</Text>
-              <NumberFormater numberOfLines={1} ellipsizeMode="tail" style={{color: '#ffde00',}} format="0,0">{money}V</NumberFormater>
-            </View>
+          <View style={styles.headerLeft}>
+            <Text numberOfLines={1} ellipsizeMode="tail" style={{color: '#c4e1ff',}}>{username}</Text>
+            <NumberFormater numberOfLines={1} ellipsizeMode="tail" style={{color: '#ffde00',}}
+                            format="0,0">{money}V</NumberFormater>
+          </View>
 
-            <Image source={{uri: avtUrl}} resizeMode='cover' style={styles.headerAvatar}></Image>
-            <View style={styles.headerRight}>
-              {!isActived &&
-              <Button onPress={this.props.openConfirmPopup} style={styles.buttonConfirm}>
-                <Text style={{color: '#aac2f7'}}>Xác thực</Text>
-              </Button>}
-              {isActived && <Icon active name="ios-arrow-dropdown-circle" style={{width: 30, color: "#add329"}}/>}
-              {isActived &&
-              < Text style={{
-                color: "#add329", flex: 1, flexDirection: 'row', justifyContent: "center", alignItems: "center"
-              }}>
-                {telephone}
-              </Text>}
-            </View>
+          {avtUrl == null && <Image source={{uri: avtUrl}} resizeMode='cover' style={styles.headerAvatar}></Image>}
+          {avtUrl !== null && <Image source={defaultAvatar} resizeMode='cover' style={styles.headerAvatar}></Image>}
+          <View style={styles.headerRight}>
+            {!isActived &&
+            <Button onPress={this.props.openConfirmPopup} style={styles.buttonConfirm}>
+              <Text style={{color: '#aac2f7'}}>Xác thực</Text>
+            </Button>}
+            {isActived && <Icon active name="ios-arrow-dropdown-circle" style={{width: 30, color: "#add329"}}/>}
+            {isActived &&
+            < Text style={{
+              color: "#add329", flex: 1, flexDirection: 'row', justifyContent: "center", alignItems: "center"
+            }}>
+              {telephone}
+            </Text>}
+          </View>
           {/*</View>*/}
           <View style={styles.headerButtonRightWrapper}>
             <Button transparent style={styles.headerButtonLeft}>
-              <Icon active name="menu" style={{fontSize: 30, lineHeight: 32, opacity : 0}}/>
+              <Icon active name="menu" style={{fontSize: 30, lineHeight: 32, opacity: 0}}/>
             </Button>
           </View>
         </View>
@@ -119,8 +121,8 @@ const mapStateToProps = state => {
   return {
     isActived: loginInfo.isTelephoneVerified,
     username: loginInfo.username,
-    telephone : loginInfo.telephone,
-    avtUrl : loginInfo.avtUrl,
+    telephone: loginInfo.telephone,
+    avtUrl: loginInfo.avtUrl,
     money: loginInfo.money || 0,
     appNavigation
   }
