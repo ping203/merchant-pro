@@ -120,10 +120,10 @@ class CashIn extends Component {  //eslint-disable-line
       console.log('thrown.message 4', thrown);
       _self.setError(thrown);
     });
-  };
+  }
 
 
-  logout() {
+  logout(){
     const {dispatch} = this.props;
     dispatch(logout());
   }
@@ -132,6 +132,10 @@ class CashIn extends Component {  //eslint-disable-line
   submit() {
     var _self = this;
     const {code, serial, selectedCardType} = this.props;
+    if(!(serial && serial.length) ||  !(code && code.length)){
+      _self.setError("Vui lòng nhập thông tin thẻ nạp");
+      return;
+    }
     httpService.post2("", {
       command: "cash_in",
       type: 1,
@@ -182,11 +186,12 @@ class CashIn extends Component {  //eslint-disable-line
     } else {
       this.props.dispatch(change_serial(value));
     }
+    this.setError("");
   }
 
 
   render() {
-    const {selectedCardType, configGoldRatio, serial, code} = this.props;
+    const {selectedCardType, configGoldRatio, serial, code, isActived} = this.props;
     var placeholderCode = "Mã thẻ " + selectedCardType.name;
     var placeholderSerial = "Seri thẻ " + selectedCardType.name;
 
@@ -277,7 +282,7 @@ class CashIn extends Component {  //eslint-disable-line
           </Content>
 
 
-          <ConfirmComponent ></ConfirmComponent>
+          {!isActived && <ConfirmComponent ></ConfirmComponent>}
         </Image>
       </Container>
     );
@@ -287,7 +292,9 @@ class CashIn extends Component {  //eslint-disable-line
 
 const mapStateToProps = state => {
   const {selectedCardType, serial, code, configGoldRatio} = state.cashInScene;
+  const {loginInfo} = state.auth;
   return {
+    isActived: loginInfo.isTelephoneVerified,
     selectedCardType: selectedCardType,
     configGoldRatio: configGoldRatio,
     code,

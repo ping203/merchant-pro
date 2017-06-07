@@ -39,7 +39,7 @@ class AppNavigatorWrap extends Component {
             barStyle="light-content"
             style={{height: 50}}
           />
-          <DrawerNavigation/>
+          <DrawerNavigation />
       </Container>
     );
   }

@@ -15,14 +15,13 @@ import {
 } from 'native-base';
 
 import {openDrawer} from '../../actions/drawer';
-import FooterComponent from '../../components/footer/index';
 import HeaderComponent from '../../components/header/index';
-import ConfirmComponent from '../../components/confirmPopup/index';
 import styles from './styles';
 import styles2 from '../login/styles';
 import modalStyle from '../../components/styles/modal';
 import {logout, update_gold} from '../../actions/auth';
 import {select_free_type, change_receiver, change_value, update_config_ratio, toggle_tutorial, go_history} from './actions';
+import {refreshHistory} from '../historyTransfer/actions';
 import Modal from 'react-native-modalbox';
 import axios, {CancelToken}from 'axios';
 import NumberFormater from '../../components/numberFormatter';
@@ -84,6 +83,10 @@ class TransferComponent extends Component {  //eslint-disable-line
   submit() {
     var _self = this;
     const {feeType, receiver, value} = this.props;
+    if(!this.isVerifyReceiver){
+      _self.setError("Username không đúng");
+      return;
+    }
     httpService.post2("", {
       command: "transfer_gold",
       value,
@@ -118,6 +121,7 @@ class TransferComponent extends Component {  //eslint-disable-line
     this.isVerifyReceiver = false;
     this.props.dispatch(change_value("0"));
     this.props.dispatch(change_receiver(""));
+    this.props.dispatch(refreshHistory());
     this.setError("");
   }
 
@@ -140,6 +144,7 @@ class TransferComponent extends Component {  //eslint-disable-line
       var _value = parseInt(value);
       this.props.dispatch(change_value(isNaN(_value) ? 0 : _value));
     }
+    this.setError("")
   }
 
   checkReceiver(username) {
@@ -291,10 +296,6 @@ class TransferComponent extends Component {  //eslint-disable-line
             </View>
 
           </Content>
-          {/*<Footer style={{borderTopWidth: 0, backgroundColor: 'transparent'}}>*/}
-            {/*<FooterComponent navigator={this.props.navigation}/>*/}
-          {/*</Footer>*/}
-          <ConfirmComponent ></ConfirmComponent>
 
           <Modal
             style={[modalStyle.modal, modalStyle.modal2]}

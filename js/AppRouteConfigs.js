@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import Login from './scenes/login/';
 import Home from './scenes/home/';
@@ -13,7 +12,7 @@ const AppRouteConfigs = {
 };
 
 const AppNavigator = StackNavigator(AppRouteConfigs, {
-  headerMode : "none",
+  headerMode: "none",
 });
 
 export function getAppRouteConfigs() {
@@ -36,9 +35,9 @@ class App extends Component {
     return (
       <AppNavigator
         navigation={addNavigationHelpers({
-        dispatch: this.props.dispatch,
-        state: this.props.nav,
-      })}
+          dispatch: this.props.dispatch,
+          state: this.props.nav,
+        })}
       />
     );
   }

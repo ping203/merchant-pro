@@ -5,6 +5,7 @@ import {
   Container,
   Content,
   Text,
+  Button
 } from 'native-base';
 
 import {fetchPosts} from './actions';
@@ -30,10 +31,13 @@ class HistoryTransferComponent extends Component {
   }
 
   componentWillMount() {
-    this._loadMoreContentAsync.call(this);
+    if(!this.props.items.length){
+      this._loadMoreContentAsync.call(this);
+    }
   }
 
   _loadMoreContentAsync() {
+    console.log("_loadMoreContentAsync");
     this.props.dispatch(fetchPosts({
       "command": "fetch_transfer_log",
       "type": 0,
@@ -58,12 +62,21 @@ class HistoryTransferComponent extends Component {
   }
 
   _renderRefreshControl() {
-    // Reload all data
     return (
       <RefreshControl
         refreshing={this.props.isFetching}
         onRefresh={this._loadMoreContentAsync.bind(this)}
       />
+    )
+  }
+
+  _renderFooter() {
+    return (
+    <View style={styles.buttonFooterWrap}>
+      <Button style={styles.buttonHistory} onPress={() => this._loadMoreContentAsync.call(this)}>
+        <Text style={styles.buttonHistoryText}> Xem thêm </Text>
+      </Button>
+    </View>
     )
   }
 
@@ -114,6 +127,7 @@ class HistoryTransferComponent extends Component {
   }
 
   render() {
+    console.log("render");
     const {items, total, skip} = this.props;
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
@@ -126,8 +140,11 @@ class HistoryTransferComponent extends Component {
               renderRow={(rowData) => this._renderRowData.call(this, rowData)}
               refreshControl={this._renderRefreshControl()}
               onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}
-              canLoadMore={!items.length || items.length < total}
+              // canLoadMore={!items.length || items.length < total}
+              canLoadMore={false}
               enableEmptySections={true}
+              pageSize={10}
+              renderFooter={()=>this._renderFooter.call(this)}
             />
             {/*<GiftedListView*/}
               {/*rowView={(rowData) => this._renderRowData.call(this, rowData)}*/}
@@ -144,7 +161,6 @@ class HistoryTransferComponent extends Component {
               {/*refreshableTintColor="blue"*/}
               {/*enableEmptySections={true}*/}
             {/*/>*/}
-
           </View>
         </Image>
       </Container>

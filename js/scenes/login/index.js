@@ -6,6 +6,7 @@ import {Container, Content, Text, Item, Input, Button, Icon, View, Form, Spinner
 import httpService from '../../common/http';
 import {Facebook} from 'expo';
 import {login_success,toggle_spin} from '../../actions/auth';
+import {open_confirm_popup}  from '../../actions/confirmPopup';
 
 import styles from './styles';
 
@@ -80,15 +81,12 @@ class Login extends Component {
       _self.setError(data.message);
     } else {
       _self.setError("");
-      var accessToken = data.data && data.data.accessToken;
-      if (accessToken) {
         try {
           _self.props.dispatch(login_success(data.data));
         } catch (error) {
           _self.setError(error);
           _self.props.dispatch(toggle_spin(false));
         }
-      }
     }
   }
 

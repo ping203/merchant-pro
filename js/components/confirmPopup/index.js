@@ -68,13 +68,12 @@ class ConfirmComponent extends Component {
 
   submit (phoneNumber, body)  {
     var _self = this;
-    Communications.text(phoneNumber, body);
+    Communications.textWithoutEncoding(phoneNumber, body);
   };
 
   render() {
-
     const {openState, messageConfig, selectedNetwork} = this.props;
-    let selectedMessage = {};
+    let selectedMessage = "";
 
     for(var properties in messageConfig){
       if (mappingNetwork[properties] == selectedNetwork){
@@ -91,8 +90,8 @@ class ConfirmComponent extends Component {
         }}
         swipeToClose={false}
         isOpen={openState === "opened"}
-        onClosed={this.onClosed.bind(this)}
-        onOpened={this.onOpened.bind(this)}
+        // onOpened={this.onOpened.bind(this)}
+        // onClosed={this.onClosed.bind(this)}
       >
         <View  style={styles.header}>
           <Text style={{color : "#c4e1ff"}}>

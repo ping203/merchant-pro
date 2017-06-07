@@ -6,6 +6,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT = 'LOGOUT';
 export const UPDATE_GOLD = 'UPDATE_GOLD';
 import {getAppNavigator}  from '../AppRouteConfigs';
+import {open_confirm_popup}  from './confirmPopup';
 const AppNavigator = getAppNavigator();
 
 export function toggle_spin(showSpin) {
@@ -23,6 +24,9 @@ export function login_success(loginInfo) {
       loginInfo : loginInfo
     });
     dispatch(toggle_spin(false));
+    if(!loginInfo.isTelephoneVerified){
+      dispatch(open_confirm_popup());
+    }
     // dispatch(NavigationActions.reset({
     //   index: 0,
     //   actions: [

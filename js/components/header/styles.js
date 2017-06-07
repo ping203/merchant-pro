@@ -142,7 +142,7 @@ export default {
   },
   headerBackTitle : {
     color : "#7fa8d1",
-    fontSize : theme.fontSizeH2,
+    fontSize : theme.fontSizeH3,
     fontWeight : "bold"
   }
 }
