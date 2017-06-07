@@ -16,7 +16,7 @@ function receive(data) {
   }
 }
 
-export function fetchPosts(params) {
+export function fetchMobileCard(params) {
 
   return function (dispatch) {
     dispatch(request());

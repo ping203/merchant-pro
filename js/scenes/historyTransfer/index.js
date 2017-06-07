@@ -37,7 +37,6 @@ class HistoryTransferComponent extends Component {
   }
 
   _loadMoreContentAsync() {
-    console.log("_loadMoreContentAsync");
     this.props.dispatch(fetchPosts({
       "command": "fetch_transfer_log",
       "type": 0,

@@ -17,7 +17,6 @@ export default function receiverItems(state = initState, action) {
       skip : 0,
       total : action.total || 100
     };
-    console.log("_return",_return);
     return _return;
   }
   if (action.type === REQUEST_ITEMS) {

@@ -74,6 +74,7 @@ class Login extends Component {
   }
 
   handleLogin (response) {
+    console.log("response",response);
     var _self = this;
     var data = response.data;
     if (data.status) {
@@ -167,12 +168,7 @@ class Login extends Component {
 
                   />
                 </Item>
-                <Text style={{
-                  height: 30,
-                  color: 'red',
-                  marginBottom: (Platform.OS === 'ios') ? 10 : 0,
-                  marginTop: (Platform.OS === 'ios') ? 10 : 0
-                }}>
+                <Text style={styles.errorMessage}>
                   {this.state.errorMessage}
                 </Text>
 

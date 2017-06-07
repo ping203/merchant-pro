@@ -9,7 +9,7 @@ import {
   Footer
 } from 'native-base';
 
-import {fetchPosts} from './actions';
+import {fetchPosts, refreshListHistory} from './actions';
 import {select_card_type, change_code, change_serial, update_config_ratio} from '../cashIn/actions';
 import HeaderWithBackComponent from '../../components/header/headerWithBack';
 import FooterComponent from '../../components/footer/index';
@@ -42,7 +42,9 @@ class CashOutHistoryComponent extends Component {
   }
 
   componentWillMount() {
-    this._loadMoreContentAsync.call(this);
+    if(!this.props.items.length){
+      this._loadMoreContentAsync.call(this);
+    }
   }
 
   _loadMoreContentAsync() {
@@ -141,6 +143,26 @@ class CashOutHistoryComponent extends Component {
     }));
   }
 
+  _renderFooter() {
+    return (
+      <View style={styles.buttonFooterWrap}>
+        <Button style={styles.buttonHistory} onPress={() => this._loadMoreContentAsync.call(this)}>
+          <Text style={styles.buttonHistoryText}> Xem thêm </Text>
+        </Button>
+      </View>
+    )
+  }
+
+  _renderHeader() {
+    return (
+      <View style={styles.buttonFooterWrap}>
+        <Button style={styles.buttonHistory} onPress={() => this.props.dispatch(refreshListHistory())}>
+          <Text style={styles.buttonHistoryText}> Làm mới </Text>
+        </Button>
+      </View>
+    )
+  }
+
   copy(code) {
     Clipboard.setString(code);
   }
@@ -170,8 +192,11 @@ class CashOutHistoryComponent extends Component {
               renderRow={(rowData) => this._renderRowData.call(this, rowData)}
               refreshControl={this._renderRefreshControl()}
               onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}
-              canLoadMore={!items.length || items.length < total}
+              canLoadMore={false}
               enableEmptySections={true}
+              pageSize={10}
+              renderFooter={()=>this._renderFooter.call(this)}
+              renderHeader={()=>this._renderHeader.call(this)}
             />
 
           </View>

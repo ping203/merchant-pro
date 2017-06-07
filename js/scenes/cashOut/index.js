@@ -8,6 +8,7 @@ import {
   Content,
   Button,
   Text,
+  Icon,
 } from 'native-base';
 
 import HeaderComponent from '../../components/header/index';
@@ -18,6 +19,9 @@ const giftImage = require('../../../images/cashOut/gift.png');
 import {change_footer} from '../../actions/footerState';
 import cashOutTab from '../cashOutTab';
 import homeNavigation from '../home';
+
+import Modal from 'react-native-modalbox';
+import modalStyle from '../../components/styles/modal';
 
 class CashoutComponent extends Component {  //eslint-disable-line
 
@@ -71,7 +75,12 @@ class CashoutComponent extends Component {  //eslint-disable-line
                     Đại lý
                   </Text>
                 </Button>
-                <Button rounded block style={styles.button}  onPress={ () => this.goCashOutHistory.call(this)}>
+                <Button rounded block style={styles.button} onPress={ () => this.modal.open() }>
+                  <Text style={{color: '#b9cbdc'}}>
+                    Ngân hàng
+                  </Text>
+                </Button>
+                <Button rounded block style={styles.button} onPress={ () => this.goCashOutHistory.call(this)}>
                   <Text style={{color: '#b9cbdc'}}>
                     Nhận quà
                   </Text>
@@ -86,6 +95,33 @@ class CashoutComponent extends Component {  //eslint-disable-line
           {/*</Footer>*/}
 
         </Image>
+        <Modal
+          style={[modalStyle.modal, modalStyle.modal2]}
+          backdrop={true}
+          ref={(c) => {
+            this.modal = c;
+          }}
+          swipeToClose={false}
+          isOpen={this.openTutorial}
+        >
+          <View style={modalStyle.header}>
+            <Text style={{color: "#c4e1ff"}}>
+              THÔNG BÁO
+            </Text>
+            <Button
+              transparent
+              style={{position: 'absolute', top: 0, right: 0}}
+              onPress={() => this.modal.close()}
+            >
+              <Icon name="close" style={{color: '#c4e1ff'}}/>
+            </Button>
+          </View>
+          <View style={{margin: 10}}>
+            <Text style={styles.descriptionText}>
+              Chức năng sắp ra mắt !
+            </Text>
+          </View>
+        </Modal>
       </Container>
     );
   }

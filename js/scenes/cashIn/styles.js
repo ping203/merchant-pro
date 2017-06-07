@@ -4,6 +4,7 @@ const {StyleSheet, Dimensions, Platform} = React;
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
+import theme from "../../themes/base-theme";
 
 export default {
   container: {
@@ -109,5 +110,12 @@ export default {
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop : 10
-  }
+  },
+  errorMessage: {
+    height: 30,
+    color: 'red',
+    marginBottom: (Platform.OS === 'ios') ? 10 : 0,
+    marginTop: (Platform.OS === 'ios') ? 10 : 0,
+    fontSize: theme.fontSizeBase * 0.8,
+  },
 }

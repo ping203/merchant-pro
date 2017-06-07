@@ -6,6 +6,7 @@ const deviceWidth = Dimensions.get('window').width;
 
 const logoRatio = 161 / 383;
 const facebookButtonWidth = 80;
+import theme from "../../themes/base-theme";
 
 export default{
   container: {
@@ -68,11 +69,17 @@ export default{
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    marginTop : 30,
+    marginTop: 30,
   },
   facebookButton: {
     width: deviceWidth / 8,
     height: deviceWidth / 8,
-  }
+  },
+  errorMessage: {
+    height: 30,
+    color: 'red',
+    marginBottom: (Platform.OS === 'ios') ? 10 : 0,
+    marginTop: (Platform.OS === 'ios') ? 10 : 0,
+    fontSize: theme.fontSizeBase * 0.8,
+  },
 }
-;

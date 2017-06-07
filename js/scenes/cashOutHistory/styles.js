@@ -159,6 +159,13 @@ export default {
     color: "#676da6",
     fontWeight: "bold"
   },
+  buttonFooterWrap : {
+
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    margin: 10,
+  },
 
   buttonYellow: {
     marginTop: 10,

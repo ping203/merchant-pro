@@ -306,12 +306,12 @@ class MerchantsComponent extends Component {
                 />
               </View>
               <View style={styles.modalButtonBar}>
-                <Button rounded block style={styles.whiteButton}
-                        onPress={this.closeModal.bind(this)}>
-                  <Text style={styles.whiteButtonText}>
-                    Hủy bỏ
-                  </Text>
-                </Button>
+                {/*<Button rounded block style={styles.whiteButton}*/}
+                        {/*onPress={this.closeModal.bind(this)}>*/}
+                  {/*<Text style={styles.whiteButtonText}>*/}
+                    {/*Hủy bỏ*/}
+                  {/*</Text>*/}
+                {/*</Button>*/}
                 <Button rounded block style={styles.yellowButton}
                         onPress={this.submit.bind(this)}>
                   <Text style={styles.whiteButtonText}>

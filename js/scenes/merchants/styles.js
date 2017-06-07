@@ -195,7 +195,7 @@ export default {
   },
   modalButtonBar: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
     flex: 1,
     width: deviceWidth * 6 / 8,
@@ -206,7 +206,7 @@ export default {
     height: 50,
     borderRadius: 10,
     backgroundColor: "#cdac12",
-    width: deviceWidth * 0.25,
+    width: deviceWidth * 0.5,
     marginTop: 10,
   },
   whiteButton: {
