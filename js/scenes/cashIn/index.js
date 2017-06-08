@@ -248,12 +248,7 @@ class CashIn extends Component {  //eslint-disable-line
                          defaultValue={code}
                   />
                 </Item>
-                <Text style={{
-                  height: 30,
-                  color: 'red',
-                  marginBottom: (Platform.OS === 'ios') ? 10 : 0,
-                  marginTop: (Platform.OS === 'ios') ? 10 : 0
-                }}>
+                <Text style={styles.errorMessage}>
                   {this.state.errorMessage}
                 </Text>
                 <Button rounded block style={styles2.loginButton} onPress={this.submit.bind(this)}>

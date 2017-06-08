@@ -24,7 +24,7 @@ export default{
   },
   bg: {
     left: 0,
-    paddingTop: deviceHeight / 2 - 50,
+    paddingTop: deviceHeight / 3,
     height: null,
     paddingLeft: 20,
     paddingRight: 20,
@@ -33,10 +33,10 @@ export default{
   },
   logo: {
     left: deviceWidth / 5,
-    top: deviceHeight / 6,
+    top: deviceHeight / 7,
     position: "absolute",
-    width: 3 * deviceWidth / 5,
-    height: 3 * deviceWidth / 5 * logoRatio,
+    width: 2.5 / 5 * deviceWidth,
+    height: 2.5 / 5 * deviceWidth * logoRatio,
     backgroundColor: 'transparent',
     overflow: "visible"
   },

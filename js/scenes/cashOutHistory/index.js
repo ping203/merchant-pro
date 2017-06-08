@@ -62,7 +62,6 @@ class CashOutHistoryComponent extends Component {
   }
 
   getUpdatedDataSource(props) {
-    console.log("props.items",props.items);
     let rows = props.items;
     let ids = rows.map((obj, index) => index);
     return this.dataSource.cloneWithRows(rows, ids);

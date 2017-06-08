@@ -5,7 +5,7 @@ import {Actions, ActionConst} from 'react-native-router-flux';
 import {Container, Content, Text, Item, Input, Button, Icon, View, Form, Spinner} from 'native-base';
 import httpService from '../../common/http';
 import {Facebook} from 'expo';
-import {login_success,toggle_spin} from '../../actions/auth';
+import {login_success, toggle_spin} from '../../actions/auth';
 import {open_confirm_popup}  from '../../actions/confirmPopup';
 
 import styles from './styles';
@@ -41,7 +41,7 @@ class Login extends Component {
         var authData = JSON.parse(value);
         if (new Date().getTime() < authData.exp) {
           _self.props.dispatch(login_success(authData));
-        }else{
+        } else {
           _self.props.dispatch(toggle_spin(false));
         }
       } else {
@@ -55,8 +55,8 @@ class Login extends Component {
 
   login() {
     var _self = this;
-    if(!this.state.username.length || !this.state.username.length){
-      _self.setError("Vui lòng nhập thông tin đăng nhập");
+    if (!this.state.username.length || !this.state.username.length) {
+      _self.setError("Vui lòng nhập thông tin tài khoản");
       return;
     }
     _self.props.dispatch(toggle_spin(true));
@@ -73,8 +73,8 @@ class Login extends Component {
 
   }
 
-  handleLogin (response) {
-    console.log("response",response);
+  handleLogin(response) {
+    console.log("response", response);
     var _self = this;
     var data = response.data;
     if (data.status) {
@@ -82,12 +82,12 @@ class Login extends Component {
       _self.setError(data.message);
     } else {
       _self.setError("");
-        try {
-          _self.props.dispatch(login_success(data.data));
-        } catch (error) {
-          _self.setError(error);
-          _self.props.dispatch(toggle_spin(false));
-        }
+      try {
+        _self.props.dispatch(login_success(data.data));
+      } catch (error) {
+        _self.setError(error);
+        _self.props.dispatch(toggle_spin(false));
+      }
     }
   }
 
@@ -126,18 +126,24 @@ class Login extends Component {
   }
 
   setUsername(username) {
-    this.setState({username, errorMessage : ""});
+    this.setState({username, errorMessage: ""});
   }
 
   setPassword(password) {
-    this.setState({password, errorMessage : ""});
+    this.setState({password, errorMessage: ""});
+  }
+
+  focusPassword() {
+    console.log("this.refs.passwordInput",this.refs.passwordInput);
+    // this.refs.passwordInput._root.focus();
   }
 
   render() {
     const {showSpin} = this.props;
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
-          <Image source={backgroundImage} style={styles.container}>
+        <Image source={backgroundImage} style={styles.container}>
+          <Content padder style={{backgroundColor: 'transparent'}}>
             <View style={styles.bg}>
               <Image source={logo} resizeMode='cover' style={styles.logo}/>
               {/*<Item underline style={{marginBottom: 20}}>*/}
@@ -152,7 +158,8 @@ class Login extends Component {
                          placeholderTextColor="#7481a7"
                          onChangeText={username => {
                            this.setUsername(username);
-                         }}
+                          }}
+                         onSubmitEditing={() => this.refs.passwordInput._root.focus()}
                   />
                 </Item>
                 <Item style={styles.inputWrapper}>
@@ -164,7 +171,8 @@ class Login extends Component {
                          onChangeText={password => {
                            this.setPassword(password)
                          }}
-                         onSubmitEditing={()=>this.login.call(this)}
+                         ref='passwordInput'
+                         onSubmitEditing={() => this.login.call(this)}
 
                   />
                 </Item>
@@ -172,7 +180,7 @@ class Login extends Component {
                   {this.state.errorMessage}
                 </Text>
 
-                {showSpin && <Spinner color="#999" />}
+                {showSpin && <Spinner color="#999"/>}
                 {!showSpin && <Button rounded block style={styles.loginButton} onPress={ () => this.login() }>
                   <Text style={{color: '#ffffff'}}>
                     Login
@@ -186,7 +194,7 @@ class Login extends Component {
                   <TouchableHighlight onPress={ () => this.loginFacebook() }>
                     <Image source={facebookButton} resizeMode='cover' style={styles.facebookButton}/>
                   </TouchableHighlight>
-                  <Text onPress={ () => this.loginFacebook() } style={{color: '#405688'}}>
+                  <Text onPress={ () => this.loginFacebook() } style={{color: '#405688', marginTop : 10}}>
                     Đăng nhập qua Facebook
                   </Text>
                 </View>}
@@ -197,7 +205,8 @@ class Login extends Component {
                 {/*</Button>*/}
               </View>
             </View>
-          </Image>
+          </Content>
+        </Image>
       </Container>
     );
   }
