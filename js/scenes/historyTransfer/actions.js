@@ -38,7 +38,7 @@ export function fetchPosts(params) {
   }
 }
 
-export function refreshHistory(params) {
+export function refreshHistoryTranfer(params) {
   return {
     type: REFRESH_HISTORY,
   }

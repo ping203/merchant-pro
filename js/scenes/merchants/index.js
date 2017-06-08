@@ -51,6 +51,8 @@ class MerchantsComponent extends Component {
   _loadMoreContentAsync() {
     this.props.dispatch(fetchPosts({
       "command": "fetch_list_merchant",
+      "skip": this.props.items.length,
+      "limit": 10
     }));
     this.props.dispatch(fetchConfig({
       "command": "fetch_transfer_config",

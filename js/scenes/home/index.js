@@ -7,7 +7,6 @@ import CashOutHistory from '../cashOutHistory';
 import {StackNavigator, addNavigationHelpers, TabNavigator, NavigationActions} from 'react-navigation';
 import store from '../../configureStore';
 import {open_confirm_popup} from '../../actions/confirmPopup';
-import {refreshListHistory} from '../cashOutHistory/actions';
 import TabButton from './tabButton';
 
 const AppRouteConfigs = {
@@ -64,11 +63,6 @@ HomeNavigation.router.getStateForAction = (action, state) => {
     },0);
     return defaultGetStateForAction(HomeNavigation.router.getActionForPathAndParams('cashIn'), state);
   }
-  // if(action.routeName == "cashOutHistory"){
-  //   setTimeout(()=>{
-  //     store.dispatch(refreshListHistory());
-  //   },1000);
-  // }
   return defaultGetStateForAction(action, state);
 }
 

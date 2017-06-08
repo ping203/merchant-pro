@@ -62,6 +62,7 @@ class CashOutHistoryComponent extends Component {
   }
 
   getUpdatedDataSource(props) {
+    console.log("props.items",props.items);
     let rows = props.items;
     let ids = rows.map((obj, index) => index);
     return this.dataSource.cloneWithRows(rows, ids);
@@ -198,7 +199,7 @@ class CashOutHistoryComponent extends Component {
               renderFooter={()=>this._renderFooter.call(this)}
               renderHeader={()=>this._renderHeader.call(this)}
             />
-
+            {items && items.length == 0 && <Text>Danh sách quà của bạn trống</Text>}
           </View>
         </Image>
         {/*<Footer style={{borderTopWidth: 0, backgroundColor: 'transparent'}}>*/}

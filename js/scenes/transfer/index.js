@@ -21,7 +21,7 @@ import styles2 from '../login/styles';
 import modalStyle from '../../components/styles/modal';
 import {logout, update_gold} from '../../actions/auth';
 import {select_free_type, change_receiver, change_value, update_config_ratio, toggle_tutorial, go_history} from './actions';
-import {refreshHistory} from '../historyTransfer/actions';
+import {refreshHistoryTranfer} from '../historyTransfer/actions';
 import Modal from 'react-native-modalbox';
 import axios, {CancelToken}from 'axios';
 import NumberFormater from '../../components/numberFormatter';
@@ -121,7 +121,7 @@ class TransferComponent extends Component {  //eslint-disable-line
     this.isVerifyReceiver = false;
     this.props.dispatch(change_value("0"));
     this.props.dispatch(change_receiver(""));
-    this.props.dispatch(refreshHistory());
+    this.props.dispatch(refreshHistoryTranfer());
     this.setError("");
   }
 

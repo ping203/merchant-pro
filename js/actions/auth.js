@@ -7,6 +7,9 @@ export const LOGOUT = 'LOGOUT';
 export const UPDATE_GOLD = 'UPDATE_GOLD';
 import {getAppNavigator}  from '../AppRouteConfigs';
 import {open_confirm_popup}  from './confirmPopup';
+import {refreshHistoryCashOut}  from '../scenes/cashOutHistory/actions';
+import {refreshHistoryTranfer}  from '../scenes/historyTransfer/actions';
+import {refreshHistoryTranfer as refreshHistoryTranferMerchant}  from '../scenes/historyTransferMerchant/actions';
 const AppNavigator = getAppNavigator();
 
 export function toggle_spin(showSpin) {
@@ -46,6 +49,9 @@ export function logout() {
       loginInfo : {}
     });
     dispatch(toggle_spin(false));
+    dispatch(refreshHistoryCashOut());
+    dispatch(refreshHistoryTranfer());
+    dispatch(refreshHistoryTranferMerchant());
     dispatch(AppNavigator.router.getActionForPathAndParams('login'));
   }
 }

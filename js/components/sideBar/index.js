@@ -8,6 +8,9 @@ import styles from './style';
 import {NavigationActions} from 'react-navigation';
 import HomeNavigation from '../../scenes/home';
 
+
+import NumberFormater from '../numberFormatter';
+
 const logo = require('../../../images/logo.png');
 
 class SideBar extends Component {
@@ -23,6 +26,7 @@ class SideBar extends Component {
   }
 
   render() {
+    const { username, money} = this.props;
     return (
       <Content style={{backgroundColor: '#252A30'}}>
         <Thumbnail
@@ -31,6 +35,30 @@ class SideBar extends Component {
           source={logo}
         />
 
+
+        <ListItem button onPress={() => {
+          this.changeNavigation.call(this, "cashIn")
+        }} icon style={styles.links}>
+          <Left>
+            <Icon name="ios-person"/>
+          </Left>
+          <Body>
+          <Text numberOfLines={1} ellipsizeMode="tail" style={{color: '#c4e1ff',}}>{username}</Text>
+          </Body>
+          <Right />
+        </ListItem>
+
+        <ListItem button onPress={() => {
+          this.changeNavigation.call(this, "cashIn")
+        }} icon style={styles.links}>
+          <Left>
+            <Icon name="logo-bitcoin"/>
+          </Left>
+          <Body>
+          <NumberFormater numberOfLines={1} ellipsizeMode="tail" style={{color: '#ffde00',}} format="0,0">{money}V</NumberFormater>
+          </Body>
+          <Right />
+        </ListItem>
         <ListItem button onPress={() => {
           this.changeNavigation.call(this, "cashIn")
         }} icon style={styles.links}>
@@ -100,9 +128,12 @@ function bindAction(dispatch) {
 }
 
 const mapStateToProps = state => {
+  const {loginInfo} = state.auth;
   const {appNavigation} = state;
   return {
-    appNavigation
+    appNavigation,
+    username: loginInfo.username,
+    money: loginInfo.money || 0,
   }
 };
 

@@ -36,7 +36,7 @@ export function fetchPosts(params) {
   }
 }
 
-export function refreshHistory(params) {
+export function refreshHistoryCashOut(params) {
   return {
     type: REFRESH_HISTORY
   }
@@ -44,7 +44,7 @@ export function refreshHistory(params) {
 
 export function refreshListHistory(params) {
   return async function (dispatch) {
-    dispatch(refreshHistory());
+    dispatch(refreshHistoryCashOut());
     dispatch(fetchPosts({
       "command": "fetch_cash_out_log",
       "type": 0,
