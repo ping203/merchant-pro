@@ -198,7 +198,7 @@ class CashOutHistoryComponent extends Component {
               renderFooter={()=>this._renderFooter.call(this)}
               renderHeader={()=>this._renderHeader.call(this)}
             />
-            {items && items.length == 0 && <Text>Danh sách quà của bạn trống</Text>}
+            {items && items.length == 0 && <Text style={{margin : 10, textAlign : "center"}}>Danh sách quà của bạn trống</Text>}
           </View>
         </Image>
         {/*<Footer style={{borderTopWidth: 0, backgroundColor: 'transparent'}}>*/}

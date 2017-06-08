@@ -112,6 +112,9 @@ class TransferComponent extends Component {  //eslint-disable-line
       }
     }).catch(function (thrown) {
       console.log('thrown submit cast in', thrown);
+      if(typeof thrown == "object"){
+        thrown = "Lỗi kết nối, vui lòng thử lại sau."
+      }
       _self.setError(thrown);
     });
   };
@@ -181,11 +184,13 @@ class TransferComponent extends Component {  //eslint-disable-line
   }
 
   showTutorial(type, value) {
-    this.props.dispatch(toggle_tutorial(!this.props.tutorialPopupStatus));
+    // this.props.dispatch(toggle_tutorial(!this.props.tutorialPopupStatus));
+    this.modal.open();
   }
 
-  toggleHistory() {
-    this.props.dispatch(toggle_tutorial(!this.props.tutorialPopupStatus));
+  closeTutorial() {
+    // this.props.dispatch(toggle_tutorial(!this.props.tutorialPopupStatus));
+    this.modal.close();
   }
 
   onOpenHistory() {
@@ -315,7 +320,7 @@ class TransferComponent extends Component {  //eslint-disable-line
               <Button
                 transparent
                 style={{position: 'absolute', top: 0, right: 0}}
-                onPress={this.toggleHistory.bind(this)}
+                onPress={this.closeTutorial.bind(this)}
               >
                 <Icon name="close" style={{color: '#c4e1ff'}}/>
               </Button>

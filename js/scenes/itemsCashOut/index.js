@@ -82,6 +82,9 @@ class ItemsCashOutComponent extends Component {
       )
     }).catch(function (thrown) {
       console.log('thrown submit cast in', thrown);
+      if(typeof thrown == "object"){
+        thrown = "Lỗi kết nối, vui lòng thử lại sau."
+      }
       Alert.alert(
         'Thông báo',
         thrown,

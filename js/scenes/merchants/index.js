@@ -42,6 +42,10 @@ class MerchantsComponent extends Component {
       modalData: {}
     }
     this.transferMerchantData = {};
+
+    this.state = {
+      errorMessage: '',
+    }
   }
 
   componentWillMount() {
@@ -92,6 +96,7 @@ class MerchantsComponent extends Component {
     this.transferMerchantData = {
       merchantName : rowData.merchantUsername
     };
+    this.modal.open();
     this.forceUpdate();
   }
 
@@ -100,6 +105,7 @@ class MerchantsComponent extends Component {
       openModal: false,
       modalData: {}
     };
+    this.modal.close();
     this.forceUpdate();
   }
 
@@ -151,6 +157,9 @@ class MerchantsComponent extends Component {
       }
     }).catch(function (thrown) {
       console.log('thrown submit cast in', thrown);
+      if(typeof thrown == "object"){
+        thrown = "Lỗi kết nối, vui lòng thử lại sau."
+      }
       Alert.alert(
         'Thông báo',
         thrown,
@@ -307,6 +316,9 @@ class MerchantsComponent extends Component {
                        }}
                 />
               </View>
+              <Text style={styles.errorMessage}>
+                {this.state.errorMessage}
+              </Text>
               <View style={styles.modalButtonBar}>
                 {/*<Button rounded block style={styles.whiteButton}*/}
                         {/*onPress={this.closeModal.bind(this)}>*/}

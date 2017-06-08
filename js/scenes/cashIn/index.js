@@ -162,6 +162,9 @@ class CashIn extends Component {  //eslint-disable-line
       }
     }).catch(function (thrown) {
       console.log('thrown submit cast in', thrown);
+      if(typeof thrown == "object"){
+        thrown = "Lỗi kết nối, vui lòng thử lại sau."
+      }
       _self.setError(thrown);
     });
   };
