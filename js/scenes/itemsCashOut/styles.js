@@ -235,7 +235,7 @@ export default {
     height: 50,
     borderRadius: 10,
     backgroundColor: "#cdac12",
-    width: deviceWidth * 0.25,
+    width: deviceWidth * 0.3,
     marginTop: 10,
   },
   whiteButton: {
@@ -243,7 +243,7 @@ export default {
     height: 50,
     borderRadius: 10,
     backgroundColor: "#a7b0cb",
-    width: deviceWidth * 0.25,
+    width: deviceWidth * 0.3,
     marginTop: 10,
   },
   yellowButtonText: {

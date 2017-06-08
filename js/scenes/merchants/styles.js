@@ -265,6 +265,7 @@ export default {
     marginTop : 5,
     marginBottom : 5,
     height : deviceWidth *60/640,
+    // width : deviceWidth * 240/640,
   },
   buttonHistoryText: {
     fontSize: theme.fontSizeBase * 1.05,
