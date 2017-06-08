@@ -25,7 +25,7 @@ import {logout, update_gold} from '../../actions/auth';
 
 
 const headerBg = require('../../../images/layout/header-bg.png');
-const defaultAvatar = require('../../../images/avatars/default.png');
+const defaultAvatar = require('../../../images/ava.png');
 import homeTabs from '../../scenes/home';
 import {NavigationActions} from 'react-navigation'
 
