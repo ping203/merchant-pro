@@ -61,21 +61,23 @@ class HeaderComponent extends Component {
 
         <View style={styles.headerInner}>
 
-          {hasBack && <View style={styles.headerButtonLeftWrapper}>
-            <Button style={styles.headerButtonLeft} transparent onPress={() => this.props.back()}>
-              <Icon active name="md-arrow-dropleft-circle" style={{fontSize: 50, color: "#616da2"}}/>
-            </Button>
-          </View>}
-          {!hasBack && <View style={styles.headerButtonLeftWrapper}>
-            <Button transparent onPress={() => this.openDrawer.call(this)} style={styles.headerButtonLeft}>
-              <Icon active name="menu" style={{fontSize: 30, lineHeight: 32}}/>
-            </Button>
-          </View>}
-          {/*<View>*/}
-          <View style={styles.headerLeft}>
-            <Text numberOfLines={1} ellipsizeMode="tail" style={{color: '#c4e1ff',}}>{username}</Text>
-            <NumberFormater numberOfLines={1} ellipsizeMode="tail" style={{color: '#ffde00',}}
-                            format="0,0">{money}V</NumberFormater>
+          <View  style={styles.headerLeftWrapper}>
+
+            {hasBack && <View style={styles.headerButtonLeftWrapper}>
+              <Button style={styles.headerButtonLeft} transparent onPress={() => this.props.back()}>
+                <Icon active name="md-arrow-dropleft-circle" style={{fontSize: 50, color: "#616da2"}}/>
+              </Button>
+            </View>}
+            {!hasBack && <View style={styles.headerButtonLeftWrapper}>
+              <Button transparent onPress={() => this.openDrawer.call(this)} style={styles.headerButtonLeft}>
+                <Icon active name="menu" style={{fontSize: 30, lineHeight: 32}}/>
+              </Button>
+            </View>}
+            <View style={styles.headerLeft}>
+              <Text numberOfLines={1} ellipsizeMode="tail" style={{color: '#c4e1ff',}}>{username}</Text>
+              <NumberFormater numberOfLines={1} ellipsizeMode="tail" style={{color: '#ffde00',}}
+                              format="0,0">{money}V</NumberFormater>
+            </View>
           </View>
 
           {avtUrl == null && <Image source={{uri: avtUrl}} resizeMode='cover' style={styles.headerAvatar}></Image>}
@@ -90,16 +92,11 @@ class HeaderComponent extends Component {
             {isActived &&
             < Text style={{
               color: "#add329", flex: 1, flexDirection: 'row', justifyContent: "center", alignItems: "center"
-            }}>
+            }} numberOfLines={1}>
               {telephone}
             </Text>}
           </View>
           {/*</View>*/}
-          <View style={styles.headerButtonRightWrapper}>
-            <Button transparent style={styles.headerButtonLeft}>
-              <Icon active name="menu" style={{fontSize: 30, lineHeight: 32, opacity: 0}}/>
-            </Button>
-          </View>
         </View>
       </Image>
 

@@ -245,6 +245,7 @@ class CashIn extends Component {  //eslint-disable-line
                 </Item>
                 <Item style={styles2.inputWrapper}>
                   <Input style={{textAlign: 'center', paddingRight: 20, paddingLeft: 20}}
+                         autoCorrect={false}
                          placeholder={"Mã thẻ"}
                          placeholderTextColor="#7481a7"
                          onChangeText={code => this.onChangeField("code", code)}

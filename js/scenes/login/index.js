@@ -23,8 +23,13 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
+      usernameRegister: '',
+      passwordRegister: '',
+      telephone: '',
       errorMessage: '',
-      onExp: false
+      errorMessageRegister: '',
+      onExp: false,
+      isRegister: false
     };
   }
 
@@ -71,6 +76,64 @@ class Login extends Component {
       _self.setError(thrown);
     });
 
+  }
+
+  async register() {
+    var _self = this;
+    if (!this.state.usernameRegister.length || !this.state.passwordRegister.length) {
+      _self.setState(prevState => ({
+        errorMessageRegister: "Vui lòng nhập thông tin tài khoản"
+      }));
+      return;
+    }
+    _self.props.dispatch(toggle_spin(true));
+    var imei = await  this.getImei();
+    httpService.post("", {
+      command: "register",
+      type: "normal",
+      username: this.state.usernameRegister,
+      password: this.state.passwordRegister,
+      imei
+    }).then(this.handleRegister.bind(this)).catch(function (thrown) {
+      console.log('thrown.message register', thrown);
+      _self.setState(prevState => ({
+        errorMessageRegister: thrown
+      }));
+    });
+
+  }
+
+  handleRegister(response) {
+    var _self = this;
+    var data = response.data;
+    if (data.status) {
+      _self.props.dispatch(toggle_spin(false));
+      _self.setState({errorMessageRegister: data.message});
+    } else {
+      const {usernameRegister, passwordRegister} = this.state;
+      _self.setState({errorMessageRegister: "", username : usernameRegister, password : passwordRegister });
+      _self.login.call(this);
+    }
+  }
+
+  async getImei() {
+    var imei = await AsyncStorage.getItem('imei');
+    if (!imei) {
+      imei = this.randomImei();
+    }
+    await AsyncStorage.setItem('imei', imei);
+    return imei;
+  }
+
+  randomImei() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+      s4() + '-' + s4() + s4() + s4();
   }
 
   handleLogin(response) {
@@ -134,12 +197,13 @@ class Login extends Component {
   }
 
   focusPassword() {
-    console.log("this.refs.passwordInput",this.refs.passwordInput);
+    console.log("this.refs.passwordInput", this.refs.passwordInput);
     // this.refs.passwordInput._root.focus();
   }
 
   render() {
     const {showSpin} = this.props;
+    const {isRegister} = this.state;
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
         <Image source={backgroundImage} style={styles.container}>
@@ -147,7 +211,7 @@ class Login extends Component {
             <View style={styles.bg}>
               <Image source={logo} resizeMode='cover' style={styles.logo}/>
               {/*<Item underline style={{marginBottom: 20}}>*/}
-              <View style={styles.innerView}>
+              {!isRegister && <View style={styles.innerView}>
 
                 <Item style={styles.inputWrapper}>
                   {/*<Icon active name="person"/>*/}
@@ -158,7 +222,7 @@ class Login extends Component {
                          placeholderTextColor="#7481a7"
                          onChangeText={username => {
                            this.setUsername(username);
-                          }}
+                         }}
                          onSubmitEditing={() => this.refs.passwordInput._root.focus()}
                   />
                 </Item>
@@ -183,9 +247,14 @@ class Login extends Component {
                 {showSpin && <Spinner color="#999"/>}
                 {!showSpin && <Button rounded block style={styles.loginButton} onPress={ () => this.login() }>
                   <Text style={{color: '#ffffff'}}>
-                    Login
+                    ĐĂNG NHẬP
                   </Text>
                 </Button>}
+
+                {!showSpin &&
+                <Text style={styles.loginText} onPress={() => this.setState({isRegister: true})}>
+                  ĐĂNG KÝ
+                </Text>}
 
 
                 {!showSpin && <View style={styles.facebookWrapper}>
@@ -194,16 +263,80 @@ class Login extends Component {
                   <TouchableHighlight onPress={ () => this.loginFacebook() }>
                     <Image source={facebookButton} resizeMode='cover' style={styles.facebookButton}/>
                   </TouchableHighlight>
-                  <Text onPress={ () => this.loginFacebook() } style={{color: '#405688', marginTop : 10}}>
+                  <Text onPress={ () => this.loginFacebook() } style={{color: '#405688', marginTop: 10}}>
                     Đăng nhập qua Facebook
                   </Text>
                 </View>}
-                {/*<Button transparent style={{alignSelf: 'center'}} onPress={() => Actions.signUp()}>*/}
-                {/*<Text>*/}
-                {/*Sign Up Here*/}
-                {/*</Text>*/}
-                {/*</Button>*/}
-              </View>
+              </View>}
+              {isRegister && <View style={styles.innerView}>
+
+                <Item style={styles.inputWrapper}>
+                  <Icon active name="person" style={styles.inputIcon}/>
+                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
+                         autoCorrect={false}
+                         placeholder="Tài khoản"
+                         placeholderTextColor="#7481a7"
+                         onChangeText={usernameRegister => {
+                           this.setState({usernameRegister, errorMessageRegister: ""});
+                         }}
+                         onSubmitEditing={() => this.refs.passwordRegisterInput._root.focus()}
+                  />
+                </Item>
+                <Item style={styles.inputWrapper}>
+                  <Icon name="unlock" style={styles.inputIcon}/>
+                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
+                         placeholder="Mật khẩu"
+                         placeholderTextColor="#7481a7"
+                         secureTextEntry
+                         onChangeText={passwordRegister => {
+                           this.setState({passwordRegister, errorMessageRegister: ""})
+                         }}
+                         ref='passwordRegisterInput'
+                         onSubmitEditing={() => this.refs.telephoneInput._root.focus()}
+
+                  />
+                </Item>
+                <Item style={styles.inputWrapper}>
+                  <Icon name="md-phone-portrait" style={styles.inputIcon}/>
+                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
+                         placeholder="Số điện thoại"
+                         placeholderTextColor="#7481a7"
+                         secureTextEntry
+                         onChangeText={telephone => {
+                           this.setState({telephone})
+                         }}
+                         ref='telephoneInput'
+                         onSubmitEditing={() => this.register.call(this)}
+                  />
+                </Item>
+                <Text style={styles.errorMessage}>
+                  {this.state.errorMessageRegister}
+                </Text>
+
+                {showSpin && <Spinner color="#999"/>}
+                {!showSpin && <Button rounded block style={styles.loginButton} onPress={ () => this.register() }>
+                  <Text style={{color: '#ffffff'}}>
+                    ĐĂNG KÝ
+                  </Text>
+                </Button>}
+
+                {!showSpin &&
+                <Text style={styles.loginText} onPress={() => this.setState({isRegister: false})}>
+                  ĐĂNG NHẬP
+                </Text>}
+
+
+                {!showSpin && <View style={styles.facebookWrapper}>
+                  {/*<Button rounded block style={{marginBottom: 10}} >*/}
+                  {/*</Button>*/}
+                  <TouchableHighlight onPress={ () => this.loginFacebook() }>
+                    <Image source={facebookButton} resizeMode='cover' style={styles.facebookButton}/>
+                  </TouchableHighlight>
+                  <Text onPress={ () => this.loginFacebook() } style={{color: '#405688', marginTop: 10}}>
+                    Đăng nhập qua Facebook
+                  </Text>
+                </View>}
+              </View>}
             </View>
           </Content>
         </Image>

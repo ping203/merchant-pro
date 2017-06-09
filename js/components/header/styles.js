@@ -55,6 +55,14 @@ export default {
     width: deviceWidth / 8,
     height: deviceWidth / 8
   },
+  headerLeftWrapper: {
+    height: deviceWidth / 8,
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginRight: 15,
+  },
   headerLeft: {
     width: deviceWidth * 0.27,
     height: deviceWidth / 8,
@@ -62,7 +70,6 @@ export default {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "flex-end",
-    marginRight: 15,
   },
   headerRight: {
     width: deviceWidth * 0.27,

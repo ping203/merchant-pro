@@ -11,13 +11,14 @@ export default {
     Object.assign(postConfig,{
       headers: {'X-Requested-With': 'XMLHttpRequest'}
     });
-    Object.assign(params,{
+    var mappingParams = Object.assign({
       platformId : config.platformId,
       imei : config.imei,
       version : config.version,
       bundleId : config.bundleId
-    });
-    var request = axios.post(config.host + url, params, postConfig);
+    },params);
+    console.log("params",params);
+    var request = axios.post(config.host + url, mappingParams, postConfig);
     return request;
   },
   post2 : function (url,params, postConfig = {}) {

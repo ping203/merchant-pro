@@ -46,7 +46,7 @@ export default{
     borderWidth: 2,
     borderColor: '#464a60',
     borderRadius: 5,
-    marginBottom: 15
+    marginBottom: 10
   },
   inputIcon: {
     position: "absolute",
@@ -81,5 +81,11 @@ export default{
     marginBottom: (Platform.OS === 'ios') ? 10 : 0,
     marginTop: (Platform.OS === 'ios') ? 10 : 0,
     fontSize: theme.fontSizeBase * 0.8,
+  },
+  loginText: {
+    color : "#4c6db5",
+    fontSize : theme.fontSizeBase * 1.1,
+    fontWeight : "bold",
+    textAlign : "center"
   },
 }
