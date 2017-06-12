@@ -251,7 +251,7 @@ class Login extends Component {
                 </Button>}
 
                 {!showSpin &&
-                <Text style={styles.loginText} onPress={() => this.setState({isRegister: true})}>
+                <Text style={styles.loginText} onPress={() => this.setState({isRegister: true, errorMessageRegister : ""})}>
                   ĐĂNG KÝ
                 </Text>}
 
@@ -320,7 +320,7 @@ class Login extends Component {
                 </Button>}
 
                 {!showSpin &&
-                <Text style={styles.loginText} onPress={() => this.setState({isRegister: false})}>
+                <Text style={styles.loginText} onPress={() => this.setState({isRegister: false, errorMessage : ""})}>
                   ĐĂNG NHẬP
                 </Text>}
 
