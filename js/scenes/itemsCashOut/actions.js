@@ -23,6 +23,7 @@ export function fetchPosts(params) {
     return http.postWithConvert("", params)
       .then(response => {
         if (response.status == 0) {
+          console.log("response.data",response.data["4"]);
           dispatch(receive(response.data["4"]));
         }else {
           throw data.message;

@@ -19,6 +19,7 @@ let moment = require('moment');
 import Modal from 'react-native-modalbox';
 import httpService from '../../common/http';
 import {logout, update_gold} from '../../actions/auth';
+import AlertPopup from '../../components/alertPopup';
 
 moment.locale('vi');
 
@@ -37,6 +38,7 @@ class ItemsCashOutComponent extends Component {
       openModal: false,
       modalData: {}
     }
+    this.state = {};
   }
 
   componentWillMount() {
@@ -46,10 +48,9 @@ class ItemsCashOutComponent extends Component {
   _loadMoreContentAsync() {
     this.props.dispatch(fetchPosts({
       "command": "fetch_cash_out_item",
-      "type": 4,//1: thẻ       2: ngân hàng        3: đại lý      4: vật phẩm
+      "productType": 4,//1: thẻ       2: ngân hàng        3: đại lý      4: vật phẩm
       // "skip": this.props.items.length,
-      "skip": 0,
-      "limit": 30
+      "skip": 0
     }));
   }
 
@@ -68,37 +69,25 @@ class ItemsCashOutComponent extends Component {
         _self.props.dispatch(update_gold(response.money));
       }
 
-      Alert.alert(
-        'Thông báo',
-        response.message,
-        [
-          {
-            text: 'OK', onPress: () => {
-            _self.closeModal.call(_self)
-          }
-          },
-        ],
-        {cancelable: true}
-      )
+      _self.setState({alertMessage : response.message});
+      _self.refs.successPopup.open();
     }).catch(function (thrown) {
       console.log('thrown submit cast in', thrown);
       if(typeof thrown == "object"){
         thrown = "Lỗi kết nối, vui lòng thử lại sau."
       }
-      Alert.alert(
-        'Thông báo',
-        thrown,
-        [
-          {
-            text: 'OK', onPress: () => {
-            _self.closeModal.call(_self)
-          }
-          },
-        ],
-        {cancelable: true}
-      )
+      _self.setState({alertMessage : thrown});
+      _self.refs.alertPopup.open();
     });
-  };
+  }
+
+  clearSuccess() {
+    var _self = this;
+    setTimeout(()=>{
+      _self.props.dispatch(refreshListHistory());
+    },1000)
+    _self.closeModal.call(_self);
+  }
 
   componentWillReceiveProps(nextProps) {
     this.dataSource = this.getUpdatedDataSource(nextProps);
@@ -184,6 +173,7 @@ class ItemsCashOutComponent extends Component {
   }
 
   render() {
+    const {alertMessage} = this.state;
     const {items, total, skip, money} = this.props;
     const {openModal, modalData} = this.modalData;
 
@@ -269,6 +259,9 @@ class ItemsCashOutComponent extends Component {
             </View>
           </View>
         </Modal>
+
+        <AlertPopup ref='alertPopup' message={alertMessage} callback={this.closeModal.bind(this)} ></AlertPopup>
+        <AlertPopup ref='successPopup' message={alertMessage} callback={this.clearSuccess.bind(this)} ></AlertPopup>
       </Container>
 
 

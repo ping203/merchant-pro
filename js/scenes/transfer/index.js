@@ -25,6 +25,7 @@ import {refreshHistoryTranfer} from '../historyTransfer/actions';
 import Modal from 'react-native-modalbox';
 import axios, {CancelToken}from 'axios';
 import NumberFormater from '../../components/numberFormatter';
+import AlertPopup from '../../components/alertPopup';
 
 
 const glow2 = require('../../../images/glow2-new.png');
@@ -101,14 +102,8 @@ class TransferComponent extends Component {  //eslint-disable-line
       } else {
         _self.setError("");
         _self.props.dispatch(update_gold(data.money));
-        Alert.alert(
-          'Thông báo',
-          data.message,
-          [
-            {text: 'OK', onPress: () => _self.clearState()},
-          ],
-          {cancelable: true}
-        )
+        _self.setState({alertMessage : data.message});
+        _self.refs.alertPopup.open();
       }
     }).catch(function (thrown) {
       console.log('thrown submit cast in', thrown);
@@ -203,6 +198,7 @@ class TransferComponent extends Component {  //eslint-disable-line
 
 
   render() {
+    const {alertMessage} = this.state;
     const {feeType, receiver, value, ratio, money, tutorialPopupStatus} = this.props;
     const {isVerifyReceiver} = this;
     var remainingRatio = 1;
@@ -345,6 +341,7 @@ class TransferComponent extends Component {  //eslint-disable-line
               </ScrollView>
             </View>
           </Modal>
+          <AlertPopup ref='alertPopup' message={alertMessage} callback={this.clearState.bind(this)}></AlertPopup>
         </Image>
       </Container>
     );

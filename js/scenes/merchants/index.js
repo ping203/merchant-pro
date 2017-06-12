@@ -27,6 +27,7 @@ import Modal from 'react-native-modalbox';
 import modalStyle from '../../components/styles/modal';
 import TransferMerchantForm from './transferMerchant'
 import FooterComponent from '../../components/footer/index';
+import AlertPopup from '../../components/alertPopup';
 
 const glow2 = require('../../../images/glow2-new.png');
 
@@ -129,49 +130,23 @@ class MerchantsComponent extends Component {
       description
     }).then(async function (response) {
       if (response.status) {
-        Alert.alert(
-          'Thông báo',
-          response.message,
-          [
-            {
-              text: 'OK', onPress: () => {
-            }
-            },
-          ],
-          {cancelable: true}
-        )
+
+        _self.setState({alertMessage : response.message});
+        _self.refs.alertPopup.open();
       } else {
         _self.props.dispatch(update_gold(response.money));
-        Alert.alert(
-          'Thông báo',
-          response.message,
-          [
-            {
-              text: 'OK', onPress: () => {
-              _self.closeModal.call(_self)
-            }
-            },
-          ],
-          {cancelable: true}
-        )
+
+        _self.setState({alertMessage : response.message});
+        _self.refs.alertPopup.open();
       }
     }).catch(function (thrown) {
       console.log('thrown submit cast in', thrown);
       if(typeof thrown == "object"){
         thrown = "Lỗi kết nối, vui lòng thử lại sau."
       }
-      Alert.alert(
-        'Thông báo',
-        thrown,
-        [
-          {
-            text: 'OK', onPress: () => {
-            _self.closeModal.call(_self)
-          }
-          },
-        ],
-        {cancelable: true}
-      )
+
+      _self.setState({alertMessage : response.message});
+      _self.refs.alertPopup.open();
     });
   }
 
@@ -219,6 +194,7 @@ class MerchantsComponent extends Component {
   }
 
   render() {
+    const {alertMessage} = this.state;
     const {items, total, skip} = this.props;
     const {openModal, modalData} = this.modalData;
     this.transferMerchantData.feeValue = this.transferMerchantData.feeValue ? Math.round(this.transferMerchantData.feeValue).toString() : "0";
@@ -381,6 +357,7 @@ class MerchantsComponent extends Component {
             </ScrollView>
           </View>
         </Modal>
+        <AlertPopup ref='alertPopup' message={alertMessage} callback={this.closeModal.bind(this)}></AlertPopup>
       </Container>
     );
   }

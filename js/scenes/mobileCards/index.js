@@ -20,6 +20,7 @@ import Modal from 'react-native-modalbox';
 import httpService from '../../common/http';
 import {logout, update_gold} from '../../actions/auth';
 import {refreshListHistory} from '../cashOutHistory/actions';
+import AlertPopup from '../../components/alertPopup';
 
 moment.locale('vi');
 
@@ -38,6 +39,7 @@ class MobileCardsComponent extends Component {
       openModal: false,
       modalData: {}
     }
+    this.state = {};
   }
 
   componentWillMount() {
@@ -47,10 +49,9 @@ class MobileCardsComponent extends Component {
   _loadMoreContentAsync() {
     this.props.dispatch(fetchMobileCard({
       "command": "fetch_cash_out_item",
-      "type": 1,
+      "producttype": 1,
       // "skip": this.props.items.length,
       "skip": 0,
-      "limit": 15
     }));
   }
 
@@ -69,37 +70,17 @@ class MobileCardsComponent extends Component {
         _self.props.dispatch(update_gold(response.money));
       }
 
-      Alert.alert(
-        'Thông báo',
-        response.message,
-        [
-          {
-            text: 'OK', onPress: () => {
-            _self.clearSuccess.call(_self)
-          }
-          },
-        ],
-        {cancelable: true}
-      )
+      _self.setState({alertMessage : response.message});
+      _self.refs.successPopup.open();
     }).catch(function (thrown) {
       console.log('thrown submit cast in', thrown);
       if(typeof thrown == "object"){
         thrown = "Lỗi kết nối, vui lòng thử lại sau."
       }
-      Alert.alert(
-        'Thông báo',
-        thrown,
-        [
-          {
-            text: 'OK', onPress: () => {
-            _self.closeModal.call(_self)
-          }
-          },
-        ],
-        {cancelable: true}
-      )
+      _self.setState({alertMessage : thrown});
+      _self.refs.alertPopup.open();
     });
-  };
+  }
 
   clearSuccess() {
     var _self = this;
@@ -190,6 +171,7 @@ class MobileCardsComponent extends Component {
   }
 
   render() {
+    const {alertMessage} = this.state;
     const {items, total, skip, money} = this.props;
     const {openModal, modalData} = this.modalData;
 
@@ -275,6 +257,9 @@ class MobileCardsComponent extends Component {
             </View>
           </View>
         </Modal>
+
+        <AlertPopup ref='alertPopup' message={alertMessage} callback={this.closeModal.bind(this)} ></AlertPopup>
+        <AlertPopup ref='successPopup' message={alertMessage} callback={this.clearSuccess.bind(this)} ></AlertPopup>
       </Container>
 
 

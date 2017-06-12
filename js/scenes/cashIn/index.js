@@ -22,7 +22,7 @@ import {
 } from 'native-base';
 
 import {openDrawer} from '../../actions/drawer';
-import FooterComponent from '../../components/footer/index';
+import AlertPopup from '../../components/alertPopup';
 import HeaderComponent from '../../components/header/index';
 import ConfirmComponent from '../../components/confirmPopup/index';
 import styles from './styles';
@@ -151,14 +151,8 @@ class CashIn extends Component {  //eslint-disable-line
       } else {
         _self.setError("");
         _self.props.dispatch(update_gold(data.money));
-        Alert.alert(
-          'Thông báo',
-          data.message,
-          [
-            {text: 'OK', onPress: () => _self.clear()},
-          ],
-          {cancelable: true}
-        )
+        _self.setState({alertMessage : data.message});
+        _self.refs.alertPopup.open();
       }
     }).catch(function (thrown) {
       console.log('thrown submit cast in', thrown);
@@ -194,6 +188,7 @@ class CashIn extends Component {  //eslint-disable-line
 
 
   render() {
+    const {alertMessage} = this.state;
     const {selectedCardType, configGoldRatio, serial, code, isActived} = this.props;
     var placeholderCode = "Mã thẻ " + selectedCardType.name;
     var placeholderSerial = "Seri thẻ " + selectedCardType.name;
@@ -282,6 +277,7 @@ class CashIn extends Component {  //eslint-disable-line
 
 
           {!isActived && <ConfirmComponent ></ConfirmComponent>}
+          <AlertPopup ref='alertPopup' message={alertMessage} callback={this.clear.bind(this)}></AlertPopup>
         </Image>
       </Container>
     );

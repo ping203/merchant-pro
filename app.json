@@ -1,7 +1,7 @@
 {
   "expo": {
     "sdkVersion": "15.0.0",
-    "icon": "./images/logo-2.png",
+    "icon": "./images/logo-new.png",
     "slug": "C567Plus",
     "loading": {
       "hideExponentText": true,
