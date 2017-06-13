@@ -285,7 +285,7 @@ class MerchantsComponent extends Component {
               </View>
               <View style={styles.inputWrapper}>
                 <Input style={styles.inputInner}
-                       placeholder="Nội dung chuyển tiền"
+                       placeholder="Nội dung chuyển vàng"
                        placeholderTextColor="#7481a7"
                        onChangeText={description => {
                          this.setTransferMerchantData.call(this, {description});

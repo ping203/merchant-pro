@@ -77,7 +77,7 @@ class SideBar extends Component {
             <Icon active name="ios-paper-plane"/>
           </Left>
           <Body>
-          <Text>Chuyển tiền</Text>
+          <Text>Chuyển vàng</Text>
           </Body>
           {/*<Right>*/}
             {/*<Badge style={{marginBottom: 8}}><Text>2</Text></Badge>*/}
