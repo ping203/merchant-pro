@@ -80,7 +80,6 @@ class ConfirmComponent extends Component {
         selectedMessage = messageConfig[properties];
       }
     }
-
     return (
       <Modal
         style={[styles.modal, styles.modal2]}
@@ -90,8 +89,8 @@ class ConfirmComponent extends Component {
         }}
         swipeToClose={false}
         isOpen={openState === "opened"}
-        // onOpened={this.onOpened.bind(this)}
-        // onClosed={this.onClosed.bind(this)}
+        onOpened={this.onOpened.bind(this)}
+        onClosed={this.onClosed.bind(this)}
       >
         <View  style={styles.header}>
           <Text style={{color : "#c4e1ff"}}>

@@ -57,7 +57,7 @@ HomeNavigation.router.getStateForAction = (action, state) => {
   var storeData = Object.assign({},store.getState());
   var isActived = storeData.auth.loginInfo.isTelephoneVerified;
   var isLogin = storeData.auth.isLogin;
-  if(isLogin && !isActived){
+  if(isLogin && !isActived && action.routeName!="cashIn"){
     setTimeout(()=>{
       store.dispatch(open_confirm_popup());
     },0);
