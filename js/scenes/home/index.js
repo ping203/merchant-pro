@@ -4,13 +4,14 @@ import TransferTab from '../transferTab/';
 import CashIn from '../cashIn/';
 import CashOutTab from '../cashOutTab';
 import CashOutHistory from '../cashOutHistory';
+import HistoryTransfer from '../historyTransfer';
 import {StackNavigator, addNavigationHelpers, TabNavigator, NavigationActions} from 'react-navigation';
 import store from '../../configureStore';
 import {open_confirm_popup} from '../../actions/confirmPopup';
 import TabButton from './tabButton';
 
 const AppRouteConfigs = {
-  cashIn: {screen: CashIn},
+  cashIn: {screen: HistoryTransfer},
   transferTab: {screen: TransferTab },
   cashOutTab: {screen: CashOutTab},
   cashOutHistory: {screen: CashOutHistory},

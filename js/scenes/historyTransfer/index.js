@@ -36,6 +36,10 @@ class HistoryTransferComponent extends Component {
     }
   }
 
+  static navigationOptions = ({navigation}) => ({
+    title: `LỊCH SỬ`,
+  });
+
   _loadMoreContentAsync() {
     this.props.dispatch(fetchPosts({
       "command": "fetch_transfer_log",
@@ -126,7 +130,6 @@ class HistoryTransferComponent extends Component {
   }
 
   render() {
-    console.log("render");
     const {items, total, skip} = this.props;
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
