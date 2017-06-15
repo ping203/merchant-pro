@@ -39,21 +39,17 @@ class Login extends Component {
 
   _loadInitialState = async () => {
     var _self = this;
-    try {
-      _self.props.dispatch(toggle_spin(true));
-      var value = await AsyncStorage.getItem("authData");
-      if (value !== null) {
-        var authData = JSON.parse(value);
-        if (new Date().getTime() < authData.exp) {
-          _self.props.dispatch(login_success(authData));
-        } else {
-          _self.props.dispatch(toggle_spin(false));
-        }
+    _self.props.dispatch(toggle_spin(true));
+    var value = await AsyncStorage.getItem("authData");
+    if (value !== null) {
+      var authData = JSON.parse(value);
+      if (new Date().getTime() < authData.exp) {
+        _self.props.dispatch(login_success(authData));
       } else {
         _self.props.dispatch(toggle_spin(false));
       }
-    } catch (error) {
-      _self.setError('' + error.message);
+    } else {
+      _self.props.dispatch(toggle_spin(false));
     }
   };
 
@@ -73,6 +69,10 @@ class Login extends Component {
 
     }).then(this.handleLogin.bind(this)).catch(function (thrown) {
       console.log('thrown.message login', thrown);
+      if(typeof thrown !="string"){
+        thrown = "Lỗi server !"
+      }
+      _self.props.dispatch(toggle_spin(false));
       _self.setError(thrown);
     });
 
@@ -96,6 +96,7 @@ class Login extends Component {
       imei
     }).then(this.handleRegister.bind(this)).catch(function (thrown) {
       console.log('thrown.message register', thrown);
+      _self.props.dispatch(toggle_spin(false));
       _self.setState(prevState => ({
         errorMessageRegister: thrown
       }));
@@ -111,7 +112,7 @@ class Login extends Component {
       _self.setState({errorMessageRegister: data.message});
     } else {
       const {usernameRegister, passwordRegister} = this.state;
-      _self.setState({errorMessageRegister: "", username : usernameRegister, password : passwordRegister });
+      _self.setState({errorMessageRegister: "", username: usernameRegister, password: passwordRegister});
       _self.login.call(this);
     }
   }
@@ -137,6 +138,7 @@ class Login extends Component {
   }
 
   handleLogin(response) {
+    console.log("handleLogin", handleLogin);
     var _self = this;
     var data = response.data;
     if (data.status) {
@@ -251,7 +253,8 @@ class Login extends Component {
                 </Button>}
 
                 {!showSpin &&
-                <Text style={styles.loginText} onPress={() => this.setState({isRegister: true, errorMessageRegister : ""})}>
+                <Text style={styles.loginText}
+                      onPress={() => this.setState({isRegister: true, errorMessageRegister: ""})}>
                   ĐĂNG KÝ
                 </Text>}
 
@@ -320,7 +323,7 @@ class Login extends Component {
                 </Button>}
 
                 {!showSpin &&
-                <Text style={styles.loginText} onPress={() => this.setState({isRegister: false, errorMessage : ""})}>
+                <Text style={styles.loginText} onPress={() => this.setState({isRegister: false, errorMessage: ""})}>
                   ĐĂNG NHẬP
                 </Text>}
 

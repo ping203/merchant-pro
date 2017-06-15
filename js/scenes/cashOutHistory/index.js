@@ -10,16 +10,10 @@ import {
 } from 'native-base';
 
 import {fetchPosts, refreshListHistory} from './actions';
-import {select_card_type, change_code, change_serial, update_config_ratio} from '../cashIn/actions';
-import HeaderWithBackComponent from '../../components/header/headerWithBack';
-import FooterComponent from '../../components/footer/index';
 import HeaderComponent from '../../components/header/index';
 import InfiniteScrollView from 'react-native-infinite-scroll-view';
-import NumberFormater from '../../components/numberFormatter';
 import styles from './styles';
 let moment = require('moment');
-var GiftedListView = require('react-native-gifted-listview');
-var GiftedSpinner = require('react-native-gifted-spinner');
 import {Actions, ActionConst} from 'react-native-router-flux';
 import {change_footer} from '../../actions/footerState';
 import homeNavigation from '../home';
@@ -30,7 +24,7 @@ const glow2 = require('../../../images/glow2-new.png');
 
 class CashOutHistoryComponent extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: `NHẬN QUÀ`,
+    title: `ƯU ĐÃI`,
   });
 
   constructor(props, context) {

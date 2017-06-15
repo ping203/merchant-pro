@@ -2,7 +2,7 @@
   "expo": {
     "sdkVersion": "15.0.0",
     "icon": "./images/logo-new.png",
-    "slug": "C567Plus",
+    "slug": "C567PlusIOS",
     "loading": {
       "hideExponentText": true,
       "icon": "./images/loading.png",

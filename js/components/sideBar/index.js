@@ -37,7 +37,7 @@ class SideBar extends Component {
 
 
         <ListItem button onPress={() => {
-          this.changeNavigation.call(this, "cashIn")
+          this.changeNavigation.call(this, "news")
         }} icon style={styles.links}>
           <Left>
             <Icon name="ios-person"/>
@@ -49,7 +49,7 @@ class SideBar extends Component {
         </ListItem>
 
         <ListItem button onPress={() => {
-          this.changeNavigation.call(this, "cashIn")
+          this.changeNavigation.call(this, "news")
         }} icon style={styles.links}>
           <Left>
             <Icon name="logo-bitcoin"/>
@@ -60,37 +60,24 @@ class SideBar extends Component {
           <Right />
         </ListItem>
         <ListItem button onPress={() => {
-          this.changeNavigation.call(this, "cashIn")
+          this.changeNavigation.call(this, "news")
         }} icon style={styles.links}>
           <Left>
-            <Icon name="logo-usd"/>
+            <Icon name="ios-paper"/>
           </Left>
           <Body>
-          <Text >Nạp vàng</Text>
+          <Text >Tin tức</Text>
           </Body>
           <Right />
         </ListItem>
         <ListItem button onPress={() => {
-           this.changeNavigation.call(this, "transferTab")
+          this.changeNavigation.call(this, "otp")
         }} icon style={styles.links}>
           <Left>
-            <Icon active name="ios-paper-plane"/>
+            <Icon active name="unlock"/>
           </Left>
           <Body>
-          <Text>Chuyển vàng</Text>
-          </Body>
-          {/*<Right>*/}
-            {/*<Badge style={{marginBottom: 8}}><Text>2</Text></Badge>*/}
-          {/*</Right>*/}
-        </ListItem>
-        <ListItem button onPress={() => {
-          this.changeNavigation.call(this, "cashOut")
-        }} icon style={styles.links}>
-          <Left>
-            <Icon active name="ios-cart"/>
-          </Left>
-          <Body>
-          <Text>Quà tặng</Text>
+          <Text>OTP</Text>
           </Body>
           <Right />
         </ListItem>
@@ -101,7 +88,7 @@ class SideBar extends Component {
             <Icon name="ios-basket"/>
           </Left>
           <Body>
-          <Text>Nhận quà</Text>
+          <Text>Ưu đãi</Text>
           </Body>
           <Right />
         </ListItem>

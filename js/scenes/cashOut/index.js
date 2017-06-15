@@ -15,7 +15,7 @@ import HeaderComponent from '../../components/header/index';
 import styles from './styles';
 
 const glow2 = require('../../../images/glow2-new.png');
-const giftImage = require('../../../images/cashOut/gift.png');
+const giftImage = require('../../../images/ava.png');
 import {change_footer} from '../../actions/footerState';
 import cashOutTab from '../cashOutTab';
 import homeNavigation from '../home';

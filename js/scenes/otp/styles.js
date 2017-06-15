@@ -4,12 +4,13 @@ const {StyleSheet, Dimensions, Platform} = React;
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
+import theme from "../../themes/base-theme";
 
 export default {
   container: {
     flex: 1,
     width: null,
-    height: null,
+    height: null
   },
   headerContainer: {
     width: deviceWidth,
@@ -80,8 +81,47 @@ export default {
     fontSize: (Platform.OS === 'ios') ? 35 : 25,
   }
   ,
-  listitem: {
-    borderBottomWidth: 0.5,
-    borderBottomColor: '#ddd',
-  }
+  newsListTittle: {
+    fontSize : theme.fontSizeH2,
+    color : "#c4e1ff",
+    margin : 20,
+    textAlign : "center",
+    flex : 1,
+  },
+  bg: {
+    marginTop : 10,
+    left: 0,
+    paddingTop: 0,
+    height: null,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: (Platform.OS === 'ios') ? 50 : 50,
+    // position: "relative",
+    // zIndex : -1
+  },
+  innerView: {
+    paddingLeft: deviceWidth / 16,
+    paddingRight: deviceWidth / 16,
+  },
+  inputWrapper: {
+    position: "relative",
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    borderColor: '#464a60',
+    borderRadius: 5,
+    marginBottom: 10
+  },
+  loginButton: {
+    marginBottom: 10,
+    marginTop: 10,
+    height: 50,
+    borderRadius: 10,
+    backgroundColor: "#cdac12"
+  },
+  note: {
+    color : "#c4e1ff",
+    flex : 1,
+    textAlign : "center"
+  },
+
 }

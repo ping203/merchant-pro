@@ -1,30 +1,25 @@
 import React, {Component} from 'react';
 
 import TransferTab from '../transferTab/';
-import CashIn from '../cashIn/';
+import news from '../news/';
+import OTP from '../otp/';
 import CashOutTab from '../cashOutTab';
 import CashOutHistory from '../cashOutHistory';
-import HistoryTransfer from '../historyTransfer';
-import {StackNavigator, addNavigationHelpers, TabNavigator, NavigationActions} from 'react-navigation';
+import {TabNavigator} from 'react-navigation';
 import store from '../../configureStore';
 import {open_confirm_popup} from '../../actions/confirmPopup';
-import TabButton from './tabButton';
 
 const AppRouteConfigs = {
-  cashIn: {screen: HistoryTransfer},
-  transferTab: {screen: TransferTab },
-  cashOutTab: {screen: CashOutTab},
+  news: {screen: news},
+  otp: {screen: OTP},
   cashOutHistory: {screen: CashOutHistory},
 };
 const HomeNavigation = TabNavigator(AppRouteConfigs, {
-  // tabBarComponent : TabButton,
-  // lazy: true,
   swipeEnabled: false,
   tabBarVisible: false,
   tabBarPosition : "bottom",
-  initialRouteName : "cashIn",
-  backBehavior : "cashOutTab",
-  // backBehavior : "cashOutTab",
+  initialRouteName : "news",
+  backBehavior : "news",
 
   tabBarOptions: {
     initialRouteName : "cashIn",
@@ -58,11 +53,11 @@ HomeNavigation.router.getStateForAction = (action, state) => {
   var storeData = Object.assign({},store.getState());
   var isActived = storeData.auth.loginInfo.isTelephoneVerified;
   var isLogin = storeData.auth.isLogin;
-  if(isLogin && !isActived && action.routeName!="cashIn"){
+  if(isLogin && !isActived && action.routeName!="news"){
     setTimeout(()=>{
       store.dispatch(open_confirm_popup());
     },0);
-    return defaultGetStateForAction(HomeNavigation.router.getActionForPathAndParams('cashIn'), state);
+    return defaultGetStateForAction(HomeNavigation.router.getActionForPathAndParams('news'), state);
   }
   return defaultGetStateForAction(action, state);
 }

@@ -14,8 +14,6 @@ import InfiniteScrollView from 'react-native-infinite-scroll-view';
 import NumberFormater from '../../components/numberFormatter';
 import styles from './styles';
 let moment = require('moment');
-var GiftedListView = require('react-native-gifted-listview');
-var GiftedSpinner = require('react-native-gifted-spinner');
 moment.locale('vi');
 
 const glow2 = require('../../../images/glow2-new.png');
@@ -148,21 +146,6 @@ class HistoryTransferComponent extends Component {
               pageSize={10}
               renderFooter={()=>this._renderFooter.call(this)}
             />
-            {/*<GiftedListView*/}
-              {/*rowView={(rowData) => this._renderRowData.call(this, rowData)}*/}
-              {/*onFetch={this._loadMoreContentAsync.bind(this)}*/}
-              {/*firstLoader={true} // display a loader for the first fetching*/}
-              {/*pagination={true} // enable infinite scrolling using touch to load more*/}
-              {/*refreshable={true} // enable pull-to-refresh for iOS and touch-to-refresh for Android*/}
-              {/*withSections={false} // enable sections*/}
-              {/*customStyles={{*/}
-                {/*paginationView: {*/}
-                  {/*backgroundColor: '#eee',*/}
-                {/*},*/}
-              {/*}}*/}
-              {/*refreshableTintColor="blue"*/}
-              {/*enableEmptySections={true}*/}
-            {/*/>*/}
           </View>
         </Image>
       </Container>

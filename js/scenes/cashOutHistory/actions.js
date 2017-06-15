@@ -21,17 +21,23 @@ export function fetchPosts(params) {
 
   return function (dispatch) {
     dispatch(requestPosts());
-    return http.postWithConvert("", params)
-      .then(response => {
-        if (response.status == 0) {
-          dispatch(receivePosts(response.data));
-        }else {
-          throw data.message;
-        }
-      })
-      .catch(error => {
-        console.log("error", error);
-      });
+    setTimeout(()=>{
+      dispatch(receivePosts({
+        items : [],
+        total : 0
+      }));
+    },1000)
+    // return http.postWithConvert("", params)
+    //   .then(response => {
+    //     if (response.status == 0) {
+    //       dispatch(receivePosts(response.data));
+    //     }else {
+    //       throw data.message;
+    //     }
+    //   })
+    //   .catch(error => {
+    //     console.log("error", error);
+    //   });
      
   }
 }
