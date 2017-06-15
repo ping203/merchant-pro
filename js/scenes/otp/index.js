@@ -124,8 +124,8 @@ class News extends Component {
   render() {
     const {code} = this.state;
     const _self = this;
-    let time = new Date().getTime();
-
+    var epoch = Math.round(new Date().getTime() / 1000.0);
+    var time = 30-Math.floor(epoch % 30);
     return (
 
       <Container style={{backgroundColor: '#2a3146'}}>
@@ -144,7 +144,7 @@ class News extends Component {
                 />
               </Item>
               <Text style={styles.note}>
-                Sử dụng mã bảo vệ trên đây để xác nhận
+                Sử dụng mã bảo vệ trên đây để xác nhận ({time})
               </Text>
               <Button rounded block style={styles.loginButton} onPress={ () => this.copy() }>
                 <Text style={{color: '#ffffff'}}>

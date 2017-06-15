@@ -42,7 +42,7 @@ export default {
   },
   space: {
     margin: 10,
-    paddingTop: 10 + height * 70 / 1136
+    marginTop: 20 + height * 70 / 1136
   },
   descriptionText: {
     color: "#fff",

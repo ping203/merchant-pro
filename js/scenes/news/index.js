@@ -118,7 +118,7 @@ class News extends Component {
         >
           <View  style={[modalStyles.header, styles.modalHeader]}>
             <Text style={{color : "#c4e1ff"}} numberOfLines={1} >
-              {tittle}{tittle}{tittle}{tittle}
+              {tittle}
             </Text>
             <Button
               transparent
