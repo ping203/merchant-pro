@@ -13,8 +13,8 @@ import InfiniteScrollView from 'react-native-infinite-scroll-view';
 import NumberFormater from '../../components/numberFormatter';
 import styles from './styles';
 let moment = require('moment');
-var GiftedListView = require('react-native-gifted-listview');
-var GiftedSpinner = require('react-native-gifted-spinner');
+// var GiftedListView = require('react-native-gifted-listview');
+// var GiftedSpinner = require('react-native-gifted-spinner');
 moment.locale('vi');
 
 const glow2 = require('../../../images/glow2-new.png');
