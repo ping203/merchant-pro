@@ -9,7 +9,7 @@ import {
   Text,
 } from 'native-base';
 
-import {fetchPosts} from './actions';
+import {fetchMobileCard} from './actions';
 import HeaderComponent from '../../components/header/index';
 import InfiniteScrollView from 'react-native-infinite-scroll-view';
 import NumberFormater from '../../components/numberFormatter';
@@ -19,6 +19,8 @@ let moment = require('moment');
 import Modal from 'react-native-modalbox';
 import httpService from '../../common/http';
 import {logout, update_gold} from '../../actions/auth';
+import {refreshListHistory} from '../cashOutHistory/actions';
+import AlertPopup from '../../components/alertPopup';
 
 moment.locale('vi');
 
@@ -37,6 +39,7 @@ class MobileCardsComponent extends Component {
       openModal: false,
       modalData: {}
     }
+    this.state = {};
   }
 
   componentWillMount() {
@@ -44,12 +47,11 @@ class MobileCardsComponent extends Component {
   }
 
   _loadMoreContentAsync() {
-    this.props.dispatch(fetchPosts({
+    this.props.dispatch(fetchMobileCard({
       "command": "fetch_cash_out_item",
-      "type": 1,
+      "producttype": 1,
       // "skip": this.props.items.length,
       "skip": 0,
-      "limit": 30
     }));
   }
 
@@ -60,7 +62,7 @@ class MobileCardsComponent extends Component {
 
     httpService.postWithConvert("", {
       command: "cash_out",
-      productId : id
+      productId: id
     }).then(async function (response) {
       if (response.status) {
         // _self.setError(data.message);
@@ -68,26 +70,25 @@ class MobileCardsComponent extends Component {
         _self.props.dispatch(update_gold(response.money));
       }
 
-      Alert.alert(
-        'Thông báo',
-        response.message,
-        [
-          {text: 'OK', onPress: () =>{ _self.closeModal.call(_self)}},
-        ],
-        {cancelable: true}
-      )
+      _self.setState({alertMessage : response.message});
+      _self.refs.successPopup.open();
     }).catch(function (thrown) {
       console.log('thrown submit cast in', thrown);
-      Alert.alert(
-        'Thông báo',
-        thrown,
-        [
-          {text: 'OK', onPress: () =>{_self.closeModal.call(_self)}},
-        ],
-        {cancelable: true}
-      )
+      if(typeof thrown == "object"){
+        thrown = "Lỗi kết nối, vui lòng thử lại sau."
+      }
+      _self.setState({alertMessage : thrown});
+      _self.refs.alertPopup.open();
     });
-  };
+  }
+
+  clearSuccess() {
+    var _self = this;
+    setTimeout(()=>{
+      _self.props.dispatch(refreshListHistory());
+    },1000)
+    _self.closeModal.call(_self);
+  }
 
   componentWillReceiveProps(nextProps) {
     this.dataSource = this.getUpdatedDataSource(nextProps);
@@ -127,10 +128,7 @@ class MobileCardsComponent extends Component {
   }
 
   closeModal() {
-    this.modalData = {
-      openModal: false,
-      modalData: {}
-    };
+    this.modalData.openModal = false;
     this.forceUpdate();
   }
 
@@ -173,24 +171,25 @@ class MobileCardsComponent extends Component {
   }
 
   render() {
+    const {alertMessage} = this.state;
     const {items, total, skip, money} = this.props;
-    // console.log("!items.length || items.length < total",!items.length, items.length < total,!items.length || items.length < total)
     const {openModal, modalData} = this.modalData;
 
-    {/*const {providerCode, netValue, price, imageUrl, name, id} = itemData;*/}
+    {/*const {providerCode, netValue, price, imageUrl, name, id} = itemData;*/
+    }
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
-        <HeaderComponent/>
+        <HeaderComponent hasBack/>
         <Image source={glow2} style={styles.container}>
           <View padder style={{backgroundColor: 'transparent'}}>
             {/*<ListView*/}
-              {/*renderScrollComponent={props => <InfiniteScrollView {...props} />}*/}
-              {/*dataSource={this.dataSource}*/}
-              {/*renderRow={(rowData) => this._renderRowData.call(this, rowData)}*/}
-              {/*refreshControl={this._renderRefreshControl()}*/}
-              {/*onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}*/}
-              {/*canLoadMore={!items.length || items.length < total}*/}
-              {/*enableEmptySections={true}*/}
+            {/*renderScrollComponent={props => <InfiniteScrollView {...props} />}*/}
+            {/*dataSource={this.dataSource}*/}
+            {/*renderRow={(rowData) => this._renderRowData.call(this, rowData)}*/}
+            {/*refreshControl={this._renderRefreshControl()}*/}
+            {/*onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}*/}
+            {/*canLoadMore={!items.length || items.length < total}*/}
+            {/*enableEmptySections={true}*/}
             {/*/>*/}
 
             <ListView
@@ -258,6 +257,9 @@ class MobileCardsComponent extends Component {
             </View>
           </View>
         </Modal>
+
+        <AlertPopup ref='alertPopup' message={alertMessage} callback={this.closeModal.bind(this)} ></AlertPopup>
+        <AlertPopup ref='successPopup' message={alertMessage} callback={this.clearSuccess.bind(this)} ></AlertPopup>
       </Container>
 
 

@@ -122,7 +122,8 @@ export default {
     height: 30,
     color: 'red',
     marginBottom: (Platform.OS === 'ios') ? 10 : 0,
-    marginTop: (Platform.OS === 'ios') ? 10 : 0
+    marginTop: (Platform.OS === 'ios') ? 10 : 0,
+    fontSize: theme.fontSizeBase * 0.8,
   },
   innerView: {
     paddingLeft: deviceWidth / 8,
@@ -194,7 +195,7 @@ export default {
   },
   modalButtonBar: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
     flex: 1,
     width: deviceWidth * 6 / 8,
@@ -205,7 +206,7 @@ export default {
     height: 50,
     borderRadius: 10,
     backgroundColor: "#cdac12",
-    width: deviceWidth * 0.25,
+    width: deviceWidth * 0.5,
     marginTop: 10,
   },
   whiteButton: {
@@ -264,6 +265,7 @@ export default {
     marginTop : 5,
     marginBottom : 5,
     height : deviceWidth *60/640,
+    // width : deviceWidth * 240/640,
   },
   buttonHistoryText: {
     fontSize: theme.fontSizeBase * 1.05,
@@ -272,9 +274,9 @@ export default {
   },
   descriptionText: {
     color: "#fff",
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    marginBottom : 30,
+    // justifyContent: "center",
+    // alignItems: "center",
+    textAlign: "left",
+    marginBottom : 10,
   },
 }

@@ -9,7 +9,7 @@ export default  class NumberFormatComponent extends Component {
 
   render() {
     let props = this.props;
-    const {format, children, style} = props;
+    const {format, children, style, numberOfLines, ellipsizeMode} = props;
     if (!format) return (< Text style={style}>  {children}  </Text>);
     var output;
     if (typeof children == "object" && children[0]) {
@@ -20,6 +20,6 @@ export default  class NumberFormatComponent extends Component {
     }else{
       output = children;
     }
-    return (< Text  style={style}>{output}</Text>);
+    return (< Text  style={style} numberOfLines={numberOfLines} ellipsizeMode={ellipsizeMode}>{output}</Text>);
   }
 }

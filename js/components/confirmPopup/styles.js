@@ -73,7 +73,7 @@ export default {
   yellowButtonText: {
     color: '#ffffff',
     fontWeight: "bold",
-    fontSize: theme.fontSizeH2
+    fontSize: theme.fontSizeBase*1.2
   },
   messageContainer: {
     justifyContent: "center",

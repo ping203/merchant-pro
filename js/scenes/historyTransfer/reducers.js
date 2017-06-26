@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {REQUEST_ITEMS, RECEIVE_ITEMS} from './actions';
+import {REQUEST_ITEMS, RECEIVE_ITEMS, REFRESH_HISTORY} from './actions';
 
 const initState = {
   items : [],
@@ -25,6 +25,9 @@ export default function receiverItems(state = initState, action) {
       isFetching : true,
     };
     return _return;
+  }
+  if (action.type === REFRESH_HISTORY) {
+    return initState;
   }
   return state;
 }

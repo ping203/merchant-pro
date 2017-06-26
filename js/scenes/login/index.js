@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import {Image, Platform, AsyncStorage, TouchableHighlight} from 'react-native';
 import {connect} from 'react-redux';
 import {Actions, ActionConst} from 'react-native-router-flux';
-import {Container, Content, Text, Item, Input, Button, Icon, View, Form} from 'native-base';
+import {Container, Content, Text, Item, Input, Button, Icon, View, Form, Spinner} from 'native-base';
 import httpService from '../../common/http';
 import {Facebook} from 'expo';
-import { login_success } from '../../actions/auth';
+import {login_success, toggle_spin} from '../../actions/auth';
+import {open_confirm_popup}  from '../../actions/confirmPopup';
 
 import styles from './styles';
 
@@ -13,7 +14,6 @@ import styles from './styles';
 const backgroundImage = require('../../../images/glow2-old.png');
 const logo = require('../../../images/logo.png');
 const facebookButton = require('../../../images/facebook-button.png');
-import { change_footer } from '../../actions/footerState';
 
 
 class Login extends Component {
@@ -23,152 +23,163 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
+      usernameRegister: '',
+      passwordRegister: '',
+      telephone: '',
       errorMessage: '',
-      onExp : false
+      errorMessageRegister: '',
+      onExp: false,
+      isRegister: false
     };
   }
 
   componentDidMount() {
-    this._loadInitialState().done();
+    this._loadInitialState.call(this);
   }
 
   _loadInitialState = async () => {
     var _self = this;
     try {
+      _self.props.dispatch(toggle_spin(true));
       var value = await AsyncStorage.getItem("authData");
       if (value !== null) {
         var authData = JSON.parse(value);
         if (new Date().getTime() < authData.exp) {
-          _self.goHome(authData);
+          _self.props.dispatch(login_success(authData));
+        } else {
+          _self.props.dispatch(toggle_spin(false));
         }
       } else {
-        console.log("Initialized with no selection on disk.");
+        _self.props.dispatch(toggle_spin(false));
       }
     } catch (error) {
-      _self.setError('AsyncStorage error: ' + error.message);
+      _self.setError('' + error.message);
     }
   };
-
-  checkState() {
-    getLocalState()
-    async function getLocalState() {
-      try {
-        const value = await
-          AsyncStorage.getItem('@MySuperStore:key');
-        if (value !== null) {
-          // We have data!!
-          this.state = {
-            username: '',
-            password: '',
-            scroll: false,
-            errorMessage: ''
-          };
-          console.log(value);
-        }
-      } catch (error) {
-        _self.setError(thrown);
-      }
-    }
-
-
-  }
 
 
   login() {
     var _self = this;
+    if (!this.state.username.length || !this.state.username.length) {
+      _self.setError("Vui lòng nhập thông tin tài khoản");
+      return;
+    }
+    _self.props.dispatch(toggle_spin(true));
     httpService.post("", {
       command: "login",
       type: "normal",
       username: this.state.username, //ndn199101
       password: this.state.password //ndn123456
 
-    }).then(async function (response) {
-      var data = response.data;
-      console.log("response",response, response.d);
-      if (data.status) {
-        _self.setError(data.message);
-      } else {
-        _self.setError("");
-        var accessToken = data.data && data.data.accessToken;
-        if (accessToken) {
-          try {
-            const a = await AsyncStorage.setItem('authData', JSON.stringify(data.data));
-            console.log("set Item success");
-            _self.goHome(data.data);
-          } catch (error) {
-            console.log("error", error);
-            _self.setError(error);
-          }
-        }
-      }
-    }).catch(function (thrown) {
+    }).then(this.handleLogin.bind(this)).catch(function (thrown) {
       console.log('thrown.message login', thrown);
       _self.setError(thrown);
     });
 
   }
 
-  goHome(loginData){
-    this.props.dispatch(login_success(loginData));
-    this.props.dispatch(change_footer("cashIn"));
-    Actions.cashIn();
-    // Actions.cashIn({type: ActionConst.RESET});
-    // this.props.dispatch(change_footer("transfer"));
-    // Actions.historyTransfer();
-    // this.props.dispatch(change_footer("cashOut"));
-    // Actions.cashOut();
-    // this.props.dispatch(change_footer("cashOutHistory"));
-    // Actions.cashOutHistory();
-    // this.props.dispatch(change_footer("transfer"));
-    // Actions.transfer();
+  async register() {
+    var _self = this;
+    if (!this.state.usernameRegister.length || !this.state.passwordRegister.length) {
+      _self.setState(prevState => ({
+        errorMessageRegister: "Vui lòng nhập thông tin tài khoản"
+      }));
+      return;
+    }
+    _self.props.dispatch(toggle_spin(true));
+    var imei = await  this.getImei();
+    httpService.post("", {
+      command: "register",
+      type: "normal",
+      username: this.state.usernameRegister,
+      password: this.state.passwordRegister,
+      imei
+    }).then(this.handleRegister.bind(this)).catch(function (thrown) {
+      console.log('thrown.message register', thrown);
+      _self.setState(prevState => ({
+        errorMessageRegister: thrown
+      }));
+    });
+
   }
+
+  handleRegister(response) {
+    var _self = this;
+    var data = response.data;
+    if (data.status) {
+      _self.props.dispatch(toggle_spin(false));
+      _self.setState({errorMessageRegister: data.message});
+    } else {
+      const {usernameRegister, passwordRegister} = this.state;
+      _self.setState({errorMessageRegister: "", username : usernameRegister, password : passwordRegister });
+      _self.login.call(this);
+    }
+  }
+
+  async getImei() {
+    var imei = await AsyncStorage.getItem('imei');
+    if (!imei) {
+      imei = this.randomImei();
+    }
+    await AsyncStorage.setItem('imei', imei);
+    return imei;
+  }
+
+  randomImei() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+      s4() + '-' + s4() + s4() + s4();
+  }
+
+  handleLogin(response) {
+    var _self = this;
+    var data = response.data;
+    if (data.status) {
+      _self.props.dispatch(toggle_spin(false));
+      _self.setError(data.message);
+    } else {
+      _self.setError("");
+      try {
+        _self.props.dispatch(login_success(data.data));
+      } catch (error) {
+        _self.setError(error);
+        _self.props.dispatch(toggle_spin(false));
+      }
+    }
+  }
+
 
   loginFacebook() {
     var _self = this;
-    console.log("loginfacebook");
     logIn();
     async function logIn() {
-      const {type, token} = await Facebook.logInWithReadPermissionsAsync('1472518432772370', {
+      const {type, token} = await Facebook.logInWithReadPermissionsAsync('1847504665484148', {
         permissions: ['public_profile'],
       });
       if (type === 'success') {
-        console.log("type, token", type, token);
         _self.loginWidthToken(token);
-        // const response = await fetch(
-        //   `https://graph.facebook.com/me?access_token=${token}`);
-        // Alert.alert(
-        //   'Logged in!',
-        //   `Hi ${(await response.json()).name}!`,
-        // );
       } else {
-        console.log("hihii");
+        _self.setError("Lỗi login !");
       }
     }
   }
 
   loginWidthToken(token) {
     var _self = this;
-    console.log("this", this.setError, _self.setError);
     httpService.post("", {
       command: "login",
       type: "facebook",
       accessToken: token
-    }).then(function (response) {
-      var data = response.data;
-      if (data.status) {
-        console.log("data", data);
-        _self.setError(data.message);
-      } else {
-        _self.setError("");
-        Actions.home();
-      }
-      console.log(response.data);
-    }).catch(function (thrown) {
+    }).then(this.handleLogin.bind(this)).catch(function (thrown) {
       console.log('thrown.message loginWidthToken', thrown);
       _self.setError(thrown);
     });
   }
-
 
   setError(message) {
     this.setState(prevState => ({
@@ -176,81 +187,158 @@ class Login extends Component {
     }));
   }
 
-  render() {
-    return (
-      <Container>
+  setUsername(username) {
+    this.setState({username, errorMessage: ""});
+  }
 
-        <Content style={{backgroundColor: '#2a3146'}}>
-          <Image source={backgroundImage} style={styles.container}>
-            {/*<View style={styles.shadow}>*/}
+  setPassword(password) {
+    this.setState({password, errorMessage: ""});
+  }
+
+  focusPassword() {
+    console.log("this.refs.passwordInput", this.refs.passwordInput);
+    // this.refs.passwordInput._root.focus();
+  }
+
+  render() {
+    const {showSpin} = this.props;
+    const {isRegister} = this.state;
+    return (
+      <Container style={{backgroundColor: '#2a3146'}}>
+        <Image source={backgroundImage} style={styles.container}>
+          <Content padder style={{backgroundColor: 'transparent'}}>
             <View style={styles.bg}>
               <Image source={logo} resizeMode='cover' style={styles.logo}/>
               {/*<Item underline style={{marginBottom: 20}}>*/}
-              <View style={styles.innerView}>
+              {!isRegister && <View style={styles.innerView}>
 
                 <Item style={styles.inputWrapper}>
                   {/*<Icon active name="person"/>*/}
                   <Icon active name="person" style={styles.inputIcon}/>
-                  <Input style={{textAlign: 'center', paddingRight: 20, paddingLeft: 50}}
+                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
                          autoCorrect={false}
                          placeholder="Tài khoản"
                          placeholderTextColor="#7481a7"
-                         onChangeText={username => {this.setState({username});}}
+                         onChangeText={username => {
+                           this.setUsername(username);
+                         }}
+                         onSubmitEditing={() => this.refs.passwordInput._root.focus()}
                   />
                 </Item>
                 <Item style={styles.inputWrapper}>
                   <Icon name="unlock" style={styles.inputIcon}/>
-                  <Input style={{textAlign: 'center', paddingRight: 20, paddingLeft: 50}}
+                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
                          placeholder="Mật khẩu"
                          placeholderTextColor="#7481a7"
                          secureTextEntry
-                         onChangeText={password => this.setState({password})}
+                         onChangeText={password => {
+                           this.setPassword(password)
+                         }}
+                         ref='passwordInput'
+                         onSubmitEditing={() => this.login.call(this)}
+
                   />
                 </Item>
-                <Text style={{
-                  height: 30,
-                  color: 'red',
-                  marginBottom: (Platform.OS === 'ios') ? 10 : 0,
-                  marginTop: (Platform.OS === 'ios') ? 10 : 0
-                }}>
+                <Text style={styles.errorMessage}>
                   {this.state.errorMessage}
                 </Text>
-                {/*<Button transparent style={{*/}
-                {/*alignSelf: 'flex-end',*/}
-                {/*marginBottom: (Platform.OS === 'ios') ? 5 : 0,*/}
-                {/*marginTop: (Platform.OS === 'ios') ? -10 : 0*/}
-                {/*}}>*/}
-                {/*<Text>*/}
-                {/*Forgot Password*/}
-                {/*</Text>*/}
-                {/*</Button>*/}
-                <Button rounded block style={styles.loginButton} onPress={ () => this.login() }>
+
+                {showSpin && <Spinner color="#999"/>}
+                {!showSpin && <Button rounded block style={styles.loginButton} onPress={ () => this.login() }>
                   <Text style={{color: '#ffffff'}}>
-                    Login
+                    ĐĂNG NHẬP
                   </Text>
-                </Button>
+                </Button>}
+
+                {!showSpin &&
+                <Text style={styles.loginText} onPress={() => this.setState({isRegister: true, errorMessageRegister : ""})}>
+                  ĐĂNG KÝ
+                </Text>}
 
 
-                <View style={styles.facebookWrapper}>
+                {!showSpin && <View style={styles.facebookWrapper}>
                   {/*<Button rounded block style={{marginBottom: 10}} >*/}
                   {/*</Button>*/}
                   <TouchableHighlight onPress={ () => this.loginFacebook() }>
                     <Image source={facebookButton} resizeMode='cover' style={styles.facebookButton}/>
                   </TouchableHighlight>
-                  <Text onPress={ () => this.loginFacebook() } style={{color: '#405688'}}>
+                  <Text onPress={ () => this.loginFacebook() } style={{color: '#405688', marginTop: 10}}>
                     Đăng nhập qua Facebook
                   </Text>
-                </View>
-                {/*<Button transparent style={{alignSelf: 'center'}} onPress={() => Actions.signUp()}>*/}
-                {/*<Text>*/}
-                {/*Sign Up Here*/}
-                {/*</Text>*/}
-                {/*</Button>*/}
-              </View>
+                </View>}
+              </View>}
+              {isRegister && <View style={styles.innerView}>
+
+                <Item style={styles.inputWrapper}>
+                  <Icon active name="person" style={styles.inputIcon}/>
+                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
+                         autoCorrect={false}
+                         placeholder="Tài khoản"
+                         placeholderTextColor="#7481a7"
+                         onChangeText={usernameRegister => {
+                           this.setState({usernameRegister, errorMessageRegister: ""});
+                         }}
+                         onSubmitEditing={() => this.refs.passwordRegisterInput._root.focus()}
+                  />
+                </Item>
+                <Item style={styles.inputWrapper}>
+                  <Icon name="unlock" style={styles.inputIcon}/>
+                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
+                         placeholder="Mật khẩu"
+                         placeholderTextColor="#7481a7"
+                         secureTextEntry
+                         onChangeText={passwordRegister => {
+                           this.setState({passwordRegister, errorMessageRegister: ""})
+                         }}
+                         ref='passwordRegisterInput'
+                         onSubmitEditing={() => this.refs.telephoneInput._root.focus()}
+
+                  />
+                </Item>
+                <Item style={styles.inputWrapper}>
+                  <Icon name="md-phone-portrait" style={styles.inputIcon}/>
+                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
+                         placeholder="Số điện thoại"
+                         placeholderTextColor="#7481a7"
+                         secureTextEntry
+                         onChangeText={telephone => {
+                           this.setState({telephone})
+                         }}
+                         ref='telephoneInput'
+                         onSubmitEditing={() => this.register.call(this)}
+                  />
+                </Item>
+                <Text style={styles.errorMessage}>
+                  {this.state.errorMessageRegister}
+                </Text>
+
+                {showSpin && <Spinner color="#999"/>}
+                {!showSpin && <Button rounded block style={styles.loginButton} onPress={ () => this.register() }>
+                  <Text style={{color: '#ffffff'}}>
+                    ĐĂNG KÝ
+                  </Text>
+                </Button>}
+
+                {!showSpin &&
+                <Text style={styles.loginText} onPress={() => this.setState({isRegister: false, errorMessage : ""})}>
+                  ĐĂNG NHẬP
+                </Text>}
+
+
+                {!showSpin && <View style={styles.facebookWrapper}>
+                  {/*<Button rounded block style={{marginBottom: 10}} >*/}
+                  {/*</Button>*/}
+                  <TouchableHighlight onPress={ () => this.loginFacebook() }>
+                    <Image source={facebookButton} resizeMode='cover' style={styles.facebookButton}/>
+                  </TouchableHighlight>
+                  <Text onPress={ () => this.loginFacebook() } style={{color: '#405688', marginTop: 10}}>
+                    Đăng nhập qua Facebook
+                  </Text>
+                </View>}
+              </View>}
             </View>
-            {/*</View>*/}
-          </Image>
-        </Content>
+          </Content>
+        </Image>
       </Container>
     );
   }
@@ -263,9 +351,11 @@ function bindAction(dispatch) {
   };
 }
 
-const mapStateToProps = state => ({
-  drawerState: state.drawer.drawerState,
-  navigation: state.cardNavigation,
-});
+const mapStateToProps = state => {
+  const {showSpin} = state.auth;
+  return {
+    showSpin
+  }
+}
 
-export default connect(mapStateToProps, bindAction)(Login);
+export default connect(mapStateToProps)(Login);

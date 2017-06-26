@@ -6,12 +6,13 @@ const deviceWidth = Dimensions.get('window').width;
 
 const logoRatio = 161 / 383;
 const facebookButtonWidth = 80;
+import theme from "../../themes/base-theme";
 
 export default{
   container: {
     flex: 1,
     width: deviceWidth,
-    height: null
+    height: deviceHeight
   },
   shadow: {
     flex: 1,
@@ -23,7 +24,7 @@ export default{
   },
   bg: {
     left: 0,
-    paddingTop: deviceHeight / 2 - 50,
+    paddingTop: deviceHeight / 3,
     height: null,
     paddingLeft: 20,
     paddingRight: 20,
@@ -32,10 +33,10 @@ export default{
   },
   logo: {
     left: deviceWidth / 5,
-    top: deviceHeight / 6,
+    top: deviceHeight / 7,
     position: "absolute",
-    width: 3 * deviceWidth / 5,
-    height: 3 * deviceWidth / 5 * logoRatio,
+    width: 2.5 / 5 * deviceWidth,
+    height: 2.5 / 5 * deviceWidth * logoRatio,
     backgroundColor: 'transparent',
     overflow: "visible"
   },
@@ -45,7 +46,7 @@ export default{
     borderWidth: 2,
     borderColor: '#464a60',
     borderRadius: 5,
-    marginBottom: 15
+    marginBottom: 10
   },
   inputIcon: {
     position: "absolute",
@@ -64,15 +65,27 @@ export default{
     paddingRight: deviceWidth / 8,
   },
   facebookWrapper: {
-    flex: 1,
+    // flex: 1,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    marginTop : 30,
+    marginTop: 30,
   },
   facebookButton: {
     width: deviceWidth / 8,
     height: deviceWidth / 8,
-  }
+  },
+  errorMessage: {
+    height: 30,
+    color: 'red',
+    marginBottom: (Platform.OS === 'ios') ? 10 : 0,
+    marginTop: (Platform.OS === 'ios') ? 10 : 0,
+    fontSize: theme.fontSizeBase * 0.8,
+  },
+  loginText: {
+    color : "#4c6db5",
+    fontSize : theme.fontSizeBase * 1.1,
+    fontWeight : "bold",
+    textAlign : "center"
+  },
 }
-;

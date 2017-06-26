@@ -3,6 +3,7 @@ import http  from "../../common/http"
 const prefix = "cashOutHistory/";
 export const REQUEST_ITEMS = prefix + 'REQUEST_ITEMS';
 export const RECEIVE_ITEMS = prefix + 'RECEIVE_ITEMS';
+export const REFRESH_HISTORY = prefix + 'REFRESH_HISTORY';
 
 function requestPosts(subreddit) {
   return {
@@ -32,5 +33,23 @@ export function fetchPosts(params) {
         console.log("error", error);
       });
      
+  }
+}
+
+export function refreshHistoryCashOut(params) {
+  return {
+    type: REFRESH_HISTORY
+  }
+}
+
+export function refreshListHistory(params) {
+  return async function (dispatch) {
+    dispatch(refreshHistoryCashOut());
+    dispatch(fetchPosts({
+      "command": "fetch_cash_out_log",
+      "type": 0,
+      "skip": 0,
+      "limit": 10
+    }));
   }
 }

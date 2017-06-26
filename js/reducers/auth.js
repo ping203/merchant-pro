@@ -1,9 +1,10 @@
 
 // import type { Action } from '../actions/types';
-import { LOGIN_SUCCESS, LOGOUT, UPDATE_GOLD } from '../actions/auth';
+import { LOGIN_SUCCESS, LOGOUT, UPDATE_GOLD, TOGGLE_SPIN } from '../actions/auth';
 
 
 const initialState = {
+  showSpin : false,
   isLogin: false,
   loginInfo : {}
 };
@@ -11,14 +12,23 @@ const initialState = {
 export default function (state = initialState, action) {
   if (action.type === LOGIN_SUCCESS) {
     return {
+      ...state,
       isLogin: true,
       loginInfo : action.loginInfo
     };
   }
 
+  if (action.type === TOGGLE_SPIN) {
+    return {
+      ...state,
+      showSpin : action.showSpin
+    };
+  }
+
   if (action.type === LOGOUT) {
     return {
-      isLogin: true,
+      ...state,
+      isLogin: false,
       loginInfo : {}
     };
   }

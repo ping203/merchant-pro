@@ -13,8 +13,8 @@ import InfiniteScrollView from 'react-native-infinite-scroll-view';
 import NumberFormater from '../../components/numberFormatter';
 import styles from './styles';
 let moment = require('moment');
-var GiftedListView = require('react-native-gifted-listview');
-var GiftedSpinner = require('react-native-gifted-spinner');
+// var GiftedListView = require('react-native-gifted-listview');
+// var GiftedSpinner = require('react-native-gifted-spinner');
 moment.locale('vi');
 
 const glow2 = require('../../../images/glow2-new.png');
@@ -96,12 +96,9 @@ class HistoryTransferMerchantComponent extends Component {
           {!transferTypeCode && <Text style={styles.historyRightTittleSend}>
             - <NumberFormater format="0,0" style={styles.historyRightTittleSend}>{value}</NumberFormater> V {"\n"}
           </Text>}
-          {transferPayFeeType && <Text style={styles.historyRightMinePay}>
+          <Text style={styles.historyRightMinePay}>
             Bạn chịu phí
-          </Text>}
-          {!transferPayFeeType && <Text style={styles.historyRightOtherPay}>
-            {userPayFee} chịu phí
-          </Text>}
+          </Text>
         </View>
       </View>
     );
@@ -115,7 +112,6 @@ class HistoryTransferMerchantComponent extends Component {
 
   render() {
     const {items, total, skip} = this.props;
-    // console.log("!items.length || items.length < total",!items.length, items.length < total,!items.length || items.length < total)
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
         <HeaderWithBackComponent tittle="CHUYỂN VÀNG ĐẠI LÝ"/>
@@ -160,7 +156,6 @@ function bindAction(dispatch) {
 
 const mapStateToProps = state => {
   const {items, total, skip, isFetching} = state.historyTransferMerchant;
-  // console.log("items",items.length,"total", total, "isFetching",isFetching );
   const {loginInfo} = state.auth;
   return {
     items, total, skip, isFetching,

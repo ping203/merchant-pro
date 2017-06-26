@@ -118,11 +118,18 @@ export default {
     alignItems: "center",
     marginTop: 10
   },
+  checkboxText: {
+    color: "#86b4ff",
+    paddingLeft: 5,
+    fontSize : theme.fontSizeBase
+  }  ,
   errorMessage :{
     height: 30,
     color: 'red',
     marginBottom: (Platform.OS === 'ios') ? 10 : 0,
-    marginTop: (Platform.OS === 'ios') ? 10 : 0
+    marginTop: (Platform.OS === 'ios') ? 10 : 0,
+    textAlign: "center",
+    fontSize: theme.fontSizeBase * 0.8,
   },
   innerView: {
     paddingLeft: deviceWidth / 8,
@@ -172,5 +179,10 @@ export default {
     position : "absolute",
     top : 12,
     right : 5,
-  }
+  },
+  descriptionText: {
+    color: "#fff",
+    textAlign: "left",
+    marginBottom : 10,
+  },
 }

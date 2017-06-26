@@ -9,7 +9,7 @@ import {
   Footer
 } from 'native-base';
 
-import {fetchPosts} from './actions';
+import {fetchPosts, refreshListHistory} from './actions';
 import {select_card_type, change_code, change_serial, update_config_ratio} from '../cashIn/actions';
 import HeaderWithBackComponent from '../../components/header/headerWithBack';
 import FooterComponent from '../../components/footer/index';
@@ -18,16 +18,21 @@ import InfiniteScrollView from 'react-native-infinite-scroll-view';
 import NumberFormater from '../../components/numberFormatter';
 import styles from './styles';
 let moment = require('moment');
-var GiftedListView = require('react-native-gifted-listview');
-var GiftedSpinner = require('react-native-gifted-spinner');
+// var GiftedListView = require('react-native-gifted-listview');
+// var GiftedSpinner = require('react-native-gifted-spinner');
 import {Actions, ActionConst} from 'react-native-router-flux';
 import {change_footer} from '../../actions/footerState';
+import homeNavigation from '../home';
 moment.locale('vi');
 
 const glow2 = require('../../../images/glow2-new.png');
 
 
 class CashOutHistoryComponent extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: `NHẬN QUÀ`,
+  });
+
   constructor(props, context) {
     super(props);
     this.dataSource = new ListView.DataSource({
@@ -37,7 +42,9 @@ class CashOutHistoryComponent extends Component {
   }
 
   componentWillMount() {
-    this._loadMoreContentAsync.call(this);
+    if(!this.props.items.length){
+      this._loadMoreContentAsync.call(this);
+    }
   }
 
   _loadMoreContentAsync() {
@@ -136,6 +143,26 @@ class CashOutHistoryComponent extends Component {
     }));
   }
 
+  _renderFooter() {
+    return (
+      <View style={styles.buttonFooterWrap}>
+        <Button style={styles.buttonHistory} onPress={() => this._loadMoreContentAsync.call(this)}>
+          <Text style={styles.buttonHistoryText}> Xem thêm </Text>
+        </Button>
+      </View>
+    )
+  }
+
+  _renderHeader() {
+    return (
+      <View style={styles.buttonFooterWrap}>
+        <Button style={styles.buttonHistory} onPress={() => this.props.dispatch(refreshListHistory())}>
+          <Text style={styles.buttonHistoryText}> Làm mới </Text>
+        </Button>
+      </View>
+    )
+  }
+
   copy(code) {
     Clipboard.setString(code);
   }
@@ -148,12 +175,11 @@ class CashOutHistoryComponent extends Component {
     this.props.dispatch(change_code(      code    ));
     this.props.dispatch(change_serial(      serial    ));
     this.props.dispatch(change_footer("cashIn"));
-    Actions.cashIn();
+    this.props.dispatch(homeNavigation.router.getActionForPathAndParams("cashIn"));
   }
 
   render() {
     const {items, total, skip} = this.props;
-    // console.log("!items.length || items.length < total",!items.length, items.length < total,!items.length || items.length < total)
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
         {/*<HeaderWithBackComponent tittle="LỊCH SỬ CHUYỂN VÀNG"/>*/}
@@ -166,15 +192,18 @@ class CashOutHistoryComponent extends Component {
               renderRow={(rowData) => this._renderRowData.call(this, rowData)}
               refreshControl={this._renderRefreshControl()}
               onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}
-              canLoadMore={!items.length || items.length < total}
+              canLoadMore={false}
               enableEmptySections={true}
+              pageSize={10}
+              renderFooter={()=>this._renderFooter.call(this)}
+              renderHeader={()=>this._renderHeader.call(this)}
             />
-
+            {items && items.length == 0 && <Text style={{margin : 10, textAlign : "center"}}>Danh sách quà của bạn trống</Text>}
           </View>
         </Image>
-        <Footer style={{borderTopWidth: 0, backgroundColor: 'transparent'}}>
-          <FooterComponent navigator={this.props.navigation}/>
-        </Footer>
+        {/*<Footer style={{borderTopWidth: 0, backgroundColor: 'transparent'}}>*/}
+          {/*<FooterComponent navigator={this.props.navigation}/>*/}
+        {/*</Footer>*/}
       </Container>
     );
   }
@@ -188,7 +217,6 @@ function bindAction(dispatch) {
 
 const mapStateToProps = state => {
   const {items, total, skip, isFetching} = state.cashOutHistory;
-  // console.log("items",items.length,"total", total, "isFetching",isFetching );
   const {loginInfo} = state.auth;
   return {
     items, total, skip, isFetching,

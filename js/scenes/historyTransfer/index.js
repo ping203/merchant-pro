@@ -5,6 +5,7 @@ import {
   Container,
   Content,
   Text,
+  Button
 } from 'native-base';
 
 import {fetchPosts} from './actions';
@@ -13,8 +14,8 @@ import InfiniteScrollView from 'react-native-infinite-scroll-view';
 import NumberFormater from '../../components/numberFormatter';
 import styles from './styles';
 let moment = require('moment');
-var GiftedListView = require('react-native-gifted-listview');
-var GiftedSpinner = require('react-native-gifted-spinner');
+// var GiftedListView = require('react-native-gifted-listview');
+// var GiftedSpinner = require('react-native-gifted-spinner');
 moment.locale('vi');
 
 const glow2 = require('../../../images/glow2-new.png');
@@ -30,7 +31,9 @@ class HistoryTransferComponent extends Component {
   }
 
   componentWillMount() {
-    this._loadMoreContentAsync.call(this);
+    if(!this.props.items.length){
+      this._loadMoreContentAsync.call(this);
+    }
   }
 
   _loadMoreContentAsync() {
@@ -58,12 +61,21 @@ class HistoryTransferComponent extends Component {
   }
 
   _renderRefreshControl() {
-    // Reload all data
     return (
       <RefreshControl
         refreshing={this.props.isFetching}
         onRefresh={this._loadMoreContentAsync.bind(this)}
       />
+    )
+  }
+
+  _renderFooter() {
+    return (
+    <View style={styles.buttonFooterWrap}>
+      <Button style={styles.buttonHistory} onPress={() => this._loadMoreContentAsync.call(this)}>
+        <Text style={styles.buttonHistoryText}> Xem thêm </Text>
+      </Button>
+    </View>
     )
   }
 
@@ -114,8 +126,8 @@ class HistoryTransferComponent extends Component {
   }
 
   render() {
+    console.log("render");
     const {items, total, skip} = this.props;
-    // console.log("!items.length || items.length < total",!items.length, items.length < total,!items.length || items.length < total)
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
         <HeaderWithBackComponent tittle="LỊCH SỬ CHUYỂN VÀNG"/>
@@ -127,8 +139,11 @@ class HistoryTransferComponent extends Component {
               renderRow={(rowData) => this._renderRowData.call(this, rowData)}
               refreshControl={this._renderRefreshControl()}
               onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}
-              canLoadMore={!items.length || items.length < total}
+              // canLoadMore={!items.length || items.length < total}
+              canLoadMore={false}
               enableEmptySections={true}
+              pageSize={10}
+              renderFooter={()=>this._renderFooter.call(this)}
             />
             {/*<GiftedListView*/}
               {/*rowView={(rowData) => this._renderRowData.call(this, rowData)}*/}
@@ -143,8 +158,8 @@ class HistoryTransferComponent extends Component {
                 {/*},*/}
               {/*}}*/}
               {/*refreshableTintColor="blue"*/}
+              {/*enableEmptySections={true}*/}
             {/*/>*/}
-
           </View>
         </Image>
       </Container>
@@ -160,7 +175,6 @@ function bindAction(dispatch) {
 
 const mapStateToProps = state => {
   const {items, total, skip, isFetching} = state.historyTransfer;
-  // console.log("items",items.length,"total", total, "isFetching",isFetching );
   const {loginInfo} = state.auth;
   return {
     items, total, skip, isFetching,

@@ -122,7 +122,8 @@ export default {
     height: 30,
     color: 'red',
     marginBottom: (Platform.OS === 'ios') ? 10 : 0,
-    marginTop: (Platform.OS === 'ios') ? 10 : 0
+    marginTop: (Platform.OS === 'ios') ? 10 : 0,
+    fontSize: theme.fontSizeBase * 0.8,
   },
   innerView: {
     paddingLeft: deviceWidth / 8,

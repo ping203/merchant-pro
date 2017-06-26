@@ -3,7 +3,7 @@ import type { Action } from '../actions/types';
 import { OPEN_CONFIRM_POPUP, CLOSE_CONFIRM_POPUP, CONFIRM_POPUP_SELECT_NETWORK, UPDATE_MESSAGE_CONFIG } from '../actions/confirmPopup';
 
 const initialState = {
-  openState: 'closed',
+  openState: 'opened',
   selectedNetwork : 'vtt',
   messageConfig : {}
 };

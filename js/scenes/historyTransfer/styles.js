@@ -122,7 +122,8 @@ export default {
     height: 30,
     color: 'red',
     marginBottom: (Platform.OS === 'ios') ? 10 : 0,
-    marginTop: (Platform.OS === 'ios') ? 10 : 0
+    marginTop: (Platform.OS === 'ios') ? 10 : 0,
+    fontSize: theme.fontSizeBase * 0.8,
   },
   innerView: {
     paddingLeft: deviceWidth / 8,
@@ -157,6 +158,13 @@ export default {
     fontSize : theme.fontSizeBase * 1.1,
     color : "#676da6",
     fontWeight : "bold"
+  },
+  buttonFooterWrap : {
+
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    margin: 10,
   },
 
   buttonYellow: {

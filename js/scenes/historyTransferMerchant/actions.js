@@ -3,6 +3,7 @@ import http  from "../../common/http"
 const prefix = "historyTransferMerchant/";
 export const REQUEST_ITEMS = prefix + 'REQUEST_ITEMS';
 export const RECEIVE_ITEMS = prefix + 'RECEIVE_ITEMS';
+export const REFRESH_HISTORY = prefix + 'REFRESH_HISTORY';
 
 function requestPosts(subreddit) {
   return {
@@ -32,5 +33,12 @@ export function fetchPosts(params) {
         console.log("error", error);
       });
      
+  }
+}
+
+
+export function refreshHistoryTranfer(params) {
+  return {
+    type: REFRESH_HISTORY,
   }
 }

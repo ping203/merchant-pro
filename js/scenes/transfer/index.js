@@ -5,33 +5,28 @@ import {Actions, ActionConst} from 'react-native-router-flux';
 import httpService from '../../common/http';
 import {
   Container,
-  Header,
-  Title,
   Content,
   Button,
   Icon,
-  List,
-  ListItem,
   Text,
-  Footer,
-  Left,
-  Right,
   Radio,
   Item,
   Input
 } from 'native-base';
 
 import {openDrawer} from '../../actions/drawer';
-import FooterComponent from '../../components/footer/index';
 import HeaderComponent from '../../components/header/index';
-import ConfirmComponent from '../../components/confirmPopup/index';
 import styles from './styles';
 import styles2 from '../login/styles';
 import modalStyle from '../../components/styles/modal';
 import {logout, update_gold} from '../../actions/auth';
-import {select_free_type, change_receiver, change_value, update_config_ratio, toggle_tutorial} from './actions';
+import {select_free_type, change_receiver, change_value, update_config_ratio, toggle_tutorial, go_history} from './actions';
+import {refreshHistoryTranfer} from '../historyTransfer/actions';
 import Modal from 'react-native-modalbox';
 import axios, {CancelToken}from 'axios';
+import NumberFormater from '../../components/numberFormatter';
+import AlertPopup from '../../components/alertPopup';
+
 
 const glow2 = require('../../../images/glow2-new.png');
 
@@ -41,6 +36,10 @@ class TransferComponent extends Component {  //eslint-disable-line
   static propTypes = {
     openDrawer: React.PropTypes.func,
   }
+
+  static navigationOptions = ({ navigation }) => ({
+    // title: `CHUYỂN VÀNG`,
+  });
 
   constructor(props) {
     super(props);
@@ -82,23 +81,13 @@ class TransferComponent extends Component {  //eslint-disable-line
     });
   };
 
-
-  logout() {
-    var _self = this;
-    _logout();
-    async function _logout() {
-      console.log("_logout");
-      await AsyncStorage.removeItem('authData');
-      _self.props.dispatch(logout());
-      Actions.login({type: ActionConst.RESET});
-    };
-  }
-
-
   submit() {
     var _self = this;
-    console.log("this.props", this.props);
     const {feeType, receiver, value} = this.props;
+    if(!this.isVerifyReceiver){
+      _self.setError("Username không đúng");
+      return;
+    }
     httpService.post2("", {
       command: "transfer_gold",
       value,
@@ -113,24 +102,25 @@ class TransferComponent extends Component {  //eslint-disable-line
       } else {
         _self.setError("");
         _self.props.dispatch(update_gold(data.money));
-        Alert.alert(
-          'Thông báo',
-          data.message,
-          [
-            {text: 'OK', onPress: () => _self.clearState()},
-          ],
-          {cancelable: true}
-        )
+        _self.setState({alertMessage : data.message});
+        _self.refs.alertPopup.open();
       }
     }).catch(function (thrown) {
       console.log('thrown submit cast in', thrown);
+      if(typeof thrown == "object"){
+        thrown = "Lỗi kết nối, vui lòng thử lại sau."
+      }
       _self.setError(thrown);
     });
   };
 
 
   clearState() {
-
+    this.isVerifyReceiver = false;
+    this.props.dispatch(change_value("0"));
+    this.props.dispatch(change_receiver(""));
+    this.props.dispatch(refreshHistoryTranfer());
+    this.setError("");
   }
 
 
@@ -152,6 +142,7 @@ class TransferComponent extends Component {  //eslint-disable-line
       var _value = parseInt(value);
       this.props.dispatch(change_value(isNaN(_value) ? 0 : _value));
     }
+    this.setError("")
   }
 
   checkReceiver(username) {
@@ -170,32 +161,31 @@ class TransferComponent extends Component {  //eslint-disable-line
     },{
       cancelToken:  this.checkingReceiverSource.token
     }).then(async function (response) {
-      console.log("check_user_exist response",response.data);
       var data = response.data;
       if (typeof data.status == "undefined") {
         // _self.setError("Server error");
       } else if (data.status) {
-        // console.log("user " + username + " not exist");
       } else {
         _self.isVerifyReceiver = true;
         _self.forceUpdate();
-        // console.log("user " + username + " exist");
       }
     }).catch(function (thrown) {
       console.log('thrown submit cast in', thrown);
     });
   }
 
-  goHistory(type, value) {
-    Actions.historyTransfer();
+  goHistory() {
+    this.props.dispatch(go_history());
   }
 
   showTutorial(type, value) {
-    this.props.dispatch(toggle_tutorial(!this.props.tutorialPopupStatus));
+    // this.props.dispatch(toggle_tutorial(!this.props.tutorialPopupStatus));
+    this.modal.open();
   }
 
-  toggleHistory() {
-    this.props.dispatch(toggle_tutorial(!this.props.tutorialPopupStatus));
+  closeTutorial() {
+    // this.props.dispatch(toggle_tutorial(!this.props.tutorialPopupStatus));
+    this.modal.close();
   }
 
   onOpenHistory() {
@@ -208,6 +198,7 @@ class TransferComponent extends Component {  //eslint-disable-line
 
 
   render() {
+    const {alertMessage} = this.state;
     const {feeType, receiver, value, ratio, money, tutorialPopupStatus} = this.props;
     const {isVerifyReceiver} = this;
     var remainingRatio = 1;
@@ -233,6 +224,7 @@ class TransferComponent extends Component {  //eslint-disable-line
                          placeholder={"Người nhận"}
                          placeholderTextColor="#7481a7"
                          onChangeText={receiver => this.onChangeField("receiver", receiver)}
+                         defaultValue={receiver}
                   />
                   {isVerifyReceiver && <Icon active name="ios-arrow-dropdown-circle" style={styles.isVerifyReceiver}/>}
                 </Item>
@@ -242,6 +234,7 @@ class TransferComponent extends Component {  //eslint-disable-line
                          keyboardType="numeric"
                          placeholderTextColor="#7481a7"
                          onChangeText={value => this.onChangeField("value", value)}
+                         defaultValue={value}
                   />
                 </Item>
               </View>
@@ -251,14 +244,14 @@ class TransferComponent extends Component {  //eslint-disable-line
                   <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
                     <Radio selected={feeType == "sender"} onPress={this.onSelectType.bind(this, "sender")}
                            radioColor="#86b4ff" color="#86b4ff"/>
-                    <Text onPress={this.onSelectType.bind(this, "sender")} style={{color: "#86b4ff", paddingLeft: 5}}>
+                    <Text onPress={this.onSelectType.bind(this, "sender")} style={styles.checkboxText}>
                       Người gửi chịu phí
                     </Text>
                   </View>
                   <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
                     <Radio selected={feeType != "sender"} onPress={this.onSelectType.bind(this, "receiver")}
                            radioColor="#86b4ff" color="#86b4ff"/>
-                    <Text onPress={this.onSelectType.bind(this, "receiver")} style={{color: "#86b4ff", paddingLeft: 5}}>
+                    <Text onPress={this.onSelectType.bind(this, "receiver")} style={styles.checkboxText}>
                       Người nhận chịu phí
                     </Text>
                   </View>
@@ -271,13 +264,17 @@ class TransferComponent extends Component {  //eslint-disable-line
                 </Text>
                 {value != 0 && <View style={[styles.centerBox]}>
                   <Text style={{color: '#7481a7', textAlign: "right"}}> Còn lại </Text>
-                  <Text style={{color: '#ffde00', fontWeight: "bold"}}> {remainingGold} V </Text>
+                  <Text style={{color: '#ffde00', fontWeight: "bold"}}>
+                    <NumberFormater style={{color: '#ffde00',}} format="0,0">{remainingGold} V </NumberFormater>
+                  </Text>
                 </View>}
                 {receiver.length > 0 && <View style={styles.centerBox}>
                   <Text style={{color: '#86b4ff', fontWeight: "bold"}}> {receiver} </Text>
                   <Text style={styles.centerBox}>
-                    <Text style={{color: '#7481a7',}}> nhận được</Text>
-                    <Text style={{color: '#ffde00', fontWeight: "bold"}}> {receiveValue} V</Text>
+                    <Text style={{color: '#7481a7',}}> nhận được </Text>
+                    <Text style={{color: '#ffde00', fontWeight: "bold"}}>
+                      <NumberFormater style={{color: '#ffde00',}} format="0,0">{receiveValue} V </NumberFormater>
+                    </Text>
                   </Text>
                 </View>}
 
@@ -297,21 +294,9 @@ class TransferComponent extends Component {  //eslint-disable-line
                 </Button>
               </View>
 
-              <View>
-                <Button
-                  style={styles.roundedButton}
-                  onPress={() => this.logout()}
-                >
-                  <Icon active name="close" style={styles.closeIcon}/>
-                </Button>
-              </View>
             </View>
 
           </Content>
-          <Footer style={{borderTopWidth: 0, backgroundColor: 'transparent'}}>
-            <FooterComponent navigator={this.props.navigation}/>
-          </Footer>
-          <ConfirmComponent ></ConfirmComponent>
 
           <Modal
             style={[modalStyle.modal, modalStyle.modal2]}
@@ -331,7 +316,7 @@ class TransferComponent extends Component {  //eslint-disable-line
               <Button
                 transparent
                 style={{position: 'absolute', top: 0, right: 0}}
-                onPress={this.toggleHistory.bind(this)}
+                onPress={this.closeTutorial.bind(this)}
               >
                 <Icon name="close" style={{color: '#c4e1ff'}}/>
               </Button>
@@ -339,52 +324,24 @@ class TransferComponent extends Component {  //eslint-disable-line
             <View style={modalStyle.space}>
               <ScrollView >
                 <Text style={styles.descriptionText}>
-                  1Xác thực tài khoản để sử dụng đầy đủ {"\n"}
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  8tính năng của game: Nhận quà, chuyển vàng ...
-                  9tính năng của game: Nhận quà, chuyển vàng ...
-                  10tính năng của game: Nhận quà, chuyển vàng ...
-                  11tính năng của game: Nhận quà, chuyển vàng ...
-                  Vui lòng chọn nhà mạng:
+                  - Người gửi phải từ vip 3, level 3 trở lên mới được chuyển vàng đi, người nhận không bị giới hạn.
+                </Text>
+                <Text style={styles.descriptionText}>
+                  - Sau khi chuyển vàng cần còn lại trên 50.000 vàng
+                </Text>
+                <Text style={styles.descriptionText}>
+                  - Số vàng chuyển 1 lần tối thiểu là 50.000 vàng
+                </Text>
+                <Text style={styles.descriptionText}>
+                  - Số vàng có thể chuyển trong ngày tối đa là 10.000.000
+                </Text>
+                <Text style={styles.descriptionText}>
+                  - Phí chuyển vàng có thể do người gửi hoặc người nhận chịu.
                 </Text>
               </ScrollView>
             </View>
           </Modal>
+          <AlertPopup ref='alertPopup' message={alertMessage} callback={this.clearState.bind(this)}></AlertPopup>
         </Image>
       </Container>
     );
@@ -408,6 +365,11 @@ const mapStateToProps = state => {
     money: loginInfo.money || 0,
     tutorialPopupStatus: tutorialPopupStatus
   }
-};
+}
+const TransferWidthRedux = connect(mapStateToProps)(TransferComponent);
 
-export default connect(mapStateToProps, bindAction)(TransferComponent);
+export function getTransfer() {
+  return TransferWidthRedux;
+}
+
+export default TransferWidthRedux;

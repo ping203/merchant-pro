@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Image, View, ListView, RefreshControl, TouchableHighlight, ScrollView, Alert} from 'react-native';
 import {connect} from 'react-redux';
 import httpService from '../../common/http';
+import {logout, update_gold} from '../../actions/auth';
 import {
   Container,
   Button,
@@ -18,12 +19,15 @@ import NumberFormater from '../../components/numberFormatter';
 import styles from './styles';
 let moment = require('moment');
 import {Actions, ActionConst} from 'react-native-router-flux';
+import cashOutTab from '../cashOutTab';
+
 moment.locale('vi');
 
 import Modal from 'react-native-modalbox';
 import modalStyle from '../../components/styles/modal';
 import TransferMerchantForm from './transferMerchant'
 import FooterComponent from '../../components/footer/index';
+import AlertPopup from '../../components/alertPopup';
 
 const glow2 = require('../../../images/glow2-new.png');
 
@@ -39,6 +43,10 @@ class MerchantsComponent extends Component {
       modalData: {}
     }
     this.transferMerchantData = {};
+
+    this.state = {
+      errorMessage: '',
+    }
   }
 
   componentWillMount() {
@@ -48,6 +56,8 @@ class MerchantsComponent extends Component {
   _loadMoreContentAsync() {
     this.props.dispatch(fetchPosts({
       "command": "fetch_list_merchant",
+      "skip": this.props.items.length,
+      "limit": 10
     }));
     this.props.dispatch(fetchConfig({
       "command": "fetch_transfer_config",
@@ -87,6 +97,7 @@ class MerchantsComponent extends Component {
     this.transferMerchantData = {
       merchantName : rowData.merchantUsername
     };
+    this.modal.open();
     this.forceUpdate();
   }
 
@@ -95,6 +106,7 @@ class MerchantsComponent extends Component {
       openModal: false,
       modalData: {}
     };
+    this.modal.close();
     this.forceUpdate();
   }
 
@@ -104,7 +116,7 @@ class MerchantsComponent extends Component {
   }
 
   goHistory() {
-    Actions.historyTransferMerchant();
+    this.props.dispatch(cashOutTab.router.getActionForPathAndParams('historyTransferMerchant'));
   }
 
   submit() {
@@ -117,48 +129,24 @@ class MerchantsComponent extends Component {
       value,
       description
     }).then(async function (response) {
-      console.log("response.message",response);
       if (response.status) {
-        Alert.alert(
-          'Thông báo',
-          response.message,
-          [
-            {
-              text: 'OK', onPress: () => {
-            }
-            },
-          ],
-          {cancelable: true}
-        )
+
+        _self.setState({alertMessage : response.message});
+        _self.refs.alertPopup.open();
       } else {
         _self.props.dispatch(update_gold(response.money));
-        Alert.alert(
-          'Thông báo',
-          response.message,
-          [
-            {
-              text: 'OK', onPress: () => {
-              _self.closeModal.call(_self)
-            }
-            },
-          ],
-          {cancelable: true}
-        )
+
+        _self.setState({alertMessage : response.message});
+        _self.refs.alertPopup.open();
       }
     }).catch(function (thrown) {
       console.log('thrown submit cast in', thrown);
-      Alert.alert(
-        'Thông báo',
-        thrown,
-        [
-          {
-            text: 'OK', onPress: () => {
-            _self.closeModal.call(_self)
-          }
-          },
-        ],
-        {cancelable: true}
-      )
+      if(typeof thrown == "object"){
+        thrown = "Lỗi kết nối, vui lòng thử lại sau."
+      }
+
+      _self.setState({alertMessage : response.message});
+      _self.refs.alertPopup.open();
     });
   }
 
@@ -206,13 +194,14 @@ class MerchantsComponent extends Component {
   }
 
   render() {
+    const {alertMessage} = this.state;
     const {items, total, skip} = this.props;
     const {openModal, modalData} = this.modalData;
     this.transferMerchantData.feeValue = this.transferMerchantData.feeValue ? Math.round(this.transferMerchantData.feeValue).toString() : "0";
 
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
-        <HeaderComponent/>
+        <HeaderComponent hasBack/>
         <Image source={glow2} style={styles.container}>
           <View padder style={{backgroundColor: 'transparent'}}>
             <ListView
@@ -296,20 +285,23 @@ class MerchantsComponent extends Component {
               </View>
               <View style={styles.inputWrapper}>
                 <Input style={styles.inputInner}
-                       placeholder="Nội dung chuyển tiền"
+                       placeholder="Nội dung chuyển vàng"
                        placeholderTextColor="#7481a7"
                        onChangeText={description => {
                          this.setTransferMerchantData.call(this, {description});
                        }}
                 />
               </View>
+              <Text style={styles.errorMessage}>
+                {this.state.errorMessage}
+              </Text>
               <View style={styles.modalButtonBar}>
-                <Button rounded block style={styles.whiteButton}
-                        onPress={this.closeModal.bind(this)}>
-                  <Text style={styles.whiteButtonText}>
-                    Hủy bỏ
-                  </Text>
-                </Button>
+                {/*<Button rounded block style={styles.whiteButton}*/}
+                        {/*onPress={this.closeModal.bind(this)}>*/}
+                  {/*<Text style={styles.whiteButtonText}>*/}
+                    {/*Hủy bỏ*/}
+                  {/*</Text>*/}
+                {/*</Button>*/}
                 <Button rounded block style={styles.yellowButton}
                         onPress={this.submit.bind(this)}>
                   <Text style={styles.whiteButtonText}>
@@ -346,52 +338,26 @@ class MerchantsComponent extends Component {
           <View style={modalStyle.space}>
             <ScrollView >
               <Text style={styles.descriptionText}>
-                1Xác thực tài khoản để sử dụng đầy đủ {"\n"}
-                8tính năng của game: Nhận quà, chuyển vàng ...
-                9tính năng của game: Nhận quà, chuyển vàng ...
-                10tính năng của game: Nhận quà, chuyển vàng ...
-                11tính năng của game: Nhận quà, chuyển vàng ...
-                8tính năng của game: Nhận quà, chuyển vàng ...
-                9tính năng của game: Nhận quà, chuyển vàng ...
-                10tính năng của game: Nhận quà, chuyển vàng ...
-                11tính năng của game: Nhận quà, chuyển vàng ...
-                8tính năng của game: Nhận quà, chuyển vàng ...
-                9tính năng của game: Nhận quà, chuyển vàng ...
-                10tính năng của game: Nhận quà, chuyển vàng ...
-                11tính năng của game: Nhận quà, chuyển vàng ...
-                8tính năng của game: Nhận quà, chuyển vàng ...
-                9tính năng của game: Nhận quà, chuyển vàng ...
-                10tính năng của game: Nhận quà, chuyển vàng ...
-                11tính năng của game: Nhận quà, chuyển vàng ...
-                8tính năng của game: Nhận quà, chuyển vàng ...
-                9tính năng của game: Nhận quà, chuyển vàng ...
-                10tính năng của game: Nhận quà, chuyển vàng ...
-                11tính năng của game: Nhận quà, chuyển vàng ...
-                8tính năng của game: Nhận quà, chuyển vàng ...
-                9tính năng của game: Nhận quà, chuyển vàng ...
-                10tính năng của game: Nhận quà, chuyển vàng ...
-                11tính năng của game: Nhận quà, chuyển vàng ...
-                8tính năng của game: Nhận quà, chuyển vàng ...
-                9tính năng của game: Nhận quà, chuyển vàng ...
-                10tính năng của game: Nhận quà, chuyển vàng ...
-                11tính năng của game: Nhận quà, chuyển vàng ...
-                8tính năng của game: Nhận quà, chuyển vàng ...
-                9tính năng của game: Nhận quà, chuyển vàng ...
-                10tính năng của game: Nhận quà, chuyển vàng ...
-                11tính năng của game: Nhận quà, chuyển vàng ...
-                8tính năng của game: Nhận quà, chuyển vàng ...
-                9tính năng của game: Nhận quà, chuyển vàng ...
-                10tính năng của game: Nhận quà, chuyển vàng ...
-                11tính năng của game: Nhận quà, chuyển vàng ...
-                8tính năng của game: Nhận quà, chuyển vàng ...
-                9tính năng của game: Nhận quà, chuyển vàng ...
-                10tính năng của game: Nhận quà, chuyển vàng ...
-                11tính năng của game: Nhận quà, chuyển vàng ...
-                Vui lòng chọn nhà mạng:
+                B1: Xem danh sách đại lý, lựa chọn đại lý gần mình nhất.
+              </Text>
+              <Text style={styles.descriptionText}>
+                B2: Liên hệ với đại lý để thỏa thuận tỉ lệ thu mua vàng, tỷ lệ bán vàng cũng như cách thức giao dịch (hẹn gặp giao dịch trực tiếp hay chuyển khoản ngân hàng…)
+              </Text>
+              <Text style={styles.descriptionText}>
+                B3: Đến gặp và thực hiện việc chuyển vàng cho đại lý: Nhấn nút CHUYỂN VÀNG, nhập số vàng muốn chuyển, nội dung chuyển vàng các bạn ghi là: rut xxx vang, sdt: 09xxxxxxxx.
+              </Text>
+              <Text style={styles.descriptionText}>
+                 B4: Nhận tiền mặt hoặc chuyển khoản, hoàn thành giao dịch với đại lý
+                Chú ý:
+                - Các bạn nên đến gặp trực tiếp đại lý để đảm bảo giao dịch thực hiện thành công. Chỉ thực hiện giao dịch từ xa/ chuyển khoản với đại lý các bạn tin tưởng.
+                - Mỗi lần chuyển vàng ít nhất là 100.000 vàng
+                - Vàng đã chuyển sẽ không được trả lại. Vì vậy các bạn chú ý chỉ chuyển vàng khi đã thỏa thuận xong với đại lý.
+                Hd chuyển vàng cho đại lý
               </Text>
             </ScrollView>
           </View>
         </Modal>
+        <AlertPopup ref='alertPopup' message={alertMessage} callback={this.closeModal.bind(this)}></AlertPopup>
       </Container>
     );
   }
