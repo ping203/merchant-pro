@@ -196,21 +196,25 @@ export default {
   },
   priceWraper: {
     backgroundColor: '#373f62',
+    borderRadius : 15,
     textAlign: "center",
-    color: "#ffde00"
+    color: "#165980",
+    marginTop : 3,
+    marginLeft : 15,
+    marginRight : 15,
   },
   price: {
     color: "#ffde00"
   },
   modalText: {
-    color: "white",
+    color: "#333333",
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
     marginBottom: 5,
   },
   yellowText: {
-    color: "#ffde00",
+    color: "#e78800",
   },
   confirmModal: {
     width: deviceWidth * 7 / 8,

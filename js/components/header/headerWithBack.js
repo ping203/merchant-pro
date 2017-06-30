@@ -28,7 +28,7 @@ class HeaderWithBackComponent extends Component {
         <View style={styles.headerInner}>
 
           <Button  style={styles.headerBackButton} transparent onPress={()=>this.back.call(this)}>
-            <Icon active name="md-arrow-dropleft-circle" style={{fontSize: 40, color : "#616da2"}}/>
+            <Icon active name="md-arrow-dropleft-circle" style={{fontSize: 40, color : "#4fbde1"}}/>
           </Button>
 
           < Text style={styles.headerBackTitle}>

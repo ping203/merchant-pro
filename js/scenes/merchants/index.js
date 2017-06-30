@@ -9,6 +9,7 @@ import {
   Icon,
   Text,
   Input,
+  Content,
   FooterTab
 } from 'native-base';
 
@@ -95,7 +96,7 @@ class MerchantsComponent extends Component {
       modalData: rowData
     };
     this.transferMerchantData = {
-      merchantName : rowData.merchantUsername
+      merchantName: rowData.merchantUsername
     };
     this.modal.open();
     this.forceUpdate();
@@ -131,21 +132,21 @@ class MerchantsComponent extends Component {
     }).then(async function (response) {
       if (response.status) {
 
-        _self.setState({alertMessage : response.message});
+        _self.setState({alertMessage: response.message});
         _self.refs.alertPopup.open();
       } else {
         _self.props.dispatch(update_gold(response.money));
 
-        _self.setState({alertMessage : response.message});
+        _self.setState({alertMessage: response.message});
         _self.refs.alertPopup.open();
       }
     }).catch(function (thrown) {
       console.log('thrown submit cast in', thrown);
-      if(typeof thrown == "object"){
+      if (typeof thrown == "object") {
         thrown = "Lỗi kết nối, vui lòng thử lại sau."
       }
 
-      _self.setState({alertMessage : response.message});
+      _self.setState({alertMessage: response.message});
       _self.refs.alertPopup.open();
     });
   }
@@ -201,20 +202,22 @@ class MerchantsComponent extends Component {
 
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
-        <HeaderComponent hasBack/>
         <Image source={glow2} style={styles.container}>
-          <View padder style={{backgroundColor: 'transparent'}}>
-            <ListView
-              renderScrollComponent={props => <InfiniteScrollView {...props} />}
-              dataSource={this.dataSource}
-              renderRow={(rowData) => this._renderRowData.call(this, rowData)}
-              refreshControl={this._renderRefreshControl()}
-              onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}
-              canLoadMore={!items.length || items.length < total}
-              enableEmptySections={true}
-            />
+          <Content style={{backgroundColor: 'transparent'}}>
+            <HeaderComponent hasBack/>
+            <View padder style={{backgroundColor: 'transparent'}}>
+              <ListView
+                renderScrollComponent={props => <InfiniteScrollView {...props} />}
+                dataSource={this.dataSource}
+                renderRow={(rowData) => this._renderRowData.call(this, rowData)}
+                refreshControl={this._renderRefreshControl()}
+                onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}
+                canLoadMore={!items.length || items.length < total}
+                enableEmptySections={true}
+              />
 
-          </View>
+            </View>
+          </Content>
         </Image>
 
 
@@ -297,10 +300,10 @@ class MerchantsComponent extends Component {
               </Text>
               <View style={styles.modalButtonBar}>
                 {/*<Button rounded block style={styles.whiteButton}*/}
-                        {/*onPress={this.closeModal.bind(this)}>*/}
-                  {/*<Text style={styles.whiteButtonText}>*/}
-                    {/*Hủy bỏ*/}
-                  {/*</Text>*/}
+                {/*onPress={this.closeModal.bind(this)}>*/}
+                {/*<Text style={styles.whiteButtonText}>*/}
+                {/*Hủy bỏ*/}
+                {/*</Text>*/}
                 {/*</Button>*/}
                 <Button rounded block style={styles.yellowButton}
                         onPress={this.submit.bind(this)}>
@@ -330,7 +333,7 @@ class MerchantsComponent extends Component {
             <Button
               transparent
               style={{position: 'absolute', top: 0, right: 0}}
-              onPress={()=>this.setTutorial(false)}
+              onPress={() => this.setTutorial(false)}
             >
               <Icon name="close" style={{color: '#c4e1ff'}}/>
             </Button>
@@ -341,17 +344,21 @@ class MerchantsComponent extends Component {
                 B1: Xem danh sách đại lý, lựa chọn đại lý gần mình nhất.
               </Text>
               <Text style={styles.descriptionText}>
-                B2: Liên hệ với đại lý để thỏa thuận tỉ lệ thu mua vàng, tỷ lệ bán vàng cũng như cách thức giao dịch (hẹn gặp giao dịch trực tiếp hay chuyển khoản ngân hàng…)
+                B2: Liên hệ với đại lý để thỏa thuận tỉ lệ thu mua vàng, tỷ lệ bán vàng cũng như cách thức giao dịch
+                (hẹn gặp giao dịch trực tiếp hay chuyển khoản ngân hàng…)
               </Text>
               <Text style={styles.descriptionText}>
-                B3: Đến gặp và thực hiện việc chuyển vàng cho đại lý: Nhấn nút CHUYỂN VÀNG, nhập số vàng muốn chuyển, nội dung chuyển vàng các bạn ghi là: rut xxx vang, sdt: 09xxxxxxxx.
+                B3: Đến gặp và thực hiện việc chuyển vàng cho đại lý: Nhấn nút CHUYỂN VÀNG, nhập số vàng muốn chuyển,
+                nội dung chuyển vàng các bạn ghi là: rut xxx vang, sdt: 09xxxxxxxx.
               </Text>
               <Text style={styles.descriptionText}>
-                 B4: Nhận tiền mặt hoặc chuyển khoản, hoàn thành giao dịch với đại lý
+                B4: Nhận tiền mặt hoặc chuyển khoản, hoàn thành giao dịch với đại lý
                 Chú ý:
-                - Các bạn nên đến gặp trực tiếp đại lý để đảm bảo giao dịch thực hiện thành công. Chỉ thực hiện giao dịch từ xa/ chuyển khoản với đại lý các bạn tin tưởng.
+                - Các bạn nên đến gặp trực tiếp đại lý để đảm bảo giao dịch thực hiện thành công. Chỉ thực hiện giao
+                dịch từ xa/ chuyển khoản với đại lý các bạn tin tưởng.
                 - Mỗi lần chuyển vàng ít nhất là 100.000 vàng
-                - Vàng đã chuyển sẽ không được trả lại. Vì vậy các bạn chú ý chỉ chuyển vàng khi đã thỏa thuận xong với đại lý.
+                - Vàng đã chuyển sẽ không được trả lại. Vì vậy các bạn chú ý chỉ chuyển vàng khi đã thỏa thuận xong với
+                đại lý.
                 Hd chuyển vàng cho đại lý
               </Text>
             </ScrollView>

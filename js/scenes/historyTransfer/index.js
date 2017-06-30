@@ -31,7 +31,7 @@ class HistoryTransferComponent extends Component {
   }
 
   componentWillMount() {
-    if(!this.props.items.length){
+    if (!this.props.items.length) {
       this._loadMoreContentAsync.call(this);
     }
   }
@@ -71,22 +71,22 @@ class HistoryTransferComponent extends Component {
 
   _renderFooter() {
     return (
-    <View style={styles.buttonFooterWrap}>
-      <Button style={styles.buttonHistory} onPress={() => this._loadMoreContentAsync.call(this)}>
-        <Text style={styles.buttonHistoryText}> Xem thêm </Text>
-      </Button>
-    </View>
+      <View style={styles.buttonFooterWrap}>
+        <Button style={styles.buttonHistory} onPress={() => this._loadMoreContentAsync.call(this)}>
+          <Text style={styles.buttonHistoryText}> Xem thêm </Text>
+        </Button>
+      </View>
     )
   }
 
 
   _renderRowData(rowData) {
-    if(!rowData) return;
-    const { total, skip, isFetching, username} = this.props;
-    const { toUsername, userPayFee, fee, createdTime,transferType, value,fromUsername} = rowData;
+    if (!rowData) return;
+    const {total, skip, isFetching, username} = this.props;
+    const {toUsername, userPayFee, fee, createdTime, transferType, value, fromUsername} = rowData;
     let transferTypeCode = (toUsername == username );// true : nhận, false : chuyển;
     let transferPayFeeType = (userPayFee == username ); //true : "Bạn";// false : chuyển;
-    let formatTime =  moment(createdTime*1000).format('h:mm a - D/M/YYYY');
+    let formatTime = moment(createdTime * 1000).format('h:mm a - D/M/YYYY');
 
     // Reload all data
     return (
@@ -126,26 +126,26 @@ class HistoryTransferComponent extends Component {
   }
 
   render() {
-    console.log("render");
     const {items, total, skip} = this.props;
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
-        <HeaderWithBackComponent tittle="LỊCH SỬ CHUYỂN VÀNG"/>
         <Image source={glow2} style={styles.container}>
-          <View padder style={{backgroundColor: 'transparent'}}>
-            <ListView
-              renderScrollComponent={props => <InfiniteScrollView {...props} />}
-              dataSource={this.dataSource}
-              renderRow={(rowData) => this._renderRowData.call(this, rowData)}
-              refreshControl={this._renderRefreshControl()}
-              onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}
-              // canLoadMore={!items.length || items.length < total}
-              canLoadMore={false}
-              enableEmptySections={true}
-              pageSize={10}
-              renderFooter={()=>this._renderFooter.call(this)}
-            />
-            {/*<GiftedListView*/}
+          <Content style={{backgroundColor: 'transparent'}}>
+            <HeaderWithBackComponent tittle="LỊCH SỬ CHUYỂN VÀNG"/>
+            <View padder style={{backgroundColor: 'transparent'}}>
+              <ListView
+                renderScrollComponent={props => <InfiniteScrollView {...props} />}
+                dataSource={this.dataSource}
+                renderRow={(rowData) => this._renderRowData.call(this, rowData)}
+                refreshControl={this._renderRefreshControl()}
+                onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}
+                // canLoadMore={!items.length || items.length < total}
+                canLoadMore={false}
+                enableEmptySections={true}
+                pageSize={10}
+                renderFooter={() => this._renderFooter.call(this)}
+              />
+              {/*<GiftedListView*/}
               {/*rowView={(rowData) => this._renderRowData.call(this, rowData)}*/}
               {/*onFetch={this._loadMoreContentAsync.bind(this)}*/}
               {/*firstLoader={true} // display a loader for the first fetching*/}
@@ -153,14 +153,15 @@ class HistoryTransferComponent extends Component {
               {/*refreshable={true} // enable pull-to-refresh for iOS and touch-to-refresh for Android*/}
               {/*withSections={false} // enable sections*/}
               {/*customStyles={{*/}
-                {/*paginationView: {*/}
-                  {/*backgroundColor: '#eee',*/}
-                {/*},*/}
+              {/*paginationView: {*/}
+              {/*backgroundColor: '#eee',*/}
+              {/*},*/}
               {/*}}*/}
               {/*refreshableTintColor="blue"*/}
               {/*enableEmptySections={true}*/}
-            {/*/>*/}
-          </View>
+              {/*/>*/}
+            </View>
+          </Content>
         </Image>
       </Container>
     );

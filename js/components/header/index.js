@@ -65,7 +65,7 @@ class HeaderComponent extends Component {
 
             {hasBack && <View style={styles.headerButtonLeftWrapper}>
               <Button style={styles.headerButtonLeft} transparent onPress={() => this.props.back()}>
-                <Icon active name="md-arrow-dropleft-circle" style={{fontSize: 50, color: "#616da2"}}/>
+                <Icon active name="md-arrow-dropleft-circle" style={{fontSize: 50, color: "#4fbde1"}}/>
               </Button>
             </View>}
             {!hasBack && <View style={styles.headerButtonLeftWrapper}>

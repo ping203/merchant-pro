@@ -150,9 +150,9 @@ export default {
     marginTop: 10,
     width : deviceWidth * 240/640,
     borderWidth: 2,
-    borderColor: '#555e94',
+    borderColor: '#1182b1',
     borderRadius: 5,
-    backgroundColor : "transparent"
+    backgroundColor : "rgba(0, 255, 234, 0.05)"
   },
   buttonHistoryText : {
     fontSize : theme.fontSizeBase * 1.1,
@@ -186,7 +186,7 @@ export default {
     marginRight : 10,
     marginTop : 5,
     borderRadius : 3,
-    backgroundColor : "#343b52",
+    backgroundColor : "white",
     justifyContent : "space-between",
     flex : 1,
     flexDirection : "row",

@@ -128,13 +128,13 @@ export default {
   innerView: {
     paddingLeft: deviceWidth / 8,
     paddingRight: deviceWidth / 8,
-    flexDirection : "column",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
   },
   giftImage: {
     // width: 123 / 640 * deviceWidth,
-    marginBottom : 20,
+    marginBottom: 20,
     flex: 123 / 130,
     // height : null
   },
@@ -142,7 +142,7 @@ export default {
     marginBottom: 10,
     height: 50,
     borderRadius: 10,
-    backgroundColor: "#485382"
+    backgroundColor: "#9f8a41"
   },
 
 }

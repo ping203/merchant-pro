@@ -52,36 +52,36 @@ class CashoutComponent extends Component {  //eslint-disable-line
     return (
 
       <Container style={{backgroundColor: '#2a3146'}}>
-        <HeaderComponent/>
         <Image source={glow2} style={styles.container}>
+          <HeaderComponent/>
           <Content padder style={{backgroundColor: 'transparent'}}>
             <View style={styles.bg}>
               <View style={styles.innerView}>
                 <Image source={giftImage} style={styles.giftImage}/>
                 <Button rounded block style={styles.button}
                         onPress={ () => this.goOtherPage.call(this, 'mobileCards') }>
-                  <Text style={{color: '#b9cbdc'}}>
+                  <Text style={{color: '#fffb9a'}}>
                     Thẻ cào
                   </Text>
                 </Button>
                 <Button rounded block style={styles.button}
                         onPress={ () => this.goOtherPage.call(this, 'itemsCashOut') }>
-                  <Text style={{color: '#b9cbdc'}}>
+                  <Text style={{color: '#fffb9a'}}>
                     Vật phẩm
                   </Text>
                 </Button>
                 <Button rounded block style={styles.button} onPress={ () => this.goOtherPage.call(this, 'merchants') }>
-                  <Text style={{color: '#b9cbdc'}}>
+                  <Text style={{color: '#fffb9a'}}>
                     Đại lý
                   </Text>
                 </Button>
                 <Button rounded block style={styles.button} onPress={ () => this.modal.open() }>
-                  <Text style={{color: '#b9cbdc'}}>
+                  <Text style={{color: '#fffb9a'}}>
                     Ngân hàng
                   </Text>
                 </Button>
                 <Button rounded block style={styles.button} onPress={ () => this.goCashOutHistory.call(this)}>
-                  <Text style={{color: '#b9cbdc'}}>
+                  <Text style={{color: '#fffb9a'}}>
                     Nhận quà
                   </Text>
                 </Button>

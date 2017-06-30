@@ -70,23 +70,23 @@ class MobileCardsComponent extends Component {
         _self.props.dispatch(update_gold(response.money));
       }
 
-      _self.setState({alertMessage : response.message});
+      _self.setState({alertMessage: response.message});
       _self.refs.successPopup.open();
     }).catch(function (thrown) {
       console.log('thrown submit cast in', thrown);
-      if(typeof thrown == "object"){
+      if (typeof thrown == "object") {
         thrown = "Lỗi kết nối, vui lòng thử lại sau."
       }
-      _self.setState({alertMessage : thrown});
+      _self.setState({alertMessage: thrown});
       _self.refs.alertPopup.open();
     });
   }
 
   clearSuccess() {
     var _self = this;
-    setTimeout(()=>{
+    setTimeout(() => {
       _self.props.dispatch(refreshListHistory());
-    },1000)
+    }, 1000)
     _self.closeModal.call(_self);
   }
 
@@ -145,7 +145,7 @@ class MobileCardsComponent extends Component {
           <View style={styles.historyRight}>
             <Image style={styles.itemImage} source={{uri: imageUrl}}></Image>
             <Text style={styles.priceWraper}>
-              <NumberFormater format="0,0" style={styles.price}>{price}</NumberFormater>V
+              <NumberFormater format="0,0" style={styles.price}>{price} V</NumberFormater>
             </Text>
           </View>
         </TouchableHighlight>)
@@ -179,26 +179,28 @@ class MobileCardsComponent extends Component {
     }
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
-        <HeaderComponent hasBack/>
         <Image source={glow2} style={styles.container}>
-          <View padder style={{backgroundColor: 'transparent'}}>
-            {/*<ListView*/}
-            {/*renderScrollComponent={props => <InfiniteScrollView {...props} />}*/}
-            {/*dataSource={this.dataSource}*/}
-            {/*renderRow={(rowData) => this._renderRowData.call(this, rowData)}*/}
-            {/*refreshControl={this._renderRefreshControl()}*/}
-            {/*onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}*/}
-            {/*canLoadMore={!items.length || items.length < total}*/}
-            {/*enableEmptySections={true}*/}
-            {/*/>*/}
+          <Content style={{backgroundColor: 'transparent'}}>
+            <HeaderComponent hasBack/>
+            <View padder style={{backgroundColor: 'transparent'}}>
+              {/*<ListView*/}
+              {/*renderScrollComponent={props => <InfiniteScrollView {...props} />}*/}
+              {/*dataSource={this.dataSource}*/}
+              {/*renderRow={(rowData) => this._renderRowData.call(this, rowData)}*/}
+              {/*refreshControl={this._renderRefreshControl()}*/}
+              {/*onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}*/}
+              {/*canLoadMore={!items.length || items.length < total}*/}
+              {/*enableEmptySections={true}*/}
+              {/*/>*/}
 
-            <ListView
-              dataSource={this.dataSource}
-              renderRow={(rowData) => this._renderRowData.call(this, rowData)}
-              enableEmptySections={true}
-            />
+              <ListView
+                dataSource={this.dataSource}
+                renderRow={(rowData) => this._renderRowData.call(this, rowData)}
+                enableEmptySections={true}
+              />
 
-          </View>
+            </View>
+          </Content>
         </Image>
         <Modal
           style={[modalStyle.modal, modalStyle.modal2, styles.confirmModal]}
@@ -258,8 +260,8 @@ class MobileCardsComponent extends Component {
           </View>
         </Modal>
 
-        <AlertPopup ref='alertPopup' message={alertMessage} callback={this.closeModal.bind(this)} ></AlertPopup>
-        <AlertPopup ref='successPopup' message={alertMessage} callback={this.clearSuccess.bind(this)} ></AlertPopup>
+        <AlertPopup ref='alertPopup' message={alertMessage} callback={this.closeModal.bind(this)}></AlertPopup>
+        <AlertPopup ref='successPopup' message={alertMessage} callback={this.clearSuccess.bind(this)}></AlertPopup>
       </Container>
 
 
