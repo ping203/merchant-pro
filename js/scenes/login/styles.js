@@ -4,7 +4,7 @@ const {StyleSheet, Dimensions, Platform} = React;
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
 
-const logoRatio = 161 / 383;
+const logoRatio = 220 / 409;
 const facebookButtonWidth = 80;
 import theme from "../../themes/base-theme";
 
@@ -32,11 +32,11 @@ export default{
     position: "relative"
   },
   logo: {
-    left: deviceWidth / 5,
-    top: deviceHeight / 7,
+    left: deviceWidth * 0.25,
+    top: deviceHeight * 0.14,
     position: "absolute",
-    width: 2.5 / 5 * deviceWidth,
-    height: 2.5 / 5 * deviceWidth * logoRatio,
+    width: 0.5 * deviceWidth,
+    height: 0.5 * deviceWidth * logoRatio,
     backgroundColor: 'transparent',
     overflow: "visible"
   },
@@ -44,9 +44,15 @@ export default{
     position: "relative",
     backgroundColor: 'transparent',
     borderWidth: 2,
-    borderColor: '#1a6c9b',
+    borderColor: '#585f73',
     borderRadius: 5,
     marginBottom: 10
+  },
+  inputStyle: {
+    textAlign: 'center',
+    paddingRight: 20,
+    paddingLeft: 20,
+    color : "#585f73"
   },
   inputIcon: {
     position: "absolute",

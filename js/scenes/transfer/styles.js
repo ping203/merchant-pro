@@ -171,7 +171,7 @@ export default {
     marginBottom: 10,
     height: 50,
     borderRadius: 10,
-    backgroundColor: "#cdac12"
+    backgroundColor: "#9f8a41"
   },
   isVerifyReceiver : {
     width: 30,
@@ -181,7 +181,7 @@ export default {
     right : 5,
   },
   descriptionText: {
-    color: "#fff",
+    color: "#41475b",
     textAlign: "left",
     marginBottom : 10,
   },

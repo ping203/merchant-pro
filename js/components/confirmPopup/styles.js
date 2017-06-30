@@ -45,7 +45,7 @@ export default {
     flex : 1
   },
   descriptionText: {
-    color: "#fff",
+    color: "#333333",
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center"

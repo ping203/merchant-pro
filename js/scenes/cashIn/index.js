@@ -203,8 +203,8 @@ class CashIn extends Component {  //eslint-disable-line
     return (
 
       <Container style={{backgroundColor: '#2a3146'}}>
-        <HeaderComponent/>
         <Image source={glow2} style={styles.container}>
+        <HeaderComponent/>
           <Content padder style={{backgroundColor: 'transparent'}}>
             <View style={styles.cardWrappers}>
               {cardsTemp1.map((item, index) => {
@@ -230,7 +230,7 @@ class CashIn extends Component {  //eslint-disable-line
               <View style={styles2.innerView}>
 
                 <Item style={styles2.inputWrapper}>
-                  <Input style={{textAlign: 'center', paddingRight: 20, paddingLeft: 20}}
+                  <Input style={styles2.inputStyle}
                          autoCorrect={false}
                          placeholder={"Serial thẻ"}
                          placeholderTextColor="#7481a7"
@@ -239,7 +239,7 @@ class CashIn extends Component {  //eslint-disable-line
                   />
                 </Item>
                 <Item style={styles2.inputWrapper}>
-                  <Input style={{textAlign: 'center', paddingRight: 20, paddingLeft: 20}}
+                  <Input style={styles2.inputStyle}
                          autoCorrect={false}
                          placeholder={"Mã thẻ"}
                          placeholderTextColor="#7481a7"
@@ -250,7 +250,7 @@ class CashIn extends Component {  //eslint-disable-line
                 <Text style={styles.errorMessage}>
                   {this.state.errorMessage}
                 </Text>
-                <Button rounded block style={styles2.loginButton} onPress={this.submit.bind(this)}>
+                <Button rounded block style={styles.loginButton} onPress={this.submit.bind(this)}>
                   <Text style={{color: '#ffffff', fontWeight: "bold"}}>
                     Nạp vàng
                   </Text>

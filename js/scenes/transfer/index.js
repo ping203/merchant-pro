@@ -20,7 +20,14 @@ import styles from './styles';
 import styles2 from '../login/styles';
 import modalStyle from '../../components/styles/modal';
 import {logout, update_gold} from '../../actions/auth';
-import {select_free_type, change_receiver, change_value, update_config_ratio, toggle_tutorial, go_history} from './actions';
+import {
+  select_free_type,
+  change_receiver,
+  change_value,
+  update_config_ratio,
+  toggle_tutorial,
+  go_history
+} from './actions';
 import {refreshHistoryTranfer} from '../historyTransfer/actions';
 import Modal from 'react-native-modalbox';
 import axios, {CancelToken}from 'axios';
@@ -37,7 +44,7 @@ class TransferComponent extends Component {  //eslint-disable-line
     openDrawer: React.PropTypes.func,
   }
 
-  static navigationOptions = ({ navigation }) => ({
+  static navigationOptions = ({navigation}) => ({
     // title: `CHUYỂN VÀNG`,
   });
 
@@ -84,30 +91,30 @@ class TransferComponent extends Component {  //eslint-disable-line
   submit() {
     var _self = this;
     const {feeType, receiver, value} = this.props;
-    if(!this.isVerifyReceiver){
+    if (!this.isVerifyReceiver) {
       _self.setError("Username không đúng");
       return;
     }
     httpService.post2("", {
       command: "transfer_gold",
       value,
-      toUsername : receiver,
-      feeOnSender : feeType == "sender"
+      toUsername: receiver,
+      feeOnSender: feeType == "sender"
     }).then(async function (response) {
       var data = response.data;
-      if(typeof data.status == 'undefined'){
+      if (typeof data.status == 'undefined') {
         _self.setError("Server error");
-      }else      if (data.status) {
+      } else if (data.status) {
         _self.setError(data.message);
       } else {
         _self.setError("");
         _self.props.dispatch(update_gold(data.money));
-        _self.setState({alertMessage : data.message});
+        _self.setState({alertMessage: data.message});
         _self.refs.alertPopup.open();
       }
     }).catch(function (thrown) {
       console.log('thrown submit cast in', thrown);
-      if(typeof thrown == "object"){
+      if (typeof thrown == "object") {
         thrown = "Lỗi kết nối, vui lòng thử lại sau."
       }
       _self.setError(thrown);
@@ -158,8 +165,8 @@ class TransferComponent extends Component {  //eslint-disable-line
     httpService.post2("", {
       command: "check_user_exist",
       username
-    },{
-      cancelToken:  this.checkingReceiverSource.token
+    }, {
+      cancelToken: this.checkingReceiverSource.token
     }).then(async function (response) {
       var data = response.data;
       if (typeof data.status == "undefined") {
@@ -213,13 +220,13 @@ class TransferComponent extends Component {  //eslint-disable-line
     return (
 
       <Container style={{backgroundColor: '#2a3146'}}>
-        <HeaderComponent/>
         <Image source={glow2} style={styles.container}>
+          <HeaderComponent/>
           <Content padder style={{backgroundColor: 'transparent'}}>
             <View style={styles.bg}>
               <View style={styles.innerView}>
                 <Item style={styles2.inputWrapper}>
-                  <Input style={{textAlign: 'center', paddingRight: 20, paddingLeft: 20}}
+                  <Input style={styles2.inputStyle}
                          autoCorrect={false}
                          placeholder={"Người nhận"}
                          placeholderTextColor="#7481a7"
@@ -229,7 +236,7 @@ class TransferComponent extends Component {  //eslint-disable-line
                   {isVerifyReceiver && <Icon active name="ios-arrow-dropdown-circle" style={styles.isVerifyReceiver}/>}
                 </Item>
                 <Item style={styles2.inputWrapper}>
-                  <Input style={{textAlign: 'center', paddingRight: 20, paddingLeft: 20}}
+                  <Input style={styles2.inputStyle}
                          placeholder={"Số vàng"}
                          keyboardType="numeric"
                          placeholderTextColor="#7481a7"
@@ -243,14 +250,14 @@ class TransferComponent extends Component {  //eslint-disable-line
                 <View style={styles.checkboxList}>
                   <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
                     <Radio selected={feeType == "sender"} onPress={this.onSelectType.bind(this, "sender")}
-                           radioColor="#86b4ff" color="#86b4ff"/>
+                           radioColor="#1c6f91" color="#1c6f91"/>
                     <Text onPress={this.onSelectType.bind(this, "sender")} style={styles.checkboxText}>
                       Người gửi chịu phí
                     </Text>
                   </View>
                   <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
                     <Radio selected={feeType != "sender"} onPress={this.onSelectType.bind(this, "receiver")}
-                           radioColor="#86b4ff" color="#86b4ff"/>
+                           radioColor="#1c6f91" color="#1c6f91"/>
                     <Text onPress={this.onSelectType.bind(this, "receiver")} style={styles.checkboxText}>
                       Người nhận chịu phí
                     </Text>
@@ -269,9 +276,9 @@ class TransferComponent extends Component {  //eslint-disable-line
                   </Text>
                 </View>}
                 {receiver.length > 0 && <View style={styles.centerBox}>
-                  <Text style={{color: '#86b4ff', fontWeight: "bold"}}> {receiver} </Text>
+                  <Text style={{color: 'blue', fontWeight: "bold"}}> {receiver} </Text>
                   <Text style={styles.centerBox}>
-                    <Text style={{color: '#7481a7',}}> nhận được </Text>
+                    <Text style={{color: '#41475b',}}> nhận được </Text>
                     <Text style={{color: '#ffde00', fontWeight: "bold"}}>
                       <NumberFormater style={{color: '#ffde00',}} format="0,0">{receiveValue} V </NumberFormater>
                     </Text>
@@ -279,7 +286,7 @@ class TransferComponent extends Component {  //eslint-disable-line
                 </View>}
 
                 <Button rounded block style={styles.buttonYellow} onPress={this.submit.bind(this)}>
-                  <Text style={{color: '#ffffff', fontWeight: "bold"}}>
+                  <Text style={{color: '#fffb9a', fontWeight: "bold"}}>
                     CHUYỂN VÀNG
                   </Text>
                 </Button>

@@ -99,7 +99,8 @@ export default {
   cardImage: {
     width : deviceWidth/3.5,
     height : deviceWidth/3.5 * 112/284,
-    opacity : 0.2
+    opacity : 0.2,
+    backgroundColor: "white",
   },
   cardImageActive: {
     width : deviceWidth/3.5,
@@ -117,5 +118,11 @@ export default {
     marginBottom: (Platform.OS === 'ios') ? 10 : 0,
     marginTop: (Platform.OS === 'ios') ? 10 : 0,
     fontSize: theme.fontSizeBase * 0.8,
+  },
+  loginButton: {
+    marginBottom: 10,
+    height: 50,
+    borderRadius: 10,
+    backgroundColor: "#9f8a41"
   },
 }
