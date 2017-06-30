@@ -4,7 +4,7 @@ const {StyleSheet, Dimensions, Platform} = React;
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
 
-const logoRatio = 161 / 383;
+const logoRatio = 220 / 409;
 const facebookButtonWidth = 80;
 import theme from "../../themes/base-theme";
 
@@ -32,7 +32,7 @@ export default{
     position: "relative"
   },
   logo: {
-    left: deviceWidth / 5,
+    left: deviceWidth / 4,
     top: deviceHeight / 7,
     position: "absolute",
     width: 2.5 / 5 * deviceWidth,
