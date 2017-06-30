@@ -44,7 +44,7 @@ export default{
     position: "relative",
     backgroundColor: 'transparent',
     borderWidth: 2,
-    borderColor: '#585f73',
+    borderColor: '#1a6c9b',
     borderRadius: 5,
     marginBottom: 10
   },
