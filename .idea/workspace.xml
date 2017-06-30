@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b06418f6-cf1e-4e93-8754-b4111226420d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/cards/bit.png" afterPath="$PROJECT_DIR$/images/cards/bit.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/cards/gate.png" afterPath="$PROJECT_DIR$/images/cards/gate.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/cards/vcoin.png" afterPath="$PROJECT_DIR$/images/cards/vcoin.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/cards/vms.png" afterPath="$PROJECT_DIR$/images/cards/vms.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/cards/vnp.png" afterPath="$PROJECT_DIR$/images/cards/vnp.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/cards/vtt.png" afterPath="$PROJECT_DIR$/images/cards/vtt.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/login/styles.js" afterPath="$PROJECT_DIR$/js/scenes/login/styles.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/transfer/index.js" afterPath="$PROJECT_DIR$/js/scenes/transfer/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -69,12 +62,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="styles.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="styles.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/scenes/login/styles.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="46" column="25" lean-forward="false" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+            <state relative-caret-position="1559">
+              <caret line="99" column="24" lean-forward="true" selection-start-line="99" selection-start-column="24" selection-end-line="99" selection-end-column="24" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/scenes/merchants/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1207">
+              <caret line="173" column="22" lean-forward="false" selection-start-line="173" selection-start-column="22" selection-end-line="173" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/scenes/transfer/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="277" column="71" lean-forward="true" selection-start-line="277" selection-start-column="71" selection-end-line="277" selection-end-column="71" />
+              <folding>
+                <marker date="1498817575213" expanded="true" signature="9269:9351" ph="&lt;Text/&gt;" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -174,7 +189,6 @@
         <option value="$PROJECT_DIR$/js/components/confirmPopup/styles.js" />
         <option value="$PROJECT_DIR$/js/scenes/cashIn/index.js" />
         <option value="$PROJECT_DIR$/js/scenes/cashIn/styles.js" />
-        <option value="$PROJECT_DIR$/js/scenes/transfer/index.js" />
         <option value="$PROJECT_DIR$/app.json" />
         <option value="$PROJECT_DIR$/js/components/header/headerWithBack.js" />
         <option value="$PROJECT_DIR$/js/scenes/transfer/styles.js" />
@@ -197,6 +211,7 @@
         <option value="$PROJECT_DIR$/js/scenes/cashOutHistory/styles.js" />
         <option value="$PROJECT_DIR$/js/common/appConfig.js" />
         <option value="$PROJECT_DIR$/js/scenes/login/styles.js" />
+        <option value="$PROJECT_DIR$/js/scenes/transfer/index.js" />
       </list>
     </option>
   </component>
@@ -284,6 +299,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="scenes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="merchant-pro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="merchant-pro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scenes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="transfer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -593,12 +630,12 @@
       <workItem from="1498211853042" duration="709000" />
       <workItem from="1498471908824" duration="599000" />
       <workItem from="1498646869212" duration="168000" />
-      <workItem from="1498809889507" duration="5488000" />
+      <workItem from="1498809889507" duration="5809000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="679096000" />
+    <option name="totallyTimeSpent" value="679417000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -976,16 +1013,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/transfer/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="294" column="47" lean-forward="false" selection-start-line="294" selection-start-column="47" selection-end-line="294" selection-end-column="47" />
-          <folding>
-            <marker date="1498814878907" expanded="true" signature="9269:9351" ph="&lt;Text/&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/transfer/styles.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
@@ -1025,17 +1052,6 @@
         <state relative-caret-position="165">
           <caret line="89" column="61" lean-forward="true" selection-start-line="89" selection-start-column="61" selection-end-line="89" selection-end-column="61" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/merchants/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2479">
-          <caret line="173" column="22" lean-forward="false" selection-start-line="173" selection-start-column="22" selection-end-line="173" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-            <element signature="e#694#756#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1110,9 +1126,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/login/styles.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="46" column="25" lean-forward="false" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+        <state relative-caret-position="1559">
+          <caret line="99" column="24" lean-forward="true" selection-start-line="99" selection-start-column="24" selection-end-line="99" selection-end-column="24" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/merchants/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1207">
+          <caret line="173" column="22" lean-forward="false" selection-start-line="173" selection-start-column="22" selection-end-line="173" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/transfer/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="277" column="71" lean-forward="true" selection-start-line="277" selection-start-column="71" selection-end-line="277" selection-end-column="71" />
+          <folding>
+            <marker date="1498817575213" expanded="true" signature="9269:9351" ph="&lt;Text/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>

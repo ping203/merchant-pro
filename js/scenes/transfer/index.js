@@ -272,7 +272,7 @@ class TransferComponent extends Component {  //eslint-disable-line
                 {value != 0 && <View style={[styles.centerBox]}>
                   <Text style={{color: '#7481a7', textAlign: "right"}}> Còn lại </Text>
                   <Text style={{color: '#ffde00', fontWeight: "bold"}}>
-                    <NumberFormater style={{color: '#ffde00',}} format="0,0">{remainingGold} V </NumberFormater>
+                    <NumberFormater style={{color: '#e78800',}} format="0,0">{remainingGold} V </NumberFormater>
                   </Text>
                 </View>}
                 {receiver.length > 0 && <View style={styles.centerBox}>
@@ -280,7 +280,7 @@ class TransferComponent extends Component {  //eslint-disable-line
                   <Text style={styles.centerBox}>
                     <Text style={{color: '#41475b',}}> nhận được </Text>
                     <Text style={{color: '#ffde00', fontWeight: "bold"}}>
-                      <NumberFormater style={{color: '#ffde00',}} format="0,0">{receiveValue} V </NumberFormater>
+                      <NumberFormater style={{color: '#e78800',}} format="0,0">{receiveValue} V </NumberFormater>
                     </Text>
                   </Text>
                 </View>}
