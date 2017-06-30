@@ -18,12 +18,12 @@ export default {
     position: 'relative',
     justifyContent: 'center',
     borderRadius: 5,
-    backgroundColor: "#3a3e53",
+    backgroundColor: "white",
   },
   header: {
     position: "absolute",
     height: height * 70 / 1136,
-    backgroundColor: "#46649d",
+    backgroundColor: "#165980",
     width: width * 7 / 8,
     top: 0,
     left: 0,
@@ -36,7 +36,7 @@ export default {
     zIndex: 3
   },
   headerText: {
-    color: "#c4e1ff",
+    color: "#333333",
     fontSize: theme.fontSizeH2
   },
   space: {
@@ -85,12 +85,12 @@ export default {
   }
   ,
   sendText: {
-    color: "#c4e1ff",
+    color: "#1c6f91",
     fontSize: theme.fontSizeBase
   }
   ,
   messageYellow: {
-    color: "#cdac12",
+    color: "#e78800",
     fontSize: theme.fontSizeBase * 1.2
   }
 }

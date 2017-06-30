@@ -122,7 +122,7 @@ class ConfirmComponent extends Component {
               </Text>
             </Button>
           </View>
-          <Text style={{color: '#aac2f7', textAlign : "center"}}>
+          <Text style={{color: '#1c6f91', textAlign : "center"}}>
             Hoặc soạn tin{"\n"}
           </Text>
           <View style={styles.messageContainer}>

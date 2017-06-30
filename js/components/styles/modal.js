@@ -19,12 +19,12 @@ export default {
     position: 'relative',
     justifyContent: 'center',
     borderRadius: 5,
-    backgroundColor: "#3a3e53",
+    backgroundColor: "white",
   },
   header: {
     position: "absolute",
     height: height * 70 / 1136,
-    backgroundColor: "#46649d",
+    backgroundColor: "#165980",
     width: width * 7 / 8,
     top: 0,
     left: 0,
@@ -45,7 +45,7 @@ export default {
     paddingTop: 10 + height * 70 / 1136
   },
   descriptionText: {
-    color: "#fff",
+    color: "#41475b",
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",

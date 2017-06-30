@@ -2,7 +2,7 @@
   "expo": {
     "sdkVersion": "15.0.0",
     "icon": "./images/logo-new.png",
-    "slug": "C567Plus",
+    "slug": "VBVPlus",
     "loading": {
       "hideExponentText": true,
       "icon": "./images/loading.png",
@@ -16,10 +16,10 @@
       ]
     },
   "ios": {
-    "bundleIdentifier": "com.c567.plus",
+    "bundleIdentifier": "com.vuabaivip.plus",
   },
   "android": {
-     "package": "com.c567.plus",
+     "package": "com.vuabaivip.plus",
    },
     "androidStatusBarColor": "#000000",
     "androidStatusBar": {

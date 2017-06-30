@@ -26,15 +26,15 @@ class SelectedCheckbox extends Component {
     if (network === selectedNetwork) {
       return (
         <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
-          <Radio selected={true} onPress={this.onSelect.bind(this)} radioColor="#86b4ff" color="#86b4ff"/>
-          <Text  onPress={this.onSelect.bind(this)}  style={{color: "#86b4ff", paddingLeft : 5}}>{MappingTarget[network]}</Text>
+          <Radio selected={true} onPress={this.onSelect.bind(this)} radioColor="#86b4ff" color="#1c6f91"/>
+          <Text  onPress={this.onSelect.bind(this)}  style={{color: "#1c6f91", paddingLeft : 5}}>{MappingTarget[network]}</Text>
         </View>
       );
     } else {
       return (
         <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
-          <Radio selected={false} onPress={this.onSelect.bind(this)} radioColor="#86b4ff" backgroundColor="#86b4ff"/>
-          <Text  onPress={this.onSelect.bind(this)}  style={{color: "#86b4ff", paddingLeft : 5}}>{MappingTarget[network]}</Text>
+          <Radio selected={false} onPress={this.onSelect.bind(this)} radioColor="#1c6f91" backgroundColor="#1c6f91"/>
+          <Text  onPress={this.onSelect.bind(this)}  style={{color: "#1c6f91", paddingLeft : 5}}>{MappingTarget[network]}</Text>
         </View>
       );
     }

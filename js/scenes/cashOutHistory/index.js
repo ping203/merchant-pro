@@ -29,7 +29,7 @@ const glow2 = require('../../../images/glow2-new.png');
 
 
 class CashOutHistoryComponent extends Component {
-  static navigationOptions = ({ navigation }) => ({
+  static navigationOptions = ({navigation}) => ({
     title: `NHẬN QUÀ`,
   });
 
@@ -42,7 +42,7 @@ class CashOutHistoryComponent extends Component {
   }
 
   componentWillMount() {
-    if(!this.props.items.length){
+    if (!this.props.items.length) {
       this._loadMoreContentAsync.call(this);
     }
   }
@@ -172,8 +172,8 @@ class CashOutHistoryComponent extends Component {
       name: telco,
       code: telco.toLowerCase()
     }));
-    this.props.dispatch(change_code(      code    ));
-    this.props.dispatch(change_serial(      serial    ));
+    this.props.dispatch(change_code(code));
+    this.props.dispatch(change_serial(serial));
     this.props.dispatch(change_footer("cashIn"));
     this.props.dispatch(homeNavigation.router.getActionForPathAndParams("cashIn"));
   }
@@ -182,9 +182,8 @@ class CashOutHistoryComponent extends Component {
     const {items, total, skip} = this.props;
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
-        {/*<HeaderWithBackComponent tittle="LỊCH SỬ CHUYỂN VÀNG"/>*/}
-        <HeaderComponent/>
         <Image source={glow2} style={styles.container}>
+          <HeaderComponent/>
           <View padder style={{backgroundColor: 'transparent'}}>
             <ListView
               renderScrollComponent={props => <InfiniteScrollView {...props} />}
@@ -195,15 +194,13 @@ class CashOutHistoryComponent extends Component {
               canLoadMore={false}
               enableEmptySections={true}
               pageSize={10}
-              renderFooter={()=>this._renderFooter.call(this)}
-              renderHeader={()=>this._renderHeader.call(this)}
+              renderFooter={() => this._renderFooter.call(this)}
+              renderHeader={() => this._renderHeader.call(this)}
             />
-            {items && items.length == 0 && <Text style={{margin : 10, textAlign : "center"}}>Danh sách quà của bạn trống</Text>}
+            {items && items.length == 0 &&
+            <Text style={{margin: 10, textAlign: "center", color: "#585f73"}}>Danh sách quà của bạn trống</Text>}
           </View>
         </Image>
-        {/*<Footer style={{borderTopWidth: 0, backgroundColor: 'transparent'}}>*/}
-          {/*<FooterComponent navigator={this.props.navigation}/>*/}
-        {/*</Footer>*/}
       </Container>
     );
   }

@@ -10,8 +10,8 @@ const deviceWidth = Dimensions.get('window').width;
 export default {
   container: {
     flex: 1,
-    width: null,
-    height: null,
+    width: deviceWidth,
+    height: deviceHeight,
   },
   headerContainer: {
     width: deviceWidth,

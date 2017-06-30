@@ -111,7 +111,7 @@ class Login extends Component {
       _self.setState({errorMessageRegister: data.message});
     } else {
       const {usernameRegister, passwordRegister} = this.state;
-      _self.setState({errorMessageRegister: "", username : usernameRegister, password : passwordRegister });
+      _self.setState({errorMessageRegister: "", username: usernameRegister, password: passwordRegister});
       _self.login.call(this);
     }
   }
@@ -158,7 +158,7 @@ class Login extends Component {
     var _self = this;
     logIn();
     async function logIn() {
-      const {type, token} = await Facebook.logInWithReadPermissionsAsync('1847504665484148', {
+      const {type, token} = await Facebook.logInWithReadPermissionsAsync('347626685570220', {
         permissions: ['public_profile'],
       });
       if (type === 'success') {
@@ -204,138 +204,140 @@ class Login extends Component {
     const {showSpin} = this.props;
     const {isRegister} = this.state;
     return (
-      <Container style={{backgroundColor: '#2a3146'}}>
+      <Container style={{backgroundColor: '#165980'}}>
         <Image source={backgroundImage} style={styles.container}>
           <Content padder style={{backgroundColor: 'transparent'}}>
-            <View style={styles.bg}>
-              <Image source={logo} resizeMode='cover' style={styles.logo}/>
-              {/*<Item underline style={{marginBottom: 20}}>*/}
-              {!isRegister && <View style={styles.innerView}>
+            <View style={styles.container}>
+              <View style={styles.bg}>
+                <Image source={logo} resizeMode='cover' style={styles.logo}/>
+                {/*<Item underline style={{marginBottom: 20}}>*/}
+                {!isRegister && <View style={styles.innerView}>
 
-                <Item style={styles.inputWrapper}>
-                  {/*<Icon active name="person"/>*/}
-                  <Icon active name="person" style={styles.inputIcon}/>
-                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
-                         autoCorrect={false}
-                         placeholder="Tài khoản"
-                         placeholderTextColor="#7481a7"
-                         onChangeText={username => {
-                           this.setUsername(username);
-                         }}
-                         onSubmitEditing={() => this.refs.passwordInput._root.focus()}
-                  />
-                </Item>
-                <Item style={styles.inputWrapper}>
-                  <Icon name="unlock" style={styles.inputIcon}/>
-                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
-                         placeholder="Mật khẩu"
-                         placeholderTextColor="#7481a7"
-                         secureTextEntry
-                         onChangeText={password => {
-                           this.setPassword(password)
-                         }}
-                         ref='passwordInput'
-                         onSubmitEditing={() => this.login.call(this)}
+                  <Item style={styles.inputWrapper}>
+                    {/*<Icon active name="person"/>*/}
+                    <Icon active name="person" style={styles.inputIcon}/>
+                    <Input  style={styles.loginInput}
+                           autoCorrect={false}
+                           placeholder="Tài khoản"
+                           placeholderTextColor="#309dc5"
+                           onChangeText={username => {
+                             this.setUsername(username);
+                           }}
+                           onSubmitEditing={() => this.refs.passwordInput._root.focus()}
+                    />
+                  </Item>
+                  <Item style={styles.inputWrapper}>
+                    <Icon name="unlock" style={styles.inputIcon}/>
+                    <Input  style={styles.loginInput}
+                           placeholder="Mật khẩu"
+                           placeholderTextColor="#309dc5"
+                           secureTextEntry
+                           onChangeText={password => {
+                             this.setPassword(password)
+                           }}
+                           ref='passwordInput'
+                           onSubmitEditing={() => this.login.call(this)}
 
-                  />
-                </Item>
-                <Text style={styles.errorMessage}>
-                  {this.state.errorMessage}
-                </Text>
-
-                {showSpin && <Spinner color="#999"/>}
-                {!showSpin && <Button rounded block style={styles.loginButton} onPress={ () => this.login() }>
-                  <Text style={{color: '#ffffff'}}>
-                    ĐĂNG NHẬP
+                    />
+                  </Item>
+                  <Text style={styles.errorMessage}>
+                    {this.state.errorMessage}
                   </Text>
-                </Button>}
 
-                {!showSpin &&
-                <Text style={styles.loginText} onPress={() => this.setState({isRegister: true, errorMessageRegister : ""})}>
-                  ĐĂNG KÝ
-                </Text>}
+                  {showSpin && <Spinner color="#999"/>}
+                  {!showSpin && <Button rounded block style={styles.loginButton} onPress={ () => this.login() }>
+                    <Text style={{color: '#835238'}}>
+                      ĐĂNG NHẬP
+                    </Text>
+                  </Button>}
 
-
-                {!showSpin && <View style={styles.facebookWrapper}>
-                  {/*<Button rounded block style={{marginBottom: 10}} >*/}
-                  {/*</Button>*/}
-                  <TouchableHighlight onPress={ () => this.loginFacebook() }>
-                    <Image source={facebookButton} resizeMode='cover' style={styles.facebookButton}/>
-                  </TouchableHighlight>
-                  <Text onPress={ () => this.loginFacebook() } style={{color: '#405688', marginTop: 10}}>
-                    Đăng nhập qua Facebook
-                  </Text>
-                </View>}
-              </View>}
-              {isRegister && <View style={styles.innerView}>
-
-                <Item style={styles.inputWrapper}>
-                  <Icon active name="person" style={styles.inputIcon}/>
-                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
-                         autoCorrect={false}
-                         placeholder="Tài khoản"
-                         placeholderTextColor="#7481a7"
-                         onChangeText={usernameRegister => {
-                           this.setState({usernameRegister, errorMessageRegister: ""});
-                         }}
-                         onSubmitEditing={() => this.refs.passwordRegisterInput._root.focus()}
-                  />
-                </Item>
-                <Item style={styles.inputWrapper}>
-                  <Icon name="unlock" style={styles.inputIcon}/>
-                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
-                         placeholder="Mật khẩu"
-                         placeholderTextColor="#7481a7"
-                         secureTextEntry
-                         onChangeText={passwordRegister => {
-                           this.setState({passwordRegister, errorMessageRegister: ""})
-                         }}
-                         ref='passwordRegisterInput'
-                         onSubmitEditing={() => this.refs.telephoneInput._root.focus()}
-
-                  />
-                </Item>
-                <Item style={styles.inputWrapper}>
-                  <Icon name="md-phone-portrait" style={styles.inputIcon}/>
-                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
-                         placeholder="Số điện thoại"
-                         placeholderTextColor="#7481a7"
-                         secureTextEntry
-                         onChangeText={telephone => {
-                           this.setState({telephone})
-                         }}
-                         ref='telephoneInput'
-                         onSubmitEditing={() => this.register.call(this)}
-                  />
-                </Item>
-                <Text style={styles.errorMessage}>
-                  {this.state.errorMessageRegister}
-                </Text>
-
-                {showSpin && <Spinner color="#999"/>}
-                {!showSpin && <Button rounded block style={styles.loginButton} onPress={ () => this.register() }>
-                  <Text style={{color: '#ffffff'}}>
+                  {!showSpin &&
+                  <Text style={styles.loginText}
+                        onPress={() => this.setState({isRegister: true, errorMessageRegister: ""})}>
                     ĐĂNG KÝ
-                  </Text>
-                </Button>}
-
-                {!showSpin &&
-                <Text style={styles.loginText} onPress={() => this.setState({isRegister: false, errorMessage : ""})}>
-                  ĐĂNG NHẬP
-                </Text>}
+                  </Text>}
 
 
-                {!showSpin && <View style={styles.facebookWrapper}>
-                  {/*<Button rounded block style={{marginBottom: 10}} >*/}
-                  {/*</Button>*/}
-                  <TouchableHighlight onPress={ () => this.loginFacebook() }>
-                    <Image source={facebookButton} resizeMode='cover' style={styles.facebookButton}/>
-                  </TouchableHighlight>
-                  <Text onPress={ () => this.loginFacebook() } style={{color: '#405688', marginTop: 10}}>
-                    Đăng nhập qua Facebook
-                  </Text>
+                  {!showSpin && <View style={styles.facebookWrapper}>
+                    {/*<Button rounded block style={{marginBottom: 10}} >*/}
+                    {/*</Button>*/}
+                    <TouchableHighlight onPress={ () => this.loginFacebook() }>
+                      <Image source={facebookButton} resizeMode='cover' style={styles.facebookButton}/>
+                    </TouchableHighlight>
+                    <Text onPress={ () => this.loginFacebook() } style={{color: '#309dc5', marginTop: 10}}>
+                      Đăng nhập qua Facebook
+                    </Text>
+                  </View>}
                 </View>}
-              </View>}
+                {isRegister && <View style={styles.innerView}>
+
+                  <Item style={styles.inputWrapper}>
+                    <Icon active name="person" style={styles.inputIcon}/>
+                    <Input  style={styles.loginInput}
+                           autoCorrect={false}
+                           placeholder="Tài khoản"
+                           placeholderTextColor="#309dc5"
+                           onChangeText={usernameRegister => {
+                             this.setState({usernameRegister, errorMessageRegister: ""});
+                           }}
+                           onSubmitEditing={() => this.refs.passwordRegisterInput._root.focus()}
+                    />
+                  </Item>
+                  <Item style={styles.inputWrapper}>
+                    <Icon name="unlock" style={styles.inputIcon}/>
+                    <Input style={styles.loginInput}
+                           placeholder="Mật khẩu"
+                           placeholderTextColor="#309dc5"
+                           secureTextEntry
+                           onChangeText={passwordRegister => {
+                             this.setState({passwordRegister, errorMessageRegister: ""})
+                           }}
+                           ref='passwordRegisterInput'
+                           onSubmitEditing={() => this.refs.telephoneInput._root.focus()}
+
+                    />
+                  </Item>
+                  <Item style={styles.inputWrapper}>
+                    <Icon name="md-phone-portrait" style={styles.inputIcon}/>
+                    <Input style={styles.loginInput}
+                           placeholder="Số điện thoại"
+                           placeholderTextColor="#309dc5"
+                           onChangeText={telephone => {
+                             this.setState({telephone})
+                           }}
+                           ref='telephoneInput'
+                           onSubmitEditing={() => this.register.call(this)}
+                    />
+                  </Item>
+                  <Text style={styles.errorMessage}>
+                    {this.state.errorMessageRegister}
+                  </Text>
+
+                  {showSpin && <Spinner color="#999"/>}
+                  {!showSpin && <Button rounded block style={styles.loginButton} onPress={ () => this.register() }>
+                    <Text style={{color: '#835238'}}>
+                      ĐĂNG KÝ
+                    </Text>
+                  </Button>}
+
+                  {!showSpin &&
+                  <Text style={styles.loginText} onPress={() => this.setState({isRegister: false, errorMessage: ""})}>
+                    ĐĂNG NHẬP
+                  </Text>}
+
+
+                  {!showSpin && <View style={styles.facebookWrapper}>
+                    {/*<Button rounded block style={{marginBottom: 10}} >*/}
+                    {/*</Button>*/}
+                    <TouchableHighlight onPress={ () => this.loginFacebook() }>
+                      <Image source={facebookButton} resizeMode='cover' style={styles.facebookButton}/>
+                    </TouchableHighlight>
+                    <Text onPress={ () => this.loginFacebook() } style={{color: '#309dc5', marginTop: 10}}>
+                      Đăng nhập qua Facebook
+                    </Text>
+                  </View>}
+                </View>}
+              </View>
             </View>
           </Content>
         </Image>

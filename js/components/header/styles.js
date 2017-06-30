@@ -140,7 +140,7 @@ export default {
     alignItems : "center",
     width : deviceWidth * 0.27,
     height : deviceWidth * 60/640,
-    backgroundColor: "#3d5a98",
+    backgroundColor: "#cdac12",
   },
   headerBackButton : {
     position : "absolute",
