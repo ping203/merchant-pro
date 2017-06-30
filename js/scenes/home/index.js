@@ -28,15 +28,15 @@ const HomeNavigation = TabNavigator(AppRouteConfigs, {
     labelStyle: {
       fontSize: 10,
       fontWeight : "bold",
-      color : "#676da6"
+      color : "#b6e4ff"
     },
     style: {
-      backgroundColor: '#434973',
+      backgroundColor: '#1c6f91',
       // flex  : 1
     },
-    activeBackgroundColor : "#3a3f6c",
+    activeBackgroundColor : "#aa8b1d",
     indicatorStyle : {
-      backgroundColor: '#3a3f6c',
+      backgroundColor: '#aa8b1d',
       height : 100
     }
   }

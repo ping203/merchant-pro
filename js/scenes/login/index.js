@@ -69,7 +69,7 @@ class Login extends Component {
 
     }).then(this.handleLogin.bind(this)).catch(function (thrown) {
       console.log('thrown.message login', thrown);
-      if(typeof thrown !="string"){
+      if (typeof thrown != "string") {
         thrown = "Lỗi server !"
       }
       _self.props.dispatch(toggle_spin(false));
@@ -159,7 +159,7 @@ class Login extends Component {
     var _self = this;
     logIn();
     async function logIn() {
-      const {type, token} = await Facebook.logInWithReadPermissionsAsync('1847504665484148', {
+      const {type, token} = await Facebook.logInWithReadPermissionsAsync('347626685570220', {
         permissions: ['public_profile'],
       });
       if (type === 'success') {
@@ -205,21 +205,20 @@ class Login extends Component {
     const {showSpin} = this.props;
     const {isRegister} = this.state;
     return (
-      <Container style={{backgroundColor: '#2a3146'}}>
-        <Image source={backgroundImage} style={styles.container}>
-          <Content padder style={{backgroundColor: 'transparent'}}>
+      <Container style={{backgroundColor: '#165980'}}>
+        <Content padder style={{backgroundColor: 'transparent'}}>
+          <View style={styles.container}>
             <View style={styles.bg}>
               <Image source={logo} resizeMode='cover' style={styles.logo}/>
-              {/*<Item underline style={{marginBottom: 20}}>*/}
               {!isRegister && <View style={styles.innerView}>
 
                 <Item style={styles.inputWrapper}>
                   {/*<Icon active name="person"/>*/}
                   <Icon active name="person" style={styles.inputIcon}/>
-                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
+                  <Input style={styles.loginInput}
                          autoCorrect={false}
                          placeholder="Tài khoản"
-                         placeholderTextColor="#7481a7"
+                         placeholderTextColor="#309dc5"
                          onChangeText={username => {
                            this.setUsername(username);
                          }}
@@ -228,9 +227,9 @@ class Login extends Component {
                 </Item>
                 <Item style={styles.inputWrapper}>
                   <Icon name="unlock" style={styles.inputIcon}/>
-                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
+                  <Input style={styles.loginInput}
                          placeholder="Mật khẩu"
-                         placeholderTextColor="#7481a7"
+                         placeholderTextColor="#309dc5"
                          secureTextEntry
                          onChangeText={password => {
                            this.setPassword(password)
@@ -246,7 +245,7 @@ class Login extends Component {
 
                 {showSpin && <Spinner color="#999"/>}
                 {!showSpin && <Button rounded block style={styles.loginButton} onPress={ () => this.login() }>
-                  <Text style={{color: '#ffffff'}}>
+                  <Text style={{color: '#835238'}}>
                     ĐĂNG NHẬP
                   </Text>
                 </Button>}
@@ -264,7 +263,7 @@ class Login extends Component {
                   <TouchableHighlight onPress={ () => this.loginFacebook() }>
                     <Image source={facebookButton} resizeMode='cover' style={styles.facebookButton}/>
                   </TouchableHighlight>
-                  <Text onPress={ () => this.loginFacebook() } style={{color: '#405688', marginTop: 10}}>
+                  <Text onPress={ () => this.loginFacebook() } style={{color: '#309dc5', marginTop: 10}}>
                     Đăng nhập qua Facebook
                   </Text>
                 </View>}
@@ -273,10 +272,10 @@ class Login extends Component {
 
                 <Item style={styles.inputWrapper}>
                   <Icon active name="person" style={styles.inputIcon}/>
-                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
+                  <Input style={styles.loginInput}
                          autoCorrect={false}
                          placeholder="Tài khoản"
-                         placeholderTextColor="#7481a7"
+                         placeholderTextColor="#309dc5"
                          onChangeText={usernameRegister => {
                            this.setState({usernameRegister, errorMessageRegister: ""});
                          }}
@@ -285,9 +284,9 @@ class Login extends Component {
                 </Item>
                 <Item style={styles.inputWrapper}>
                   <Icon name="unlock" style={styles.inputIcon}/>
-                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
+                  <Input style={styles.loginInput}
                          placeholder="Mật khẩu"
-                         placeholderTextColor="#7481a7"
+                         placeholderTextColor="#309dc5"
                          secureTextEntry
                          onChangeText={passwordRegister => {
                            this.setState({passwordRegister, errorMessageRegister: ""})
@@ -299,10 +298,9 @@ class Login extends Component {
                 </Item>
                 <Item style={styles.inputWrapper}>
                   <Icon name="md-phone-portrait" style={styles.inputIcon}/>
-                  <Input style={{textAlign: 'center', paddingRight: 50, paddingLeft: 50}}
+                  <Input style={styles.loginInput}
                          placeholder="Số điện thoại"
-                         placeholderTextColor="#7481a7"
-                         secureTextEntry
+                         placeholderTextColor="#309dc5"
                          onChangeText={telephone => {
                            this.setState({telephone})
                          }}
@@ -316,7 +314,7 @@ class Login extends Component {
 
                 {showSpin && <Spinner color="#999"/>}
                 {!showSpin && <Button rounded block style={styles.loginButton} onPress={ () => this.register() }>
-                  <Text style={{color: '#ffffff'}}>
+                  <Text style={{color: '#835238'}}>
                     ĐĂNG KÝ
                   </Text>
                 </Button>}
@@ -333,14 +331,14 @@ class Login extends Component {
                   <TouchableHighlight onPress={ () => this.loginFacebook() }>
                     <Image source={facebookButton} resizeMode='cover' style={styles.facebookButton}/>
                   </TouchableHighlight>
-                  <Text onPress={ () => this.loginFacebook() } style={{color: '#405688', marginTop: 10}}>
+                  <Text onPress={ () => this.loginFacebook() } style={{color: '#309dc5', marginTop: 10}}>
                     Đăng nhập qua Facebook
                   </Text>
                 </View>}
               </View>}
             </View>
-          </Content>
-        </Image>
+          </View>
+        </Content>
       </Container>
     );
   }

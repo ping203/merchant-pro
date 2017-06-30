@@ -85,7 +85,7 @@ class HeaderComponent extends Component {
           <View style={styles.headerRight}>
             {!isActived &&
             <Button onPress={this.props.openConfirmPopup} style={styles.buttonConfirm}>
-              <Text style={{color: '#aac2f7'}}>Xác thực</Text>
+              <Text style={{color: '#835238'}}>Xác thực</Text>
             </Button>
             }
             {isActived && <Icon active name="ios-arrow-dropdown-circle" style={{width: 30, color: "#add329"}}/>}

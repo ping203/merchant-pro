@@ -8,8 +8,8 @@ export default{
   // host : "http://dev3.puppetserver.com/wap",
   // host : "http://uat1.puppetserver.com/wap",
   host : "https://vuabaivip.com/wap",
-  // bundleId : "com.songbaivip.fullhd",
-  bundleId : "com.iluckystarvn.daisiu",
+  bundleId : "com.gamebaivip2017.danhbaidoithuong",
+  // bundleId : "com.iluckystarvn.daisiu",
   platformId : Platform.OS === 'ios' ? 1 : 2,
   imei: "4755711c-640d-786d-8397-c37a8c47d683",
   version : "1.0.0"

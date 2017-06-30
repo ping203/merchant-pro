@@ -87,15 +87,16 @@ export default {
     justifyContent: "space-between",
   },
   listitemTittle: {
-    fontSize : theme.fontSizeBase * 1.1
+    fontSize : theme.fontSizeBase * 1.1,
+    color : "#41475b",
   },
   listitemTime: {
     fontSize : theme.fontSizeBase * 0.9,
-    color : "#c4e1ff"
+    color : "#41475b"
   },
   newsListTittle: {
     fontSize : theme.fontSizeH2,
-    color : "#c4e1ff",
+    color : "#41475b",
     margin : 20,
     textAlign : "center",
     flex : 1,

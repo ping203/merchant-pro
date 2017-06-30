@@ -60,15 +60,15 @@ class News extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newsItem : {
-        paragraphs : []
+      newsItem: {
+        paragraphs: []
       }
     };
   }
 
   showPopup(newItem) {
     this.setState({
-      newsItem : newItem
+      newsItem: newItem
     })
     this.modal.open();
   }
@@ -82,10 +82,10 @@ class News extends Component {
     return (
 
       <Container style={{backgroundColor: '#2a3146'}}>
-        <HeaderComponent/>
         <Image source={glow2} style={styles.container}>
+          <HeaderComponent/>
           <Content padder style={{backgroundColor: 'transparent'}}>
-            <Text style={styles.newsListTittle} >TIN TỨC</Text>
+            <Text style={styles.newsListTittle}>TIN TỨC</Text>
             <View style={styles.bg}>
               <View style={styles.innerView}>
                 {newsData.map((item, index) => {
@@ -93,7 +93,7 @@ class News extends Component {
                     <Text style={styles.listitemTittle} onPress={() => _self.showPopup(item)}>
                       {item.tittle}
                     </Text>
-                    <Text style={styles.listitemTime} >
+                    <Text style={styles.listitemTime}>
                       {item.time}
                     </Text>
                   </View>)
@@ -105,37 +105,37 @@ class News extends Component {
 
 
           {!isActived && <ConfirmComponent ></ConfirmComponent>}
-        </Image>
 
-        <Modal
-          style={[modalStyles.modal, modalStyles.modal2]}
-          backdrop={true}
-          ref={(c) => {
-            this.modal = c;
-          }}
-          swipeToClose={false}
-          isOpen={false}
-        >
-          <View  style={[modalStyles.header, styles.modalHeader]}>
-            <Text style={{color : "#c4e1ff"}} numberOfLines={1} >
-              {tittle}
-            </Text>
-            <Button
-              transparent
-              style={{position: 'absolute', top: 0, right: 0}}
-              onPress={()=>this.modal.close()}
-            >
-              <Icon name="close" style={{color: '#c4e1ff'}}/>
-            </Button>
-          </View>
-          <ScrollView style={modalStyles.space}>
-            {paragraphs.map((item,index)=>(
-              <Text key={index}>
-                {item}
-              </Text>))}
-          </ScrollView>
-        </Modal>
-      </Container>
+          <Modal
+            style={[modalStyles.modal, modalStyles.modal2]}
+            backdrop={true}
+            ref={(c) => {
+              this.modal = c;
+            }}
+            swipeToClose={false}
+            isOpen={false}
+          >
+            <View style={[modalStyles.header, styles.modalHeader]}>
+              <Text style={{color: "#c4e1ff"}} numberOfLines={1}>
+                {tittle}
+              </Text>
+              <Button
+                transparent
+                style={{position: 'absolute', top: 0, right: 0}}
+                onPress={() => this.modal.close()}
+              >
+                <Icon name="close" style={{color: '#c4e1ff'}}/>
+              </Button>
+            </View>
+            <ScrollView style={modalStyles.space}>
+              {paragraphs.map((item, index) => (
+                <Text style={modalStyles.descriptionText} key={index}>
+                  {item}
+                </Text>))}
+            </ScrollView>
+          </Modal>
+        </Image>
+      </ Container >
     );
   }
 }

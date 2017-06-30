@@ -111,6 +111,12 @@ export default {
     borderRadius: 5,
     marginBottom: 10
   },
+  loginInput: {
+    textAlign: 'center',
+    paddingRight: 50,
+    paddingLeft: 50,
+    color : "#585f73"
+  },
   loginButton: {
     marginBottom: 10,
     marginTop: 10,
@@ -119,7 +125,7 @@ export default {
     backgroundColor: "#cdac12"
   },
   note: {
-    color : "#c4e1ff",
+    color : "#585f73",
     flex : 1,
     textAlign : "center"
   },

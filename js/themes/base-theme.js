@@ -18,7 +18,7 @@ export default{
   subtitleColor: '#8e8e93',
 
   inverseTextColor: '#000',
-  textColor: '#fff',
+  textColor: '#41475b',
 
   fontSizeBase: width < 400 ? 13 : 15,
   titleFontSize: (Platform.OS === 'ios') ? 17 : 19,

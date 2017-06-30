@@ -28,7 +28,7 @@ class SideBar extends Component {
   render() {
     const { username, money} = this.props;
     return (
-      <Content style={{backgroundColor: '#252A30'}}>
+      <Content style={{backgroundColor: '#165980'}}>
         <Thumbnail
           style={{alignSelf: 'center', height: 200, width: 200, marginTop: 20, marginBottom: 15, resizeMode: 'contain'}}
           square
