@@ -179,7 +179,7 @@ export default {
     marginRight : 10,
     marginTop : 5,
     borderRadius : 3,
-    backgroundColor : "#343b52",
+    backgroundColor : "#fff",
     justifyContent : "space-between",
     flex : 1,
     flexDirection : "row",
@@ -189,12 +189,12 @@ export default {
     alignItems : "flex-start",
   },
   historyLeftTittle : {
-    color : '#7b93cb',
+    color : '#1c6f91',
     fontSize : 17,
     fontWeight: "bold"
   },
   historyLeftTime : {
-    color : '#5a6490',
+    color : '#8c91a6',
     fontSize : 13,
     marginTop : 5
   },
@@ -202,12 +202,12 @@ export default {
     alignItems : "flex-end",
   },
   historyRightTittleReceive : {
-    color : '#ffde00',
+    color : '#e78800',
     fontSize : 17,
     fontWeight: "bold"
   },
   historyRightTittleSend : {
-    color : '#fe9870',
+    color : '#e8393d',
     fontSize : 17,
     fontWeight: "bold"
   },

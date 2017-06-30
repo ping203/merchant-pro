@@ -150,9 +150,9 @@ export default {
     marginTop: 10,
     width: deviceWidth * 240 / 640,
     borderWidth: 2,
-    borderColor: '#555e94',
+    borderColor: '#1182b1',
     borderRadius: 5,
-    backgroundColor: "transparent"
+    backgroundColor : "rgba(0, 255, 234, 0.05)"
   },
   buttonHistoryText: {
     fontSize: theme.fontSizeBase * 1.1,
@@ -186,7 +186,7 @@ export default {
     marginRight: 10,
     marginTop: 5,
     borderRadius: 3,
-    backgroundColor: "#343b52",
+    backgroundColor: "#fff",
     justifyContent: "space-between",
     flex: 1,
     flexDirection: "column",
@@ -197,12 +197,11 @@ export default {
     marginRight: 10,
     marginTop: 5,
     borderRadius: 3,
-    backgroundColor: "#343b52",
+    backgroundColor: "#fff",
     justifyContent: "space-between",
     flex: 1,
     flexDirection: "column",
-    padding: 10,
-    opacity: 0.5
+    padding: 10
   },
   historyHeader: {
     borderBottomWidth: 1,
@@ -216,16 +215,16 @@ export default {
     alignItems: "flex-start",
   },
   historyLeftTittle: {
-    color: '#7b93cb',
+    color: '#1c6f91',
     fontSize: 17
   },
   historyLeftTime: {
-    color: '#5a6490',
+    color: '#8b90a7',
     fontSize: 13,
     marginTop: 5
   },
   historyRightTittle: {
-    color: '#ffde00',
+    color: '#e78800',
     alignItems: "flex-end",
   },
   historyContent: {
@@ -244,12 +243,12 @@ export default {
     fontWeight: "bold"
   },
   historyItemField: {
-    color: '#c4e1ff',
+    color: '#323436',
     fontWeight: "bold",
     fontSize: theme.fontSizeBase
   },
   historyItemValue: {
-    color: '#a6adcb',
+    color: '#323436',
     fontSize: theme.fontSizeBase
   },
   historyRowButtonCopy: {

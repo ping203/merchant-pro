@@ -144,5 +144,12 @@ export default {
     borderRadius: 10,
     backgroundColor: "#9f8a41"
   },
+  descriptionText: {
+    color: "#41475b",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    marginBottom : 30,
+  },
 
 }

@@ -203,8 +203,9 @@ class MerchantsComponent extends Component {
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
         <Image source={glow2} style={styles.container}>
+          <HeaderComponent hasBack/>
           <Content style={{backgroundColor: 'transparent'}}>
-            <HeaderComponent hasBack/>
+            <Text style={styles.headerText}>DANH SÁCH ĐẠI LÝ</Text>
             <View padder style={{backgroundColor: 'transparent'}}>
               <ListView
                 renderScrollComponent={props => <InfiniteScrollView {...props} />}
@@ -218,21 +219,20 @@ class MerchantsComponent extends Component {
 
             </View>
           </Content>
+
+          <FooterTab style={styles.footer}>
+
+            <View style={styles.buttonGroup}>
+              <Button style={styles.buttonHistory} onPress={() => this.goHistory()}>
+                <Text style={styles.buttonHistoryText}> Lịch sử </Text>
+              </Button>
+
+              <Button style={styles.buttonHistory} onPress={() => this.setTutorial(true)}>
+                <Text style={styles.buttonHistoryText}> Hướng dẫn </Text>
+              </Button>
+            </View>
+          </FooterTab>
         </Image>
-
-
-        <FooterTab style={styles.footer}>
-
-          <View style={styles.buttonGroup}>
-            <Button style={styles.buttonHistory} onPress={() => this.goHistory()}>
-              <Text style={styles.buttonHistoryText}> Lịch sử </Text>
-            </Button>
-
-            <Button style={styles.buttonHistory} onPress={() => this.setTutorial(true)}>
-              <Text style={styles.buttonHistoryText}> Hướng dẫn </Text>
-            </Button>
-          </View>
-        </FooterTab>
 
         <Modal
           style={[modalStyle.modal, modalStyle.modal2, styles.modalWrapper]}

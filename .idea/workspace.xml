@@ -2,22 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b06418f6-cf1e-4e93-8754-b4111226420d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/ico_quatang.png" afterPath="$PROJECT_DIR$/images/ico_quatang.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.json" afterPath="$PROJECT_DIR$/app.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/alertPopup/styles.js" afterPath="$PROJECT_DIR$/js/components/alertPopup/styles.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/header/headerWithBack.js" afterPath="$PROJECT_DIR$/js/components/header/headerWithBack.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/header/index.js" afterPath="$PROJECT_DIR$/js/components/header/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/cashOut/index.js" afterPath="$PROJECT_DIR$/js/scenes/cashOut/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/cashOut/styles.js" afterPath="$PROJECT_DIR$/js/scenes/cashOut/styles.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/historyTransfer/index.js" afterPath="$PROJECT_DIR$/js/scenes/historyTransfer/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/historyTransfer/styles.js" afterPath="$PROJECT_DIR$/js/scenes/historyTransfer/styles.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/itemsCashOut/index.js" afterPath="$PROJECT_DIR$/js/scenes/itemsCashOut/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/itemsCashOut/styles.js" afterPath="$PROJECT_DIR$/js/scenes/itemsCashOut/styles.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/cashOutHistory/index.js" afterPath="$PROJECT_DIR$/js/scenes/cashOutHistory/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/cashOutHistory/styles.js" afterPath="$PROJECT_DIR$/js/scenes/cashOutHistory/styles.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/historyTransferMerchant/index.js" afterPath="$PROJECT_DIR$/js/scenes/historyTransferMerchant/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/historyTransferMerchant/styles.js" afterPath="$PROJECT_DIR$/js/scenes/historyTransferMerchant/styles.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/merchants/index.js" afterPath="$PROJECT_DIR$/js/scenes/merchants/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/mobileCards/index.js" afterPath="$PROJECT_DIR$/js/scenes/mobileCards/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/mobileCards/styles.js" afterPath="$PROJECT_DIR$/js/scenes/mobileCards/styles.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/transfer/styles.js" afterPath="$PROJECT_DIR$/js/scenes/transfer/styles.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scenes/merchants/styles.js" afterPath="$PROJECT_DIR$/js/scenes/merchants/styles.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -36,89 +28,40 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/scenes/itemsCashOut/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="264" column="17" lean-forward="true" selection-start-line="264" selection-start-column="17" selection-end-line="264" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/components/alertPopup/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="36" column="41" lean-forward="false" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="modal.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/components/styles/modal.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="52" selection-end-column="4" />
-              <folding>
-                <marker date="1498807540597" expanded="true" signature="329:521" ph="{&quot;position&quot;: 'relative'...}" />
-                <marker date="1498807540597" expanded="true" signature="1058:1168" ph="{&quot;color&quot;: &quot;##41475b&quot;...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="styles.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/components/alertPopup/styles.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="26" column="31" lean-forward="true" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/scenes/merchants/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1038">
-              <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-              <folding>
-                <element signature="e#694#756#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="styles.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/scenes/itemsCashOut/styles.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1426">
-              <caret line="214" column="4" lean-forward="true" selection-start-line="214" selection-start-column="4" selection-end-line="214" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/scenes/mobileCards/index.js">
+        <entry file="file://$PROJECT_DIR$/js/scenes/cashOutHistory/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="226" column="38" lean-forward="true" selection-start-line="226" selection-start-column="38" selection-end-line="226" selection-end-column="38" />
+              <caret line="148" column="33" lean-forward="false" selection-start-line="148" selection-start-column="33" selection-end-line="148" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="styles.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/scenes/mobileCards/styles.js">
+        <entry file="file://$PROJECT_DIR$/js/scenes/cashOutHistory/styles.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="216" column="21" lean-forward="true" selection-start-line="216" selection-start-column="11" selection-end-line="216" selection-end-column="21" />
+            <state relative-caret-position="261">
+              <caret line="150" column="35" lean-forward="false" selection-start-line="150" selection-start-column="35" selection-end-line="150" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="appConfig.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/common/appConfig.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="36" lean-forward="true" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="styles.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/scenes/merchants/styles.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="264" column="32" lean-forward="false" selection-start-line="264" selection-start-column="32" selection-end-line="268" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -136,9 +79,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>A</find>
-      <find>Ale</find>
-      <find>Aler</find>
       <find>Alert.</find>
       <find>Alert.a</find>
       <find>Alert.al</find>
@@ -166,6 +106,9 @@
       <find>console.log</find>
       <find>\n\/\/ var GiftedSpinner \= require\(\'react\-native\-gifted\-spinner\'\)\;</find>
       <find>react-native-gifted-listview</find>
+      <find>descriptionText</find>
+      <find>THÔNG BÁO</find>
+      <find>historyRightTittleReceive</find>
     </findStrings>
     <dirStrings>
       <dir>D:\xampp\htdocs\merchant-pro\js\components\sideBar</dir>
@@ -181,7 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/js/AppRouteConfigs.js" />
         <option value="$PROJECT_DIR$/js/AppNavigatorWrap.js" />
         <option value="$PROJECT_DIR$/js/scenes/home/tabButton.js" />
         <option value="$PROJECT_DIR$/js/actions/confirmPopup.js" />
@@ -196,20 +138,15 @@
         <option value="$PROJECT_DIR$/js/scenes/historyTransferMerchant/reducers.js" />
         <option value="$PROJECT_DIR$/js/scenes/cashOutHistory/actions.js" />
         <option value="$PROJECT_DIR$/js/actions/auth.js" />
-        <option value="$PROJECT_DIR$/js/scenes/merchants/styles.js" />
         <option value="$PROJECT_DIR$/js/scenes/itemsCashOut/actions.js" />
         <option value="$PROJECT_DIR$/js/common/http.js" />
         <option value="$PROJECT_DIR$/js/components/alertPopup/index.js" />
-        <option value="$PROJECT_DIR$/js/scenes/historyTransferMerchant/index.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/js/common/appConfig.js" />
         <option value="$PROJECT_DIR$/js/components/confirmPopup/index.js" />
         <option value="$PROJECT_DIR$/js/components/confirmPopup/selectedCheckbox.js" />
         <option value="$PROJECT_DIR$/js/components/sideBar/index.js" />
         <option value="$PROJECT_DIR$/js/components/sideBar/style.js" />
         <option value="$PROJECT_DIR$/js/components/styles/modal.js" />
-        <option value="$PROJECT_DIR$/js/scenes/cashOutHistory/index.js" />
-        <option value="$PROJECT_DIR$/js/scenes/cashOutHistory/styles.js" />
         <option value="$PROJECT_DIR$/js/scenes/home/index.js" />
         <option value="$PROJECT_DIR$/js/scenes/login/index.js" />
         <option value="$PROJECT_DIR$/js/components/confirmPopup/styles.js" />
@@ -224,14 +161,20 @@
         <option value="$PROJECT_DIR$/js/scenes/historyTransfer/styles.js" />
         <option value="$PROJECT_DIR$/js/components/header/index.js" />
         <option value="$PROJECT_DIR$/js/scenes/cashOut/index.js" />
-        <option value="$PROJECT_DIR$/js/scenes/cashOut/styles.js" />
         <option value="$PROJECT_DIR$/js/scenes/historyTransfer/index.js" />
         <option value="$PROJECT_DIR$/js/scenes/mobileCards/index.js" />
         <option value="$PROJECT_DIR$/js/scenes/itemsCashOut/index.js" />
-        <option value="$PROJECT_DIR$/js/scenes/merchants/index.js" />
         <option value="$PROJECT_DIR$/js/scenes/mobileCards/styles.js" />
         <option value="$PROJECT_DIR$/js/scenes/itemsCashOut/styles.js" />
         <option value="$PROJECT_DIR$/js/components/alertPopup/styles.js" />
+        <option value="$PROJECT_DIR$/js/scenes/merchants/styles.js" />
+        <option value="$PROJECT_DIR$/js/scenes/merchants/index.js" />
+        <option value="$PROJECT_DIR$/js/scenes/historyTransferMerchant/index.js" />
+        <option value="$PROJECT_DIR$/js/scenes/historyTransferMerchant/styles.js" />
+        <option value="$PROJECT_DIR$/js/scenes/cashOut/styles.js" />
+        <option value="$PROJECT_DIR$/js/scenes/cashOutHistory/index.js" />
+        <option value="$PROJECT_DIR$/js/scenes/cashOutHistory/styles.js" />
+        <option value="$PROJECT_DIR$/js/common/appConfig.js" />
       </list>
     </option>
   </component>
@@ -340,28 +283,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mobileCards" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="merchant-pro" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="merchant-pro" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scenes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="merchants" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -384,7 +305,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="historyTransfer" />
+              <option name="myItemId" value="cashOutHistory" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -425,6 +346,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="merchant-pro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="merchant-pro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -610,12 +549,12 @@
       <workItem from="1498211853042" duration="709000" />
       <workItem from="1498471908824" duration="599000" />
       <workItem from="1498646869212" duration="168000" />
-      <workItem from="1498809889507" duration="1529000" />
+      <workItem from="1498809889507" duration="4843000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="675137000" />
+    <option name="totallyTimeSpent" value="678451000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -633,6 +572,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1749634" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3279483" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -646,7 +586,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3279483" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -743,13 +682,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/scenes/historyTransfer/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="42" column="25" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/historyTransfer/reducers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -809,13 +741,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/merchants/styles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="218" column="4" lean-forward="true" selection-start-line="218" selection-start-column="4" selection-end-line="223" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/cashOutTab/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -844,26 +769,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/historyTransferMerchant/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="15" column="64" lean-forward="false" selection-start-line="15" selection-start-column="64" selection-end-line="16" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="18" lean-forward="false" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/common/appConfig.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="49" lean-forward="false" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -888,25 +798,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/cashOutHistory/styles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/home/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="52">
           <caret line="42" column="31" lean-forward="false" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/cashOutHistory/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="206" column="1" lean-forward="false" selection-start-line="206" selection-start-column="1" selection-end-line="206" selection-end-column="1" />
-          <folding />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1005,38 +903,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
           <caret line="71" column="20" lean-forward="false" selection-start-line="71" selection-start-column="20" selection-end-line="72" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/transfer/styles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="172" column="20" lean-forward="false" selection-start-line="172" selection-start-column="20" selection-end-line="173" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/transfer/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="287" column="59" lean-forward="false" selection-start-line="287" selection-start-column="59" selection-end-line="287" selection-end-column="59" />
-          <folding>
-            <marker date="1498807540620" expanded="true" signature="9269:9351" ph="&lt;Text/&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/cashOut/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="82" column="54" lean-forward="false" selection-start-line="82" selection-start-column="54" selection-end-line="82" selection-end-column="54" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/cashOut/styles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="135" column="36" lean-forward="false" selection-start-line="135" selection-start-column="36" selection-end-line="135" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -1074,38 +941,81 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/scenes/itemsCashOut/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="264" column="17" lean-forward="true" selection-start-line="264" selection-start-column="17" selection-end-line="264" selection-end-column="17" />
+        <state relative-caret-position="342">
+          <caret line="182" column="54" lean-forward="true" selection-start-line="182" selection-start-column="54" selection-end-line="184" selection-end-column="60" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/scenes/merchants/index.js">
+    <entry file="file://$PROJECT_DIR$/js/scenes/transfer/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1038">
-          <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+        <state relative-caret-position="318">
+          <caret line="294" column="47" lean-forward="false" selection-start-line="294" selection-start-column="47" selection-end-line="294" selection-end-column="47" />
           <folding>
-            <element signature="e#694#756#0" expanded="true" />
+            <marker date="1498807540620" expanded="true" signature="9269:9351" ph="&lt;Text/&gt;" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/transfer/styles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="152" column="19" lean-forward="true" selection-start-line="152" selection-start-column="19" selection-end-line="160" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/historyTransferMerchant/styles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="203" column="31" lean-forward="true" selection-start-line="203" selection-start-column="31" selection-end-line="203" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/components/alertPopup/styles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="44" column="39" lean-forward="true" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/components/alertPopup/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="36" column="41" lean-forward="false" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+        <state relative-caret-position="952">
+          <caret line="56" column="40" lean-forward="false" selection-start-line="56" selection-start-column="40" selection-end-line="56" selection-end-column="40" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/historyTransferMerchant/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="89" column="61" lean-forward="true" selection-start-line="89" selection-start-column="61" selection-end-line="89" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/merchants/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2479">
+          <caret line="173" column="22" lean-forward="false" selection-start-line="173" selection-start-column="22" selection-end-line="173" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#694#756#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/components/styles/modal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="52" selection-end-column="4" />
+        <state relative-caret-position="185">
+          <caret line="45" column="4" lean-forward="true" selection-start-line="45" selection-start-column="4" selection-end-line="52" selection-end-column="4" />
           <folding>
             <marker date="1498807540597" expanded="true" signature="329:521" ph="{&quot;position&quot;: 'relative'...}" />
             <marker date="1498807540597" expanded="true" signature="1058:1168" ph="{&quot;color&quot;: &quot;##41475b&quot;...}" />
@@ -1113,10 +1023,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/components/alertPopup/styles.js">
+    <entry file="file://$PROJECT_DIR$/js/scenes/cashOut/styles.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="26" column="31" lean-forward="true" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+        <state relative-caret-position="301">
+          <caret line="137" column="20" lean-forward="true" selection-start-line="137" selection-start-column="20" selection-end-line="137" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/cashOut/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1700">
+          <caret line="119" column="28" lean-forward="false" selection-start-line="119" selection-start-column="28" selection-end-line="119" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/cashOutHistory/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="148" column="33" lean-forward="false" selection-start-line="148" selection-start-column="33" selection-end-line="148" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/merchants/styles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="264" column="32" lean-forward="false" selection-start-line="264" selection-start-column="32" selection-end-line="268" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/scenes/cashOutHistory/styles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="150" column="35" lean-forward="false" selection-start-line="150" selection-start-column="35" selection-end-line="150" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/common/appConfig.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="36" lean-forward="true" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
           <folding />
         </state>
       </provider>

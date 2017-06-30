@@ -158,7 +158,7 @@ export default {
     marginRight: 10,
     marginTop: 5,
     borderRadius: 3,
-    backgroundColor: "#343b52",
+    backgroundColor: "#fff",
     justifyContent: "space-between",
     flex: 1,
     flexDirection: "column",
@@ -173,24 +173,24 @@ export default {
     marginLeft: 5
   },
   merchantField: {
-    color: "#c4e1ff",
+    color: "#323436",
     fontWeight: "bold"
   },
   merchantValue: {
-    color: "#a6adcb",
+    color: "#323436",
     fontWeight: "normal"
   },
   merchantCode: {
-    color: "#5a6490",
+    color: "#323436",
     fontSize: theme.fontSizeBase * 0.8
   },
   merchantCodeInner: {
-    color: "#7b93cb",
+    color: "#323436",
     fontSize: theme.fontSizeBase,
     fontWeight: "bold"
   },
   merchantName: {
-    color: "#7b93cb",
+    color: "#1c6f91",
     fontSize: theme.fontSizeBase * 1.1,
   },
   modalButtonBar: {
@@ -248,7 +248,8 @@ export default {
   },
   footer: {
     flex : 80/640,
-    backgroundColor: '#434973',
+    backgroundColor: 'transparent',
+    // backgroundColor: 'red',
   },
   buttonGroup: {
     flex : 80/640,
@@ -257,14 +258,15 @@ export default {
     paddingBottom : 5,
   },
   buttonHistory: {
-    borderWidth: 1,
-    borderColor: '#555e94',
-    borderRadius: 5,
     marginLeft : 30,
     marginRight : 30,
     marginTop : 5,
     marginBottom : 5,
     height : deviceWidth *60/640,
+    borderWidth: 2,
+    borderColor: '#1182b1',
+    borderRadius: 5,
+    backgroundColor : "rgba(0, 255, 234, 0.05)"
     // width : deviceWidth * 240/640,
   },
   buttonHistoryText: {
@@ -273,10 +275,17 @@ export default {
     fontWeight: "bold"
   },
   descriptionText: {
-    color: "#fff",
+    color: "#41475b",
     // justifyContent: "center",
     // alignItems: "center",
     textAlign: "left",
     marginBottom : 10,
   },
+  headerText : {
+    fontSize : theme.fontSizeH2,
+    color : "#1c6f91",
+    textAlign :"center",
+    fontWeight : "bold",
+    marginTop : 10,
+  }
 }

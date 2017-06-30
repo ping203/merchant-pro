@@ -69,12 +69,12 @@ class HistoryTransferMerchantComponent extends Component {
 
 
   _renderRowData(rowData) {
-    if(!rowData) return;
-    const { total, skip, isFetching, username} = this.props;
-    const { toUsername, userPayFee, fee, createdTime,transferType, value,fromUsername} = rowData;
+    if (!rowData) return;
+    const {total, skip, isFetching, username} = this.props;
+    const {toUsername, userPayFee, fee, createdTime, transferType, value, fromUsername} = rowData;
     let transferTypeCode = (toUsername == username );// true : nhận, false : chuyển;
     let transferPayFeeType = (userPayFee == username ); //true : "Bạn";// false : chuyển;
-    let formatTime =  moment(createdTime*1000).format('h:mm a - D/M/YYYY');
+    let formatTime = moment(createdTime * 1000).format('h:mm a - D/M/YYYY');
 
     // Reload all data
     return (
@@ -114,19 +114,20 @@ class HistoryTransferMerchantComponent extends Component {
     const {items, total, skip} = this.props;
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
-        <HeaderWithBackComponent tittle="CHUYỂN VÀNG ĐẠI LÝ"/>
         <Image source={glow2} style={styles.container}>
-          <View padder style={{backgroundColor: 'transparent'}}>
-            <ListView
-              renderScrollComponent={props => <InfiniteScrollView {...props} />}
-              dataSource={this.dataSource}
-              renderRow={(rowData) => this._renderRowData.call(this, rowData)}
-              refreshControl={this._renderRefreshControl()}
-              onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}
-              canLoadMore={!items.length || items.length < total}
-              enableEmptySections={true}
-            />
-            {/*<GiftedListView*/}
+          <HeaderWithBackComponent tittle="CHUYỂN VÀNG ĐẠI LÝ"/>
+          <Content style={{backgroundColor: 'transparent'}}>
+            <View padder style={{backgroundColor: 'transparent'}}>
+              <ListView
+                renderScrollComponent={props => <InfiniteScrollView {...props} />}
+                dataSource={this.dataSource}
+                renderRow={(rowData) => this._renderRowData.call(this, rowData)}
+                refreshControl={this._renderRefreshControl()}
+                onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}
+                canLoadMore={!items.length || items.length < total}
+                enableEmptySections={true}
+              />
+              {/*<GiftedListView*/}
               {/*rowView={(rowData) => this._renderRowData.call(this, rowData)}*/}
               {/*onFetch={this._loadMoreContentAsync.bind(this)}*/}
               {/*firstLoader={true} // display a loader for the first fetching*/}
@@ -134,14 +135,16 @@ class HistoryTransferMerchantComponent extends Component {
               {/*refreshable={true} // enable pull-to-refresh for iOS and touch-to-refresh for Android*/}
               {/*withSections={false} // enable sections*/}
               {/*customStyles={{*/}
-                {/*paginationView: {*/}
-                  {/*backgroundColor: '#eee',*/}
-                {/*},*/}
+              {/*paginationView: {*/}
+              {/*backgroundColor: '#eee',*/}
+              {/*},*/}
               {/*}}*/}
               {/*refreshableTintColor="blue"*/}
-            {/*/>*/}
+              {/*/>*/}
 
-          </View>
+            </View>
+          </Content>
+
         </Image>
       </Container>
     );

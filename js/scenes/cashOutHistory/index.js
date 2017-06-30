@@ -184,22 +184,24 @@ class CashOutHistoryComponent extends Component {
       <Container style={{backgroundColor: '#2a3146'}}>
         <Image source={glow2} style={styles.container}>
           <HeaderComponent/>
-          <View padder style={{backgroundColor: 'transparent'}}>
-            <ListView
-              renderScrollComponent={props => <InfiniteScrollView {...props} />}
-              dataSource={this.dataSource}
-              renderRow={(rowData) => this._renderRowData.call(this, rowData)}
-              refreshControl={this._renderRefreshControl()}
-              onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}
-              canLoadMore={false}
-              enableEmptySections={true}
-              pageSize={10}
-              renderFooter={() => this._renderFooter.call(this)}
-              renderHeader={() => this._renderHeader.call(this)}
-            />
-            {items && items.length == 0 &&
-            <Text style={{margin: 10, textAlign: "center", color: "#585f73"}}>Danh sách quà của bạn trống</Text>}
-          </View>
+          <Content>
+            <View padder style={{backgroundColor: 'transparent'}}>
+              <ListView
+                renderScrollComponent={props => <InfiniteScrollView {...props} />}
+                dataSource={this.dataSource}
+                renderRow={(rowData) => this._renderRowData.call(this, rowData)}
+                refreshControl={this._renderRefreshControl()}
+                onLoadMoreAsync={this._loadMoreContentAsync.bind(this)}
+                canLoadMore={false}
+                enableEmptySections={true}
+                pageSize={10}
+                renderFooter={() => this._renderFooter.call(this)}
+                renderHeader={() => this._renderHeader.call(this)}
+              />
+              {items && items.length == 0 &&
+              <Text style={{margin: 10, textAlign: "center", color: "#585f73"}}>Danh sách quà của bạn trống</Text>}
+            </View>
+          </Content>
         </Image>
       </Container>
     );
