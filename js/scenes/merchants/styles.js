@@ -235,7 +235,7 @@ export default {
     textAlign: 'center',
     paddingRight: 20,
     paddingLeft: 20,
-    color : "white"
+    color : "#585f73"
   },
   modalContent : {
     padding: 10,

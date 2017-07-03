@@ -87,7 +87,7 @@ export default {
     borderBottomColor: '#ddd',
   },
   bg: {
-    marginTop : 10,
+    marginTop: 10,
     left: 0,
     paddingTop: 0,
     height: null,
@@ -98,19 +98,19 @@ export default {
     // zIndex : -1
   },
   cardImage: {
-    width : deviceWidth/3.5,
-    height : deviceWidth/3.5 * 112/284,
-    opacity : 0.2
+    width: deviceWidth / 3.5,
+    height: deviceWidth / 3.5 * 112 / 284,
+    opacity: 0.2
   },
   cardImageActive: {
-    width : deviceWidth/3.5,
-    height : deviceWidth/3.5 * 112/284
+    width: deviceWidth / 3.5,
+    height: deviceWidth / 3.5 * 112 / 284
   },
-  cardWrappers : {
+  cardWrappers: {
     // flex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
-    marginTop : 10
+    marginTop: 10
   },
   checkboxList: {
     flexDirection: "row",
@@ -118,7 +118,7 @@ export default {
     alignItems: "center",
     marginTop: 10
   },
-  errorMessage :{
+  errorMessage: {
     height: 30,
     color: 'red',
     marginBottom: (Platform.OS === 'ios') ? 10 : 0,
@@ -133,33 +133,33 @@ export default {
     paddingLeft: deviceWidth / 30,
     paddingRight: deviceWidth / 30,
   },
-  centerBox : {
-    flexDirection : "row",
-    justifyContent : "center",
-    alignItems : "center"
+  centerBox: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
   },
-  buttonGroup : {
+  buttonGroup: {
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
     marginTop: 10
   },
-  buttonHistory : {
+  buttonHistory: {
     justifyContent: "center",
     alignItems: "center",
     marginTop: 10,
-    width : deviceWidth * 240/640,
+    width: deviceWidth * 240 / 640,
     borderWidth: 2,
     borderColor: '#1182b1',
     borderRadius: 5,
-    backgroundColor : "rgba(0, 255, 234, 0.05)"
+    backgroundColor: "rgba(0, 255, 234, 0.05)"
   },
-  buttonHistoryText : {
-    fontSize : theme.fontSizeBase * 1.1,
-    color : "#676da6",
-    fontWeight : "bold"
+  buttonHistoryText: {
+    fontSize: theme.fontSizeBase * 1.1,
+    color: "#676da6",
+    fontWeight: "bold"
   },
-  buttonFooterWrap : {
+  buttonFooterWrap: {
 
     flexDirection: "row",
     justifyContent: "space-around",
@@ -168,62 +168,64 @@ export default {
   },
 
   buttonYellow: {
-    marginTop : 10,
+    marginTop: 10,
     marginBottom: 10,
     height: 50,
     borderRadius: 10,
     backgroundColor: "#cdac12"
   },
-  isVerifyReceiver : {
+  isVerifyReceiver: {
     width: 30,
     color: "#add329",
-    position : "absolute",
-    top : 12,
-    right : 5,
+    position: "absolute",
+    top: 12,
+    right: 5,
   },
-  historyItem : {
-    marginLeft : 10,
-    marginRight : 10,
-    marginTop : 5,
-    borderRadius : 3,
-    backgroundColor : "white",
-    justifyContent : "space-between",
-    flex : 1,
-    flexDirection : "row",
-    padding  : 10
+  historyItem: {
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 5,
+    borderRadius: 3,
+    backgroundColor: "white",
+    justifyContent: "space-between",
+    flex: 1,
+    flexDirection: "row",
+    padding: 10
   },
-  historyLeft : {
-    alignItems : "flex-start",
+  historyLeft: {
+    alignItems: "flex-start",
+    maxWidth: 0.5 * deviceWidth
   },
-  historyLeftTittle : {
-    color : '#7b93cb',
-    fontSize : 17,
+  historyLeftTittle: {
+    color: '#7b93cb',
+    fontSize: 17,
     fontWeight: "bold"
   },
-  historyLeftTime : {
-    color : '#5a6490',
-    fontSize : 13,
-    marginTop : 5
+  historyLeftTime: {
+    color: '#5a6490',
+    fontSize: 13,
+    marginTop: 5
   },
-  historyRight : {
-    alignItems : "flex-end",
+  historyRight: {
+    alignItems: "flex-end",
+    maxWidth: 0.5 * deviceWidth
   },
-  historyRightTittleReceive : {
-    color : '#ffde00',
-    fontSize : 17,
+  historyRightTittleReceive: {
+    color: '#ffde00',
+    fontSize: 17,
     fontWeight: "bold"
   },
-  historyRightTittleSend : {
-    color : '#fe9870',
-    fontSize : 17,
+  historyRightTittleSend: {
+    color: '#fe9870',
+    fontSize: 17,
     fontWeight: "bold"
   },
-  historyRightMinePay : {
-    color : '#b07a7a',
-    fontSize : 13,
+  historyRightMinePay: {
+    color: '#b07a7a',
+    fontSize: 13,
   },
-  historyRightOtherPay : {
-    color : '#9fc55d',
-    fontSize : 13,
+  historyRightOtherPay: {
+    color: '#9fc55d',
+    fontSize: 13,
   },
 }

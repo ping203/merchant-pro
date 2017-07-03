@@ -19,6 +19,7 @@ let moment = require('moment');
 import Modal from 'react-native-modalbox';
 import httpService from '../../common/http';
 import {logout, update_gold} from '../../actions/auth';
+import {refreshListHistory} from '../cashOutHistory/actions';
 import AlertPopup from '../../components/alertPopup';
 
 moment.locale('vi');
