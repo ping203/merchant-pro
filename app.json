@@ -2,7 +2,7 @@
   "expo": {
     "sdkVersion": "15.0.0",
     "icon": "./images/logo-new.png",
-    "slug": "VBVPlus",
+    "slug": "VBVPlusIOS",
     "loading": {
       "hideExponentText": true,
       "icon": "./images/loading.png",
