@@ -32,7 +32,8 @@ const HomeNavigation = TabNavigator(AppRouteConfigs, {
     labelStyle: {
       fontSize: 10,
       fontWeight : "bold",
-      color : "#b6e4ff"
+      color : "#b6e4ff",
+        marginBottom : 15
     },
     style: {
       backgroundColor: '#1c6f91',

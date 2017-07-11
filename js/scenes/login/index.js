@@ -137,18 +137,20 @@ class Login extends Component {
   }
 
   handleLogin(response) {
+    console.log('response',response)
     var _self = this;
     var data = response.data;
+      console.log("data",data);
     if (data.status) {
       _self.props.dispatch(toggle_spin(false));
       _self.setError(data.message);
     } else {
-      _self.setError("");
-      try {
-        _self.props.dispatch(login_success(data.data));
-      } catch (error) {
-        _self.setError(error);
-        _self.props.dispatch(toggle_spin(false));
+        _self.setError("");
+      if(typeof data.status === "undefined"){
+          _self.setError("Error ");
+          _self.props.dispatch(toggle_spin(false));
+      }else{
+          _self.props.dispatch(login_success(data.data));
       }
     }
   }

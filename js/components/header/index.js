@@ -74,8 +74,8 @@ class HeaderComponent extends Component {
               </Button>
             </View>}
             <View style={styles.headerLeft}>
-              <Text numberOfLines={1} ellipsizeMode="tail" style={{color: '#c4e1ff',}}>{username}</Text>
-              <NumberFormater numberOfLines={1} ellipsizeMode="tail" style={{color: '#ffde00',}}
+              <Text numberOfLines={1} ellipsizeMode="tail" style={{color: '#c4e1ff', backgroundColor : "transparent"}}>{username}</Text>
+              <NumberFormater numberOfLines={1} ellipsizeMode="tail" style={{color: '#ffde00', backgroundColor : "transparent"}}
                               format="0,0">{money}V</NumberFormater>
             </View>
           </View>
@@ -85,7 +85,7 @@ class HeaderComponent extends Component {
           <View style={styles.headerRight}>
             {!isActived &&
             <Button onPress={this.props.openConfirmPopup} style={styles.buttonConfirm}>
-              <Text style={{color: '#835238'}}>Xác thực</Text>
+              <Text numberOfLines={1} ellipsizeMode="tail" style={{color: '#835238'}}>Xác thực</Text>
             </Button>
             }
             {isActived && <Icon active name="ios-arrow-dropdown-circle" style={{width: 30, color: "#add329"}}/>}

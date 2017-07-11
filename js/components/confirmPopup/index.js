@@ -104,16 +104,16 @@ class ConfirmComponent extends Component {
             <Icon name="close" style={{color: '#c4e1ff'}}/>
           </Button>
         </View>
-        <ScrollView style={styles.space}>
+        <ScrollView style={styles.space} >
           <Text style={styles.descriptionText}>
             Xác thực tài khoản để sử dụng đầy đủ {"\n"}
             tính năng của game: Nhận quà, chuyển vàng ...{"\n"}
             Vui lòng chọn nhà mạng:
           </Text>
           <View style={styles.checkboxList}>
-            <SelectedCheckbox network="vtt"></SelectedCheckbox>
-            <SelectedCheckbox network="vnp"></SelectedCheckbox>
-            <SelectedCheckbox network="vms"></SelectedCheckbox>
+            <SelectedCheckbox network="vtt" ></SelectedCheckbox>
+            <SelectedCheckbox network="vnp" style={{marginLeft : 5}}></SelectedCheckbox>
+            <SelectedCheckbox network="vms" style={{marginLeft : 5}}></SelectedCheckbox>
           </View>
           <View style={styles.buttonWrapper}>
             <Button rounded block style={styles.yellowButton} onPress={()=>this.submit(messageConfig.numberTo,selectedMessage)}>

@@ -21,6 +21,7 @@ export function toggle_spin(showSpin) {
 
 export function login_success(loginInfo) {
   return async function (dispatch) {
+    console.log("JSON.stringify(loginInfo)", JSON.stringify(loginInfo))
     await AsyncStorage.setItem('authData', JSON.stringify(loginInfo));
     dispatch({
       type: LOGIN_SUCCESS,
