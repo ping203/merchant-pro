@@ -79,6 +79,7 @@ export default {
     justifyContent: "center",
     alignItems: "center",
     marginLeft: 15,
+      backgroundColor : "transparent"
   },
   roundedButton: {
     alignSelf: 'center',

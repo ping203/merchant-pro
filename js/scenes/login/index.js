@@ -220,6 +220,7 @@ class Login extends Component {
                     <Icon active name="person" style={styles.inputIcon}/>
                     <Input  style={styles.loginInput}
                            autoCorrect={false}
+                            autoCapitalize = 'none'
                            placeholder="Tài khoản"
                            placeholderTextColor="#309dc5"
                            onChangeText={username => {
@@ -278,6 +279,7 @@ class Login extends Component {
                     <Input  style={styles.loginInput}
                            autoCorrect={false}
                            placeholder="Tài khoản"
+                            autoCapitalize = 'none'
                            placeholderTextColor="#309dc5"
                            onChangeText={usernameRegister => {
                              this.setState({usernameRegister, errorMessageRegister: ""});

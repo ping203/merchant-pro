@@ -257,7 +257,7 @@ class CashIn extends Component {  //eslint-disable-line
                 </Button>
                 <View style={{marginTop: 20}}>
                   {configGoldRatio.map((item, index) => {
-                    return <Text key={index} style={{color: '#56607d', textAlign: "center", height: 25}}>
+                    return <Text  numberOfLines={1} key={index} style={{color: '#56607d', textAlign: "center", height: 25}}>
                       {item.gold} {item.currency} : {item.price} V
                     </Text>
                   })

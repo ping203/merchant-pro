@@ -217,6 +217,9 @@ class TransferComponent extends Component {  //eslint-disable-line
     }
     var remainingGold = parseInt(money - remainingRatio * value);
 
+    var isSender = feeType == "sender" ? true : false;
+    var _self = this;
+
     return (
 
       <Container style={{backgroundColor: '#2a3146'}}>
@@ -249,15 +252,23 @@ class TransferComponent extends Component {  //eslint-disable-line
               <View style={styles.radioContainer}>
                 <View style={styles.checkboxList}>
                   <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
-                    <Radio selected={feeType == "sender"} onPress={this.onSelectType.bind(this, "sender")}
-                           radioColor="#1c6f91" color="#1c6f91"/>
+                    {/*<Radio selected={feeType == "sender"} onPress={this.onSelectType.bind(this, "sender")}*/}
+                           {/*radioColor="#1c6f91" color="#1c6f91"/>*/}
+
+                      {isSender && <Icon name="md-radio-button-on" onPress={_self.onSelectType.bind(_self, "sender")}  style={{ color : "#1c6f91"}}/>}
+                      {!isSender && <Icon name="md-radio-button-off" onPress={_self.onSelectType.bind(_self, "sender")}  style={{ color : "#1c6f91"}}/>}
                     <Text onPress={this.onSelectType.bind(this, "sender")} style={styles.checkboxText}>
                       Người gửi chịu phí
                     </Text>
                   </View>
                   <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
-                    <Radio selected={feeType != "sender"} onPress={this.onSelectType.bind(this, "receiver")}
-                           radioColor="#1c6f91" color="#1c6f91"/>
+                    {/*<Radio selected={feeType != "sender"} onPress={this.onSelectType.bind(this, "receiver")}*/}
+                           {/*radioColor="#1c6f91" color="#1c6f91"/>*/}
+
+
+                      {isSender && <Icon name="md-radio-button-off" onPress={_self.onSelectType.bind(_self, "receiver")}  style={{ color : "#1c6f91"}}/>}
+                      {!isSender && <Icon name="md-radio-button-on" onPress={_self.onSelectType.bind(_self, "receiver")}  style={{ color : "#1c6f91"}}/>}
+
                     <Text onPress={this.onSelectType.bind(this, "receiver")} style={styles.checkboxText}>
                       Người nhận chịu phí
                     </Text>

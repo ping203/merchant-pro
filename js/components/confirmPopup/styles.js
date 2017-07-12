@@ -42,7 +42,6 @@ export default {
   space: {
     padding: 10,
     paddingTop: 10 + height * 70 / 1136,
-    flex : 1
   },
   descriptionText: {
     color: "#333333",

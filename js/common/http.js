@@ -17,6 +17,7 @@ export default {
       version : config.version,
       bundleId : config.bundleId
     },params);
+      console.log("params",params, config.host );
     var request = axios.post(config.host + url, mappingParams, postConfig);
     return request;
   },
