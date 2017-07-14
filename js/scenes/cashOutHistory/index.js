@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, View, ListView, RefreshControl, Clipboard} from 'react-native';
+import {Image, View, ListView, RefreshControl, Clipboard, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import {
   Container,
@@ -197,6 +197,7 @@ class CashOutHistoryComponent extends Component {
                 pageSize={10}
                 renderFooter={() => this._renderFooter.call(this)}
                 renderHeader={() => this._renderHeader.call(this)}
+                removeClippedSubviews={false}
               />
               {items && items.length == 0 &&
               <Text style={{margin: 10, textAlign: "center", color: "#585f73"}}>Danh sách quà của bạn trống</Text>}

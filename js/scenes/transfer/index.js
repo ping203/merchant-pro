@@ -261,7 +261,7 @@ class TransferComponent extends Component {  //eslint-disable-line
                       Người gửi chịu phí
                     </Text>
                   </View>
-                  <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
+                  <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center", marginLeft : 10}}>
                     {/*<Radio selected={feeType != "sender"} onPress={this.onSelectType.bind(this, "receiver")}*/}
                            {/*radioColor="#1c6f91" color="#1c6f91"/>*/}
 

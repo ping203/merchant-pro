@@ -194,7 +194,7 @@ export default {
   },
   historyLeft: {
     alignItems: "flex-start",
-    maxWidth: 0.5 * deviceWidth
+    maxWidth: 0.5 * deviceWidth - 5
   },
   historyLeftTittle: {
     color: '#7b93cb',
@@ -208,7 +208,8 @@ export default {
   },
   historyRight: {
     alignItems: "flex-end",
-    maxWidth: 0.5 * deviceWidth
+    maxWidth: 0.5 * deviceWidth - 20,
+    backgroundColor : "transparent"
   },
   historyRightTittleReceive: {
     color: '#ffde00',

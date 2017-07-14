@@ -46,13 +46,16 @@ export default{
     borderWidth: 2,
     borderColor: '#1a6c9b',
     borderRadius: 5,
-    marginBottom: 10
+    marginBottom: 10,
+    borderTopWidth: 2,
+    borderLeftWidth: 2,
+    borderRightWidth : 2
   },
   inputStyle: {
     textAlign: 'center',
     paddingRight: 20,
     paddingLeft: 20,
-    color : "#585f73"
+    color: "#585f73"
   },
   inputIcon: {
     position: "absolute",
@@ -64,7 +67,7 @@ export default{
     textAlign: 'center',
     paddingRight: 50,
     paddingLeft: 50,
-    color : "#b6e4ff"
+    color: "#b6e4ff"
   },
   loginButton: {
     marginBottom: 10,
@@ -95,9 +98,9 @@ export default{
     fontSize: theme.fontSizeBase * 0.8,
   },
   loginText: {
-    color : "#309dc5",
-    fontSize : theme.fontSizeBase * 1.1,
-    fontWeight : "bold",
-    textAlign : "center"
+    color: "#309dc5",
+    fontSize: theme.fontSizeBase * 1.1,
+    fontWeight: "bold",
+    textAlign: "center"
   },
 }

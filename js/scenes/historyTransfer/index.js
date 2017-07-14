@@ -130,8 +130,8 @@ class HistoryTransferComponent extends Component {
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
         <Image source={glow2} style={styles.container}>
+          <HeaderWithBackComponent tittle="LỊCH SỬ CHUYỂN VÀNG"/>
           <Content style={{backgroundColor: 'transparent'}}>
-            <HeaderWithBackComponent tittle="LỊCH SỬ CHUYỂN VÀNG"/>
             <View padder style={{backgroundColor: 'transparent'}}>
               <ListView
                 renderScrollComponent={props => <InfiniteScrollView {...props} />}

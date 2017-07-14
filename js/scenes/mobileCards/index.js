@@ -144,9 +144,9 @@ class MobileCardsComponent extends Component {
         <TouchableHighlight onPress={() => _self.showConfirmPopup(itemData)}>
           <View style={styles.historyRight}>
             <Image style={styles.itemImage} source={{uri: imageUrl}}></Image>
-            <Text style={styles.priceWraper}>
+            <View style={styles.priceWraper}>
               <NumberFormater format="0,0" style={styles.price}>{price} V</NumberFormater>
-            </Text>
+            </View>
           </View>
         </TouchableHighlight>)
     }
@@ -180,8 +180,8 @@ class MobileCardsComponent extends Component {
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
         <Image source={glow2} style={styles.container}>
+          <HeaderComponent hasBack/>
           <Content style={{backgroundColor: 'transparent'}}>
-            <HeaderComponent hasBack/>
             <View padder style={{backgroundColor: 'transparent'}}>
               {/*<ListView*/}
               {/*renderScrollComponent={props => <InfiniteScrollView {...props} />}*/}
@@ -197,6 +197,7 @@ class MobileCardsComponent extends Component {
                 dataSource={this.dataSource}
                 renderRow={(rowData) => this._renderRowData.call(this, rowData)}
                 enableEmptySections={true}
+                removeClippedSubviews={false}
               />
 
             </View>

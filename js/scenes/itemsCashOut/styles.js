@@ -195,13 +195,13 @@ export default {
     resizeMode: 'cover'
   },
   priceWraper: {
-    backgroundColor: '#373f62',
-    borderRadius : 15,
-    textAlign: "center",
-    color: "#165980",
+    backgroundColor: '#165980',
+    justifyContent : "center",
+    alignItems : "center",
     marginTop : 3,
     marginLeft : 15,
     marginRight : 15,
+    borderRadius : 22,
   },
   price: {
     color: "#ffde00"

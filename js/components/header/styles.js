@@ -31,7 +31,8 @@ export default {
     // justifyContent: "space-between",
     justifyContent: "center",
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    backgroundColor : "transparent"
   },
   headerButtonLeftWrapper: {
     // position: "absolute",
@@ -40,6 +41,16 @@ export default {
     // flex: 1,
     top : 0,
     left : 0,
+  },
+  headerButtonLeftWrapper2: {
+    position: "absolute",
+    justifyContent: "center",
+    width : deviceWidth * 8,
+    top : 0,
+    left : 0,
+    bottom : 0,
+    flexDirection: "column",
+    alignItems: "center"
   },
   headerButtonRightWrapper: {
     // position: "absolute",
@@ -144,9 +155,9 @@ export default {
     backgroundColor: "#cdac12",
   },
   headerBackButton : {
-    position : "absolute",
-    top : 25,
-    left : 5
+    // position : "absolute",
+    // top : 25,
+    // left : 5
   },
   headerBackTitle : {
     color : "#7fa8d1",

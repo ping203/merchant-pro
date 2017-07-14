@@ -55,6 +55,7 @@ class MerchantsComponent extends Component {
   }
 
   _loadMoreContentAsync() {
+    if(this.props.isFetching) return;
     this.props.dispatch(fetchPosts({
       "command": "fetch_list_merchant",
       "skip": this.props.items.length,
@@ -199,7 +200,6 @@ class MerchantsComponent extends Component {
     const {items, total, skip} = this.props;
     const {openModal, modalData} = this.modalData;
     this.transferMerchantData.feeValue = this.transferMerchantData.feeValue ? Math.round(this.transferMerchantData.feeValue).toString() : "0";
-
     return (
       <Container style={{backgroundColor: '#2a3146'}}>
         <Image source={glow2} style={styles.container}>
